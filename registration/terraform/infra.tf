@@ -2,7 +2,7 @@ terraform {
   required_version = "0.12.8"
   backend "s3" {
     bucket = "terraform-backend-lah"
-    key    = "tf_state"
+    key    = "registration/tf_state"
     region = "us-west-2"
   }
 }
