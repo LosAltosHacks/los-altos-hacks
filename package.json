@@ -1,0 +1,11 @@
+{
+  "name": "los-altos-hacks",
+  "version": "0.0.0",
+  "description": "Dummy package for global linters and formatters",
+  "main_": "",
+  "author": "",
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "prettier": "^1.18.2"
+  }
+}
