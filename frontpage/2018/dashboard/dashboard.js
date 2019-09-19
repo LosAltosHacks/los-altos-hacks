@@ -1,3 +1,4 @@
+/*global moment*/
 const $announcements = document.querySelector('#announcements');
 
 const notifiedAnnouncementIDs = new Set(

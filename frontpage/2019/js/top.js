@@ -1,3 +1,4 @@
+/*eslint-env jquery*/
 var lah_api = 'https://api.losaltoshacks.com';
 $('.nav-link a').on('click', function(event) {
     var target = $(this.getAttribute('href'));

@@ -1,3 +1,6 @@
+/*eslint-env jquery*/
+/*global moment, Schedules*/
+
 //initial state data.  update/delete as you please.
 var dayKey = 0;
 var days = ['March 23', 'March 24'];

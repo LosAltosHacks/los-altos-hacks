@@ -1,3 +1,4 @@
+/*global moment, firebase, Schedules*/
 const announcementsRef = document.getElementById('announcements');
 
 // Initialize Firebase

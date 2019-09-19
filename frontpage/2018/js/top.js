@@ -1,3 +1,4 @@
+/*global moment*/
 const registrationEnd = moment('2018-03-18 21:00');
 const eventStart = moment('2018-03-24 11:00');
 const eventEnd = moment('2018-03-25 8:00');
