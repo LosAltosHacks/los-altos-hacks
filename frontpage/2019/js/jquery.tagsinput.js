@@ -1,3 +1,4 @@
+/*eslint-disable*/
 /*
 
 	jQuery Tags Input Plugin 1.3.3

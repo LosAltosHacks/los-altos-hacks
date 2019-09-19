@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 var Schedules = {
     'March 23': {
         day: 'March 23',

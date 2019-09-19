@@ -1,3 +1,5 @@
+/*eslint-env jquery*/
+
 var lah_api = 'https://api.losaltoshacks.com';
 
 $(document).ready(function() {
