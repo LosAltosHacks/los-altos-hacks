@@ -1,26 +1,26 @@
 function ready(fn) {
-    if (document.readyState != "loading") {
+    if (document.readyState != 'loading') {
         fn();
     } else {
-        document.addEventListener("DOMContentLoaded", fn);
+        document.addEventListener('DOMContentLoaded', fn);
     }
 }
 
 function addClickHandlers() {
-    var links = document.querySelectorAll(".scroll-anchor a");
+    var links = document.querySelectorAll('.scroll-anchor a');
     for (var i = 0; i < links.length; i++) {
-        links[i].addEventListener("click", function (evt) {
+        links[i].addEventListener('click', function(evt) {
             scrollToElement(document.querySelector(evt.target.hash), 800);
         });
-    };
-};
+    }
+}
 
 ready(addClickHandlers);
-var scrollToElement = (function () {
+var scrollToElement = (function() {
     var animation,
         animating = false;
 
-    var scrollToElement = function (elem, duration, evt) {
+    var scrollToElement = function(elem, duration, evt) {
         if (animating || !requestAnimationFrame) {
             return;
         } else if (evt != undefined) {
@@ -39,8 +39,9 @@ var scrollToElement = (function () {
         var elemTop = elem.getBoundingClientRect().top,
             scrollY = window.pageYOffset,
             bodyStyle = getComputedStyle(document.body),
-            bodyMargin = parseInt(bodyStyle.marginTop) +
-                         parseInt(bodyStyle.marginBottom),
+            bodyMargin =
+                parseInt(bodyStyle.marginTop) +
+                parseInt(bodyStyle.marginBottom),
             bodyHeight = document.body.offsetHeight + bodyMargin,
             maxScrollY = bodyHeight - window.innerHeight;
 
@@ -50,20 +51,21 @@ var scrollToElement = (function () {
             startTime: Date.now(),
             duration: duration,
             prevScrollY: -1,
-            hash: "#" + elem.id
+            hash: '#' + elem.id,
         };
         animating = true;
         requestAnimationFrame(step);
     };
 
-    var step = function (timestamp) {
+    var step = function(timestamp) {
         if (!animating) return;
 
         var now = timestamp < 1e12 ? Date.now() : timestamp,
             elapsedTime = now - animation.startTime,
             easeCoefficient = swingEase(elapsedTime / animation.duration),
-            scrollY = Math.round(animation.startY +
-                                 animation.distanceY * easeCoefficient);
+            scrollY = Math.round(
+                animation.startY + animation.distanceY * easeCoefficient
+            );
 
         if (elapsedTime >= animation.duration) {
             animating = false;
@@ -84,9 +86,9 @@ var scrollToElement = (function () {
 
     // jQuery v3.1.1 | (c) jQuery Foundation | jquery.org/license
     // "swing" ease function is from jQuery
-    var swingEase = function (t) {
+    var swingEase = function(t) {
         return 0.5 - Math.cos(t * Math.PI) / 2;
     };
 
     return scrollToElement;
-}());
+})();
