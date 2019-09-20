@@ -1,4 +1,5 @@
 /*eslint-env jquery*/
+/*eslint-disable no-useless-escape*/
 var lah_api = 'https://api.losaltoshacks.com';
 $('.nav-link a').on('click', function(event) {
     var target = $(this.getAttribute('href'));
@@ -15,6 +16,8 @@ $('.nav-link a').on('click', function(event) {
     }
 });
 $('details').attr('ontoggle', 'animateOpen(this)');
+// Used in string, so eslint can't see that it's used
+/* eslint-disable-next-line */
 function animateOpen(ele) {
     if ($(ele).is('[open]')) {
         setTimeout(function() {
@@ -58,7 +61,7 @@ $('.lah-input-group .reg-button').click(function() {
             $parentInp.addClass('closed').removeClass('load');
             $btn.text('Registration completed.');
         })
-        .fail(function(msg) {
+        .fail(function(_msg) {
             $parentInp.addClass('error').removeClass('load');
             setTimeout(function() {
                 $parentInp.removeClass('error');

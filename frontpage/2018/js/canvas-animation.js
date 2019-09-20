@@ -1,5 +1,5 @@
 // For debugging only
-const X = console.log;
+// const X = console.log;
 
 const $ = s => document.querySelector.call(document, s);
 
@@ -53,7 +53,6 @@ function throttle(func, time = 200) {
     }
 
     const {
-        fill,
         fillRect,
         save,
         restore,
@@ -97,7 +96,7 @@ function throttle(func, time = 200) {
         translate(random(0, width), random(0, height));
         //translate(mouse.x + random() * 200, mouse.y + random() * 200)
         rotate(random() * 60 * DEG);
-        for (const c of ':)') {
+        for (const _c of ':)') {
             fillRect(0, 0, random(-100, 100), random(-100, 100));
         }
         restore();
@@ -107,7 +106,7 @@ function throttle(func, time = 200) {
             save();
             translate(mouse.x + random() * 100, mouse.y + random() * 100);
             rotate(random() * 60 * DEG);
-            for (const c of 'sely') {
+            for (const _c of 'sely') {
                 fillRect(0, 0, random(-100, 100), random(-100, 100));
             }
             restore();
@@ -133,7 +132,7 @@ function throttle(func, time = 200) {
         isInteractive = window.innerWidth >= 800;
         if (isInteractive) {
             draw();
-            timeout = setTimeout(() => {
+            const _timeout = setTimeout(() => {
                 animationID = requestAnimationFrame(loop);
             }, 400);
         } else {
