@@ -23,7 +23,7 @@ dbEventsRef.orderBy('timePosted', 'desc').onSnapshot(docs => {
           <h3>${doc.data().name}</h3>
           <p>${doc.data().content}</p>
           <footer>
-            ${doc.data().isPinned ? `<i class="fas fa-thumbtack"></i>` : ``} 
+            ${doc.data().isPinned ? `<i class="fas fa-thumbtack"></i>` : ``}
             <date>${moment(doc.data().timePosted.toDate()).calendar()}</date>
           </footer>
       </div>
