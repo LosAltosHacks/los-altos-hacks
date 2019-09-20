@@ -55,3 +55,80 @@ footer,
 section {
     max-width: none;
 }
+
+.vh95 {
+    max-height: 95vh;
+}
+
+.logo-container {
+    background: var(--accent-bright);
+    color: var(--white);
+    text-align: center;
+    padding-top: var(--s1);
+    padding-bottom: var(--s0);
+}
+
+.logo-container > * {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: var(--s-1);
+    margin-bottom: var(--s-1);
+}
+
+.logo-container > img {
+    width: 60%;
+    height: auto;
+}
+
+.logo-container > h1 {
+    font-size: 8vw;
+}
+
+.info-container {
+    z-index: -2;
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    background: url('../img/info-bg-image.jpg') no-repeat center;
+    background-size: cover;
+    background-position: 50% 50%;
+    padding-top: var(--s-5);
+    padding-bottom: var(--s-5);
+    padding-left: var(--s0);
+    padding-right: var(--s0);
+}
+
+.info-container:before {
+    z-index: -1;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.75;
+    background: linear-gradient(to bottom, #24797c, #1d535b);
+}
+
+.info-container > * {
+    margin-top: var(--s1);
+    margin-bottom: var(--s1);
+}
+
+.info-container h3 {
+    font-size: 8vw;
+}
+
+.info-container h2 {
+    font-size: 20vw;
+}
+
+.info-container .address {
+    font-weight: bold;
+    font-size: var(--s0);
+}
+
+.info-container .address span {
+    font-weight: normal;
+    font-size: var(--s01);
+}
