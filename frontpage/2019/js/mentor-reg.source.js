@@ -1,4 +1,9 @@
 /*eslint-env jquery*/
+// Copy-pasted regexes need this:
+/*eslint-disable no-useless-escape*/
+// Hacky globals need this:
+/*eslint-disable no-unused-vars*/
+// Abandon all hope, ye who enter here
 
 var lah_api = 'https://api.losaltoshacks.com';
 
@@ -207,7 +212,7 @@ $(document).ready(function() {
             .removeClass('focus');
         $('#en-shirtsize .radioBox').attr('disabled', '');
     }
-    var allFilled = true;
+    allFilled = true;
     $('.slInp', '#HDPage').each(function() {
         if ($(this).is('.invalidInp')) {
             allFilled = false;
@@ -261,7 +266,7 @@ $('.qGrp').on('blur', '.slInp, .slSel, #en-language_tag', function() {
         .removeClass('focus');
 });
 $('.qGrp').on('input change', '.slInp, .radioBox, #en-language_tag', function(
-    e
+    _e
 ) {
     if ($(this).is('.slInp.num')) {
         var value = $(this).val();
@@ -291,24 +296,24 @@ $('.qGrp').on('input change', '.slInp, .radioBox, #en-language_tag', function(
     }
 
     if ($(this).is('.slInp.email')) {
-        var value = $(this).val();
+        value = $(this).val();
         var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             value
         );
         if (!result) {
-            var $parentHolster = $(this).closest('.qGrp');
+            $parentHolster = $(this).closest('.qGrp');
             $(this).addClass('invalidInp');
         } else {
             $(this).removeClass('invalidInp');
         }
     }
     if ($(this).is('.slInp.phone')) {
-        var value = $(this).val();
-        var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        value = $(this).val();
+        result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             value
         );
         if (!result) {
-            var $parentHolster = $(this).closest('.qGrp');
+            $parentHolster = $(this).closest('.qGrp');
             $(this).addClass('invalidInp');
         } else {
             $(this).removeClass('invalidInp');
@@ -446,7 +451,7 @@ $('#finReg').click(function() {
             .val()
             .trim();
     if ($('.tag').length > 0) {
-        languages = '';
+        var languages = '';
         $('.tag').each(function() {
             var text = $(this).text();
             languages += text.substring(0, text.length - 2) + ',';
@@ -478,7 +483,7 @@ $('#finReg').click(function() {
             });
             $('.field-sect').removeClass('open');
         })
-        .fail(function(msg) {
+        .fail(function(_msg) {
             //error handling
         });
 });

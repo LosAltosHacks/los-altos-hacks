@@ -1,4 +1,9 @@
 /*eslint-env jquery*/
+// Copy-pasted regexes need this:
+/*eslint-disable no-useless-escape*/
+// Hacky globals need this:
+/*eslint-disable no-unused-vars*/
+// Abandon all hope, ye who enter here.
 var lah_api = 'https://api.losaltoshacks.com';
 
 $(document).ready(function() {
@@ -83,7 +88,7 @@ $(document).ready(function() {
                 }
             }
             if ($('#en-grade .radioBox:checked').val()) {
-                var grade = $('#en-grade .radioBox:checked').val();
+                grade = $('#en-grade .radioBox:checked').val();
                 if (grade > 0 && ageAddon)
                     $('#bdg-grade-age').text(grade + 'th' + ageAddon);
                 else $('#bdg-grade-age').text('');
@@ -146,7 +151,7 @@ $(document).ready(function() {
     }
     if ($(this).is('#en-raceSelect')) {
         //we're really just shadow-inputting into #en-race
-        var value = $(this).val();
+        value = $(this).val();
         if (value == 'Other') {
             //show the value field
             $('#en-race')
@@ -161,10 +166,10 @@ $(document).ready(function() {
             $('#en-race').val('');
         }
     }
-    var gender = $('#en-gender')
+    var _gender = $('#en-gender')
         .val()
         .trim();
-    var race = $('#en-race')
+    var _race = $('#en-race')
         .val()
         .trim();
     var email = $('#en-email')
@@ -184,7 +189,7 @@ $(document).ready(function() {
         .trim();
     var tshirt = $('#en-shirtsize .radioBox:checked').val();
     if ($(this).is('.slInp.email')) {
-        var value = $(this).val();
+        value = $(this).val();
         var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             value
         );
@@ -196,12 +201,12 @@ $(document).ready(function() {
         }
     }
     if ($(this).is('.slInp.phone')) {
-        var value = $(this).val();
-        var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        value = $(this).val();
+        result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             value
         );
         if (!result) {
-            var $parentHolster = $(this).closest('.qGrp');
+            $parentHolster = $(this).closest('.qGrp');
             $(this).addClass('invalidInp');
         } else {
             $(this).removeClass('invalidInp');
@@ -269,8 +274,8 @@ $(document).ready(function() {
     var attended = $('#en-attendednum .radioBox:checked').val();
 
     if ($(this).is('.slInp.social')) {
-        var value = $(this).val();
-        var result =
+        value = $(this).val();
+        result =
             value.length > 0 &&
             (value.indexOf('linkedin.com/in/') == -1 &&
                 value.indexOf('github.com/') == -1);
@@ -304,7 +309,7 @@ $(document).ready(function() {
         $('#bdg-github').text(github.substring(github.indexOf('.com/') + 5));
     else $('#bdg-github').text('');
     $('#bdg-exp').text(attended);
-    var allFilled = true;
+    allFilled = true;
     $('.slInp', '#HDPage').each(function() {
         if ($(this).is('.invalidInp')) {
             allFilled = false;
@@ -357,7 +362,7 @@ $('.slInp, .slSel').blur(function() {
         .closest('.qGrp.focus')
         .removeClass('focus');
 });
-$('.slInp, .radioBox', '#namePage').on('input change', function(e) {
+$('.slInp, .radioBox', '#namePage').on('input change', function(_e) {
     if ($(this).is('.slInp.num')) {
         var value = $(this).val();
         var altVal = value.replace(/[^0-9]/g, '');
@@ -429,7 +434,7 @@ $('.slInp, .radioBox', '#namePage').on('input change', function(e) {
         }
     }
     if ($('#en-grade .radioBox:checked').val()) {
-        var grade = $('#en-grade .radioBox:checked').val();
+        grade = $('#en-grade .radioBox:checked').val();
         if (grade > 0 && ageAddon)
             $('#bdg-grade-age').text(grade + 'th' + ageAddon);
         else $('#bdg-grade-age').text('');
@@ -493,7 +498,7 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
     }
     if ($(this).is('#en-raceSelect')) {
         //we're really just shadow-inputting into #en-race
-        var value = $(this).val();
+        value = $(this).val();
         if (value == 'Other') {
             //show the value field
             $('#en-race')
@@ -508,7 +513,7 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
             $('#en-race').val('');
         }
     }
-    var gender = $('#en-gender')
+    var _gender = $('#en-gender')
         .val()
         .trim();
     var email = $('#en-email')
@@ -528,7 +533,7 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
         .trim();
     var tshirt = $('#en-shirtsize .radioBox:checked').val();
     if ($(this).is('.slInp.email')) {
-        var value = $(this).val();
+        value = $(this).val();
         var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             value
         );
@@ -540,12 +545,12 @@ $('.slInp, .radioBox, .slSel', '#contactPage').on('input change', function() {
         }
     }
     if ($(this).is('.slInp.phone')) {
-        var value = $(this).val();
-        var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        value = $(this).val();
+        result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             value
         );
         if (!result) {
-            var $parentHolster = $(this).closest('.qGrp');
+            $parentHolster = $(this).closest('.qGrp');
             $(this).addClass('invalidInp');
         } else {
             $(this).removeClass('invalidInp');
@@ -841,7 +846,7 @@ $('#sendReg').click(function() {
             $('#confirmBadge').fadeOut();
             $('.field-sect').removeClass('open');
         })
-        .fail(function(msg) {
+        .fail(function(_msg) {
             //error handling
         });
 });
@@ -850,7 +855,7 @@ $('#backHome').click(function() {
 });
 $('.termsCheck', '#finalizePage').on('change', function() {
     var $thisQGroup = $(this).closest('.qGrp');
-    var $nextQGroup = $thisQGroup.nextAll();
+    var _$nextQGroup = $thisQGroup.nextAll();
     if ($('.termsCheck:not(:checked)', '#finalizePage').length == 0)
         $('#sendReg').removeClass('disabled');
     else $('#sendReg').addClass('disabled');
