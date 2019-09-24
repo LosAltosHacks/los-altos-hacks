@@ -137,20 +137,20 @@ section {
 
 .info-container .address {
     font-weight: bold;
-    font-size: var(--s1);
+    font-size: var(--s0);
 }
 
 .info-container .address span {
     font-weight: normal;
     /* text alignmet precludes use of mod scale */
-    font-size: var(--s0);
+    font-size: var(--s-1);
 }
 
 .call-to-action {
     color: var(--black);
     background: var(--white);
-    padding-top: var(--s2);
-    padding-bottom: var(--s2);
+    padding-top: var(--s-5);
+    padding-bottom: var(--s-5);
 
     /* implements a sidebar from every-layout */
     display: flex;
@@ -168,12 +168,14 @@ section {
     font-size: var(--s0);
 
     margin-bottom: var(--s0);
+    margin-top: var(--s0);
 }
 
 .call-to-action .largest span {
     display: inline-block;
-    margin: var(--s-3) auto;
-    font-size: var(--s4);
+    margin: var(--s-5) auto;
+    /* imitation mod scale b/c we need to use em not rem to make media queries easier */
+    font-size: calc(var(--ratio) * var(--ratio) * var(--ratio) * 1em);
 }
 
 .call-to-action .buttons {
@@ -192,17 +194,18 @@ section {
 .call-to-action .buttons button {
     display: block;
     flex-grow: 0;
-    padding: var(--s-3);
-    min-width: 9rem;
+    /* padding: var(--s-5); */
+    min-width: 8rem;
     margin: var(--s-5) var(--s-6);
-    font-size: 1.1rem;
+    font-size: var(--s0);
+    text-align: center;
 }
 
 button {
     white-space: nowrap;
     font-family: inherit;
     font-size: var(--s0);
-    padding: var(--s-3) var(--s-2);
+    padding: var(--s-5) var(--s-2);
     font-weight: bold;
     display: inline-block;
     background: none;
@@ -215,4 +218,33 @@ button:hover {
     cursor: pointer;
     color: var(--white);
     background: var(--accent-dark);
+}
+
+/* Tablet and desktop based breakpoints */
+/* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
+/* Supposed to break around where the buttons move to the side */
+@media (min-width: 35em) {
+    .call-to-action {
+        padding-left: var(--s3);
+        padding-right: var(--s3);
+        /* stretch the button box to match text height */
+        align-items: stretch;
+    }
+    .call-to-action .largest {
+        text-align: left;
+    }
+    .call-to-action .buttons {
+        /* center the buttons */
+        align-content: center;
+    }
+    .call-to-action .buttons button {
+        min-width: 9rem;
+        text-align: left;
+    }
+}
+/* increaes font size of largest hackathon */
+@media (min-width: 52em) {
+    .call-to-action .largest {
+        font-size: var(--s2);
+    }
 }
