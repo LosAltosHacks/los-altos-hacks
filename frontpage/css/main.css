@@ -127,30 +127,30 @@ section {
 
 .info-container h3 {
     /* text alignmet precludes use of mod scale */
-    font-size: 1.6rem;
+    font-size: var(--s3);
 }
 
 .info-container h2 {
     /* font-size: 20vw; */
-    font-size: var(--s4);
+    font-size: var(--s7);
 }
 
 .info-container .address {
     font-weight: bold;
-    font-size: var(--s0);
+    font-size: var(--s1);
 }
 
 .info-container .address span {
     font-weight: normal;
     /* text alignmet precludes use of mod scale */
-    font-size: 0.75rem;
+    font-size: var(--s0);
 }
 
 .call-to-action {
     color: var(--black);
     background: var(--white);
-    padding-top: var(--s1);
-    padding-bottom: var(--s1);
+    padding-top: var(--s2);
+    padding-bottom: var(--s2);
 
     /* implements a sidebar from every-layout */
     display: flex;
@@ -165,13 +165,15 @@ section {
     min-width: 15rem;
 
     text-align: center;
-    font-size: 1.1rem;
+    font-size: var(--s0);
+
+    margin-bottom: var(--s0);
 }
 
 .call-to-action .largest span {
     display: inline-block;
     margin: var(--s-3) auto;
-    font-size: var(--s3);
+    font-size: var(--s4);
 }
 
 .call-to-action .buttons {
@@ -192,7 +194,7 @@ section {
     flex-grow: 0;
     padding: var(--s-3);
     min-width: 9rem;
-    margin: var(--s-1) 0;
+    margin: var(--s-5) var(--s-6);
     font-size: 1.1rem;
 }
 
@@ -200,7 +202,7 @@ button {
     white-space: nowrap;
     font-family: inherit;
     font-size: var(--s0);
-    padding: var(--s-2) var(--s-1);
+    padding: var(--s-3) var(--s-2);
     font-weight: bold;
     display: inline-block;
     background: none;
