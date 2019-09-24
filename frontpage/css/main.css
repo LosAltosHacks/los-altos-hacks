@@ -12,12 +12,12 @@
     /* Font Sizing */
     --vw: 1vw;
     --measure: 60ch;
-    font-size: calc(1rem + 0.5 * var(--vw));
+    font-size: calc(1rem + 1 * var(--vw));
     font-family: 'San Francisco Text', 'Open Sans', sans-serif;
     color: var(--black);
 
     /* Modular Scale */
-    --ratio: 1.5;
+    --ratio: 1.25;
     --s-5: calc(var(--s-4) / var(--ratio));
     --s-4: calc(var(--s-3) / var(--ratio));
     --s-3: calc(var(--s-2) / var(--ratio));
@@ -50,4 +50,160 @@ main,
 footer,
 section {
     max-width: none;
+}
+
+section {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 80vw;
+}
+section > h1 {
+    margin-top: 0.5em;
+    margin-bottom: 0.7em;
+    font-size: var(--s2);
+}
+
+/* Schedule */
+
+/* Clock */
+#clock {
+    position: relative;
+    float: left;
+    width: 50%;
+    padding-top: 50%;
+}
+#clock .saturday {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+#clock .sunday {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+}
+#clock > .content {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-height: 50%;
+}
+#clock > .content > .day {
+    margin: 0;
+}
+#clock > .content > .time {
+    font-size: var(--s2);
+    font-weight: 500;
+    margin: 10px 0;
+}
+#clock > .content > .ev-name {
+    font-weight: 500;
+    margin: 0;
+}
+#clock > .content > .location {
+    margin: 0;
+}
+/* #pointer {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 100%;
+}
+#pointer > span {
+    width: 5%;
+    padding-top: 11%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+    transition: transform 0.5s;
+} */
+
+/* Schedule Table */
+#schedule-table {
+    position: relative;
+    float: left;
+    width: 50%;
+    padding-top: 50%;
+}
+
+#schedule-table header {
+    color: black;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#schedule-table > div {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    color: white;
+    width: 80%;
+}
+
+#schedule-table > div.sunday {
+    display: none;
+}
+
+#schedule-table table {
+    width: 100%;
+}
+
+#schedule-table tbody > tr {
+    cursor: pointer;
+    transition: transform 0.5s, filter 0.5s;
+}
+#schedule-table tbody > tr:hover {
+    transform: scale(1.05);
+}
+#schedule-table tbody > tr.active {
+    filter: brightness(1.15);
+}
+
+#schedule-table th:first-child,
+#schedule-table td:first-child {
+    text-align: right;
+}
+
+#schedule-table th:last-child,
+#schedule-table td:last-child {
+    text-align: left;
+}
+
+#schedule-table th:first-child {
+    border-top-left-radius: 10px;
+}
+#schedule-table th:last-child {
+    border-top-right-radius: 10px;
+}
+#schedule-table tr:last-child > td:first-child {
+    border-bottom-left-radius: 10px;
+}
+#schedule-table tr:last-child > td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+#schedule-table th,
+#schedule-table td {
+    padding: 10px;
+}
+
+#schedule-table th {
+    background-color: var(--accent-dark);
+}
+
+#schedule-table td {
+    background-color: var(--accent-bright);
+}
+
+#schedule-table td > span.location {
+    display: none;
 }
