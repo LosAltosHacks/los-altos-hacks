@@ -18,6 +18,8 @@
 
     /* Modular Scale */
     --ratio: 1.25;
+    --s-7: calc(var(--s-6) / var(--ratio));
+    --s-6: calc(var(--s-5) / var(--ratio));
     --s-5: calc(var(--s-4) / var(--ratio));
     --s-4: calc(var(--s-3) / var(--ratio));
     --s-3: calc(var(--s-2) / var(--ratio));
@@ -29,6 +31,8 @@
     --s3: calc(var(--s2) * var(--ratio));
     --s4: calc(var(--s3) * var(--ratio));
     --s5: calc(var(--s4) * var(--ratio));
+    --s6: calc(var(--s5) * var(--ratio));
+    --s7: calc(var(--s6) * var(--ratio));
 }
 
 @media (min-width: 2000px) {
@@ -52,18 +56,17 @@ section {
     max-width: none;
 }
 
-section {
+/* Schedule */
+section#schedule {
     margin: 0 auto;
     overflow: hidden;
     max-width: 80vw;
 }
-section > h1 {
+section#schedule > h1 {
     margin-top: 0.5em;
     margin-bottom: 0.7em;
     font-size: var(--s2);
 }
-
-/* Schedule */
 
 /* Clock */
 #clock {
@@ -72,18 +75,18 @@ section > h1 {
     width: 50%;
     padding-top: 50%;
 }
-#clock .saturday {
+#clock > .saturday,
+#clock > .sunday {
     position: absolute;
     width: 100%;
     left: 50%;
     top: 50%;
+    transition: transform 0.5s;
+}
+#clock > .saturday {
     transform: translate(-50%, -50%) scale(1);
 }
-#clock .sunday {
-    position: absolute;
-    width: 100%;
-    left: 50%;
-    top: 50%;
+#clock > .sunday {
     transform: translate(-50%, -50%) scale(0.9);
 }
 #clock > .content {
@@ -104,27 +107,35 @@ section > h1 {
     margin: 10px 0;
 }
 #clock > .content > .ev-name {
+    font-size: 80%;
     font-weight: 500;
     margin: 0;
 }
 #clock > .content > .location {
+    font-size: 80%;
     margin: 0;
+    margin-top: 10px;
 }
-/* #pointer {
+#hour-pointer,
+#minute-pointer {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     height: 100%;
     width: 100%;
 }
-#pointer > span {
+#hour-pointer > span,
+#minute-pointer > span {
     width: 5%;
     padding-top: 11%;
     height: 100%;
     margin: 0 auto;
     display: block;
     transition: transform 0.5s;
-} */
+}
+#minute-pointer svg {
+    transform: scale(0.5);
+}
 
 /* Schedule Table */
 #schedule-table {
@@ -132,6 +143,7 @@ section > h1 {
     float: left;
     width: 50%;
     padding-top: 50%;
+    font-size: var(--s-1);
 }
 
 #schedule-table header {
@@ -157,11 +169,27 @@ section > h1 {
     width: 100%;
 }
 
+#schedule-table .container {
+    overflow: hidden;
+    max-height: calc(50vh + 2.5em);
+    border-radius: 10px;
+}
+
+#schedule-table thead > tr {
+    display: block;
+}
+#schedule-table tbody {
+    display: block;
+    max-height: 50vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 #schedule-table tbody > tr {
     cursor: pointer;
     transition: transform 0.5s, filter 0.5s;
 }
-#schedule-table tbody > tr:hover {
+#schedule-table tbody > tr.active {
     transform: scale(1.05);
 }
 #schedule-table tbody > tr.active {
@@ -171,6 +199,7 @@ section > h1 {
 #schedule-table th:first-child,
 #schedule-table td:first-child {
     text-align: right;
+    white-space: nowrap;
 }
 
 #schedule-table th:last-child,
@@ -178,22 +207,10 @@ section > h1 {
     text-align: left;
 }
 
-#schedule-table th:first-child {
-    border-top-left-radius: 10px;
-}
-#schedule-table th:last-child {
-    border-top-right-radius: 10px;
-}
-#schedule-table tr:last-child > td:first-child {
-    border-bottom-left-radius: 10px;
-}
-#schedule-table tr:last-child > td:last-child {
-    border-bottom-right-radius: 10px;
-}
-
 #schedule-table th,
 #schedule-table td {
-    padding: 10px;
+    padding: 0.5em 1em;
+    line-height: 1.2em;
 }
 
 #schedule-table th {
@@ -205,5 +222,94 @@ section > h1 {
 }
 
 #schedule-table td > span.location {
+    margin-top: 10px;
+    font-weight: lighter;
     display: none;
+}
+
+#schedule-table span.right,
+#schedule-table span.left {
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.5s;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+#schedule-table span.right {
+    float: right;
+}
+#schedule-table span.right:hover {
+    transform: translateX(5px);
+}
+
+#schedule-table span.left {
+    float: left;
+}
+#schedule-table span.left:hover {
+    transform: translateX(-5px);
+}
+
+#schedule-table .saturday span.left {
+    transform: none;
+    cursor: default;
+    color: gray;
+}
+#schedule-table .sunday span.right {
+    transform: none;
+    cursor: default;
+    color: gray;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--accent-bright);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-dark);
+}
+
+@media only screen and (max-width: 860px) {
+    #clock {
+        display: none;
+    }
+    #schedule-table {
+        width: 100%;
+        padding: 0 1em;
+    }
+    #schedule-table > div {
+        position: relative;
+        transform: none;
+        width: 100%;
+        left: 0;
+    }
+    #schedule-table tbody > tr {
+        cursor: default;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    #schedule-table tbody > tr:hover {
+        transform: none;
+    }
+    #schedule-table tbody > tr.active {
+        filter: none;
+        transform: none;
+    }
+    #schedule-table td > span.location {
+        display: block;
+    }
+
+    #schedule-table span.right:hover {
+        transform: none;
+    }
+
+    #schedule-table span.left:hover {
+        transform: none;
+    }
 }
