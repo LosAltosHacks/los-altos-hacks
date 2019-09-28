@@ -49,13 +49,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
   </head>
   <body>
-    <nav></nav>
-
     <main>
-      <section id="landing">
-        <h1>LAH V</h1>
-      </section>
-
       <section id="schedule">
         <h1>Schedule</h1>
         <div id="clock">
@@ -493,9 +487,17 @@
             />
           </svg>
 
-          <div id="pointer">
+          <div id="hour-pointer">
             <span>
-              <svg viewBox="0 5 50 50">
+              <svg viewBox="0 5 50 50" fill="var(--accent-dark)">
+                <polygon points="25,5 0,50 50,50" />
+              </svg>
+            </span>
+          </div>
+
+          <div id="minute-pointer">
+            <span>
+              <svg viewBox="0 5 50 50" fill="var(--accent-bright)">
                 <polygon points="25,5 0,50 50,50" />
               </svg>
             </span>
@@ -503,7 +505,7 @@
 
           <div class="content">
             <h3 class="day">Saturday</h3>
-            <h2 class="time">12:00 AM</h2>
+            <h2 class="time">00:00 AM</h2>
             <p class="ev-name">Event Name</p>
             <p class="location">Workshop Area</p>
           </div>
@@ -512,121 +514,191 @@
         <!-- Schedule Table -->
         <div id="schedule-table">
           <!-- Saturday Schedule -->
-          <div class="saturday active">
+          <div class="saturday">
             <header>
-              <h3>March 21 - Saturday</h3>
+              <h3>
+                <span class="left">&#9664;</span>
+                <span>March 21 - Saturday</span>
+                <span class="right">&#9654;</span>
+              </h3>
             </header>
-            <table>
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Event</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>12:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>03:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>06:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>08:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>09:30 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>05:00 PM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Event</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>09:00 AM</td>
+                    <td>
+                      <span class="event-name">Check In</span>
+                      <span class="location">Juniper Aspiration Dome</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>10:00 AM</td>
+                    <td>
+                      <span class="event-name">Waitlist Check In</span>
+                      <span class="location">Juniper Aspiration Dome</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>11:00 AM</td>
+                    <td>
+                      <span class="event-name">Opening Ceremony</span>
+                      <span class="location">Main Stage</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>12:00 PM</td>
+                    <td>
+                      <span class="event-name">Hacking Begins; Team Mixer</span>
+                      <span class="location">Everywhere; Workshop Area</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>12:30 PM</td>
+                    <td>
+                      <span class="event-name">Lunch</span>
+                      <span class="location">Food Area</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>01:00 PM</td>
+                    <td>
+                      <span class="event-name">
+                        Build Your First Website Workshop with Hack Club
+                      </span>
+                      <span class="location">Workshop Area</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>03:30 PM</td>
+                    <td>
+                      <span class="event-name">
+                        The State of Cyber Security with Gigamon CTO Shehzad
+                        Merchant
+                      </span>
+                      <span class="location">Main Stage</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>06:00 PM</td>
+                    <td>
+                      <span class="event-name">
+                        Landing Your First Tech Internship with Make School
+                      </span>
+                      <span class="location">Workshop Area</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>07:00 PM</td>
+                    <td>
+                      <span class="event-name">Dinner</span>
+                      <span class="location">Food Area</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>09:00 PM</td>
+                    <td>
+                      <span class="event-name">Cup Stacking</span>
+                      <span class="location">Main Stage</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>10:00 PM</td>
+                    <td>
+                      <span class="event-name">Capture The Flag</span>
+                      <span class="location">Everywhere</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <!-- Sunday Schedule -->
           <div class="sunday">
             <header>
-              <h3>March 22 - Sunday</h3>
+              <h3>
+                <span class="left">&#9664;</span>
+                <span>March 22 - Sunday</span>
+                <span class="right">&#9654;</span>
+              </h3>
             </header>
-            <table>
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Event</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>12:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>12:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>12:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>12:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>12:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>12:00 AM</td>
-                  <td>
-                    <span class="event-name">Event Name</span>
-                    <span class="location">Workshop Area</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Event</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>12:00 AM</td>
+                    <td>
+                      <span class="event-name">Midnight Surprise</span>
+                      <span class="location">Food Area</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>01:00 AM</td>
+                    <td>
+                      <span class="event-name">
+                        Super Smash Bros. Ultimate Tournament
+                      </span>
+                      <span class="location">Workshop Area</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>07:30 AM</td>
+                    <td>
+                      <span class="event-name">Submissions to Devpost Due</span>
+                      <span class="location">Everywhere</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>08:00 AM</td>
+                    <td>
+                      <span class="event-name">Breakfast; Judges Arrive</span>
+                      <span class="location">Food Area; Everywhere</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>08:30 AM</td>
+                    <td>
+                      <span class="event-name">Hacking Ends</span>
+                      <span class="location">Everywhere</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>09:00 AM</td>
+                    <td>
+                      <span class="event-name">Judging</span>
+                      <span class="location">Everywhere</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>11:00 AM</td>
+                    <td>
+                      <span class="event-name">Closing Ceremony</span>
+                      <span class="location">Main Stage</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>12:00 PM</td>
+                    <td>
+                      <span class="event-name">End of Hackathon</span>
+                      <span class="location">Everywhere</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
