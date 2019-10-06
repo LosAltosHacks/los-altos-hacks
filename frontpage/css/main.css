@@ -56,6 +56,198 @@ section {
     max-width: none;
 }
 
+.vh95 {
+    /* max-height: 95vh; */
+}
+
+.logo-container {
+    background: var(--accent-bright);
+    color: var(--white);
+    text-align: center;
+    padding-top: var(--s1);
+    padding-bottom: var(--s0);
+}
+
+.logo-container > * {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: var(--s-1);
+    margin-bottom: var(--s-1);
+}
+
+.logo-container > img {
+    width: 60%;
+    height: auto;
+}
+
+.logo-container > h1 {
+    font-size: 8vw;
+}
+
+.info-container {
+    z-index: -2;
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    background-position: center;
+    background: url('../img/info-bg-image.jpg'),
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 1)
+        );
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 90%;
+    padding-top: var(--s-5);
+    padding-bottom: var(--s-5);
+    padding-left: var(--s0);
+    padding-right: var(--s0);
+}
+
+.info-container:before {
+    z-index: -1;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.75;
+    background: linear-gradient(to right, #24797c, #1d535b);
+}
+
+.info-container > * {
+    margin-top: var(--s1);
+    margin-bottom: var(--s1);
+}
+
+.info-container h3 {
+    /* text alignmet precludes use of mod scale */
+    font-size: var(--s3);
+}
+
+.info-container h2 {
+    /* font-size: 20vw; */
+    font-size: var(--s7);
+}
+
+.info-container .address {
+    font-weight: bold;
+    font-size: var(--s0);
+}
+
+.info-container .address span {
+    font-weight: normal;
+    /* text alignmet precludes use of mod scale */
+    font-size: var(--s-1);
+}
+
+.call-to-action {
+    color: var(--black);
+    background: var(--white);
+    padding-top: var(--s-5);
+    padding-bottom: var(--s-5);
+
+    /* implements a sidebar from every-layout */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.call-to-action .largest {
+    /* implements a sidebar from every-layout */
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: 15rem;
+
+    text-align: center;
+    font-size: var(--s0);
+
+    margin-bottom: var(--s0);
+    margin-top: var(--s0);
+}
+
+.call-to-action .largest span {
+    display: inline-block;
+    margin: var(--s-5) auto;
+    /* imitation mod scale b/c we need to use em not rem to make media queries easier */
+    font-size: calc(var(--ratio) * var(--ratio) * var(--ratio) * 1em);
+}
+
+.call-to-action .buttons {
+    /* implements a sidebar from every-layout */
+    flex-basis: 10rem;
+    flex-grow: 1;
+    min-width: 9rem;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.call-to-action .buttons button {
+    display: block;
+    flex-grow: 0;
+    /* padding: var(--s-5); */
+    min-width: 8rem;
+    margin: var(--s-5) var(--s-6);
+    font-size: var(--s0);
+    text-align: center;
+}
+
+button {
+    white-space: nowrap;
+    font-family: inherit;
+    font-size: var(--s0);
+    padding: var(--s-5) var(--s-2);
+    font-weight: bold;
+    display: inline-block;
+    background: none;
+    color: var(--accent-dark);
+    border: solid 1px var(--accent-dark);
+    transition: all 0.4s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    color: var(--white);
+    background: var(--accent-dark);
+}
+
+/* Tablet and desktop based breakpoints */
+/* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
+/* Supposed to break around where the buttons move to the side */
+@media (min-width: 35em) {
+    .call-to-action {
+        padding-left: var(--s3);
+        padding-right: var(--s3);
+        /* stretch the button box to match text height */
+        align-items: stretch;
+    }
+    .call-to-action .largest {
+        text-align: left;
+    }
+    .call-to-action .buttons {
+        /* center the buttons */
+        align-content: center;
+    }
+    .call-to-action .buttons button {
+        min-width: 9rem;
+        text-align: left;
+    }
+}
+/* increaes font size of largest hackathon */
+@media (min-width: 52em) {
+    .call-to-action .largest {
+        font-size: var(--s2);
+
+
 /* Schedule */
 section#schedule {
     margin: 0 auto;
