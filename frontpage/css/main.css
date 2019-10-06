@@ -2,60 +2,6 @@
     box-sizing: border-box;
 }
 
-.faq-header {
-    text-align: center;
-    padding-bottom: 50px;
-}
-
-.faq-rectangle {
-    float: left;
-    margin-right: 15px;
-    width: 34px;
-    height: 84px;
-    background: #74BDC6;
-}
-
-.faq-wrapper {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-    padding: 35px 10px 10px 10px;
-}
-
-.text {
-    border-left: 25px solid #74BDC6;
-    display: inline-block;
-    position: relative;
-
-    font-size: 18pt;
-    font-weight: bold;
-
-    width: 40%;
-    height: 70px;
-
-    padding-left: 20px;
-    padding-right: 50px;
-    line-height: 70px;
-    margin: 0 auto;
-
-    text-align: left;
-    vertical-align: middle;
-}
-
-.image {
-    display: inline-block;
-    text-align: right;
-    float: right;
-    vertical-align: middle;
-    margin-top: 19px;
-    width: 32px;
-    height: 32px;
-    background-image: url("../test.png");
-    background-repeat: no-repeat;
-    background-position: right;
-}
-
-
 :root {
     /* Colors */
     --white: #f5f5f5;
@@ -353,6 +299,60 @@ button:hover {
     .call-to-action .largest {
         font-size: var(--s2);
     }
+}
+
+/* FAQ */
+.faq-header {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.faq-rectangle {
+    float: left;
+    margin-right: 15px;
+    width: 34px;
+    height: 84px;
+    background: #74bdc6;
+}
+
+.faq-wrapper {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding: 35px 10px 10px 10px;
+}
+
+.text {
+    border-left: 25px solid #74bdc6;
+    display: inline-block;
+    position: relative;
+
+    font-size: 18pt;
+    font-weight: bold;
+
+    width: 40%;
+    height: 70px;
+
+    padding-left: 20px;
+    padding-right: 50px;
+    line-height: 70px;
+    margin: 0 auto;
+
+    text-align: left;
+    vertical-align: middle;
+}
+
+.image {
+    display: inline-block;
+    text-align: right;
+    float: right;
+    vertical-align: middle;
+    margin-top: 19px;
+    width: 32px;
+    height: 32px;
+    background-image: url('../test.png');
+    background-repeat: no-repeat;
+    background-position: right;
 }
 
 /* Schedule */
