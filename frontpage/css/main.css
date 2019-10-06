@@ -60,6 +60,7 @@ body {
     height: 100vh;
     width: 100vw;
     margin: 0;
+    overflow-x: hidden;
 }
 
 .vh95 {
@@ -611,4 +612,97 @@ section#schedule > h1 {
     #schedule-table span.left:hover {
         transform: none;
     }
+}
+
+#sponsors div,
+#sponsors main,
+#sponsors footer {
+    align-items: center;
+    flex-flow: column;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#sponsors img {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+    transition: 0.3s;
+}
+
+.row {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    max-width: var(--site-width);
+    width: 100%;
+}
+
+.row > * {
+    max-width: 100%;
+}
+
+.row > :not(:only-child) {
+    padding: 1rem 0;
+}
+
+.row.columns-half > * {
+    flex: 1 auto;
+}
+
+.row.columns-tiny > * {
+    flex: 1 calc(90px + 8 * var(--vw));
+    max-width: calc((90px + 8 * var(--vw)) * 1.25);
+}
+
+.row > * > * + * {
+    margin-top: 0.6rem;
+}
+
+#sponsors img {
+    max-height: calc(20px + 6 * var(--vw));
+}
+
+#sponsors {
+    background: var(--white);
+}
+
+#sponsors h2 {
+    color: var(--black);
+    margin-bottom: 0;
+    margin-top: 75px;
+}
+
+#sponsors a {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.row > * {
+    max-width: 100%;
+}
+
+.row.columns-medium > * {
+    flex: 1 calc(240px + 7 * var(--vw));
+}
+
+.row.columns-small > * {
+    flex: 1 1 calc(130px + 10 * var(--vw));
+    max-width: calc((130px + 10 * var(--vw)) * 1.352);
+}
+
+.row.columns-tiny > * {
+    flex: 1 calc(90px + 8 * var(--vw));
+    max-width: calc((90px + 8 * var(--vw)) * 1.25);
+}
+
+.row.columns-tinier > * {
+    flex: 1 calc(80px + 5 * var(--vw));
+    padding: 0.5rem;
+    max-width: calc((80px + 5 * var(--vw)) * 1.5);
+}
+
+.row > * > * + * {
+    margin-top: 1rem;
 }
