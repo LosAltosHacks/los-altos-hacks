@@ -227,15 +227,22 @@ button:hover {
     background: var(--accent-dark);
 }
 
-.Hackathon-background {
+section > header {
+    margin: 1.7em;
+    text-align: center;
+}
+
+/* Mission */
+#mission {
     background: url('../47517066461_24976f5b10_o.jpg'); /*This images is the background*/
     background-size: cover;
-    height: 100vh;
+    background-position: center;
+    min-height: 20rem;
     width: 100vw;
     text-align: center;
     position: relative;
 }
-.Hackathon-background .Hackathon-overlay {
+#mission .overlay {
     background: linear-gradient(
         to right,
         rgba(36, 121, 124, 0.75),
@@ -243,66 +250,116 @@ button:hover {
     );
     color: white;
     align-items: center;
-    justify-content: center;
     display: flex;
     flex-flow: column;
-    position: absolute;
-    height: 100vh;
     width: 100vw;
-    top: 0;
-    left: 0;
+    min-height: 20rem;
 }
-.Hackathon-background .Hackathon-header {
-    position: relative;
-    top: calc(-1vh - 8%);
-    width: 100vw;
-    font-size: var(--s4);
+#mission .overlay > * {
+    width: 80%;
 }
-.Hackathon-background .Hackathon-description {
-    position: relative;
-    top: calc(-1vh - 16%);
+#mission header {
+    margin-top: 10vh;
+}
+#mission header > h1 {
+    font-size: var(--s3);
+}
+#mission .description {
+    margin-top: 0.8em;
     font-weight: 100;
-    width: 100vh;
-    font-size: var(--s1);
+    font-size: var(--s-1);
 }
-.Hackathon-background .Hackathon-bottom-text {
-    position: relative;
-    top: calc(1vh + 2%);
+#mission .bottom-text {
+    position: absolute;
+    bottom: 20%;
+    width: 60%;
     font-size: var(--s0);
     font-weight: 500;
-    width: 50vw;
-}
-
-/* Tablet and desktop based breakpoints */
-/* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
-/* Supposed to break around where the buttons move to the side */
-@media (min-width: 35em) {
-    .call-to-action {
-        padding-left: var(--s3);
-        padding-right: var(--s3);
-        /* stretch the button box to match text height */
-        align-items: stretch;
-    }
-    .call-to-action .largest {
-        text-align: left;
-    }
-    .call-to-action .buttons {
-        /* center the buttons */
-        align-content: center;
-    }
-    .call-to-action .buttons button {
-        min-width: 9rem;
-        text-align: left;
-    }
-}
-/* increaes font size of largest hackathon */
-@media (min-width: 52em) {
-    .call-to-action .largest {
-        font-size: var(--s2);
-    }
 }
 
 /* FAQ */
+.faq-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.question {
+    margin: 0.5em;
+    padding: 0.25em;
+    position: relative;
+    width: 100%;
+    border-left: 1vw solid #74bdc6;
+    text-align: left;
+}
+.question > summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.66em;
+    height: 100%;
+}
+.question > summary::-webkit-details-marker {
+    display: none;
+}
+.question[open] summary {
+    height: unset;
+}
+.answer {
+    margin-top: 1em;
+    font-size: 0.5em;
+}
+
+.expand-icon {
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: var(--accent-bright);
+    border-radius: 15%;
+    padding: 10px;
+}
+
+.expand-icon:before,
+.expand-icon:after {
+    content: '';
+    position: absolute;
+    background-color: white;
+    transition: transform 0.25s ease-out;
+}
+
+/* Vertical line */
+.expand-icon:before {
+    content: '';
+    top: 20%;
+    left: 50%;
+    width: 2px;
+    height: 60%;
+    margin-left: -1px;
+}
+
+/* horizontal line */
+.expand-icon:after {
+    content: '';
+    top: 50%;
+    left: 20%;
+    width: 60%;
+    height: 2px;
+    margin-top: -1px;
+}
+
+details[open] .expand-icon:before {
+    content: '';
+    transform: rotate(90deg);
+}
+
+details[open] .expand-icon:after {
+    content: '';
+    transform: rotate(180deg);
+}
+
 .faq-header {
     text-align: center;
     padding-bottom: 50px;
@@ -357,15 +414,13 @@ button:hover {
 }
 
 /* Schedule */
-section#schedule {
+#schedule {
     margin: 0 auto;
     overflow: hidden;
     max-width: 80vw;
 }
-section#schedule > h1 {
-    margin-top: 0.5em;
-    margin-bottom: 0.7em;
-    font-size: var(--s2);
+#schedule > header {
+    text-align: left;
 }
 
 /* Clock */
@@ -576,44 +631,6 @@ section#schedule > h1 {
     background: var(--accent-dark);
 }
 
-@media only screen and (max-width: 860px) {
-    #clock {
-        display: none;
-    }
-    #schedule-table {
-        width: 100%;
-        padding: 0 1em;
-    }
-    #schedule-table > div {
-        position: relative;
-        transform: none;
-        width: 100%;
-        left: 0;
-    }
-    #schedule-table tbody > tr {
-        cursor: default;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    #schedule-table tbody > tr:hover {
-        transform: none;
-    }
-    #schedule-table tbody > tr.active {
-        filter: none;
-        transform: none;
-    }
-    #schedule-table td > span.location {
-        display: block;
-    }
-
-    #schedule-table span.right:hover {
-        transform: none;
-    }
-
-    #schedule-table span.left:hover {
-        transform: none;
-    }
-}
-
 #sponsors div,
 #sponsors main,
 #sponsors footer {
@@ -705,4 +722,76 @@ section#schedule > h1 {
 
 .row > * > * + * {
     margin-top: 1rem;
+}
+
+/* Tablet and desktop based breakpoints */
+/* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
+/* Supposed to break around where the buttons move to the side */
+@media (min-width: 35em) {
+    .call-to-action {
+        padding-left: var(--s3);
+        padding-right: var(--s3);
+        /* stretch the button box to match text height */
+        align-items: stretch;
+    }
+    .call-to-action .largest {
+        text-align: left;
+    }
+    .call-to-action .buttons {
+        /* center the buttons */
+        align-content: center;
+    }
+    .call-to-action .buttons button {
+        min-width: 9rem;
+        text-align: left;
+    }
+}
+
+/* increaes font size of largest hackathon */
+@media (min-width: 52em) {
+    .call-to-action .largest {
+        font-size: var(--s2);
+    }
+}
+
+@media only screen and (max-width: 860px) {
+    .faq-row {
+        display: block;
+    }
+
+    #clock {
+        display: none;
+    }
+    #schedule-table {
+        width: 100%;
+        padding: 0 1em;
+    }
+    #schedule-table > div {
+        position: relative;
+        transform: none;
+        width: 100%;
+        left: 0;
+    }
+    #schedule-table tbody > tr {
+        cursor: default;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    #schedule-table tbody > tr:hover {
+        transform: none;
+    }
+    #schedule-table tbody > tr.active {
+        filter: none;
+        transform: none;
+    }
+    #schedule-table td > span.location {
+        display: block;
+    }
+
+    #schedule-table span.right:hover {
+        transform: none;
+    }
+
+    #schedule-table span.left:hover {
+        transform: none;
+    }
 }
