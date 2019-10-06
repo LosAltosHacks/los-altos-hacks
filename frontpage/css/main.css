@@ -246,8 +246,9 @@ button:hover {
 @media (min-width: 52em) {
     .call-to-action .largest {
         font-size: var(--s2);
+    }
+}
 
-      
 /* Schedule */
 section#schedule {
     margin: 0 auto;
