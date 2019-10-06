@@ -56,6 +56,12 @@ section {
     max-width: none;
 }
 
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+
 .vh95 {
     /* max-height: 95vh; */
 }
@@ -218,6 +224,52 @@ button:hover {
     cursor: pointer;
     color: var(--white);
     background: var(--accent-dark);
+}
+
+.Hackathon-background {
+    background: url('../47517066461_24976f5b10_o.jpg'); /*This images is the background*/
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    position: relative;
+}
+.Hackathon-background .Hackathon-overlay {
+    background: linear-gradient(
+        to right,
+        rgba(36, 121, 124, 0.75),
+        rgba(29, 83, 91, 0.75)
+    );
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-flow: column;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+}
+.Hackathon-background .Hackathon-header {
+    position: relative;
+    top: calc(-1vh - 8%);
+    width: 100vw;
+    font-size: var(--s4);
+}
+.Hackathon-background .Hackathon-description {
+    position: relative;
+    top: calc(-1vh - 16%);
+    font-weight: 100;
+    width: 100vh;
+    font-size: var(--s1);
+}
+.Hackathon-background .Hackathon-bottom-text {
+    position: relative;
+    top: calc(1vh + 2%);
+    font-size: var(--s0);
+    font-weight: 500;
+    width: 50vw;
 }
 
 /* Tablet and desktop based breakpoints */
