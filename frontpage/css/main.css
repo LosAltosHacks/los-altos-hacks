@@ -526,7 +526,7 @@ details[open] .expand-icon:after {
 
 #schedule-table .container {
     overflow: hidden;
-    max-height: calc(50vh + 2.5em);
+    max-height: 13rem;
     border-radius: 10px;
 }
 
@@ -535,7 +535,7 @@ details[open] .expand-icon:after {
 }
 #schedule-table tbody {
     display: block;
-    max-height: 50vh;
+    max-height: 11rem;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
