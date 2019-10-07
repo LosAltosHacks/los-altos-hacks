@@ -1,7 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
 :root {
     /* Colors */
     --white: #f5f5f5;
@@ -42,7 +38,15 @@
 }
 
 * {
+    box-sizing: border-box;
     max-width: var(--measure);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    overflow-x: hidden;
 }
 
 html,
@@ -54,6 +58,581 @@ main,
 footer,
 section {
     max-width: none;
+}
+
+a {
+    font-weight: 600;
+    color: #3b5e63;
+    transition: transform 0.5s;
+}
+
+.vh95 {
+    /* max-height: 95vh; */
+}
+
+.logo-container {
+    background: var(--accent-bright);
+    color: var(--white);
+    text-align: center;
+    padding-top: var(--s1);
+    padding-bottom: var(--s0);
+}
+
+.logo-container > * {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: var(--s-1);
+    margin-bottom: var(--s-1);
+}
+
+.logo-container > img {
+    width: 60%;
+    height: auto;
+}
+
+.logo-container > h1 {
+    font-size: 8vw;
+}
+
+.info-container {
+    z-index: -2;
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    background-position: center;
+    background: url('../img/info-bg-image.jpg'),
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 1)
+        );
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 90%;
+    padding-top: var(--s-5);
+    padding-bottom: var(--s-5);
+    padding-left: var(--s0);
+    padding-right: var(--s0);
+}
+
+.info-container:before {
+    z-index: -1;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.75;
+    background: linear-gradient(to right, #24797c, #1d535b);
+}
+
+.info-container > * {
+    margin-top: var(--s1);
+    margin-bottom: var(--s1);
+}
+
+.info-container h3 {
+    /* text alignmet precludes use of mod scale */
+    font-size: var(--s3);
+}
+
+.info-container h2 {
+    /* font-size: 20vw; */
+    font-size: var(--s7);
+}
+
+.info-container .address {
+    font-weight: bold;
+    font-size: var(--s0);
+}
+
+.info-container .address span {
+    font-weight: normal;
+    /* text alignmet precludes use of mod scale */
+    font-size: var(--s-1);
+}
+
+.call-to-action {
+    color: var(--black);
+    background: var(--white);
+    padding-top: var(--s-5);
+    padding-bottom: var(--s-5);
+
+    /* implements a sidebar from every-layout */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.call-to-action .largest {
+    /* implements a sidebar from every-layout */
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: 15rem;
+
+    text-align: center;
+    font-size: var(--s0);
+
+    margin-bottom: var(--s0);
+    margin-top: var(--s0);
+}
+
+.call-to-action .largest span {
+    display: inline-block;
+    margin: var(--s-5) auto;
+    /* imitation mod scale b/c we need to use em not rem to make media queries easier */
+    font-size: calc(var(--ratio) * var(--ratio) * var(--ratio) * 1em);
+}
+
+.call-to-action .buttons {
+    /* implements a sidebar from every-layout */
+    flex-basis: 10rem;
+    flex-grow: 1;
+    min-width: 9rem;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.call-to-action .buttons button {
+    display: block;
+    flex-grow: 0;
+    /* padding: var(--s-5); */
+    min-width: 8rem;
+    margin: var(--s-5) var(--s-6);
+    font-size: var(--s0);
+    text-align: center;
+}
+
+button {
+    white-space: nowrap;
+    font-family: inherit;
+    font-size: var(--s0);
+    padding: var(--s-5) var(--s-2);
+    font-weight: bold;
+    display: inline-block;
+    background: none;
+    color: var(--accent-dark);
+    border: solid 1px var(--accent-dark);
+    transition: all 0.4s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    color: var(--white);
+    background: var(--accent-dark);
+}
+
+section > header {
+    margin: 1.7em;
+    text-align: center;
+}
+
+/* Mission */
+#mission {
+    background: url('../47517066461_24976f5b10_o.jpg'); /*This images is the background*/
+    background-size: cover;
+    background-position: center;
+    min-height: 20rem;
+    width: 100vw;
+    text-align: center;
+    position: relative;
+}
+#mission .overlay {
+    background: linear-gradient(
+        to right,
+        rgba(36, 121, 124, 0.75),
+        rgba(29, 83, 91, 0.75)
+    );
+    color: white;
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    width: 100vw;
+    min-height: 20rem;
+}
+#mission .overlay > * {
+    width: 80%;
+}
+#mission header {
+    margin-top: 10vh;
+}
+#mission header > h1 {
+    font-size: var(--s3);
+}
+#mission .description {
+    margin-top: 0.8em;
+    font-weight: 100;
+    font-size: var(--s-1);
+}
+#mission .bottom-text {
+    position: absolute;
+    bottom: 20%;
+    width: 60%;
+    font-size: var(--s0);
+    font-weight: 500;
+}
+
+/* FAQ */
+.faq-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.question {
+    margin: 0.5em;
+    padding: 0.25em;
+    position: relative;
+    width: 100%;
+    border-left: 1vw solid #74bdc6;
+    text-align: left;
+}
+.question > summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.66em;
+    height: 100%;
+}
+.question > summary::-webkit-details-marker {
+    display: none;
+}
+.question[open] summary {
+    height: unset;
+}
+.answer {
+    margin-top: 1em;
+    font-size: 0.5em;
+}
+
+.expand-icon {
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: var(--accent-bright);
+    border-radius: 15%;
+    padding: 10px;
+}
+
+.expand-icon:before,
+.expand-icon:after {
+    content: '';
+    position: absolute;
+    background-color: white;
+    transition: transform 0.25s ease-out;
+}
+
+/* Vertical line */
+.expand-icon:before {
+    content: '';
+    top: 20%;
+    left: 50%;
+    width: 2px;
+    height: 60%;
+    margin-left: -1px;
+}
+
+/* horizontal line */
+.expand-icon:after {
+    content: '';
+    top: 50%;
+    left: 20%;
+    width: 60%;
+    height: 2px;
+    margin-top: -1px;
+}
+
+details[open] .expand-icon:before {
+    content: '';
+    transform: rotate(90deg);
+}
+
+details[open] .expand-icon:after {
+    content: '';
+    transform: rotate(180deg);
+}
+
+.faq-header {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.faq-rectangle {
+    float: left;
+    margin-right: 15px;
+    width: 34px;
+    height: 84px;
+    background: #74bdc6;
+}
+
+.faq-wrapper {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding: 35px 10px 10px 10px;
+}
+
+.text {
+    border-left: 25px solid #74bdc6;
+    display: inline-block;
+    position: relative;
+
+    font-size: 18pt;
+    font-weight: bold;
+
+    width: 40%;
+    height: 70px;
+
+    padding-left: 20px;
+    padding-right: 50px;
+    line-height: 70px;
+    margin: 0 auto;
+
+    text-align: left;
+    vertical-align: middle;
+}
+
+.image {
+    display: inline-block;
+    text-align: right;
+    float: right;
+    vertical-align: middle;
+    margin-top: 19px;
+    width: 32px;
+    height: 32px;
+    background-image: url('../test.png');
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+/* Schedule */
+#schedule {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 80vw;
+    padding-bottom: 3rem;
+}
+#schedule > header {
+    text-align: left;
+}
+
+/* Clock */
+#clock {
+    position: relative;
+    float: left;
+    width: 50%;
+    padding-top: 50%;
+}
+#clock > .saturday,
+#clock > .sunday {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transition: transform 0.5s;
+}
+#clock > .saturday {
+    transform: translate(-50%, -50%) scale(1);
+}
+#clock > .sunday {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+#clock > .content {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-height: 50%;
+}
+#clock > .content > .day {
+    margin: 0;
+}
+#clock > .content > .time {
+    font-size: var(--s2);
+    font-weight: 500;
+    margin: 10px 0;
+}
+#clock > .content > .ev-name {
+    font-size: 80%;
+    font-weight: 500;
+    margin: 0;
+}
+#clock > .content > .location {
+    font-size: 80%;
+    margin: 0;
+    margin-top: 10px;
+}
+#hour-pointer,
+#minute-pointer {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 100%;
+}
+#hour-pointer > span,
+#minute-pointer > span {
+    width: 5%;
+    padding-top: 11%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+    transition: transform 0.5s;
+}
+#minute-pointer svg {
+    transform: scale(0.5);
+}
+
+/* Schedule Table */
+#schedule-table {
+    position: relative;
+    float: left;
+    width: 50%;
+    padding-top: 50%;
+    font-size: var(--s-1);
+}
+
+#schedule-table header {
+    color: black;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#schedule-table > div {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    color: white;
+    width: 80%;
+}
+
+#schedule-table > div.sunday {
+    display: none;
+}
+
+#schedule-table table {
+    width: 100%;
+}
+
+#schedule-table .container {
+    overflow: hidden;
+    max-height: 13rem;
+    border-radius: 10px;
+}
+
+#schedule-table thead > tr {
+    display: block;
+}
+#schedule-table tbody {
+    display: block;
+    max-height: 11rem;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#schedule-table tbody > tr {
+    cursor: pointer;
+    transition: transform 0.5s, filter 0.5s;
+}
+#schedule-table tbody > tr.active {
+    transform: scale(1.05);
+}
+#schedule-table tbody > tr.active {
+    filter: brightness(1.15);
+}
+
+#schedule-table th:first-child,
+#schedule-table td:first-child {
+    text-align: right;
+    white-space: nowrap;
+}
+
+#schedule-table th:last-child,
+#schedule-table td:last-child {
+    text-align: left;
+}
+
+#schedule-table th,
+#schedule-table td {
+    padding: 0.5em 1em;
+    line-height: 1.2em;
+}
+
+#schedule-table th {
+    background-color: var(--accent-dark);
+}
+
+#schedule-table td {
+    background-color: var(--accent-bright);
+}
+
+#schedule-table td > span.location {
+    margin-top: 10px;
+    font-weight: lighter;
+    display: none;
+}
+
+#schedule-table span.right,
+#schedule-table span.left {
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.5s;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+#schedule-table span.right {
+    float: right;
+}
+#schedule-table span.right:hover {
+    transform: translateX(5px);
+}
+
+#schedule-table span.left {
+    float: left;
+}
+#schedule-table span.left:hover {
+    transform: translateX(-5px);
+}
+
+#schedule-table .saturday span.left {
+    transform: none;
+    cursor: default;
+    color: gray;
+}
+#schedule-table .sunday span.right {
+    transform: none;
+    cursor: default;
+    color: gray;
+}
+
+#sponsors {
+    background-color: var(--accent-bright);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    min-height: 10rem;
+}
+#sponsors p {
+    margin: 0 auto;
+    width: 80%;
 }
 
 footer {
@@ -162,3 +741,104 @@ footer h4 {
   .mobile-100 {
   }
 }
+
+::-moz-selection {
+    background: none;
+}
+
+::selection {
+    background: var(--accent-bright);
+    text-shadow: white 0 0 10px;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar:hover {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 1px 0 5px rgba(0, 0, 0, 0.2);
+    background: var(--accent-bright);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-dark);
+}
+
+/* Tablet and desktop based breakpoints */
+/* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
+/* Supposed to break around where the buttons move to the side */
+@media (min-width: 35em) {
+    .call-to-action {
+        padding-left: var(--s3);
+        padding-right: var(--s3);
+        /* stretch the button box to match text height */
+        align-items: stretch;
+    }
+    .call-to-action .largest {
+        text-align: left;
+    }
+    .call-to-action .buttons {
+        /* center the buttons */
+        align-content: center;
+    }
+    .call-to-action .buttons button {
+        min-width: 9rem;
+        text-align: left;
+    }
+}
+
+/* increaes font size of largest hackathon */
+@media (min-width: 52em) {
+    .call-to-action .largest {
+        font-size: var(--s2);
+    }
+}
+
+@media only screen and (max-width: 860px) {
+    .faq-row {
+        display: block;
+    }
+
+    #clock {
+        display: none;
+    }
+    #schedule-table {
+        width: 100%;
+        padding: 0 1em;
+    }
+    #schedule-table > div {
+        position: relative;
+        transform: none;
+        width: 100%;
+        left: 0;
+    }
+    #schedule-table tbody > tr {
+        cursor: default;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    #schedule-table tbody > tr:hover {
+        transform: none;
+    }
+    #schedule-table tbody > tr.active {
+        filter: none;
+        transform: none;
+    }
+    #schedule-table td > span.location {
+        display: block;
+    }
+
+    #schedule-table span.right:hover {
+        transform: none;
+    }
+
+    #schedule-table span.left:hover {
+        transform: none;
+    }
+}
+
+
