@@ -275,7 +275,7 @@ section > header {
 }
 #mission .bottom-text {
     position: absolute;
-    bottom: 20%;
+    bottom: 10vw;
     width: 60%;
     font-size: var(--s0);
     font-weight: 500;
