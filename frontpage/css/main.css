@@ -100,7 +100,7 @@ a {
     text-align: center;
     position: relative;
     background-position: center;
-    background: url('../img/info-bg-image.jpg'),
+    background: url('../images/info-bg-image.jpg'),
         linear-gradient(
             to bottom,
             rgba(255, 255, 255, 0),
@@ -237,7 +237,7 @@ section > header {
 
 /* Mission */
 #mission {
-    background: url('../47517066461_24976f5b10_o.jpg'); /*This images is the background*/
+    background: url('../images/mission_background.jpg'); /*This images is the background*/
     background-size: cover;
     background-position: center;
     min-height: 20rem;
@@ -265,6 +265,7 @@ section > header {
     margin-top: 10vh;
 }
 #mission header > h1 {
+    text-transform: uppercase;
     font-size: var(--s3);
 }
 #mission .description {
@@ -278,6 +279,7 @@ section > header {
     width: 60%;
     font-size: var(--s0);
     font-weight: 500;
+    line-height: 1.3em;
 }
 
 /* FAQ */
@@ -635,40 +637,62 @@ details[open] .expand-icon:after {
     width: 80%;
 }
 
-section#team > h1 {
-    margin-top: 0.5em;
-    margin-bottom: 0.7em;
-    text-align: center;
-    font-size: var(--s2);
-}
-
-.cardcontainer {
+.figure-wrapper {
     margin: 0 auto;
-    width: 80vw;
+    width: 70vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
 }
-
-.card {
-    margin: 2%;
+.directors {
+    flex-wrap: nowrap;
+}
+figure {
     text-align: center;
     flex-basis: 10vw;
     flex-grow: 0;
     max-width: 400px;
+    margin: 0.5em 0.2em;
 }
-
-.card img {
-    border: 8px solid #74bcc5;
-    border-radius: 100%;
+.directors > figure {
+    margin: 0.5rem;
+}
+figure:hover > .figure-image {
+    transform: scale(1.03);
+}
+figure:hover > .figure-image > img {
+    transform: scale(1.07);
+}
+figure:hover > h4,
+figure:hover > figcaption {
+    transform: translateY(-5px);
+}
+.directors > figure {
+    flex-basis: 25vw;
+}
+.figure-image {
+    border: 0.25em solid #74bcc5;
+    border-radius: 50%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5%;
+    transition: transform 0.5s;
 }
-
-.card .textbox {
-    font-size: var(--s-2);
-    white-space: nowrap;
+.figure-image > img {
+    width: 100%;
+    border-radius: 50%;
+    transition: transform 0.5s;
+}
+figure > h4 {
+    margin-top: 0.7em;
+    transition: transform 0.5s;
+}
+figcaption {
+    transition: transform 0.5s;
 }
 
 footer {
