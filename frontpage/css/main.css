@@ -625,16 +625,59 @@ details[open] .expand-icon:after {
     color: gray;
 }
 
-#sponsors {
+#sponsors > div > header {
+    margin: 1.7em;
+    text-align: center;
+}
+
+#sponsors > .sponsors-banner {
     background-color: var(--accent-bright);
     color: white;
     text-align: center;
     padding: 10px;
     min-height: 10rem;
 }
-#sponsors p {
+#sponsors > .sponsors-banner p {
     margin: 0 auto;
     width: 80%;
+}
+
+.sponsor-row {
+    max-width: 80vw;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+}
+
+.sponsor-row > a {
+    display: flex;
+    justify-content: center;
+    flex: 1 calc(240px + 7 * var(--vw));
+}
+
+.sponsor-row > a > img {
+    transition: transform 0.5s, filter 0.5s;
+}
+
+.sponsor-row > a:hover > img {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2));
+}
+
+.sponsor-row > * > * + * {
+    margin-top: 1rem;
+}
+
+.sponsor-row > :not(:only-child) {
+    padding: 1rem;
+}
+
+.sponsor-row > :only-child {
+    margin: 2rem;
+}
+
+#sponsors img {
+    max-height: calc(20px + 6 * var(--vw));
 }
 
 .figure-wrapper {
