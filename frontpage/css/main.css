@@ -973,6 +973,9 @@ footer h4 {
         margin-left: 0.5em;
         font-size: var(--s-1);
     }
+    figure:hover > figcaption {
+        transform: translateX(-5px);
+    }
 }
 
 @media only screen and (max-width: 580px) {
@@ -996,6 +999,9 @@ footer h4 {
         justify-content: center;
         text-align: left;
         margin-left: 0.5em;
-        font-size: var(--s2);
+        font-size: var(--s2) !important;
+    }
+    #sponsors > div:not(.partners) img {
+        max-width: 50vw;
     }
 }
