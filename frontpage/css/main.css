@@ -66,6 +66,12 @@ a {
     transition: transform 0.5s;
 }
 
+img {
+    max-width: 100%;
+    transition: 0.3s;
+    margin: auto;
+}
+
 .vh95 {
     /* max-height: 95vh; */
 }
@@ -100,7 +106,7 @@ a {
     text-align: center;
     position: relative;
     background-position: center;
-    background: url('../img/info-bg-image.jpg'),
+    background: url('../images/info-bg-image.jpg'),
         linear-gradient(
             to bottom,
             rgba(255, 255, 255, 0),
@@ -237,7 +243,7 @@ section > header {
 
 /* Mission */
 #mission {
-    background: url('../47517066461_24976f5b10_o.jpg'); /*This images is the background*/
+    background: url('../images/mission_background.jpg'); /*This images is the background*/
     background-size: cover;
     background-position: center;
     min-height: 20rem;
@@ -265,6 +271,7 @@ section > header {
     margin-top: 10vh;
 }
 #mission header > h1 {
+    text-transform: uppercase;
     font-size: var(--s3);
 }
 #mission .description {
@@ -274,10 +281,11 @@ section > header {
 }
 #mission .bottom-text {
     position: absolute;
-    bottom: 20%;
+    bottom: 10vw;
     width: 60%;
     font-size: var(--s0);
     font-weight: 500;
+    line-height: 1.3em;
 }
 
 /* FAQ */
@@ -623,16 +631,127 @@ details[open] .expand-icon:after {
     color: gray;
 }
 
-#sponsors {
+#sponsors > div > header {
+    margin: 1.7em;
+    text-align: center;
+}
+
+#sponsors > .sponsors-banner {
     background-color: var(--accent-bright);
     color: white;
     text-align: center;
     padding: 10px;
     min-height: 10rem;
 }
-#sponsors p {
+#sponsors > .sponsors-banner p {
     margin: 0 auto;
     width: 80%;
+}
+
+.sponsor-row {
+    max-width: 80vw;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.sponsor-row > a {
+    display: flex;
+    justify-content: center;
+    flex: 1 calc(240px + 7 * var(--vw));
+}
+
+.sponsor-row > a > img {
+    transition: transform 0.5s, filter 0.5s;
+}
+
+.sponsor-row > a:hover > img {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 5px 2px rgba(0, 0, 0, 0.2));
+}
+
+.sponsor-row > * > * + * {
+    margin-top: 1rem;
+}
+
+.sponsor-row > :not(:only-child) {
+    padding: 1rem;
+}
+
+.sponsor-row > :only-child {
+    margin: 2rem;
+}
+
+#sponsors img {
+    max-height: calc(20px + 6 * var(--vw));
+}
+
+.figure-wrapper {
+    margin: 0 auto;
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: start;
+}
+.directors {
+    flex-wrap: nowrap;
+}
+figure {
+    text-align: center;
+    flex-basis: 15vw;
+    flex-grow: 0;
+    max-width: 400px;
+    margin: 0.5em 0.2em;
+}
+.directors > figure {
+    margin: 0.5rem;
+}
+figure:hover > .figure-image {
+    transform: scale(1.03);
+}
+figure:hover > .figure-image > img {
+    transform: scale(1.07);
+}
+figure:hover > figcaption {
+    transform: translateY(-5px);
+}
+.directors {
+    width: 60vw;
+}
+.directors > figure {
+    flex-basis: 25vw;
+}
+.directors figcaption > h4 {
+    font-size: var(--s0);
+}
+figcaption > p {
+    margin-top: 0.2em;
+    font-size: var(--s-2);
+}
+.figure-wrapper:not(.directors) figcaption > h4 {
+    font-size: var(--s-1);
+}
+.figure-image {
+    border: 0.17em solid var(--accent-dark);
+    border-radius: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3%;
+    transition: transform 0.5s;
+}
+.figure-image > img {
+    width: 100%;
+    border-radius: 50%;
+    transition: transform 0.5s;
+}
+figcaption {
+    margin-top: 0.7em;
+    transition: transform 0.5s;
 }
 
 footer {
@@ -645,48 +764,54 @@ footer a {
   text-decoration: none;
   color: #F4F5F6;
   font-weight: 400;
+  width: 100%;
 }
 
 footer h4 {
-  padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 #footer-main {
   display: flex;
   padding: 40px;
+  
+#footer-top {
+    background-color: #74bcc5;
+    display: flex;
+    padding: 40px;
 }
 
 #copyright {
-  background-color: #54696D;
-  text-align: center;
-  padding: 20px;
-  font-size: 16px;
+    background-color: #54696d;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
 }
 
 .col-33 {
-  flex-basis: 33%;
-  text-transform: uppercase;
+    flex-basis: 33%;
+    text-transform: uppercase;
 }
 
 #past-sites {
-  text-align: left;
+    text-align: left;
 }
 
 .site {
-  border-left: 10px solid #54696D;
-  padding-left: 10px;
-  margin: 16px 0px;
+    border-left: 10px solid #54696d;
+    padding-left: 10px;
+    margin: 16px 0px;
 }
 
 .footer-logo {
-  text-align: center;
+    text-align: center;
 }
 
 #footer-logo-desktop {
-  display: block;
+    display: block;
 }
 #footer-logo-mobile {
-  display: none;
+    display: none;
 }
 
 .up-arrows {
@@ -704,15 +829,15 @@ footer h4 {
 }
 
 #light {
-  opacity: 0.4;
+    opacity: 0.4;
 }
 
 #med {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 #dark {
-  opacity: 1;
+    opacity: 1;
 }
 
 .footer-logo #logo {
@@ -721,13 +846,13 @@ footer h4 {
 }
 
 #social-bar {
-  text-align: right;
+    text-align: right;
 }
 
 .social {
-  border-right: 10px solid #54696D;
-  padding-right: 10px;
-  margin: 16px 0px;
+    border-right: 10px solid #54696d;
+    padding-right: 10px;
+    margin: 16px 0px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -759,7 +884,6 @@ footer h4 {
       max-width: 200px;
       min-width: 100px;
   }
-
 }
 
 ::-moz-selection {
@@ -858,5 +982,51 @@ footer h4 {
 
     #schedule-table span.left:hover {
         transform: none;
+    }
+
+    .figure-wrapper:not(.directors) figure {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        flex-basis: 33.5vw;
+    }
+    .figure-wrapper:not(.directors) figcaption {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        margin-left: 0.5em;
+        font-size: var(--s-1);
+    }
+    figure:hover > figcaption {
+        transform: translateX(-5px);
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .figure-wrapper {
+        display: block;
+        width: 80vw;
+    }
+    figure {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        width: 100%;
+        margin: 0.5em 0.2em !important;
+    }
+    .figure-image {
+        max-width: 130px;
+    }
+    figcaption {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        margin-left: 0.5em;
+        font-size: var(--s2) !important;
+    }
+    #sponsors > div:not(.partners) img {
+        max-width: 50vw;
     }
 }
