@@ -638,6 +638,7 @@ details[open] .expand-icon:after {
 footer {
   color: #F4F5F6;
   width: 100%;
+  background-color: #74BCC5;
 }
 
 footer a {
@@ -652,7 +653,6 @@ footer h4 {
 
 #footer-main {
   display: flex;
-  background-color: #74BCC5;
   padding: 40px;
 }
 
@@ -739,12 +739,11 @@ footer h4 {
     display: block;
     width: 100%;
     flex-basis: 100%;
-    background-color: #74BCC5;
     padding: 40px 40px 15px;
   }
 
   #footer-main {
-      padding-top: 15px;
+      padding: 15px 40px;
   }
 
   .mobile-50 {
@@ -756,10 +755,11 @@ footer h4 {
   }
 
   .footer-logo #logo {
-      width: 40%;
+      width: 20%;
       max-width: 200px;
       min-width: 100px;
   }
+
 }
 
 ::-moz-selection {
