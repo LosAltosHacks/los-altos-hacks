@@ -66,6 +66,12 @@ a {
     transition: transform 0.5s;
 }
 
+img {
+    max-width: 100%;
+    transition: 0.3s;
+    margin: auto;
+}
+
 .vh95 {
     /* max-height: 95vh; */
 }
@@ -647,6 +653,7 @@ details[open] .expand-icon:after {
     width: 100%;
     display: flex;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 .sponsor-row > a {
