@@ -636,8 +636,9 @@ details[open] .expand-icon:after {
 }
 
 footer {
-    color: #f4f5f6;
-    width: 100%;
+  color: #F4F5F6;
+  width: 100%;
+  background-color: #74BCC5;
 }
 
 footer a {
@@ -688,14 +689,18 @@ footer h4 {
   display: none;
 }
 
+.up-arrows {
+    position: absolute;
+}
+
 .up {
-    border: solid #f4f5f6;
-    border-width: 0 0.2em 0.2em 0;
-    display: inline-block;
-    padding: 16px;
-    margin-top: -20px;
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
+  border: solid #F4F5F6;
+  border-width: 0 0.2em 0.2em 0;
+  display: inline-block;
+  padding: 16px;
+  margin-top: -16px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
 }
 
 #light {
@@ -710,9 +715,9 @@ footer h4 {
   opacity: 1;
 }
 
-#logo {
-    width: 60%;
-    margin-top: 10px;
+.footer-logo #logo {
+  width: 60%;
+  margin-top: 10px;
 }
 
 #social-bar {
@@ -726,23 +731,35 @@ footer h4 {
 }
 
 @media only screen and (max-width: 768px) {
-    #footer-logo-desktop {
-        display: none;
-    }
-    #footer-logo-mobile {
-        display: block;
-        width: 100%;
-        flex-basis: 100%;
-    }
-    .mobile-50 {
-        flex-basis: 50%;
-    }
+  #footer-logo-desktop {
+    display: none;
+  }
+
+  #footer-logo-mobile {
+    display: block;
+    width: 100%;
+    flex-basis: 100%;
+    padding: 40px 40px 15px;
+  }
+
+  #footer-main {
+      padding: 15px 40px;
+  }
+
+  .mobile-50 {
+    flex-basis: 50%;
+  }
+
+  .up {
+      padding: 10px;
+  }
 
   .footer-logo #logo {
       width: 20%;
       max-width: 200px;
       min-width: 100px;
   }
+
 }
 
 ::-moz-selection {
@@ -841,45 +858,5 @@ footer h4 {
 
     #schedule-table span.left:hover {
         transform: none;
-    }
-
-    .figure-wrapper:not(.directors) figure {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        flex-basis: 33.5vw;
-    }
-    .figure-wrapper:not(.directors) figcaption {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: left;
-        margin-left: 0.5em;
-        font-size: var(--s-1);
-    }
-}
-
-@media only screen and (max-width: 580px) {
-    .figure-wrapper {
-        display: block;
-        width: 80vw;
-    }
-    figure {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        width: 100%;
-        margin: 0.5em 0.2em !important;
-    }
-    .figure-image {
-        max-width: 130px;
-    }
-    figcaption {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: left;
-        margin-left: 0.5em;
-        font-size: var(--s2);
     }
 }
