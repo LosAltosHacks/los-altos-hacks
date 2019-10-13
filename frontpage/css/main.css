@@ -934,6 +934,10 @@ footer h4 {
         margin-left: 0.5em;
         font-size: var(--s-1);
     }
+
+    #sponsors img {
+        max-width: 50vw;
+    }
 }
 
 @media only screen and (max-width: 580px) {
