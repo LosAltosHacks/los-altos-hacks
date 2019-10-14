@@ -2,39 +2,13 @@ var eventsList = document.querySelectorAll('#schedule-table tbody > tr');
 var clockTime = 0;
 var events = [];
 
+adjustHeaderDisplay();
 window.onresize = _ => adjustHeaderDisplay();
 
-adjustHeaderDisplay();
 registerEvents();
-
-for (let question of document.querySelectorAll('.question')) {
-    question.addEventListener('toggle', e => {
-        // var q = e.path.filter(elem => {
-        //     return elem.tagName == 'DETAILS';
-        // })[0];
-        // console.log(e);
-        // var originalHeight = q.offsetHeight;
-        // console.log(originalHeight);
-        // var open = q.getAttribute('open') != null;
-        //
-        // if (open) {
-        //     q.style.height = originalHeight;
-        //     setTimeout(_ => {
-        //         console.log('hi');
-        //         q.style.height = '100%';
-        //     }, 520);
-        // } else {
-        //     q.style.height = null;
-        // }
-    });
-}
 
 // Adjust table header display
 function adjustHeaderDisplay() {
-    console.log(
-        document.querySelector('#schedule-table .sunday tbody tr').clientWidth
-    );
-
     document.querySelector(
         '#schedule-table .saturday thead th:first-child'
     ).style.width = `${
@@ -44,10 +18,10 @@ function adjustHeaderDisplay() {
 
     document.querySelector(
         '#schedule-table .saturday thead th:last-child'
-    ).style.width = `${document.querySelector('#schedule-table .saturday tbody')
-        .offsetWidth -
-        document.querySelector('#schedule-table .saturday tbody td:first-child')
-            .offsetWidth}px`;
+    ).style.width = `${
+        document.querySelector('#schedule-table .saturday tbody td:last-child')
+            .offsetWidth
+    }px`;
 
     document.querySelector(
         '#schedule-table .sunday thead th:first-child'
@@ -58,10 +32,10 @@ function adjustHeaderDisplay() {
 
     document.querySelector(
         '#schedule-table .sunday thead th:last-child'
-    ).style.width = `${document.querySelector('#schedule-table .sunday tbody')
-        .offsetWidth -
-        document.querySelector('#schedule-table .sunday tbody td:first-child')
-            .offsetWidth}px`;
+    ).style.width = `${
+        document.querySelector('#schedule-table .sunday tbody td:last-child')
+            .offsetWidth
+    }px`;
 }
 
 // Register all events
