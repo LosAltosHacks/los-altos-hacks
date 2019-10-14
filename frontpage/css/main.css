@@ -66,6 +66,49 @@ a {
     transition: transform 0.5s;
 }
 
+img {
+    max-width: 100%;
+    transition: 0.3s;
+    margin: auto;
+}
+
+button {
+    white-space: nowrap;
+    font-family: inherit;
+    font-size: var(--s0);
+    padding: var(--s-5) var(--s-2);
+    font-weight: bold;
+    display: inline-block;
+    background: none;
+    color: var(--accent-dark);
+    border: solid 1px var(--accent-dark);
+    transition: all 0.4s ease;
+}
+
+button:hover {
+    cursor: pointer;
+    color: var(--white);
+    background: var(--accent-dark);
+}
+
+section {
+    padding-bottom: 1.5em;
+}
+
+section > header {
+    margin: 1.7em auto;
+    width: 80vw;
+    text-align: center;
+    padding: 0.7em 0;
+    border-bottom: solid #ccc;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.2);
+}
+
+/* Landing Page */
+#landing {
+    padding-bottom: 0;
+}
+
 .vh95 {
     /* max-height: 95vh; */
 }
@@ -211,30 +254,6 @@ a {
     text-align: center;
 }
 
-button {
-    white-space: nowrap;
-    font-family: inherit;
-    font-size: var(--s0);
-    padding: var(--s-5) var(--s-2);
-    font-weight: bold;
-    display: inline-block;
-    background: none;
-    color: var(--accent-dark);
-    border: solid 1px var(--accent-dark);
-    transition: all 0.4s ease;
-}
-
-button:hover {
-    cursor: pointer;
-    color: var(--white);
-    background: var(--accent-dark);
-}
-
-section > header {
-    margin: 1.7em;
-    text-align: center;
-}
-
 /* Mission */
 #mission {
     background: url('../47517066461_24976f5b10_o.jpg'); /*This images is the background*/
@@ -244,6 +263,7 @@ section > header {
     width: 100vw;
     text-align: center;
     position: relative;
+    padding: 0;
 }
 #mission .overlay {
     background: linear-gradient(
@@ -294,6 +314,9 @@ section > header {
     width: 100%;
     border-left: 1vw solid #74bdc6;
     text-align: left;
+    height: 100%;
+    overflow: hidden;
+    transition: height 0.3s;
 }
 .question > summary {
     display: flex;
@@ -301,9 +324,8 @@ section > header {
     align-items: center;
     outline: none;
     cursor: pointer;
-    transition: 0.3s;
     font-size: 0.66em;
-    height: 100%;
+    height: inherit;
 }
 .question > summary::-webkit-details-marker {
     display: none;
@@ -314,6 +336,9 @@ section > header {
 .answer {
     margin-top: 1em;
     font-size: 0.5em;
+}
+.answer > p {
+    line-height: 1.3em;
 }
 
 .expand-icon {
@@ -363,68 +388,20 @@ details[open] .expand-icon:after {
     transform: rotate(180deg);
 }
 
-.faq-header {
-    text-align: center;
-    padding-bottom: 50px;
-}
-
-.faq-rectangle {
-    float: left;
-    margin-right: 15px;
-    width: 34px;
-    height: 84px;
-    background: #74bdc6;
-}
-
 .faq-wrapper {
     width: 80%;
     margin: auto;
     text-align: center;
-    padding: 35px 10px 10px 10px;
-}
-
-.text {
-    border-left: 25px solid #74bdc6;
-    display: inline-block;
-    position: relative;
-
-    font-size: 18pt;
-    font-weight: bold;
-
-    width: 40%;
-    height: 70px;
-
-    padding-left: 20px;
-    padding-right: 50px;
-    line-height: 70px;
-    margin: 0 auto;
-
-    text-align: left;
-    vertical-align: middle;
-}
-
-.image {
-    display: inline-block;
-    text-align: right;
-    float: right;
-    vertical-align: middle;
-    margin-top: 19px;
-    width: 32px;
-    height: 32px;
-    background-image: url('../test.png');
-    background-repeat: no-repeat;
-    background-position: right;
+    padding: 10px 0;
 }
 
 /* Schedule */
 #schedule {
-    margin: 0 auto;
     overflow: hidden;
-    max-width: 80vw;
-    padding-bottom: 3rem;
 }
-#schedule > header {
-    text-align: left;
+#schedule > .schedule-wrapper {
+    max-width: 80vw;
+    margin: 0 auto;
 }
 
 /* Clock */
@@ -544,6 +521,9 @@ details[open] .expand-icon:after {
     overflow-y: auto;
     overflow-x: hidden;
 }
+#schedule-table tbody::-webkit-scrollbar {
+    width: 2px;
+}
 #schedule-table tbody > tr {
     cursor: pointer;
     transition: transform 0.5s, filter 0.5s;
@@ -564,6 +544,7 @@ details[open] .expand-icon:after {
 #schedule-table th:last-child,
 #schedule-table td:last-child {
     text-align: left;
+    width: 100%;
 }
 
 #schedule-table th,
@@ -820,23 +801,6 @@ footer h4 {
     color: white;
 }
 
-::-webkit-scrollbar {
-    width: 2px;
-}
-
-::-webkit-scrollbar:hover {
-    width: 20px;
-}
-
-::-webkit-scrollbar-track {
-    box-shadow: inset 1px 0 5px rgba(0, 0, 0, 0.2);
-    background: var(--accent-bright);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--accent-dark);
-}
-
 /* Tablet and desktop based breakpoints */
 /* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
 /* Supposed to break around where the buttons move to the side */
@@ -896,6 +860,9 @@ footer h4 {
         filter: none;
         transform: none;
     }
+    #schedule-table td > span.event-name {
+        font-weight: bold;
+    }
     #schedule-table td > span.location {
         display: block;
     }
@@ -907,4 +874,62 @@ footer h4 {
     #schedule-table span.left:hover {
         transform: none;
     }
+
+    .figure-wrapper:not(.directors) figure {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        flex-basis: 33.5vw;
+    }
+    .figure-wrapper:not(.directors) figcaption {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        margin-left: 0.5em;
+        font-size: var(--s-1);
+    }
+
+    #sponsors img {
+        max-width: 50vw;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .figure-wrapper {
+        display: block;
+        width: 80vw;
+    }
+    figure {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        width: 100%;
+        margin: 0.5em 0.2em !important;
+    }
+    .figure-image {
+        max-width: 130px;
+    }
+    figcaption {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        margin-left: 0.5em;
+        font-size: var(--s2);
+    }
+
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 1px 0 5px rgba(0, 0, 0, 0.2);
+    background: var(--accent-bright);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-dark);
 }
