@@ -752,6 +752,25 @@ footer h4 {
     width: 70%;
 }
 
+.social {
+    transition: 0.5s;
+}
+.social:hover {
+    transform: translateX(-1em);
+}
+.social-icon > img {
+    opacity: 0;
+    height: 1.5em;
+    position: absolute;
+    right: -1.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.5s;
+}
+.social:hover .social-icon > img {
+    opacity: 1;
+}
+
 @media only screen and (max-width: 768px) {
   #footer-logo-desktop {
     display: none;
