@@ -732,7 +732,7 @@ figcaption {
 footer {
     color: #f4f5f6;
     width: 100%;
-    background-color: #74BCC5;
+    background-color: #74bcc5;
 }
 
 footer a {
@@ -766,14 +766,15 @@ footer h4 {
     text-align: left;
 }
 
-.site, .social {
+.site,
+.social {
     margin: 16px 0px;
     position: relative;
     z-index: 1;
 }
 
 .site a {
-margin-left: 20px;
+    margin-left: 20px;
 }
 
 .footer-logo {
@@ -814,13 +815,18 @@ margin-left: 20px;
     margin-top: 10px;
 }
 
+.site {
+    width: 3.5em;
+}
+
 #social-media {
     text-align: right;
 }
 
 .social a {
     margin-right: 20px;
-    width: auto;
+    display: inline-block;
+    width: calc(7em - 20px);
 }
 
 .bar {
@@ -828,7 +834,7 @@ margin-left: 20px;
     width: 10px;
     height: 100%;
     position: absolute;
-    background-color: #54696D;
+    background-color: #54696d;
     -webkit-transition: width 0.5s ease-out;
     transition: width 0.5s ease-out;
     z-index: -1;
@@ -839,10 +845,14 @@ margin-left: 20px;
 }
 
 .site:hover > .bar {
+    width: calc(20px + 3.5em);
+}
+.site > a {
+    display: block;
     width: 3.5em;
 }
 .social:hover > .bar {
-    width: 6.5em;
+    width: 7em;
 }
 
 .social {
@@ -875,8 +885,8 @@ margin-left: 20px;
         padding: 40px 40px 15px;
     }
     #footer-main {
-      padding: 15px 40px;
-      font-size: 0.75em;
+        padding: 15px 40px;
+        font-size: 0.75em;
     }
 
     .mobile-50 {
@@ -884,18 +894,18 @@ margin-left: 20px;
     }
 
     .up {
-      padding: 6px;
+        padding: 6px;
     }
 
     .footer-logo #logo {
-      width: 10%;
-      max-width: 200px;
-      min-width: 50px;
+        width: 10%;
+        max-width: 200px;
+        min-width: 50px;
     }
 
     #copyright {
-      font-size: 0.5em;
-      padding: 15px;
+        font-size: 0.5em;
+        padding: 15px;
     }
 }
 
