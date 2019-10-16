@@ -35,6 +35,11 @@
     --s7: calc(var(--s6) * var(--ratio));
 }
 
+/* MEDIA QUERY STANDARDS */
+/* Other than the query following this one, use the following breakpoints */
+/* Tablet / small desktop - 35em */
+/* Desktop - 52em */
+/* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
 @media (min-width: 2000px) {
     :root {
         --vw: 20px;
@@ -56,8 +61,39 @@ section {
     max-width: none;
 }
 
+body {
+    background: var(--white);
+}
+
 .vh95 {
     /* max-height: 95vh; */
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+}
+
+nav > a {
+    display: block;
+    font-size: var(--s-1);
+    text-decoration: none;
+    color: var(--black);
+    background: inherit;
+    transition: all 0.4s ease;
+    padding: var(--s-2);
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center;
+}
+
+nav > a:hover {
+    background: var(--black);
+}
+
+nav > .home-link {
+    display: none;
 }
 
 .logo-container {
@@ -220,8 +256,6 @@ button:hover {
     background: var(--accent-dark);
 }
 
-/* Tablet and desktop based breakpoints */
-/* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
 /* Supposed to break around where the buttons move to the side */
 @media (min-width: 35em) {
     .call-to-action {
