@@ -3,6 +3,8 @@ var clockTime = 0;
 var events = [];
 
 window.onresize = _ => adjustHeaderDisplay();
+window.onscroll = _ => navBarDisplay();
+navBarDisplay();
 
 adjustHeaderDisplay();
 registerEvents();
@@ -27,6 +29,20 @@ for (let question of document.querySelectorAll('.question')) {
         //     q.style.height = null;
         // }
     });
+}
+
+function navBarDisplay() {
+    var nav = document.getElementsByTagName('nav')[1];
+    var offset = document.getElementById('mission').offsetTop;
+    console.log(offset);
+    if (
+        document.body.scrollTop > offset ||
+        document.documentElement.scrollTop > offset
+    ) {
+        nav.style.top = '0';
+    } else {
+        nav.style.top = '-100%';
+    }
 }
 
 // Adjust table header display
