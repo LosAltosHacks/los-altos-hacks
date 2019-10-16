@@ -109,17 +109,49 @@ section > header {
     padding-bottom: 0;
 }
 
-.vh95 {
-    /* max-height: 95vh; */
+nav a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.nav-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav-logo > a {
+    font-weight: bolder;
+    margin: 0 auto;
+}
+
+.nav-logo > a > .logo {
+    height: 1em;
+    filter: invert(1);
 }
 
 nav {
+    background-color: var(--white);
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+nav > .nav-sections {
     display: flex;
     justify-content: space-evenly;
     overflow: hidden;
 }
 
-nav > a {
+.nav-sections > a:hover {
+    background: var(--accent-dark);
+    color: white;
+}
+
+.nav-sections > a {
     display: block;
     font-size: var(--s-1);
     text-decoration: none;
@@ -130,14 +162,6 @@ nav > a {
     font-weight: bold;
     flex-grow: 1;
     text-align: center;
-}
-
-nav > a:hover {
-    background: var(--black);
-}
-
-nav > .home-link {
-    display: none;
 }
 
 .logo-container {
