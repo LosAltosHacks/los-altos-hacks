@@ -1303,7 +1303,7 @@ footer h4 {
     .nav-sections {
         width: 100%;
         display: block;
-        box-shadow: 0 1px 3px inset rgba(0, 0, 0, 0.4);
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px;
         position: absolute;
         background-color: var(--white);
         z-index: -1;
