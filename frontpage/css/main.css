@@ -68,7 +68,6 @@ a {
 
 img {
     max-width: 100%;
-    transition: 0.3s;
     margin: auto;
 }
 
@@ -104,9 +103,28 @@ section > header {
     box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.2);
 }
 
-/* Landing Page */
-#landing {
-    padding-bottom: 0;
+/* Navigation Menu */
+nav {
+    z-index: 999;
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 0 2em;
+}
+
+nav#static {
+    position: absolute;
+    top: 0;
+}
+
+nav:not(#static) {
+    position: fixed;
+    top: -100%;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    transition: top 0.5s;
 }
 
 nav a {
@@ -116,39 +134,40 @@ nav a {
 
 .nav-logo {
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
+    padding: 0.5em;
 }
 
 .nav-logo > a {
     font-weight: bolder;
-    margin: 0 auto;
+    width: fit-content;
 }
 
 .nav-logo > a > .logo {
     height: 1em;
     filter: invert(1);
+    transition: all 0.3s;
+}
+.nav-logo > a:hover > .logo {
+    transform: scale(1.2);
 }
 
-nav {
-    background-color: var(--white);
-    position: relative;
-    display: flex;
-    justify-content: space-evenly;
-    overflow: hidden;
-    width: 100%;
-    flex-wrap: wrap;
+.logo {
+    display: none;
+    filter: invert(1);
+    max-height: 1em;
 }
 
-nav > .nav-sections {
+.nav-sections {
     display: flex;
     justify-content: space-evenly;
     overflow: hidden;
 }
 
 .nav-sections > a:hover {
-    background: var(--accent-dark);
-    color: white;
+    transform: translateY(-3px);
 }
 
 .nav-sections > a {
@@ -164,12 +183,46 @@ nav > .nav-sections {
     text-align: center;
 }
 
+/* Landing Page */
+#landing {
+    padding-bottom: 0;
+}
+
+#title-page::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border-bottom: 55vh solid white;
+    border-left: 17vh solid transparent;
+    width: 65vw;
+    transform: rotate(180deg);
+    left: -85px;
+}
+
+#logo-overlay {
+    position: absolute;
+    z-index: -1;
+    border-bottom: 55vh solid var(--accent-bright);
+    border-left: 17vh solid transparent;
+    width: 65vw;
+    transform: rotate(180deg);
+}
+
+#title-page {
+    display: flex;
+    height: 45vh;
+    margin-top: 2.3rem;
+}
+
 .logo-container {
-    background: var(--accent-bright);
     color: var(--white);
     text-align: center;
-    padding-top: var(--s1);
-    padding-bottom: var(--s0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    height: 45vh;
+    width: 65%;
 }
 
 .logo-container > * {
@@ -180,19 +233,20 @@ nav > .nav-sections {
 }
 
 .logo-container > img {
-    width: 60%;
-    height: auto;
+    max-width: 50vw;
+    max-height: 35vh;
 }
 
 .logo-container > h1 {
     font-size: 8vw;
+    display: none;
 }
 
 .info-container {
     z-index: -2;
     color: var(--white);
-    text-align: center;
-    position: relative;
+    text-align: right;
+    position: absolute;
     background-position: center;
     background: url('../images/info-bg-image.jpg'),
         linear-gradient(
@@ -209,7 +263,10 @@ nav > .nav-sections {
     padding-top: var(--s-5);
     padding-bottom: var(--s-5);
     padding-left: var(--s0);
-    padding-right: var(--s0);
+    padding-right: 4%;
+    width: 60%;
+    right: 0;
+    height: 45vh;
 }
 
 .info-container:before {
@@ -225,32 +282,30 @@ nav > .nav-sections {
 }
 
 .info-container > * {
-    margin-top: var(--s1);
+    margin-top: var(--s-2);
     margin-bottom: var(--s1);
 }
 
-.info-container h3 {
-    /* text alignmet precludes use of mod scale */
-    font-size: var(--s3);
-}
-
 .info-container h2 {
-    /* font-size: 20vw; */
-    font-size: var(--s7);
+    font-size: var(--s5);
 }
 
 .info-container .address {
     font-weight: bold;
-    font-size: var(--s0);
+    font-size: var(--s-1);
+    position: absolute;
+    right: 2em;
+    bottom: 0;
 }
 
 .info-container .address span {
     font-weight: normal;
     /* text alignmet precludes use of mod scale */
-    font-size: var(--s-1);
+    font-size: var(--s-2);
 }
 
 .call-to-action {
+    max-height: 40vh;
     color: var(--black);
     background: var(--white);
     padding-top: var(--s-5);
@@ -268,7 +323,7 @@ nav > .nav-sections {
     flex-grow: 999;
     min-width: 15rem;
 
-    text-align: center;
+    text-align: left;
     font-size: var(--s0);
 
     margin-bottom: var(--s0);
@@ -354,6 +409,10 @@ nav > .nav-sections {
 }
 
 /* FAQ */
+#faq {
+    overflow: auto;
+}
+
 .faq-row {
     width: 100%;
     display: flex;
@@ -970,35 +1029,36 @@ footer h4 {
     color: white;
 }
 
+.call-to-action {
+    padding-left: var(--s3);
+    padding-right: var(--s3);
+    /* stretch the button box to match text height */
+    align-items: stretch;
+}
+.call-to-action .largest {
+    text-align: left;
+}
+.call-to-action .buttons {
+    /* center the buttons */
+    align-content: center;
+}
+.call-to-action .buttons button {
+    min-width: 9rem;
+    text-align: left;
+}
+
 /* Tablet and desktop based breakpoints */
 /* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
 /* Supposed to break around where the buttons move to the side */
 @media (min-width: 35em) {
-    .call-to-action {
-        padding-left: var(--s3);
-        padding-right: var(--s3);
-        /* stretch the button box to match text height */
-        align-items: stretch;
-    }
-    .call-to-action .largest {
-        text-align: left;
-    }
-    .call-to-action .buttons {
-        /* center the buttons */
-        align-content: center;
-    }
-    .call-to-action .buttons button {
-        min-width: 9rem;
-        text-align: left;
-    }
 }
 
 /* increaes font size of largest hackathon */
-@media (min-width: 52em) {
+/* @media (min-width: 58em) {
     .call-to-action .largest {
-        font-size: var(--s2);
+        font-size: var(--s1);
     }
-}
+} */
 
 @media only screen and (max-width: 860px) {
     .faq-row {
@@ -1064,7 +1124,82 @@ footer h4 {
     }
 }
 
+@media only screen and (max-width: 750px) {
+    .logo {
+        display: inline-block;
+    }
+    .nav-logo span {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .info-container h3 {
+        font-size: var(--s0);
+    }
+    .info-container h2 {
+        font-size: var(--s4);
+    }
+    .info-container .address {
+        font-size: var(--s-2);
+    }
+    .info-container .address > span {
+        font-size: var(--s-3);
+    }
+    .call-to-action .largest {
+        text-align: center;
+    }
+}
+
 @media only screen and (max-width: 580px) {
+    .nav-logo {
+        display: none;
+    }
+
+    #title-page {
+        height: unset;
+        display: block;
+    }
+    #title-page:before {
+        content: unset;
+    }
+    #logo-overlay {
+        display: none;
+    }
+    .logo-container {
+        width: 100%;
+        background-color: var(--accent-bright);
+        position: relative;
+        height: unset;
+        min-height: 30vh;
+    }
+    .logo-container > h1 {
+        display: block;
+    }
+    .info-container {
+        position: relative;
+        height: unset;
+        width: 100%;
+        text-align: center;
+    }
+    .info-container .address {
+        position: relative;
+        right: unset;
+        bottom: unset;
+    }
+
+    .call-to-action {
+        padding-left: unset;
+        padding-right: unset;
+        max-width: 90vw;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+    }
+    .call-to-action .buttons > button {
+        min-width: unset;
+        flex-grow: 1;
+    }
+
     .figure-wrapper {
         display: block;
         width: 80vw;
