@@ -42,6 +42,10 @@
     max-width: var(--measure);
 }
 
+html {
+    scroll-behavior: smooth; /* Does not work with Safari or Edge */
+}
+
 body {
     height: 100vh;
     width: 100vw;
