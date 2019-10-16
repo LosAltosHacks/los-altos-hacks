@@ -113,6 +113,33 @@ section > header {
     /* max-height: 95vh; */
 }
 
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+}
+
+nav > a {
+    display: block;
+    font-size: var(--s-1);
+    text-decoration: none;
+    color: var(--black);
+    background: inherit;
+    transition: all 0.4s ease;
+    padding: var(--s-2);
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center;
+}
+
+nav > a:hover {
+    background: var(--black);
+}
+
+nav > .home-link {
+    display: none;
+}
+
 .logo-container {
     background: var(--accent-bright);
     color: var(--white);
