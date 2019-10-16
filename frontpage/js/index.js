@@ -32,16 +32,30 @@ for (let question of document.querySelectorAll('.question')) {
 }
 
 function navBarDisplay() {
-    var nav = document.getElementsByTagName('nav')[1];
+    var nav = document.getElementsByTagName('nav')[0];
     var offset = document.getElementById('mission').offsetTop;
     console.log(offset);
+
     if (
-        document.body.scrollTop > offset ||
-        document.documentElement.scrollTop > offset
+        document.body.scrollTop <= 50 &&
+        document.documentElement.scrollTop <= 50
     ) {
         nav.style.top = '0';
-    } else {
+        nav.style.position = 'absolute';
+    } else if (
+        (document.body.scrollTop > 50 ||
+            document.documentElement.scrollTop > 50) &&
+        (document.body.scrollTop < offset &&
+            document.documentElement.scrollTop < offset)
+    ) {
+        nav.style.boxShadow = 'none';
+        nav.style.transition = 'none';
         nav.style.top = '-100%';
+        nav.style.position = 'fixed';
+    } else {
+        nav.style.transition = 'top 0.5s';
+        nav.style.boxShadow = '0 2px 3px rgba(0, 0, 0, 0.2)';
+        nav.style.top = '0';
     }
 }
 
@@ -204,7 +218,7 @@ function clockDisplayUpdate() {
     ).style.transform = `rotate(${angle}deg)`;
     document.querySelector(
         '#minute-pointer > span'
-    ).style.transform = `rotate(${clockTime * 12}deg)`;
+    ).style.transform = `rotate(${clockTime * 6}deg)`;
     document.querySelector(
         '#clock > .content'
     ).children[1].textContent = parseTime(clockTime);
