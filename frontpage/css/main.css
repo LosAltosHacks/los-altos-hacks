@@ -115,18 +115,6 @@ nav {
     padding: 0 2em;
 }
 
-nav#static {
-    position: absolute;
-    top: 0;
-}
-
-nav:not(#static) {
-    position: fixed;
-    top: -100%;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-    transition: top 0.5s;
-}
-
 nav a {
     text-decoration: none;
     color: var(--black);
@@ -196,7 +184,7 @@ nav a {
     border-left: 17vh solid transparent;
     width: 65vw;
     transform: rotate(180deg);
-    left: -85px;
+    left: -15vh;
 }
 
 #logo-overlay {
@@ -765,7 +753,7 @@ details[open] .expand-icon:after {
 }
 
 .sponsor-row > :only-child {
-    margin: 2rem;
+    margin: 2rem auto;
 }
 
 #sponsors img {
@@ -984,41 +972,6 @@ footer h4 {
     opacity: 1;
 }
 
-@media only screen and (max-width: 768px) {
-    #footer-logo-desktop {
-        display: none;
-    }
-    #footer-logo-mobile {
-        display: block;
-        width: 100%;
-        flex-basis: 100%;
-        padding: 40px 40px 15px;
-    }
-    #footer-main {
-        padding: 15px 40px;
-        font-size: 0.75em;
-    }
-
-    .mobile-50 {
-        flex-basis: 50%;
-    }
-
-    .up {
-        padding: 6px;
-    }
-
-    .footer-logo #logo {
-        width: 10%;
-        max-width: 200px;
-        min-width: 50px;
-    }
-
-    #copyright {
-        font-size: 0.5em;
-        padding: 15px;
-    }
-}
-
 ::-moz-selection {
     background: none;
 }
@@ -1124,12 +1077,45 @@ footer h4 {
     }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 768px) {
     .logo {
         display: inline-block;
     }
     .nav-logo span {
         display: none;
+    }
+
+    #footer-logo-desktop {
+        display: none;
+    }
+    #footer-logo-mobile {
+        display: block;
+        width: 100%;
+        flex-basis: 100%;
+        padding: 40px 40px 15px;
+    }
+    #footer-main {
+        padding: 15px 40px;
+        font-size: 0.75em;
+    }
+
+    .mobile-50 {
+        flex-basis: 50%;
+    }
+
+    .up {
+        padding: 6px;
+    }
+
+    .footer-logo #logo {
+        width: 10%;
+        max-width: 200px;
+        min-width: 50px;
+    }
+
+    #copyright {
+        font-size: 0.5em;
+        padding: 15px;
     }
 }
 
@@ -1160,7 +1146,7 @@ footer h4 {
         height: unset;
         display: block;
     }
-    #title-page:before {
+    #title-page::before {
         content: unset;
     }
     #logo-overlay {
