@@ -4,6 +4,9 @@ var events = [];
 
 window.onresize = _ => adjustHeaderDisplay();
 window.onscroll = _ => navBarDisplay();
+document
+    .querySelector('nav .nav-icon')
+    .addEventListener('click', _ => navMenuToggle());
 navBarDisplay();
 
 adjustHeaderDisplay();
@@ -34,7 +37,6 @@ for (let question of document.querySelectorAll('.question')) {
 function navBarDisplay() {
     var nav = document.getElementsByTagName('nav')[0];
     var offset = document.getElementById('mission').offsetTop;
-    console.log(offset);
 
     if (
         document.body.scrollTop <= 50 &&
@@ -52,19 +54,35 @@ function navBarDisplay() {
         nav.style.transition = 'none';
         nav.style.top = '-100%';
         nav.style.position = 'fixed';
+        if (
+            document
+                .getElementsByClassName('nav-icon')[0]
+                .classList.contains('close')
+        )
+            navMenuToggle();
     } else {
+        nav.style.position = 'fixed';
         nav.style.transition = 'top 0.5s';
         nav.style.boxShadow = '0 2px 3px rgba(0, 0, 0, 0.2)';
         nav.style.top = '0';
     }
 }
 
+function navMenuToggle() {
+    var icon = document.getElementsByClassName('nav-icon')[0];
+    var links = document.getElementsByClassName('nav-sections')[0];
+    if (icon.classList.contains('close')) {
+        // When the menu is open
+        icon.classList.remove('close');
+        links.classList.remove('open');
+    } else {
+        icon.classList.add('close');
+        links.classList.add('open');
+    }
+}
+
 // Adjust table header display
 function adjustHeaderDisplay() {
-    console.log(
-        document.querySelector('#schedule-table .sunday tbody tr').clientWidth
-    );
-
     document.querySelector(
         '#schedule-table .saturday thead th:first-child'
     ).style.width = `${
