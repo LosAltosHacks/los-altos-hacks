@@ -51,6 +51,7 @@ body {
     width: 100vw;
     margin: 0;
     overflow-x: hidden;
+    background-color: var(--white);
 }
 
 html,
@@ -247,18 +248,18 @@ nav a {
     content: '';
     position: absolute;
     z-index: -1;
-    border-bottom: 55vh solid white;
-    border-left: 17vh solid transparent;
+    border-bottom: 100vh solid var(--white);
+    border-left: 32vh solid transparent;
     width: 65vw;
     transform: rotate(180deg);
-    left: -15vh;
+    left: -30vh;
 }
 
 #logo-overlay {
     position: absolute;
     z-index: -1;
-    border-bottom: 55vh solid var(--accent-bright);
-    border-left: 17vh solid transparent;
+    border-bottom: 100vh solid var(--accent-bright);
+    border-left: 32vh solid transparent;
     width: 65vw;
     transform: rotate(180deg);
 }
@@ -267,6 +268,7 @@ nav a {
     display: flex;
     height: 45vh;
     margin-top: 2.3rem;
+    min-height: 10rem;
 }
 
 .logo-container {
@@ -278,6 +280,8 @@ nav a {
     position: absolute;
     height: 45vh;
     width: 65%;
+    min-height: 10rem;
+    padding: 2rem;
 }
 
 .logo-container > * {
@@ -288,8 +292,7 @@ nav a {
 }
 
 .logo-container > img {
-    max-width: 50vw;
-    max-height: 35vh;
+    max-height: 9rem;
 }
 
 .logo-container > h1 {
@@ -322,6 +325,7 @@ nav a {
     width: 60%;
     right: 0;
     height: 45vh;
+    min-height: 10rem;
 }
 
 .info-container:before {
@@ -1187,28 +1191,6 @@ footer h4 {
 }
 
 @media only screen and (max-width: 650px) {
-    .info-container h3 {
-        font-size: var(--s0);
-    }
-    .info-container h2 {
-        font-size: var(--s4);
-    }
-    .info-container .address {
-        font-size: var(--s-2);
-    }
-    .info-container .address > span {
-        font-size: var(--s-3);
-    }
-    .call-to-action .largest {
-        text-align: center;
-    }
-}
-
-@media only screen and (max-width: 580px) {
-    .nav-logo {
-        display: none;
-    }
-
     #title-page {
         height: unset;
         display: block;
@@ -1239,6 +1221,28 @@ footer h4 {
         position: relative;
         right: unset;
         bottom: unset;
+    }
+
+    .info-container h3 {
+        font-size: var(--s0);
+    }
+    .info-container h2 {
+        font-size: var(--s4);
+    }
+    .info-container .address {
+        font-size: var(--s-2);
+    }
+    .info-container .address > span {
+        font-size: var(--s-3);
+    }
+    .call-to-action .largest {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .nav-logo {
+        display: none;
     }
 
     .call-to-action {
