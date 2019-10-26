@@ -13,7 +13,7 @@ adjustHeaderDisplay();
 registerEvents();
 
 for (let question of document.querySelectorAll('.question')) {
-    question.addEventListener('toggle', e => {
+    question.addEventListener('toggle', _e => {
         // var q = e.path.filter(elem => {
         //     return elem.tagName == 'DETAILS';
         // })[0];
@@ -184,7 +184,7 @@ function registerEvents() {
 
     document
         .querySelector('#schedule-table .sunday span.left')
-        .addEventListener('click', e => {
+        .addEventListener('click', _e => {
             document.querySelector('#schedule-table .sunday').style.display =
                 'none';
             document.querySelector('#schedule-table .saturday').style.display =
@@ -195,7 +195,7 @@ function registerEvents() {
 
     document
         .querySelector('#schedule-table .saturday span.right')
-        .addEventListener('click', e => {
+        .addEventListener('click', _e => {
             document.querySelector('#schedule-table .saturday').style.display =
                 'none';
             document.querySelector('#schedule-table .sunday').style.display =
