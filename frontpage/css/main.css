@@ -496,8 +496,9 @@ nav a {
     align-items: center;
     outline: none;
     cursor: pointer;
-    font-size: 0.66em;
+    font-size: var(--s-1);
     height: inherit;
+    line-height: 1.2em;
 }
 .question > summary::-webkit-details-marker {
     display: none;
@@ -507,7 +508,7 @@ nav a {
 }
 .answer {
     margin-top: 1em;
-    font-size: 0.5em;
+    font-size: var(--s-2);
 }
 .answer > p {
     line-height: 1.3em;
@@ -574,6 +575,7 @@ details[open] .expand-icon:after {
 #schedule > .schedule-wrapper {
     max-width: 80vw;
     margin: 0 auto;
+    min-height: 20rem;
 }
 
 /* Clock */
@@ -679,8 +681,9 @@ details[open] .expand-icon:after {
 
 #schedule-table .container {
     overflow: hidden;
-    max-height: 13rem;
+    max-height: 15rem;
     border-radius: 10px;
+    min-height: 13rem;
 }
 
 #schedule-table thead > tr {
@@ -688,7 +691,6 @@ details[open] .expand-icon:after {
 }
 #schedule-table tbody {
     display: block;
-    max-height: 11rem;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
