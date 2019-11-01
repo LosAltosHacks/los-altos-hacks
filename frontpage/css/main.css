@@ -103,9 +103,12 @@ section > header {
     margin: 1.7em auto;
     width: 80vw;
     text-align: center;
-    padding: 0.7em 0;
+    padding: 0.7em;
     border-bottom: solid #ccc;
     box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.2);
+}
+header > h1 {
+    margin: 0 auto;
 }
 
 /* Navigation Menu */
