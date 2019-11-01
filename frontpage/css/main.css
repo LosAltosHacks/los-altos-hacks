@@ -95,8 +95,9 @@ button:hover {
     background: var(--accent-dark);
 }
 
-section {
+section:not(#landing) {
     padding-bottom: 1.5em;
+    background-color: var(--white);
 }
 
 section > header {
