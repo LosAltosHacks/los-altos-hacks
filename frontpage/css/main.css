@@ -95,7 +95,7 @@ button:hover {
     background: var(--accent-dark);
 }
 
-section:not(#landing) {
+section:not(#landing):not(#mission) {
     padding-bottom: 1.5em;
     background-color: var(--white);
 }
