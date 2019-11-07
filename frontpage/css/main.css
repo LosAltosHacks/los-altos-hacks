@@ -682,25 +682,31 @@ details[open] .expand-icon:after {
 #schedule-table table {
     width: 100%;
 }
+#schedule-table table {
+    max-width: unset;
+}
 
 #schedule-table .container {
-    overflow: hidden;
     max-height: 15rem;
     border-radius: 10px;
     min-height: 13rem;
+    overflow: hidden;
 }
-
-#schedule-table thead > tr {
-    display: block;
-}
-#schedule-table tbody {
-    display: block;
-    width: 100%;
+#schedule-table .container > div {
     overflow-y: auto;
     overflow-x: hidden;
+    height: 100%;
+    max-height: 15rem;
+    min-height: 13rem;
 }
-#schedule-table tbody::-webkit-scrollbar {
+#schedule-table .container > div::-webkit-scrollbar {
     width: 2px;
+}
+#schedule-table tbody {
+    width: 100%;
+    max-height: calc(15rem - 1em - 20px);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 #schedule-table tbody > tr {
     cursor: pointer;

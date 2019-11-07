@@ -2,37 +2,13 @@ var eventsList = document.querySelectorAll('#schedule-table tbody > tr');
 var clockTime = 0;
 var events = [];
 
-window.onresize = _ => adjustHeaderDisplay();
 window.onscroll = _ => navBarDisplay();
 document
     .querySelector('nav .nav-icon')
     .addEventListener('click', _ => navMenuToggle());
 navBarDisplay();
 
-adjustHeaderDisplay();
 registerEvents();
-
-for (let question of document.querySelectorAll('.question')) {
-    question.addEventListener('toggle', _e => {
-        // var q = e.path.filter(elem => {
-        //     return elem.tagName == 'DETAILS';
-        // })[0];
-        // console.log(e);
-        // var originalHeight = q.offsetHeight;
-        // console.log(originalHeight);
-        // var open = q.getAttribute('open') != null;
-        //
-        // if (open) {
-        //     q.style.height = originalHeight;
-        //     setTimeout(_ => {
-        //         console.log('hi');
-        //         q.style.height = '100%';
-        //     }, 520);
-        // } else {
-        //     q.style.height = null;
-        // }
-    });
-}
 
 function navBarDisplay() {
     var nav = document.getElementsByTagName('nav')[0];
@@ -81,44 +57,13 @@ function navMenuToggle() {
     }
 }
 
-// Adjust table header display
-function adjustHeaderDisplay() {
-    document.querySelector(
-        '#schedule-table .saturday thead th:first-child'
-    ).style.width = `${
-        document.querySelector('#schedule-table .saturday tbody td:first-child')
-            .offsetWidth
-    }px`;
-
-    document.querySelector(
-        '#schedule-table .saturday thead th:last-child'
-    ).style.width = `${document.querySelector('#schedule-table .saturday tbody')
-        .offsetWidth -
-        document.querySelector('#schedule-table .saturday tbody td:first-child')
-            .offsetWidth}px`;
-
-    document.querySelector(
-        '#schedule-table .sunday thead th:first-child'
-    ).style.width = `${
-        document.querySelector('#schedule-table .sunday tbody td:first-child')
-            .offsetWidth
-    }px`;
-
-    document.querySelector(
-        '#schedule-table .sunday thead th:last-child'
-    ).style.width = `${document.querySelector('#schedule-table .sunday tbody')
-        .offsetWidth -
-        document.querySelector('#schedule-table .sunday tbody td:first-child')
-            .offsetWidth}px`;
-}
-
 // Register all events
 function registerEvents() {
     // Compile events into a list
     for (var i = 0; i < eventsList.length; i++) {
         var node = eventsList[i];
 
-        var day = node.parentNode.parentNode.parentNode.parentNode.classList.contains(
+        var day = node.parentNode.parentNode.parentNode.parentNode.parentNode.classList.contains(
             'sunday'
         )
             ? 'Sunday'
@@ -189,8 +134,6 @@ function registerEvents() {
                 'none';
             document.querySelector('#schedule-table .saturday').style.display =
                 'unset';
-
-            adjustHeaderDisplay();
         });
 
     document
@@ -200,8 +143,6 @@ function registerEvents() {
                 'none';
             document.querySelector('#schedule-table .sunday').style.display =
                 'unset';
-
-            adjustHeaderDisplay();
         });
 
     // Register scrolling listener for clock
@@ -253,8 +194,6 @@ function clockDisplayUpdate() {
             'unset';
         document.querySelector('#schedule-table .saturday').style.display =
             'none';
-
-        adjustHeaderDisplay();
     } else {
         document.querySelector('#clock > .content').children[0].textContent =
             'Saturday';
@@ -267,8 +206,6 @@ function clockDisplayUpdate() {
             'none';
         document.querySelector('#schedule-table .saturday').style.display =
             'unset';
-
-        adjustHeaderDisplay();
     }
 
     // Update table according to time
@@ -284,8 +221,6 @@ function clockDisplayUpdate() {
             parameters[0].textContent = events[i].day;
             parameters[2].textContent = events[i].name;
             parameters[3].textContent = events[i].location;
-            // document.querySelector('#schedule-table tbody').scrollTop =
-            //     eventsList[i].offsetTop - eventsList[i].offsetHeight;
             break;
         }
     }
