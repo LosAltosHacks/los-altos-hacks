@@ -665,6 +665,9 @@ details[open] .expand-icon:after {
     text-align: center;
     margin-bottom: 15px;
 }
+#schedule-table header > h3 {
+    display: inline;
+}
 
 #schedule-table > div {
     position: absolute;
