@@ -509,6 +509,7 @@ nav a {
     font-size: var(--s-1);
     height: inherit;
     line-height: 1.2em;
+    max-width: none;
 }
 .question > summary::-webkit-details-marker {
     display: none;
