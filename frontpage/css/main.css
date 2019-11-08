@@ -809,6 +809,7 @@ details[open] .expand-icon:after {
     display: flex;
     margin: 0 auto;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .sponsor-row > a {
