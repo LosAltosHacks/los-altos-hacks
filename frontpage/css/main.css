@@ -707,8 +707,11 @@ details[open] .expand-icon:after {
     max-height: 15rem;
     min-height: 13rem;
 }
-#schedule-table .container > div::-webkit-scrollbar {
-    width: 2px;
+#schedule-table .container > div::-webkit-scrollbar-track {
+    background-color: var(--accent-bright);
+}
+#schedule-table .container > div::-webkit-scrollbar-thumb {
+    background-color: var(--accent-dark);
 }
 #schedule-table tbody {
     width: 100%;
@@ -718,13 +721,16 @@ details[open] .expand-icon:after {
 }
 #schedule-table tbody > tr {
     cursor: pointer;
-    transition: transform 0.5s, filter 0.5s;
+    transition: transform 0.5s;
+}
+#schedule-table tbody > tr > * {
+    transition: background-color 0.5s;
 }
 #schedule-table tbody > tr.active {
     transform: scale(1.05);
 }
-#schedule-table tbody > tr.active {
-    filter: brightness(1.15);
+#schedule-table tbody > tr.active > * {
+    background-color: #97dde6;
 }
 
 #schedule-table th:first-child,
@@ -1425,14 +1431,14 @@ footer h4 {
 }
 
 ::-webkit-scrollbar {
-    width: 1vw;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 1px 0 5px rgba(0, 0, 0, 0.2);
-    background: var(--accent-bright);
+    opacity: 0;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--accent-dark);
+    background: var(--accent-bright);
+    border-radius: 3.5px;
 }
