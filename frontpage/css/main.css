@@ -1003,6 +1003,9 @@ footer h4 {
 }
 
 .footer-logo > a > img {
+    display: block;
+    max-height: 10vh;
+    margin-top: 10px;
     transition: all 0.5s;
 }
 
@@ -1020,13 +1023,6 @@ footer h4 {
 
 .footer-logo > a:hover > img {
     transform: scale(1.25);
-}
-
-.footer-logo > a > img {
-    display: block;
-    max-height: 10vh;
-    max-width: 60%;
-    margin-top: 10px;
 }
 
 .site {
@@ -1316,6 +1312,10 @@ footer h4 {
         margin-left: 0.5em;
         font-size: var(--s2);
     }
+
+    .footer-logo > a > img {
+        max-width: 70%;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -1384,6 +1384,10 @@ footer h4 {
     #past-sites,
     #social-media {
         grid-row: 2;
+    }
+
+    .footer-logo > a > img {
+        max-width: unset;
     }
 }
 
