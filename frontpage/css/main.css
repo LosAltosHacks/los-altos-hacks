@@ -76,7 +76,8 @@ img {
     margin: auto;
 }
 
-button {
+button,
+#landing .buttons > a {
     white-space: nowrap;
     font-family: inherit;
     font-size: var(--s0);
@@ -89,7 +90,8 @@ button {
     transition: all 0.4s ease;
 }
 
-button:hover {
+button:hover,
+#landing .buttons > a {
     cursor: pointer;
     color: var(--white);
     background: var(--accent-dark);
@@ -298,6 +300,7 @@ nav a {
 
 .logo-container > img {
     max-height: 100%;
+    margin: 0 auto;
 }
 
 .logo-container > h1 {
@@ -373,7 +376,6 @@ nav a {
 }
 
 .call-to-action {
-    max-height: 40vh;
     color: var(--black);
     background: var(--white);
     padding-top: var(--s-5);
@@ -418,7 +420,7 @@ nav a {
     align-items: stretch;
 }
 
-.call-to-action .buttons button {
+.call-to-action .buttons a {
     display: block;
     flex-grow: 0;
     /* padding: var(--s-5); */
@@ -1107,7 +1109,7 @@ footer h4 {
     /* center the buttons */
     align-content: center;
 }
-.call-to-action .buttons button {
+.call-to-action .buttons a {
     min-width: 9rem;
     text-align: left;
 }
@@ -1189,7 +1191,10 @@ footer h4 {
         justify-content: center;
         text-align: left;
         margin-left: 0.5em;
-        font-size: var(--s-1);
+        font-size: var(--s2);
+    }
+    .figure-wrapper:not(.directors) figcaption > h4 {
+        font-size: var(--s0);
     }
 
     #sponsors img {
@@ -1285,7 +1290,7 @@ footer h4 {
         margin: 0 auto;
         margin-bottom: 1rem;
     }
-    .call-to-action .buttons > button {
+    .call-to-action .buttons > a {
         min-width: unset;
         flex-grow: 1;
     }
