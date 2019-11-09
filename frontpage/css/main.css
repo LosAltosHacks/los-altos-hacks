@@ -1147,6 +1147,10 @@ footer h4 {
         width: 100%;
         left: 0;
     }
+    #schedule-table .container,
+    #schedule-table .container > div {
+        max-height: unset;
+    }
     #schedule-table tbody > tr {
         cursor: default;
         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
