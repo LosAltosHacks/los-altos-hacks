@@ -272,7 +272,7 @@ nav a {
 #title-page {
     display: flex;
     height: 45vh;
-    margin-top: 2.3rem;
+    margin-top: 2.1rem;
     min-height: 10rem;
 }
 
@@ -578,6 +578,19 @@ details[open] .expand-icon:after {
     margin: auto;
     text-align: center;
     padding: 10px 0;
+}
+
+/* Edge-Compliant Details Modifications */
+.answer.edge-compliant {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+.answer.edge-compliant.open {
+    max-height: unset;
+    opacity: 1;
 }
 
 /* Schedule */
@@ -1093,7 +1106,7 @@ footer h4 {
 }
 
 ::selection {
-    background: var(--accent-bright);
+    background-color: var(--accent-bright);
     text-shadow: white 0 0 10px;
     color: white;
 }

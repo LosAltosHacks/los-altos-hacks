@@ -10,6 +10,11 @@ navBarDisplay();
 
 registerEvents();
 
+// Adapt to Microsoft Edge
+if (!/*@cc_on!@*/ (false || !!document.documentMode) && !!window.StyleMedia) {
+    adaptEdge();
+}
+
 function navBarDisplay() {
     var nav = document.getElementsByTagName('nav')[0];
     var offset = document.getElementById('mission').offsetTop;
@@ -260,3 +265,25 @@ function convertToMinutes(time, day) {
         (day == 'Sunday' ? 1440 : 0)
     );
 }
+
+// Adapt to Microsoft Edge, which doesn't have details tag support
+function adaptEdge() {
+    var answers = document.querySelectorAll('.question > .answer');
+    for (var i = 0; i < answers.length; i++) {
+        answers[i].classList.add('edge-compliant');
+    }
+
+    var questions = document.querySelectorAll('.question > summary');
+    for (var i = 0; i < questions.length; i++) {
+        questions[i].addEventListener('click', e => {
+            var answer = e.target.closest('.question').querySelector('.answer');
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+            } else {
+                answer.classList.add('open');
+            }
+        });
+    }
+}
+
+console.log('hi');
