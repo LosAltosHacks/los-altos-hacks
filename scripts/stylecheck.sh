@@ -2,6 +2,8 @@
 set -eu
 trap 'printf "\e[1m\e[31mStyle checks failed.\e[0m\n" >&2' ERR
 
+npm install # ensure we use the right versions of stylechecking packages
+
 npx prettier --check '**/*.html' '**/*.css' '**/*.js'
 
 echo "Checking for trailing whitespace..."
