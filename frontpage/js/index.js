@@ -286,4 +286,29 @@ function adaptEdge() {
     }
 }
 
-console.log('hi');
+function emailSubmit(evt) {
+    evt.preventDefault();
+    evt.target.getElementsByTagName('label')[0].innerHTML =
+        'GET UPDATES &#128472;';
+    let email = evt.target.elements['email'].value;
+    fetch(
+        'https://script.google.com/macros/s/AKfycbyuewO_-jd5JWwqvpmDHaHRvjUDVCdg2MA-cckK2y43QLKlZUOA/exec',
+        {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            redirect: 'follow',
+            body: JSON.stringify({ email_address: email }),
+        }
+    )
+        .then(_resp => {
+            evt.target.getElementsByTagName('label')[0].innerHTML =
+                'GET UPDATES <div class="check"></div>';
+        })
+        .catch(_resp => {
+            alert('Request failed due to a network error.');
+        });
+}
+document.getElementById('update-form').addEventListener('submit', emailSubmit);
