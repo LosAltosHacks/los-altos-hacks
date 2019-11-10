@@ -751,7 +751,10 @@ details[open] .expand-icon:after {
     background-color: #97dde6;
 }
 
-#schedule-table th:first-child,
+#schedule-table th:first-child {
+    text-align: left;
+}
+
 #schedule-table td:first-child {
     text-align: right;
     white-space: nowrap;
