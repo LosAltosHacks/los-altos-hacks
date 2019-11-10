@@ -717,6 +717,7 @@ details[open] .expand-icon:after {
     border-radius: 10px;
     min-height: 13rem;
     overflow: hidden;
+    background-color: var(--accent-dark);
 }
 #schedule-table .container > div {
     overflow-y: auto;
