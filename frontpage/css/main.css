@@ -495,7 +495,7 @@ nav a {
     padding: 0.25em;
     position: relative;
     width: calc(100% - 1em);
-    border-left: 1vw solid #74bdc6;
+    border-left: 0.3em solid #74bdc6;
     text-align: left;
     height: 100%;
     overflow: hidden;
