@@ -127,23 +127,33 @@ function registerEvents() {
         });
     });
 
+    let scheduleSwitchClosure = (() => {
+        let showSunday = false;
+        return _event => {
+            showSunday = !showSunday;
+            if (!showSunday) {
+                document.querySelector(
+                    '#schedule-table .sunday'
+                ).style.display = 'none';
+                document.querySelector(
+                    '#schedule-table .saturday'
+                ).style.display = 'unset';
+            } else {
+                document.querySelector(
+                    '#schedule-table .saturday'
+                ).style.display = 'none';
+                document.querySelector(
+                    '#schedule-table .sunday'
+                ).style.display = 'unset';
+            }
+        };
+    })();
     document
-        .querySelector('#schedule-table .sunday span.left')
-        .addEventListener('click', _e => {
-            document.querySelector('#schedule-table .sunday').style.display =
-                'none';
-            document.querySelector('#schedule-table .saturday').style.display =
-                'unset';
-        });
-
+        .querySelector('#schedule-table .saturday > header')
+        .addEventListener('click', scheduleSwitchClosure);
     document
-        .querySelector('#schedule-table .saturday span.right')
-        .addEventListener('click', _e => {
-            document.querySelector('#schedule-table .saturday').style.display =
-                'none';
-            document.querySelector('#schedule-table .sunday').style.display =
-                'unset';
-        });
+        .querySelector('#schedule-table .sunday > header')
+        .addEventListener('click', scheduleSwitchClosure);
 
     // Register scrolling listener for clock
     document.getElementById('clock').addEventListener('wheel', e => {
