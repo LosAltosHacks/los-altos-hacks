@@ -1,9 +1,9 @@
-name: CD
+name: Production CD
 
 on:
   push:
     branches:
-      - master
+      - production
 
 jobs:
   deploy-frontpage:
@@ -14,13 +14,13 @@ jobs:
           fetch-depth: 1
       - name: Write Git SHA
         run: echo ${{ github.sha }} > frontpage/git.sha
-      - name: Add <meta> noindex
-        run: find frontpage/ -name "*.html" | xargs -L1 ./scripts/add_noindex.sh
       # unconditionally deploy everything (~100MB / deploy)
       # TODO: Since we only deploy from git without changes, we could grab the
       # git hash we deployed, diff to that, and then deploy the differing files only
       - name: S3 Sync
-        run: aws s3 sync frontpage/ s3://staging-www.losaltoshacks.com/
+        run: aws s3 sync frontpage/ s3://www.losaltoshacks.com/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Cloudfront Invalidation
+        run: aws cloudfront create-invalidation --distribution-id EBQXN8COJP8X4 --paths '/*'
