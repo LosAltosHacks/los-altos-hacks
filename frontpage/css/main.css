@@ -692,7 +692,7 @@ details[open] .expand-icon:after {
 }
 
 #schedule-table table {
-    width: 100%;
+    width: calc(100% + 1px);
     max-width: unset;
 }
 
