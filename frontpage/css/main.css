@@ -502,14 +502,9 @@ nav a {
     transition: height 0.3s;
 }
 .question > summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     outline: none;
     cursor: pointer;
-    font-size: var(--s-1);
     height: inherit;
-    line-height: 1.2em;
     max-width: none;
 }
 .question > summary::-webkit-details-marker {
@@ -517,6 +512,14 @@ nav a {
 }
 .question[open] summary {
     height: unset;
+}
+.question > summary > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
+    font-size: var(--s-1);
+    line-height: 1.2em;
 }
 .answer {
     margin-top: 1em;
