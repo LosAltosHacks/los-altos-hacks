@@ -7,7 +7,7 @@
   "htmlWhitespaceSensitivity": "ignore",
   "overrides": [
     {
-      "files": ["*.html", "*.json"],
+      "files": ["*.html", "*.json", "*.yaml", "*.yml"],
       "options": {
         "tabWidth": 2
       }

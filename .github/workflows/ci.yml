@@ -6,8 +6,8 @@ jobs:
   stylecheck:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 5
-    - name: HTML/CSS/JS/Whitespace Stylecheck and lint
-      run: ./scripts/stylecheck.sh
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 5
+      - name: HTML/CSS/JS/Whitespace Stylecheck and lint
+        run: ./scripts/stylecheck.sh

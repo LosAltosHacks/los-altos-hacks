@@ -9,16 +9,16 @@ jobs:
   deploy-frontpage:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-    - name: Write Git SHA
-      run: echo ${{ github.sha }} > frontpage/git.sha
-    # unconditionally deploy everything (~100MB / deploy)
-    # TODO: Since we only deploy from git without changes, we could grab the
-    # git hash we deployed, diff to that, and then deploy the differing files only
-    - name: S3 Sync
-      run: aws s3 sync frontpage/ s3://staging-www.losaltoshacks.com/
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Write Git SHA
+        run: echo ${{ github.sha }} > frontpage/git.sha
+      # unconditionally deploy everything (~100MB / deploy)
+      # TODO: Since we only deploy from git without changes, we could grab the
+      # git hash we deployed, diff to that, and then deploy the differing files only
+      - name: S3 Sync
+        run: aws s3 sync frontpage/ s3://staging-www.losaltoshacks.com/
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

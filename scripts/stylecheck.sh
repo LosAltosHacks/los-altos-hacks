@@ -4,7 +4,7 @@ trap 'printf "\e[1m\e[31mStyle checks failed.\e[0m\n" >&2' ERR
 
 npm install # ensure we use the right versions of stylechecking packages
 
-npx prettier --check '**/*.html' '**/*.css' '**/*.js'
+npx prettier --check '**/*.html' '**/*.css' '**/*.js' '**/*.yml' '**/*.yaml'
 
 echo "Checking for trailing whitespace..."
 grep --files-with-matches --binary-files=without-match '[[:blank:]]$' --dereference-recursive frontpage/ && false
