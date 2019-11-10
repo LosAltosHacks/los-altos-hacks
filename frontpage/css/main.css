@@ -76,7 +76,6 @@ img {
     margin: auto;
 }
 
-button,
 #landing .buttons > a {
     white-space: nowrap;
     font-family: inherit;
@@ -88,10 +87,11 @@ button,
     color: var(--accent-dark);
     border: solid 1px var(--accent-dark);
     transition: all 0.4s ease;
+    text-align: center;
+    text-decoration: none;
 }
 
-button:hover,
-#landing .buttons > a {
+#landing .buttons > a:hover {
     cursor: pointer;
     color: var(--white);
     background: var(--accent-dark);
@@ -1203,11 +1203,8 @@ footer h4 {
 }
 
 @media only screen and (max-width: 768px) {
-    .logo {
-        display: inline-block;
-    }
-    .nav-logo span {
-        display: none;
+    nav {
+        font-size: var(--s-1);
     }
 
     #footer-main {
@@ -1226,6 +1223,13 @@ footer h4 {
 }
 
 @media only screen and (max-width: 650px) {
+    .logo {
+        display: inline-block;
+    }
+    .nav-logo span {
+        display: none;
+    }
+
     #title-page {
         height: unset;
         display: block;
