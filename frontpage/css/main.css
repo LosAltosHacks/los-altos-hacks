@@ -108,7 +108,6 @@ section > header {
     text-align: center;
     padding: 0.7em;
     border-bottom: solid #ccc;
-    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.2);
 }
 header > h1 {
     margin: 0 auto;
@@ -808,7 +807,6 @@ details[open] .expand-icon:after {
 #sponsors > div:not(:first-child) > header {
     margin: 1.7em auto;
     border-bottom: solid #ccc;
-    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.2);
     padding: 0.7em;
     width: 80vw;
 }
@@ -1469,7 +1467,7 @@ footer h4 {
 }
 
 ::-webkit-scrollbar-track {
-    opacity: 0;
+    background-color: #ccc;
 }
 
 ::-webkit-scrollbar-thumb {
