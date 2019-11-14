@@ -274,8 +274,8 @@ function adaptEdge() {
     }
 
     var questions = document.querySelectorAll('.question > summary');
-    for (var i = 0; i < questions.length; i++) {
-        questions[i].addEventListener('click', e => {
+    for (var j = 0; j < questions.length; j++) {
+        questions[j].addEventListener('click', e => {
             var answer = e.target.closest('.question').querySelector('.answer');
             if (answer.classList.contains('open')) {
                 answer.classList.remove('open');
