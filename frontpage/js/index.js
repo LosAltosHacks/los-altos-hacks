@@ -11,7 +11,7 @@ navBarDisplay();
 registerEvents();
 
 // Adapt to Microsoft Edge
-if (!/*@cc_on!@*/ (false || !!document.documentMode) && !!window.StyleMedia) {
+if (!/*@cc_on!@*/ (false || !!document.documentMode)) {
     adaptEdge();
 }
 
