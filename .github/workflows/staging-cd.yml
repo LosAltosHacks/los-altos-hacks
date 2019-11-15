@@ -1,4 +1,4 @@
-name: Production CD
+name: Staging CD
 
 on:
   push:
