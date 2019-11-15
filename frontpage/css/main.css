@@ -690,6 +690,12 @@ details[open] .expand-icon:after {
     margin: 0 auto;
     min-height: 20rem;
 }
+#schedule > header > p {
+    font-size: 0.7em;
+    max-width: none;
+    margin-top: 0.2em;
+    font-style: italic;
+}
 
 /* Clock */
 #clock {
