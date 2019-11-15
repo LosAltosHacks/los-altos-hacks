@@ -10,6 +10,11 @@ navBarDisplay();
 
 registerEvents();
 
+// Adapt to Microsoft Edge
+if (!/*@cc_on!@*/ (false || !!document.documentMode) && !!window.StyleMedia) {
+    adaptEdge();
+}
+
 function navBarDisplay() {
     var nav = document.getElementsByTagName('nav')[0];
     var offset = document.getElementById('mission').offsetTop;
@@ -260,3 +265,50 @@ function convertToMinutes(time, day) {
         (day == 'Sunday' ? 1440 : 0)
     );
 }
+
+// Adapt to Microsoft Edge, which doesn't have details tag support
+function adaptEdge() {
+    var answers = document.querySelectorAll('.question > .answer');
+    for (var i = 0; i < answers.length; i++) {
+        answers[i].classList.add('edge-compliant');
+    }
+
+    var questions = document.querySelectorAll('.question > summary');
+    for (var i = 0; i < questions.length; i++) {
+        questions[i].addEventListener('click', e => {
+            var answer = e.target.closest('.question').querySelector('.answer');
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+            } else {
+                answer.classList.add('open');
+            }
+        });
+    }
+}
+
+function emailSubmit(evt) {
+    evt.preventDefault();
+    evt.target.getElementsByTagName('label')[0].innerHTML =
+        'GET UPDATES &#128472;';
+    let email = evt.target.elements['email'].value;
+    fetch(
+        'https://script.google.com/macros/s/AKfycbyuewO_-jd5JWwqvpmDHaHRvjUDVCdg2MA-cckK2y43QLKlZUOA/exec',
+        {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            redirect: 'follow',
+            body: JSON.stringify({ email_address: email }),
+        }
+    )
+        .then(_resp => {
+            evt.target.getElementsByTagName('label')[0].innerHTML =
+                'GET UPDATES <div class="check"></div>';
+        })
+        .catch(_resp => {
+            alert('Request failed due to a network error.');
+        });
+}
+document.getElementById('update-form').addEventListener('submit', emailSubmit);
