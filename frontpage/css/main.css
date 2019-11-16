@@ -484,12 +484,12 @@ nav a {
     pointer-events: none;
 }
 
-.input__field + label {
+.email-input-field + label {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
 
-.input__field:focus + label {
+.email-input-field:focus + label {
     -webkit-transform: translate3d(0, -65%, 0);
     transform: translate3d(0, -65%, 0);
     font-size: var(--s-2) !important;
@@ -498,7 +498,7 @@ nav a {
     padding-left: 0px !important;
 }
 
-.input__field:focus + label .check {
+.email-input-field:focus + label .check {
     bottom: 0.1em;
 }
 
