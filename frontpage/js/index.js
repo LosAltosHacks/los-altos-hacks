@@ -289,7 +289,7 @@ function adaptEdge() {
 function emailSubmit(evt) {
     evt.preventDefault();
     evt.target.getElementsByTagName('label')[0].innerHTML =
-        'GET UPDATES &#128472;';
+        'GET UPDATES <div class="lds-ring"><div></div><div></div><div></div><div></div></div>';
     let email = evt.target.elements['email'].value;
     fetch(
         'https://script.google.com/macros/s/AKfycbyuewO_-jd5JWwqvpmDHaHRvjUDVCdg2MA-cckK2y43QLKlZUOA/exec',
@@ -309,6 +309,8 @@ function emailSubmit(evt) {
         })
         .catch(_resp => {
             alert('Request failed due to a network error.');
+            evt.target.getElementsByTagName('label')[0].innerHTML =
+                'GET UPDATES &#10006;';
         });
 }
 document.getElementById('update-form').addEventListener('submit', emailSubmit);
