@@ -1035,15 +1035,6 @@ figure {
 .directors > figure {
     margin: 0.5rem;
 }
-figure:hover > .figure-image {
-    transform: scale(1.03);
-}
-figure:hover > .figure-image > img {
-    transform: scale(1.07);
-}
-figure:hover > figcaption {
-    transform: translateY(-5px);
-}
 .directors {
     width: 60vw;
 }
