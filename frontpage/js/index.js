@@ -306,6 +306,10 @@ function emailSubmit(evt) {
         .then(_resp => {
             evt.target.getElementsByTagName('label')[0].innerHTML =
                 'GET UPDATES <div class="check"></div>';
+            Array.prototype.forEach.call(evt.target.elements, elem => {
+                elem.readOnly = true;
+                elem.disabled = true;
+            });
         })
         .catch(_resp => {
             alert(
