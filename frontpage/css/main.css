@@ -1198,6 +1198,7 @@ footer h4 {
     width: 10px;
     height: 100%;
     position: absolute;
+    top: 0;
     background-color: #54696d;
     -webkit-transition: width 0.5s ease-out;
     transition: width 0.5s ease-out;
