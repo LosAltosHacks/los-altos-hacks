@@ -309,6 +309,7 @@ function emailSubmit(evt) {
             Array.prototype.forEach.call(evt.target.elements, elem => {
                 elem.readOnly = true;
                 elem.disabled = true;
+                elem.value = '';
             });
         })
         .catch(_resp => {
