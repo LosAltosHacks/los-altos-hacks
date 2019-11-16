@@ -1270,6 +1270,10 @@ footer h4 {
     margin-top: 0.5em;
     font-size: var(--s-2);
 }
+#resources > section > * {
+    text-align: center;
+    max-width: none;
+}
 
 #software > header > p,
 #hardware > header > p {
