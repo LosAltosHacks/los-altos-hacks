@@ -308,7 +308,12 @@ function emailSubmit(evt) {
                 'GET UPDATES <div class="check"></div>';
         })
         .catch(_resp => {
-            alert('Request failed due to a network error.');
+            alert(
+                'Request failed due to a network error. ' +
+                    'This could mean your browser is blocking a ' +
+                    'cross-origin request to google, where we store our ' +
+                    'mailing list.'
+            );
             evt.target.getElementsByTagName('label')[0].innerHTML =
                 'GET UPDATES &#10006;';
         });
