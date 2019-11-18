@@ -1246,6 +1246,52 @@ footer h4 {
     display: none;
 }
 
+/* Resources Page */
+#resources-page {
+    display: flex;
+    max-height: 100vh;
+    flex-direction: column;
+}
+
+#resources {
+    flex: 1;
+    max-width: none;
+}
+#resources > header {
+    text-align: center;
+    max-width: none;
+    padding: 20px;
+}
+#resources > header > h1,
+#resources > header > p {
+    max-width: none;
+}
+#resources > header > p {
+    margin-top: 0.5em;
+    font-size: var(--s-2);
+}
+#resources > section > * {
+    text-align: center;
+    max-width: none;
+}
+
+#software > header > p,
+#hardware > header > p {
+    max-width: none;
+    margin-top: 0.5em;
+    font-size: var(--s-2);
+}
+
+#resources + footer .footer-logo {
+    justify-content: center;
+}
+#resources + footer .footer-logo > a {
+    padding-top: 0;
+}
+#resources + footer .footer-logo img {
+    margin-top: 0;
+}
+
 /* Tablet and desktop based breakpoints */
 /* Use rem for breakpoints https://zellwk.com/blog/media-query-units/ */
 /* Supposed to break around where the buttons move to the side */
