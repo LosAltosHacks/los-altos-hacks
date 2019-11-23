@@ -81,7 +81,7 @@
       <section class="info-fields">
         <div class="container">
           <form id="reg-form">
-            <section class="page" id="basic-info">
+            <section class="page active" id="basic-info">
               <div class="qGrp" id="first-name">
                 <h3 for="en-first">What is your first name?</h3>
                 <input
@@ -266,6 +266,10 @@
                 <h3>What do you hope to accomplish at Los Altos Hacks V?</h3>
                 <textarea></textarea>
               </div>
+              <div class="page-footer">
+                <a class="button disabled previous">Previous</a>
+                <a class="button next">Next</a>
+              </div>
             </section>
             <section class="page" id="profile">
               <div class="qGrp" id="first-name">
@@ -277,9 +281,23 @@
                   required
                 />
               </div>
+              <div class="page-footer">
+                <a class="button previous">Previous</a>
+                <a class="button next">Next</a>
+              </div>
             </section>
-            <section class="page" id="contact-info"></section>
-            <section class="page" id="review"></section>
+            <section class="page" id="contact-info">
+              <div class="page-footer">
+                <a class="button previous">Previous</a>
+                <a class="button next">Next</a>
+              </div>
+            </section>
+            <section class="page" id="review">
+              <div class="page-footer">
+                <a class="button previous">Previous</a>
+                <a class="button disabled next">Next</a>
+              </div>
+            </section>
           </form>
         </div>
       </section>

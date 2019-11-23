@@ -47,6 +47,27 @@ $(document).on('click', '.selected-school > .change-school', e => {
     });
 });
 
+// TODO: Change page state to active.
+$('.page-footer > .button:not(.disabled)').click(e => {
+    $(e.target)
+        .closest('.page')
+        .fadeOut(1000)
+        .promise()
+        .done(() => {
+            if (e.target.classList.contains('next')) {
+                $(e.target)
+                    .closest('.page')
+                    .next()
+                    .fadeIn(1000);
+            } else {
+                $(e.target)
+                    .closest('.page')
+                    .prev()
+                    .fadeIn(1000);
+            }
+        });
+});
+
 function getSchools(params) {
     var promise = new Promise((resolve, reject) => {
         $.get(
