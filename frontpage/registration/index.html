@@ -81,7 +81,7 @@
       <section class="info-fields">
         <div class="container">
           <form id="reg-form">
-            <section class="page active" id="basic-info">
+            <section class="page" id="basic-info">
               <div class="qGrp" id="first-name">
                 <h3 for="en-first">What is your first name?</h3>
                 <input
@@ -271,6 +271,7 @@
                 <a class="button next">Next</a>
               </div>
             </section>
+
             <section class="page" id="profile">
               <div class="qGrp" id="gender">
                 <h3>Which gender identity do you most identify?</h3>
@@ -364,18 +365,93 @@
                   <span>Extra Large</span>
                 </label>
               </div>
+              <div class="page-footer">
+                <a class="button previous">Previous</a>
+                <a class="button next">Next</a>
+              </div>
+            </section>
 
+            <section class="page active" id="contact-info">
+              <div class="qGrp" id="email">
+                <h3 for="en-email">What is your email address?</h3>
+                <small>
+                  This email will be used for us to communicate with you. Your
+                  application status is verified via email, so put down the
+                  email you check the most frequently!
+                </small>
+                <input
+                  type="text"
+                  placeholder="Type your answer here..."
+                  id="en-email"
+                  class="email"
+                  required
+                />
+              </div>
+              <div id="guardian-info">
+                <div class="qGrp" id="guardian-name">
+                  <h3 for="en-guardian">
+                    What is your parent/guardian's full name?
+                  </h3>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-guardian"
+                    required
+                  />
+                </div>
+                <div class="qGrp" id="guardian-email">
+                  <h3 for="en-g-email">
+                    What is your parent/guardian's email address?
+                  </h3>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-g-email"
+                    class="email"
+                    required
+                  />
+                </div>
+                <div class="qGrp" id="guardian-phone">
+                  <h3 for="en-g-phone">
+                    What is your parent/guardian's phone number?
+                  </h3>
+                  <small>
+                    Your legal guardian will have to physically come to our
+                    venue to check you out during the event if this information
+                    is not provided.
+                  </small>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-g-phone"
+                    class="email"
+                  />
+                </div>
+              </div>
+              <div class="qGrp" id="linkedin">
+                <h3 for="en-linkedin">What is your Linkedin Profile URL?</h3>
+                <input
+                  type="text"
+                  placeholder="https://linkedin.com/in/johnsmith"
+                  id="en-linkedin"
+                  required
+                />
+              </div>
+              <div class="qGrp" id="github">
+                <h3 for="en-github">What is your Github username?</h3>
+                <input
+                  type="text"
+                  placeholder="losaltoshacks"
+                  id="en-github"
+                  required
+                />
+              </div>
               <div class="page-footer">
                 <a class="button previous">Previous</a>
                 <a class="button next">Next</a>
               </div>
             </section>
-            <section class="page" id="contact-info">
-              <div class="page-footer">
-                <a class="button previous">Previous</a>
-                <a class="button next">Next</a>
-              </div>
-            </section>
+
             <section class="page" id="review">
               <div class="page-footer">
                 <a class="button previous">Previous</a>

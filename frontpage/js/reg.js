@@ -1,5 +1,6 @@
 var school;
 
+// Update focus state of question groups
 $('.qGrp input, .qGrp textarea, .qGrp select').focus(e => {
     $('.qGrp.active').removeClass('active');
     $(e.target)
@@ -7,8 +8,10 @@ $('.qGrp input, .qGrp textarea, .qGrp select').focus(e => {
         .addClass('active');
 });
 
+// Display schools from search result
 $('#find-schools').click(e => displaySchools(e));
 
+// Display fields based on education
 $('input[name="ed"]').change(e => {
     if (
         $('input[name="ed"]:checked').val() == 'high school' ||
@@ -28,6 +31,49 @@ $('input[name="ed"]').change(e => {
     }
 });
 
+// Display guardian info fields based on age
+$('#en-age').change(e => {
+    var age = parseInt($('#en-age').val());
+    if (age >= 18) $('#guardian-info').hide();
+    else $('#guardian-info').show();
+});
+
+// Verfiy Email
+$('input.email').on('input', e => {
+    var email = $(e.target).val();
+    var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+    );
+    if (email != '' && !result) {
+        $(e.target).css({ 'border-bottom-color': 'red' });
+    } else {
+        $(e.target).css({ 'border-bottom-color': 'var(--black)' });
+    }
+});
+
+// Verify Linkedin URL
+$('input#en-linkedin').on('input', e => {
+    var url = $(e.target).val();
+    var result = /linkedin.com\/in\/[a-zA-Z0-9_-]+$/.test(url);
+    if (url != '' && !result) {
+        $(e.target).css({ 'border-bottom-color': 'red' });
+    } else {
+        $(e.target).css({ 'border-bottom-color': 'var(--black)' });
+    }
+});
+
+// Verify Github Username
+$('input#en-github').on('input', e => {
+    var username = $(e.target).val();
+    var result = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(username);
+    if (username != '' && !result) {
+        $(e.target).css({ 'border-bottom-color': 'red' });
+    } else {
+        $(e.target).css({ 'border-bottom-color': 'var(--black)' });
+    }
+});
+
+// Select school from list
 $(document).on('click', '#school-list li', e => {
     $(e.target)
         .closest('li')
@@ -40,6 +86,7 @@ $(document).on('click', '#school-list li', e => {
     `).appendTo('.selected-school');
 });
 
+// Change school
 $(document).on('click', '.selected-school > .change-school', e => {
     $('.selected-school ~ *').fadeIn(1000);
     $('.selected-school').animate({ height: 'toggle' }, 500, () => {
@@ -69,6 +116,7 @@ $('.page-footer > .button:not(.disabled)').click(e => {
         });
 });
 
+// Get schools from National Center for Education Statistics (NCES)
 function getSchools(params) {
     var promise = new Promise((resolve, reject) => {
         $.get(
@@ -105,6 +153,7 @@ function getSchools(params) {
     return promise;
 }
 
+// Display search results from NCES
 function displaySchools(e) {
     $('#school-list > .loader').css({ display: 'flex' });
     $('.no-school').hide();

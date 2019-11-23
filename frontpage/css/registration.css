@@ -180,7 +180,7 @@ body#registration {
 }
 .qGrp > h3 {
     transition: font-size 1s ease;
-    font-size: var(--s0);
+    font-size: large;
     line-height: 1.2;
 }
 .qGrp > small {
@@ -193,7 +193,7 @@ body#registration {
 .qGrp input,
 .qGrp select {
     font-family: 'San Francisco Text', sans-serif;
-    font-size: var(--s0);
+    font-size: medium;
     background-color: unset;
     border: none;
     outline: none;
@@ -250,7 +250,7 @@ body#registration {
     display: block;
     position: relative;
     padding-left: 1.7em;
-    font-size: var(--s0);
+    font-size: medium;
     font-weight: lighter;
 }
 .radio > span:before,
@@ -296,7 +296,7 @@ body#registration {
     display: block;
     margin: 0.5em auto;
     font-family: 'San Francisco Text', sans-serif;
-    font-size: var(--s0);
+    font-size: large;
     font-weight: lighter;
     padding: 0.3em 1em;
     transition: all 0.5s ease;
