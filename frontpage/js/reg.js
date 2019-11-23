@@ -54,6 +54,7 @@ $('.page-footer > .button:not(.disabled)').click(e => {
         .fadeOut(1000)
         .promise()
         .done(() => {
+            $('.info-fields > .container').scrollTop(0);
             if (e.target.classList.contains('next')) {
                 $(e.target)
                     .closest('.page')

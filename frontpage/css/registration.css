@@ -190,7 +190,7 @@ body#registration {
     display: block;
     margin: 0.3em auto;
 }
-.qGrp > input,
+.qGrp input,
 .qGrp select {
     font-family: 'San Francisco Text', sans-serif;
     font-size: var(--s0);
@@ -234,7 +234,7 @@ body#registration {
     /* border-bottom: 1px solid var(--black); */
 }
 
-/* Radio Buttons */
+/* Radio Buttons (Can also be applied to checkboxes) */
 .radio {
     --radio-size: 1.1em;
 

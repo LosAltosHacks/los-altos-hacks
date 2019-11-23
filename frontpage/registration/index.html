@@ -272,15 +272,99 @@
               </div>
             </section>
             <section class="page" id="profile">
-              <div class="qGrp" id="first-name">
-                <h3 for="en-first">What is your first name?</h3>
-                <input
-                  type="text"
-                  placeholder="Type your answer here..."
-                  id="en-first"
-                  required
-                />
+              <div class="qGrp" id="gender">
+                <h3>Which gender identity do you most identify?</h3>
+                <label class="radio">
+                  <input type="radio" name="en-gender" value="male" required />
+                  <span>Male</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="en-gender" value="female" />
+                  <span>Female</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="en-gender" value="non_binary" />
+                  <span>Non-binary</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="en-gender" value="none" />
+                  <span>Decline to state</span>
+                </label>
               </div>
+              <div class="qGrp" id="race">
+                <h3>Which ethnicity do you identify as?</h3>
+                <small>(select all that apply)</small>
+                <label class="radio">
+                  <input type="checkbox" name="en-race" value="asian" />
+                  <span>Asian</span>
+                </label>
+                <label class="radio">
+                  <input type="checkbox" name="en-race" value="black" />
+                  <span>Black/African</span>
+                </label>
+                <label class="radio">
+                  <input type="checkbox" name="en-race" value="white" />
+                  <span>White/Caucasian</span>
+                </label>
+                <label class="radio">
+                  <input type="checkbox" name="en-race" value="hispanic" />
+                  <span>Hispanic/Latinx</span>
+                </label>
+                <label class="radio">
+                  <input
+                    type="checkbox"
+                    name="en-race"
+                    value="native_american"
+                  />
+                  <span>Native American/Alaskan Native</span>
+                </label>
+                <label class="radio">
+                  <input
+                    type="checkbox"
+                    name="en-race"
+                    value="pacific_islander"
+                  />
+                  <span>Pacific Islander</span>
+                </label>
+                <label class="radio">
+                  <input type="checkbox" name="en-race" value="none" />
+                  <span>Decline to State</span>
+                </label>
+                <label class="radio">
+                  <input type="checkbox" name="en-race" value="other" />
+                  <span>
+                    Other:
+                    <input type="text" placeholder="Specify here..." />
+                  </span>
+                </label>
+              </div>
+              <div class="qGrp" id="dietary-restrictions">
+                <h3>What are your dietary restrictions?</h3>
+                <textarea
+                  placeholder="allergic to peanuts, lactose intolerant, etc."
+                ></textarea>
+              </div>
+              <div class="qGrp" id="t-shirt-size">
+                <h3>What is your t-shirt size?</h3>
+                <small>All sizes come in unisex sizing.</small>
+                <label class="radio">
+                  <input type="radio" name="t-shirt" value="s" required />
+                  <span>Small</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="t-shirt" value="m" />
+                  <span>Medium</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="t-shirt" value="l" />
+                  <span>Large</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="t-shirt" value="xl" />
+                  <span>Extra Large</span>
+                </label>
+              </div>
+
               <div class="page-footer">
                 <a class="button previous">Previous</a>
                 <a class="button next">Next</a>
