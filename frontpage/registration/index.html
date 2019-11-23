@@ -82,7 +82,7 @@
         <div class="container">
           <form id="reg-form">
             <section class="page" id="basic-info">
-              <div class="qGrp" id="first-name">
+              <div class="qGrp required" id="first-name">
                 <h3 for="en-first">What is your first name?</h3>
                 <input
                   type="text"
@@ -91,7 +91,7 @@
                   required
                 />
               </div>
-              <div class="qGrp" id="last-name">
+              <div class="qGrp required" id="last-name">
                 <h3 for="en-last">What is your last name?</h3>
                 <input
                   type="text"
@@ -100,7 +100,7 @@
                   required
                 />
               </div>
-              <div class="qGrp" id="age">
+              <div class="qGrp required" id="age">
                 <h3 for="en-age">How old are you?</h3>
                 <input
                   type="number"
@@ -109,7 +109,7 @@
                   required
                 />
               </div>
-              <div class="qGrp" id="education">
+              <div class="qGrp required" id="education">
                 <h3>I am currently...</h3>
                 <label class="radio">
                   <input type="radio" name="ed" value="high school" required />
@@ -345,11 +345,11 @@
                   placeholder="allergic to peanuts, lactose intolerant, etc."
                 ></textarea>
               </div>
-              <div class="qGrp" id="t-shirt-size">
+              <div class="qGrp required" id="t-shirt-size">
                 <h3>What is your t-shirt size?</h3>
                 <small>All sizes come in unisex sizing.</small>
                 <label class="radio">
-                  <input type="radio" name="t-shirt" value="s" required />
+                  <input type="radio" name="t-shirt" value="s" />
                   <span>Small</span>
                 </label>
                 <label class="radio">
@@ -367,12 +367,12 @@
               </div>
               <div class="page-footer">
                 <a class="button previous">Previous</a>
-                <a class="button next">Next</a>
+                <a class="button disabled next">Next</a>
               </div>
             </section>
 
             <section class="page active" id="contact-info">
-              <div class="qGrp" id="email">
+              <div class="qGrp required" id="email">
                 <h3 for="en-email">What is your email address?</h3>
                 <small>
                   This email will be used for us to communicate with you. Your
@@ -426,6 +426,7 @@
                     id="en-g-phone"
                     class="phone-number"
                     data-mask="phone-us"
+                    required
                   />
                 </div>
               </div>
@@ -435,21 +436,15 @@
                   type="text"
                   placeholder="https://linkedin.com/in/johnsmith"
                   id="en-linkedin"
-                  required
                 />
               </div>
               <div class="qGrp" id="github">
                 <h3 for="en-github">What is your Github username?</h3>
-                <input
-                  type="text"
-                  placeholder="losaltoshacks"
-                  id="en-github"
-                  required
-                />
+                <input type="text" placeholder="losaltoshacks" id="en-github" />
               </div>
               <div class="page-footer">
                 <a class="button previous">Previous</a>
-                <a class="button next">Next</a>
+                <a class="button disabled next">Next</a>
               </div>
             </section>
 

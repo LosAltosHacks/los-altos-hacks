@@ -416,6 +416,10 @@ body#registration {
     display: none;
 }
 
+#guardian-info {
+    display: none;
+}
+
 @media only screen and (max-width: 900px) {
     main {
         margin-bottom: 2em !important;

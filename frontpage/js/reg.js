@@ -18,24 +18,33 @@ $('input[name="ed"]').change(e => {
         $('input[name="ed"]:checked').val() == 'middle school'
     ) {
         $('#school').show();
+        $('#school').addClass('required');
     } else {
         $('#school').hide();
+        $('#school').removeClass('required');
     }
 
     if ($('input[name="ed"]:checked').val() == 'high school') {
         $('#grade').show();
         $('#not-highschool').hide();
+        $('#grade .qGrp').addClass('required');
     } else {
         $('#grade').hide();
         $('#not-highschool').show();
+        $('#grade .qGrp').removeClass('required');
     }
 });
 
 // Display guardian info fields based on age
 $('#en-age').change(e => {
     var age = parseInt($('#en-age').val());
-    if (age >= 18) $('#guardian-info').hide();
-    else $('#guardian-info').show();
+    if (age >= 18) {
+        $('#guardian-info').hide();
+        $('#guardian-info .qGrp').removeClass('required');
+    } else {
+        $('#guardian-info').show();
+        $('#guardian-info .qGrp').addClass('required');
+    }
 });
 
 // Verfiy Email
@@ -103,6 +112,32 @@ $(document).on('click', '.selected-school > .change-school', e => {
     $('.selected-school').animate({ height: 'toggle' }, 500, () => {
         $('.selected-school').remove();
     });
+});
+
+$('.page .qGrp input').on('input change', e => {
+    var filledAll = true;
+    var $page = $(e.target).closest('.page');
+
+    $page.find('.required').each((i, e) => {
+        var $input = $(e).find('input');
+        if (
+            $input.attr('type') == 'radio' ||
+            $input.attr('type') == 'checkbox'
+        ) {
+            filledAll = filledAll && $input.is(':checked');
+        } else {
+            filledAll = filledAll && $input.val() && $input.val() != '';
+        }
+    });
+
+    // Validate all fields
+    filledAll = filledAll && $page.find('.invalid').length == 0;
+
+    if (filledAll) {
+        $page.find('.page-footer > .next').removeClass('disabled');
+    } else {
+        $page.find('.page-footer > .next').addClass('disabled');
+    }
 });
 
 // TODO: Change page state to active.
