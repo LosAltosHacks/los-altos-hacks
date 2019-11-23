@@ -17,21 +17,21 @@ $('input[name="ed"]').change(e => {
         $('input[name="ed"]:checked').val() == 'high school' ||
         $('input[name="ed"]:checked').val() == 'middle school'
     ) {
-        $('#school').show();
         $('#school').addClass('required');
+        $('#school').removeClass('hidden');
     } else {
-        $('#school').hide();
         $('#school').removeClass('required');
+        $('#school').addClass('hidden');
     }
 
     if ($('input[name="ed"]:checked').val() == 'high school') {
-        $('#grade').show();
-        $('#not-highschool').hide();
-        $('#grade .qGrp').addClass('required');
+        $('#grade').addClass('required');
+        $('#grade').removeClass('hidden');
+        $('#not-highschool').addClass('hidden');
     } else {
-        $('#grade').hide();
-        $('#not-highschool').show();
-        $('#grade .qGrp').removeClass('required');
+        $('#grade').removeClass('required');
+        $('#grade').addClass('hidden');
+        $('#not-highschool').removeClass('hidden');
     }
 });
 
@@ -39,11 +39,11 @@ $('input[name="ed"]').change(e => {
 $('#en-age').change(e => {
     var age = parseInt($('#en-age').val());
     if (age >= 18) {
-        $('#guardian-info').hide();
         $('#guardian-info .qGrp').removeClass('required');
+        $('#guardian-info .qGrp').addClass('hidden');
     } else {
-        $('#guardian-info').show();
         $('#guardian-info .qGrp').addClass('required');
+        $('#guardian-info .qGrp').removeClass('hidden');
     }
 });
 
@@ -114,7 +114,9 @@ $(document).on('click', '.selected-school > .change-school', e => {
     });
 });
 
-$('.page .qGrp input').on('input change', e => {
+// Verify all fields
+$('.page .qGrp *').on('input change', e => {
+    // Scan page for required fields
     var filledAll = true;
     var $page = $(e.target).closest('.page');
 
@@ -136,12 +138,25 @@ $('.page .qGrp input').on('input change', e => {
     if (filledAll) {
         $page.find('.page-footer > .next').removeClass('disabled');
     } else {
-        $page.find('.page-footer > .next').addClass('disabled');
+        $page.find('.page-footer > .next').removeClass('disabled');
     }
+
+    // Update confirmation panel
+    var fields = getFields();
+    $('#review-fields > table').empty();
+    fields.forEach(field => {
+        $(`
+        <tr class="review-field">
+          <td class="name">${field.name}</td>
+          <td class="value">${field.displayValue}</td>
+        </tr>
+        `).appendTo('#review-fields > table');
+    });
 });
 
+// Moves to the next page
 // TODO: Change page state to active.
-$('.page-footer > .button:not(.disabled)').click(e => {
+$(document).on('click', '.page-footer > .button:not(.disabled)', e => {
     $(e.target)
         .closest('.page')
         .fadeOut(1000)
@@ -161,6 +176,56 @@ $('.page-footer > .button:not(.disabled)').click(e => {
             }
         });
 });
+
+function getFields() {
+    var fields = [];
+    $('.page .qGrp:not(#agreement):not(#confirm)')
+        .not('.hidden')
+        .each((i, e) => {
+            var $input = $(e).find('input, textarea');
+            var name = $(e)
+                .find('h3')
+                .text();
+            var value = $input.val();
+
+            if ($input.attr('type') == 'radio') {
+                fields.push({
+                    id: $(e).attr('id'),
+                    name: name,
+                    displayValue: $(e)
+                        .find('input:checked + span')
+                        .text(),
+                    value: $(e)
+                        .find('input:checked')
+                        .val(),
+                });
+            } else if ($input.attr('type') == 'checkbox') {
+                fields.push({
+                    id: $(e).attr('id'),
+                    name: name,
+                    displayValue: $(e)
+                        .find('input:checked + span')
+                        .map((index, elem) => {
+                            return $(elem).text();
+                        })
+                        .get(),
+                    value: $(e)
+                        .find('input:checked')
+                        .map((index, elem) => {
+                            return $(elem).val();
+                        }),
+                });
+            } else {
+                fields.push({
+                    id: $(e).attr('id'),
+                    name: name,
+                    displayValue: value,
+                    value: value,
+                });
+            }
+        });
+    return fields;
+}
 
 // Get schools from National Center for Education Statistics (NCES)
 function getSchools(params) {

@@ -54,35 +54,35 @@
             <p>Juniper Aspiration Dome</p>
             <small>1081 Innovation Way, Sunnyvale CA</small>
           </div>
-          <div class="progress">
-            <a class="progress-step">
-              <span class="icon"><img src="../images/facebook.svg" /></span>
-              <span class="title">Basic Info</span>
-            </a>
-            <a class="progress-step">
-              <span class="icon"><img src="../images/facebook.svg" /></span>
-              <span class="title">Profile</span>
-            </a>
-            <a class="progress-step">
-              <span class="icon"><img src="../images/facebook.svg" /></span>
-              <span class="title">Contact Info</span>
-            </a>
-            <a class="progress-step">
-              <span class="icon"><img src="../images/facebook.svg" /></span>
-              <span class="title">Background</span>
-            </a>
-            <a class="progress-step">
-              <span class="icon"><img src="../images/facebook.svg" /></span>
-              <span class="title">Finish</span>
-            </a>
-          </div>
+        </div>
+        <div class="progress">
+          <a class="progress-step" data-page="#basic-info">
+            <span class="icon"><img src="../images/facebook.svg" /></span>
+            <span class="title">Basic Info</span>
+          </a>
+          <a class="progress-step" data-page="#profile">
+            <span class="icon"><img src="../images/facebook.svg" /></span>
+            <span class="title">Profile</span>
+          </a>
+          <a class="progress-step" data-page="#contact-info">
+            <span class="icon"><img src="../images/facebook.svg" /></span>
+            <span class="title">Contact Info</span>
+          </a>
+          <a class="progress-step" data-page="#review">
+            <span class="icon"><img src="../images/facebook.svg" /></span>
+            <span class="title">Background</span>
+          </a>
+          <a class="progress-step">
+            <span class="icon"><img src="../images/facebook.svg" /></span>
+            <span class="title">Finish</span>
+          </a>
         </div>
       </section>
       <section class="info-fields">
         <div class="container">
           <form id="reg-form">
             <section class="page" id="basic-info">
-              <div class="qGrp required" id="first-name">
+              <div class="qGrp required" id="first-name" data-field="First Name">
                 <h3 for="en-first">What is your first name?</h3>
                 <input
                   type="text"
@@ -91,7 +91,7 @@
                   required
                 />
               </div>
-              <div class="qGrp required" id="last-name">
+              <div class="qGrp required" id="last-name" data-field="Last Name">
                 <h3 for="en-last">What is your last name?</h3>
                 <input
                   type="text"
@@ -100,7 +100,7 @@
                   required
                 />
               </div>
-              <div class="qGrp required" id="age">
+              <div class="qGrp required" id="age" data-field="Age">
                 <h3 for="en-age">How old are you?</h3>
                 <input
                   type="number"
@@ -109,7 +109,7 @@
                   required
                 />
               </div>
-              <div class="qGrp required" id="education">
+              <div class="qGrp required" id="education" data-field="Current Education">
                 <h3>I am currently...</h3>
                 <label class="radio">
                   <input type="radio" name="ed" value="high school" required />
@@ -132,7 +132,7 @@
                   <span>Not In School</span>
                 </label>
               </div>
-              <div class="qGrp" id="school">
+              <div class="qGrp hidden" id="school" data-field="School">
                 <h3 for="en-school">What school do you currently attend?</h3>
                 <small>
                   If you cannot find your school in our list, try entering your
@@ -233,7 +233,7 @@
                   <ul></ul>
                 </div>
               </div>
-              <div class="qGrp" id="grade">
+              <div class="qGrp hidden" id="grade" data-field="Grade">
                 <h3>What grade are you?</h3>
                 <label class="radio">
                   <input type="radio" name="grade" value="9" required />
@@ -252,7 +252,7 @@
                   <span>Senior (12)</span>
                 </label>
               </div>
-              <div class="qGrp" id="not-highschool">
+              <div class="qGrp hidden" id="not-highschool" data-field="Special Situation">
                 <h3>Tell us more about your situation.</h3>
                 <small>
                   Los Altos Hacks is a high school hackathon, and it seems that
@@ -262,13 +262,13 @@
                 </small>
                 <textarea></textarea>
               </div>
-              <div class="qGrp">
+              <div class="qGrp" data-field="">
                 <h3>What do you hope to accomplish at Los Altos Hacks V?</h3>
                 <textarea></textarea>
               </div>
               <div class="page-footer">
-                <a class="button disabled previous">Previous</a>
-                <a class="button next">Next</a>
+                <a class="button previous disabled">Previous</a>
+                <a class="button next disabled">Next</a>
               </div>
             </section>
 
@@ -367,11 +367,11 @@
               </div>
               <div class="page-footer">
                 <a class="button previous">Previous</a>
-                <a class="button disabled next">Next</a>
+                <a class="button next disabled">Next</a>
               </div>
             </section>
 
-            <section class="page active" id="contact-info">
+            <section class="page" id="contact-info">
               <div class="qGrp required" id="email">
                 <h3 for="en-email">What is your email address?</h3>
                 <small>
@@ -388,7 +388,7 @@
                 />
               </div>
               <div id="guardian-info">
-                <div class="qGrp" id="guardian-name">
+                <div class="qGrp hidden" id="guardian-name">
                   <h3 for="en-guardian">
                     What is your parent/guardian's full name?
                   </h3>
@@ -399,7 +399,7 @@
                     required
                   />
                 </div>
-                <div class="qGrp" id="guardian-email">
+                <div class="qGrp hidden" id="guardian-email">
                   <h3 for="en-g-email">
                     What is your parent/guardian's email address?
                   </h3>
@@ -411,7 +411,7 @@
                     required
                   />
                 </div>
-                <div class="qGrp" id="guardian-phone">
+                <div class="qGrp hidden" id="guardian-phone">
                   <h3 for="en-g-phone">
                     What is your parent/guardian's phone number?
                   </h3>
@@ -448,10 +448,47 @@
               </div>
             </section>
 
-            <section class="page" id="review">
+            <section class="page active" id="review">
+              <div class="qGrp" id="confirm">
+                <h3>Confirmation</h3>
+                <small>Please review your information below and verify all fields are filled in correctly.</small>
+              </div>
+              <div id="review-fields">
+                <table>
+                </table>
+              </div>
+              <div class="qGrp" id="agreement">
+                <h3>Agreement</h3>
+                <small>Please agree to all the statements below in order to submit the application.</small>
+                <label class="radio">
+                  <input type="checkbox" name="en-agreement" value="asian" />
+                  <span>
+                    I have read and agree to the
+                    <a
+                      href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                      target="_blank"
+                    >
+                      MLH Code of Conduct
+                    </a>.
+                  </span>
+                </label>
+                <label class="radio">
+                  <input type="checkbox" name="en-agreement" value="asian" />
+                  <span>
+                    I authorize Los Altos Hacks to share my application/registration for event administration, ranking, MLH administration, pre- and post-event informational e-mails, and occasional messages about hackathons in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the terms of both the <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions" target="_blank">MLH Contest Terms and Conditions</a> and the <a href="https://mlh.io/privacy" target="_blank">MLH Privacy Policy</a>.
+                    </a>
+                  </span>
+                </label>
+                <label class="radio">
+                  <input type="checkbox" name="en-agreement" value="asian" />
+                  <span>
+                    By submitting my application, I acknowledge and agree that Los Altos Hacks V may share my name and email address with event partners in order to improve my experience at the Los Altos Hacks event. A list of organizations to whom my name and email address may be shared is available upon request; contact <a href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a> for any clarifications, questions, or requests regarding this agreement.
+                  </span>
+                </label>
+              </div>
               <div class="page-footer">
                 <a class="button previous">Previous</a>
-                <a class="button disabled next">Next</a>
+                <a class="button next disabled">Next</a>
               </div>
             </section>
           </form>

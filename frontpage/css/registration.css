@@ -85,6 +85,9 @@ body#registration {
     bottom: 0.7em;
     margin: 0 auto;
     width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
 }
 .progress:before {
     content: '';
@@ -223,6 +226,14 @@ body#registration {
 
 .qGrp.active {
     opacity: 1;
+}
+
+.qGrp.hidden {
+    display: none;
+}
+
+.qGrp.required h3::after {
+    content: '*';
 }
 
 .qGrp input.invalid {
@@ -408,25 +419,24 @@ body#registration {
     background-color: var(--accent-bright);
 }
 
-#grade {
-    display: none;
+#review-fields {
+    font-size: medium;
+    max-height: 14em;
+    overflow-y: auto;
 }
-
-#not-highschool {
-    display: none;
-}
-
-#guardian-info {
-    display: none;
+#review-fields td {
+    width: 40%;
+    padding: 0.3em;
 }
 
 @media only screen and (max-width: 900px) {
     main {
-        margin-bottom: 2em !important;
+        margin-bottom: 2.67em !important;
+        height: calc(85vh - 2em) !important;
     }
 
     .progress {
-        bottom: -2.5em;
+        bottom: -3.25em;
         left: 42.5vw;
         transform: translateX(-50%);
         width: 30em;
@@ -440,6 +450,20 @@ body#registration {
 }
 
 @media only screen and (max-width: 740px) {
+    main {
+        display: block !important;
+    }
+    .bdg > .container {
+        display: none;
+    }
+    .progress {
+        bottom: -90vh;
+    }
+    .info-fields {
+        max-width: none;
+        overflow-y: auto;
+        height: 100%;
+    }
 }
 
 input::placeholder {
