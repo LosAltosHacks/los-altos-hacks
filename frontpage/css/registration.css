@@ -150,7 +150,6 @@ body#registration {
 
 #reg-form {
     padding: 20px 1em;
-    height: 100%;
 }
 #reg-form > section {
     background-color: unset !important;

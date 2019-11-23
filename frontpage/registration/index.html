@@ -81,7 +81,7 @@
       <section class="info-fields">
         <div class="container">
           <form id="reg-form">
-            <section class="page">
+            <section class="page" id="basic-info">
               <div class="qGrp" id="first-name">
                 <h3 for="en-first">What is your first name?</h3>
                 <input
@@ -267,8 +267,19 @@
                 <textarea></textarea>
               </div>
             </section>
-            <section class="page"></section>
-            <section class="page"></section>
+            <section class="page" id="profile">
+              <div class="qGrp" id="first-name">
+                <h3 for="en-first">What is your first name?</h3>
+                <input
+                  type="text"
+                  placeholder="Type your answer here..."
+                  id="en-first"
+                  required
+                />
+              </div>
+            </section>
+            <section class="page" id="contact-info"></section>
+            <section class="page" id="review"></section>
           </form>
         </div>
       </section>
