@@ -422,9 +422,10 @@
                   </small>
                   <input
                     type="text"
-                    placeholder="Type your answer here..."
+                    placeholder="(123) 456-7890"
                     id="en-g-phone"
-                    class="email"
+                    class="phone-number"
+                    data-mask="phone-us"
                   />
                 </div>
               </div>
@@ -464,6 +465,11 @@
     </main>
 
     <script src="../js/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.meiomask/1.1.14/meiomask.min.js"
+      integrity="sha256-V34ghNHmNNuRtfj10XyFbb9fTO7kGowkngYJQZhOV5U="
+      crossorigin="anonymous"
+    ></script>
     <script src="../js/reg.js"></script>
   </body>
 </html>

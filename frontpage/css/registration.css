@@ -224,14 +224,9 @@ body#registration {
 .qGrp.active {
     opacity: 1;
 }
-.qGrp.active > h3 {
-    /* font-size: calc(1em + 2pt); */
-}
-.qGrp.active > input,
-.qGrp.active select {
-    /* margin: 10px 20px;
-  width: calc(100% - 40px); */
-    /* border-bottom: 1px solid var(--black); */
+
+.qGrp input.invalid {
+    border-bottom-color: red;
 }
 
 /* Radio Buttons (Can also be applied to checkboxes) */
@@ -445,13 +440,13 @@ body#registration {
 
 input::placeholder {
     font-weight: 100;
-    color: #696969;
+    color: #bababa;
 }
 input:-ms-input-placeholder {
-    color: #696969;
+    color: #bababa;
 }
 input::-ms-input-placeholder {
-    color: #696969;
+    color: #bababa;
 }
 
 input:-webkit-autofill,

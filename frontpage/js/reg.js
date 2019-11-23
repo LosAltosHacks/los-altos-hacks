@@ -39,37 +39,48 @@ $('#en-age').change(e => {
 });
 
 // Verfiy Email
-$('input.email').on('input', e => {
+$('input.email').on('input change', e => {
     var email = $(e.target).val();
     var result = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
     );
     if (email != '' && !result) {
-        $(e.target).css({ 'border-bottom-color': 'red' });
+        $(e.target).addClass('invalid');
     } else {
-        $(e.target).css({ 'border-bottom-color': 'var(--black)' });
+        $(e.target).removeClass('invalid');
+    }
+});
+
+// Very Phone Number
+$('input[data-mask="phone-us"]').on('input change', e => {
+    var number = $(e.target).val();
+    if (number) $(e.target).setMask('phone-us');
+    if (number != '' && number.length != 14) {
+        $(e.target).addClass('invalid');
+    } else {
+        $(e.target).removeClass('invalid');
     }
 });
 
 // Verify Linkedin URL
-$('input#en-linkedin').on('input', e => {
+$('input#en-linkedin').on('input change', e => {
     var url = $(e.target).val();
     var result = /linkedin.com\/in\/[a-zA-Z0-9_-]+$/.test(url);
     if (url != '' && !result) {
-        $(e.target).css({ 'border-bottom-color': 'red' });
+        $(e.target).addClass('invalid');
     } else {
-        $(e.target).css({ 'border-bottom-color': 'var(--black)' });
+        $(e.target).removeClass('invalid');
     }
 });
 
 // Verify Github Username
-$('input#en-github').on('input', e => {
+$('input#en-github').on('input change', e => {
     var username = $(e.target).val();
     var result = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(username);
     if (username != '' && !result) {
-        $(e.target).css({ 'border-bottom-color': 'red' });
+        $(e.target).addClass('invalid');
     } else {
-        $(e.target).css({ 'border-bottom-color': 'var(--black)' });
+        $(e.target).removeClass('invalid');
     }
 });
 
