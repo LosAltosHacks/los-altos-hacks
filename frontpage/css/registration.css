@@ -88,6 +88,7 @@ body#registration {
     left: 50%;
     transform: translateX(-50%);
     z-index: 999;
+    justify-content: space-between;
 }
 .progress:before {
     content: '';
@@ -105,12 +106,12 @@ body#registration {
     margin: 2%;
     cursor: pointer;
 }
-.progress-step:hover {
+.progress-step:not(.disabled):hover {
     transform: scale(1.1);
 }
 .progress-step .icon {
-    width: auto;
-    height: auto;
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 50%;
     border: 5px solid var(--accent-bright);
     display: inline-block;
@@ -123,15 +124,22 @@ body#registration {
     padding: 5%;
 }
 .progress-step .icon > img {
-    filter: invert(1);
     width: 80%;
     height: 80%;
     margin: 0 auto;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 .progress-step .title {
     text-align: center;
     font-size: small;
     display: none;
+}
+.progress-step.disabled {
+    cursor: default;
+}
+.progress-step.disabled .icon > img {
+    opacity: 0.4;
 }
 
 .info-fields {
@@ -320,13 +328,11 @@ body#registration {
     cursor: default;
 }
 
-#school {
-    display: none;
-}
 #school-list > .loader {
     display: none;
     flex-direction: row;
     justify-content: center;
+    font-size: large;
 }
 #school-list > .loader > div {
     display: inline-block;
@@ -401,11 +407,11 @@ body#registration {
     border-bottom: 0.7px solid var(--white);
 }
 #school-list h4.school-name {
-    font-size: var(--s-1);
+    font-size: large;
 }
 #school-list small.address {
     font-weight: lighter;
-    font-size: var(--s-2);
+    font-size: medium;
 }
 
 .selected-school {
@@ -414,6 +420,12 @@ body#registration {
     color: var(--white);
     padding: 10px;
     margin: 0.7em 0;
+}
+.selected-school > .school-name {
+    font-size: large;
+}
+.selected-school > .address {
+    font-size: medium;
 }
 .selected-school > .change-school:hover {
     background-color: var(--accent-bright);
@@ -427,6 +439,9 @@ body#registration {
 #review-fields td {
     width: 40%;
     padding: 0.3em;
+}
+#review-fields tr:nth-child(even) {
+    background-color: #54696d20;
 }
 
 @media only screen and (max-width: 900px) {

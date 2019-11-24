@@ -36,8 +36,9 @@ $('input[name="ed"]').change(e => {
 });
 
 // Display guardian info fields based on age
-$('#en-age').change(e => {
+$('#en-age').on('input change', e => {
     var age = parseInt($('#en-age').val());
+
     if (age >= 18) {
         $('#guardian-info .qGrp').removeClass('required');
         $('#guardian-info .qGrp').addClass('hidden');
@@ -100,59 +101,63 @@ $(document).on('click', '#school-list li', e => {
         .clone()
         .addClass('selected-school')
         .insertBefore('#en-school-name');
-    $('.selected-school ~ *').fadeOut(1000);
+    // $('.selected-school ~ *').fadeOut(1000);
+    $('.selected-school ~ *').hide();
     $(`
     <a class='button change-school'>Change School</a>
     `).appendTo('.selected-school');
+
+    // Additional check for adding schools
+    $page = $('#basic-info');
+    if (checkFilled($page)) {
+        $page.find('.page-footer > .next').removeClass('disabled');
+    } else {
+        $page.find('.page-footer > .next').addClass('disabled');
+    }
 });
 
 // Change school
 $(document).on('click', '.selected-school > .change-school', e => {
-    $('.selected-school ~ *').fadeIn(1000);
-    $('.selected-school').animate({ height: 'toggle' }, 500, () => {
-        $('.selected-school').remove();
-    });
+    // $('.selected-school ~ *').fadeIn(1000);
+    $('.selected-school ~ *').show();
+    $('.selected-school').remove();
+    // $('.selected-school').animate({ height: 'toggle' }, 500, () => {
+    //     $('.selected-school').remove();
+    // });
 });
 
 // Verify all fields
-$('.page .qGrp *').on('input change', e => {
-    // Scan page for required fields
-    var filledAll = true;
-    var $page = $(e.target).closest('.page');
+$('.page .qGrp *, #school-list li, .change-school, .progress, .page-footer').on(
+    'input change click',
+    e => {
+        // Scan page for required fields
+        var $page = $(e.target).closest('.page');
 
-    $page.find('.required').each((i, e) => {
-        var $input = $(e).find('input');
-        if (
-            $input.attr('type') == 'radio' ||
-            $input.attr('type') == 'checkbox'
-        ) {
-            filledAll = filledAll && $input.is(':checked');
+        if (checkFilled($page)) {
+            $page.find('.page-footer > .next').removeClass('disabled');
+            $(
+                `.progress-step[data-page="#${$page.attr('id')}"] + a`
+            ).removeClass('disabled');
         } else {
-            filledAll = filledAll && $input.val() && $input.val() != '';
+            $page.find('.page-footer > .next').addClass('disabled');
+            $(`.progress-step[data-page="#${$page.attr('id')}"] ~ a`).addClass(
+                'disabled'
+            );
         }
-    });
 
-    // Validate all fields
-    filledAll = filledAll && $page.find('.invalid').length == 0;
-
-    if (filledAll) {
-        $page.find('.page-footer > .next').removeClass('disabled');
-    } else {
-        $page.find('.page-footer > .next').removeClass('disabled');
-    }
-
-    // Update confirmation panel
-    var fields = getFields();
-    $('#review-fields > table').empty();
-    fields.forEach(field => {
-        $(`
+        // Update confirmation panel
+        var fields = getFields();
+        $('#review-fields > table').empty();
+        fields.forEach(field => {
+            $(`
         <tr class="review-field">
           <td class="name">${field.name}</td>
           <td class="value">${field.displayValue}</td>
         </tr>
         `).appendTo('#review-fields > table');
-    });
-});
+        });
+    }
+);
 
 // Moves to the next page
 // TODO: Change page state to active.
@@ -177,11 +182,75 @@ $(document).on('click', '.page-footer > .button:not(.disabled)', e => {
         });
 });
 
+$(document).on('click', '.progress-step:not(.disabled)', e => {
+    var page = $(e.target)
+        .closest('.progress-step')
+        .attr('data-page');
+    $('.page').removeClass('active');
+    $(page).addClass('active');
+});
+
+function checkFilled($page) {
+    var filledAll = true;
+
+    $page.find('.required').each((i, e) => {
+        // Special case for school input
+        if ($(e).attr('id') == 'school') {
+            filledAll =
+                filledAll &&
+                (($('#en-school-name').val() != '' &&
+                    $('#en-school-zip').val() != '') ||
+                    $('.selected-school').length != 0);
+            return;
+        }
+
+        var $input = $(e).find('input');
+        if (
+            $input.attr('type') == 'radio' ||
+            $input.attr('type') == 'checkbox'
+        ) {
+            filledAll = filledAll && $input.is(':checked');
+        } else {
+            filledAll = filledAll && $input.val() && $input.val() != '';
+        }
+    });
+
+    // Validate all fields
+    filledAll = filledAll && $page.find('.invalid').length == 0;
+
+    return filledAll;
+}
+
 function getFields() {
     var fields = [];
     $('.page .qGrp:not(#agreement):not(#confirm)')
         .not('.hidden')
         .each((i, e) => {
+            if ($(e).attr('id') == 'school') {
+                if ($('.selected-school').length == 0) {
+                    fields.push({
+                        id: $(e).attr('id'),
+                        name: 'School',
+                        displayValue: $('#en-school-name').val(),
+                        value: `${$('#en-school-name').val()} (${$(
+                            '#en-school-zip'
+                        ).val()})`,
+                    });
+                } else {
+                    fields.push({
+                        id: $(e).attr('id'),
+                        name: 'School',
+                        displayValue: $(
+                            '.selected-school > .school-name'
+                        ).text(),
+                        value: `${$(
+                            '.selected-school > .school-name'
+                        ).text()} (${$('.selected-school > .address').text()})`,
+                    });
+                }
+                return;
+            }
+
             var $input = $(e).find('input, textarea');
             var name = $(e)
                 .find('h3')

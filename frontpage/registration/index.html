@@ -57,32 +57,29 @@
         </div>
         <div class="progress">
           <a class="progress-step" data-page="#basic-info">
-            <span class="icon"><img src="../images/facebook.svg" /></span>
+            <span class="icon"><img src="../images/icons/basic-info.svg" /></span>
             <span class="title">Basic Info</span>
           </a>
-          <a class="progress-step" data-page="#profile">
-            <span class="icon"><img src="../images/facebook.svg" /></span>
+          <a class="progress-step disabled" data-page="#profile">
+            <span class="icon"><img src="../images/icons/profile.svg" /></span>
             <span class="title">Profile</span>
           </a>
-          <a class="progress-step" data-page="#contact-info">
-            <span class="icon"><img src="../images/facebook.svg" /></span>
+          <a class="progress-step disabled" data-page="#contact-info">
+            <span class="icon"><img src="../images/icons/contact.svg" /></span>
             <span class="title">Contact Info</span>
           </a>
-          <a class="progress-step" data-page="#review">
-            <span class="icon"><img src="../images/facebook.svg" /></span>
-            <span class="title">Background</span>
-          </a>
-          <a class="progress-step">
-            <span class="icon"><img src="../images/facebook.svg" /></span>
-            <span class="title">Finish</span>
+          <a class="progress-step disabled" data-page="#review">
+            <span class="icon"><img src="../images/icons/check.svg" /></span>
+            <span class="title">Review</span>
           </a>
         </div>
       </section>
       <section class="info-fields">
         <div class="container">
           <form id="reg-form">
-            <section class="page" id="basic-info">
-              <div class="qGrp required" id="first-name" data-field="First Name">
+            <section class="page active" id="basic-info">
+              <h1>Basic Information</h1>
+              <div class="qGrp required" id="first-name">
                 <h3 for="en-first">What is your first name?</h3>
                 <input
                   type="text"
@@ -91,7 +88,7 @@
                   required
                 />
               </div>
-              <div class="qGrp required" id="last-name" data-field="Last Name">
+              <div class="qGrp required" id="last-name">
                 <h3 for="en-last">What is your last name?</h3>
                 <input
                   type="text"
@@ -100,16 +97,18 @@
                   required
                 />
               </div>
-              <div class="qGrp required" id="age" data-field="Age">
+              <div class="qGrp required" id="age">
                 <h3 for="en-age">How old are you?</h3>
                 <input
                   type="number"
                   placeholder="Type your answer here..."
                   id="en-age"
+                  min=3
+                  step=1
                   required
                 />
               </div>
-              <div class="qGrp required" id="education" data-field="Current Education">
+              <div class="qGrp required" id="education">
                 <h3>I am currently...</h3>
                 <label class="radio">
                   <input type="radio" name="ed" value="high school" required />
@@ -132,12 +131,12 @@
                   <span>Not In School</span>
                 </label>
               </div>
-              <div class="qGrp hidden" id="school" data-field="School">
+              <div class="qGrp hidden" id="school">
                 <h3 for="en-school">What school do you currently attend?</h3>
                 <small>
                   If you cannot find your school in our list, try entering your
                   school's zip code. If you still cannot find your school,
-                  please enter the name of your school and your zip code.
+                  please enter the name of your school and, if possible, your zip code.
                 </small>
                 <input
                   type="text"
@@ -233,7 +232,7 @@
                   <ul></ul>
                 </div>
               </div>
-              <div class="qGrp hidden" id="grade" data-field="Grade">
+              <div class="qGrp hidden" id="grade">
                 <h3>What grade are you?</h3>
                 <label class="radio">
                   <input type="radio" name="grade" value="9" required />
@@ -252,7 +251,7 @@
                   <span>Senior (12)</span>
                 </label>
               </div>
-              <div class="qGrp hidden" id="not-highschool" data-field="Special Situation">
+              <div class="qGrp hidden" id="not-highschool">
                 <h3>Tell us more about your situation.</h3>
                 <small>
                   Los Altos Hacks is a high school hackathon, and it seems that
@@ -262,7 +261,7 @@
                 </small>
                 <textarea></textarea>
               </div>
-              <div class="qGrp" data-field="">
+              <div class="qGrp">
                 <h3>What do you hope to accomplish at Los Altos Hacks V?</h3>
                 <textarea></textarea>
               </div>
@@ -273,8 +272,9 @@
             </section>
 
             <section class="page" id="profile">
+              <h1>Profile</h1>
               <div class="qGrp" id="gender">
-                <h3>Which gender identity do you most identify?</h3>
+                <h3>Which gender identity do you most identify with?</h3>
                 <label class="radio">
                   <input type="radio" name="en-gender" value="male" required />
                   <span>Male</span>
@@ -339,11 +339,17 @@
                   </span>
                 </label>
               </div>
-              <div class="qGrp" id="dietary-restrictions">
-                <h3>What are your dietary restrictions?</h3>
-                <textarea
-                  placeholder="allergic to peanuts, lactose intolerant, etc."
-                ></textarea>
+              <div class="qGrp required" id="experience">
+                <h3 for="en-experience">How many hackathons have you previously attended?</h3>
+                <input
+                  type="number"
+                  placeholder="Type your answer here..."
+                  id="en-experience"
+                  min=0
+                  step=1
+                  value=0
+                  required
+                />
               </div>
               <div class="qGrp required" id="t-shirt-size">
                 <h3>What is your t-shirt size?</h3>
@@ -365,6 +371,12 @@
                   <span>Extra Large</span>
                 </label>
               </div>
+              <div class="qGrp" id="dietary-restrictions">
+                <h3>What are your dietary restrictions?</h3>
+                <textarea
+                  placeholder="allergic to peanuts, lactose intolerant, etc."
+                ></textarea>
+              </div>
               <div class="page-footer">
                 <a class="button previous">Previous</a>
                 <a class="button next disabled">Next</a>
@@ -372,6 +384,7 @@
             </section>
 
             <section class="page" id="contact-info">
+              <h1>Contact Information</h1>
               <div class="qGrp required" id="email">
                 <h3 for="en-email">What is your email address?</h3>
                 <small>
@@ -448,7 +461,8 @@
               </div>
             </section>
 
-            <section class="page active" id="review">
+            <section class="page" id="review">
+              <h1>Review and Submit</h1>
               <div class="qGrp" id="confirm">
                 <h3>Confirmation</h3>
                 <small>Please review your information below and verify all fields are filled in correctly.</small>
