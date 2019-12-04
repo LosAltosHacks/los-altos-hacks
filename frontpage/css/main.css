@@ -94,7 +94,10 @@ header > h1 {
 
 /* Navigation Menu */
 nav {
-    z-index: 999;
+    z-index: 10000;
+}
+
+nav > .container {
     background-color: var(--white);
     display: flex;
     justify-content: space-evenly;
@@ -104,7 +107,7 @@ nav {
     padding: 0 2em;
 }
 
-nav a {
+nav > .container a {
     text-decoration: none;
     color: var(--black);
 }

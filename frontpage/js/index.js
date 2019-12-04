@@ -31,7 +31,8 @@ function navBarDisplay() {
         (document.body.scrollTop < offset &&
             document.documentElement.scrollTop < offset)
     ) {
-        nav.style.boxShadow = 'none';
+        document.querySelector('nav > .container').style.boxShadow = 'none';
+        document.querySelector('#mlh-trust-badge').style.display = 'none';
         nav.style.transition = 'none';
         nav.style.top = '-100%';
         nav.style.position = 'fixed';
@@ -42,9 +43,11 @@ function navBarDisplay() {
         )
             navMenuToggle();
     } else {
+        document.querySelector('#mlh-trust-badge').style.display = 'block';
         nav.style.position = 'fixed';
         nav.style.transition = 'top 0.5s';
-        nav.style.boxShadow = '0 2px 3px rgba(0, 0, 0, 0.2)';
+        document.querySelector('nav > .container').style.boxShadow =
+            '0 2px 3px rgba(0, 0, 0, 0.2)';
         nav.style.top = '0';
     }
 }
