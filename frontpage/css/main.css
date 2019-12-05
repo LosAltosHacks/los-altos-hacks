@@ -372,10 +372,12 @@ nav > .container a {
     align-items: stretch;
 }
 
-.call-to-action .largest {
-    /* implements a sidebar from every-layout */
+.call-to-action .slogan {
     flex-basis: 0;
     flex-grow: 999;
+}
+.call-to-action .largest {
+    /* implements a sidebar from every-layout */
     min-width: 15rem;
 
     text-align: left;
@@ -1249,6 +1251,27 @@ footer h4 {
     display: none;
 }
 
+/* MLH Trust Badge */
+#mlh-trust-badge {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-right: var(--s0);
+}
+
+#mlh-trust-badge > a {
+    max-width: 100px;
+    min-width: 60px;
+    position: relative;
+}
+
+#mlh-trust-badge img {
+    width: 100%;
+    filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 3px 1px);
+}
+
 /* Resources Page */
 #resources-page {
     display: flex;
@@ -1453,6 +1476,18 @@ footer h4 {
     }
     .info-container .address > span {
         font-size: var(--s-3);
+    }
+    #mlh-trust-badge {
+        float: none;
+        height: unset;
+        margin-right: 0;
+    }
+    #mlh-trust-badge > a {
+        max-width: none;
+        margin: 0 auto;
+    }
+    #mlh-trust-badge img {
+        max-width: 80px;
     }
     .call-to-action .largest {
         text-align: center;

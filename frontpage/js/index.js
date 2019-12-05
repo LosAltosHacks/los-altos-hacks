@@ -32,7 +32,6 @@ function navBarDisplay() {
             document.documentElement.scrollTop < offset)
     ) {
         document.querySelector('nav > .container').style.boxShadow = 'none';
-        document.querySelector('#mlh-trust-badge').style.display = 'none';
         nav.style.transition = 'none';
         nav.style.top = '-100%';
         nav.style.position = 'fixed';
@@ -43,7 +42,6 @@ function navBarDisplay() {
         )
             navMenuToggle();
     } else {
-        document.querySelector('#mlh-trust-badge').style.display = 'block';
         nav.style.position = 'fixed';
         nav.style.transition = 'top 0.5s';
         document.querySelector('nav > .container').style.boxShadow =
