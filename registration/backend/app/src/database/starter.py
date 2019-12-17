@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 # Made using the database tutorial here
 # https://fastapi.tiangolo.com/tutorial/sql-databases/
 
-SQLALCHEMY_DATABASE_URL = ""
+SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://root:mml8linmc@localhost:3306/losaltoshacks"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL

@@ -9,14 +9,14 @@ body#registration {
     justify-content: center;
 }
 
-#registration > main {
+#registration > main > div {
     display: flex;
     width: 85vw;
     height: 85vh;
     margin: 0 auto;
 }
 
-#registration > main > section {
+#registration > main > div > section {
     transition: all 1s ease;
 }
 
@@ -444,8 +444,13 @@ body#registration {
     background-color: #54696d20;
 }
 
+#complete {
+    display: none;
+    background-color: red;
+}
+
 @media only screen and (max-width: 900px) {
-    main {
+    main > div {
         margin-bottom: 2.67em !important;
         height: calc(85vh - 2em) !important;
     }
@@ -465,7 +470,7 @@ body#registration {
 }
 
 @media only screen and (max-width: 740px) {
-    main {
+    main > div {
         display: block !important;
     }
     .bdg > .container {

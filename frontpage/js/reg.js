@@ -163,6 +163,7 @@ $(document).on('click', '.page-footer > .button:not(.disabled)', e => {
     $(e.target)
         .closest('.page')
         .fadeOut(1000)
+        .removeClass('active')
         .promise()
         .done(() => {
             $('.info-fields > .container').scrollTop(0);
@@ -170,24 +171,54 @@ $(document).on('click', '.page-footer > .button:not(.disabled)', e => {
                 $(e.target)
                     .closest('.page')
                     .next()
-                    .fadeIn(1000);
+                    .fadeIn(1000)
+                    .addClass('active');
             } else {
                 $(e.target)
                     .closest('.page')
                     .prev()
-                    .fadeIn(1000);
+                    .fadeIn(1000)
+                    .addClass('active');
             }
         });
 });
 
+// Moves to the page on the progress step
 $(document).on('click', '.progress-step:not(.disabled)', e => {
     var page = $(e.target)
         .closest('.progress-step')
         .attr('data-page');
-    $('.page').removeClass('active');
-    $(page).addClass('active');
+
+    if (`#${$('.page.active').attr('id')}` == page) return;
+
+    $('.page.active')
+        .removeClass('active')
+        .fadeOut(1000)
+        .promise()
+        .done(() => {
+            $(page)
+                .fadeIn(1000)
+                .addClass('active');
+        });
 });
 
+$('#submit').click(() => {
+    $('.page.active')
+        .fadeOut(500)
+        .promise()
+        .done(() => {
+            $('section.info-fields').css({ 'flex-basis': '0' });
+            $('.progress').fadeOut(1000);
+        });
+    // $('#attendee-reg > section:not(#complete)')
+    //     .fadeOut(1000)
+    //     .promise()
+    //     .done(() => {
+    //         $('#complete').fadeIn(1000);
+    //     });
+});
+
+// Check if all required fields on the page has been filled
 function checkFilled($page) {
     var filledAll = true;
 
@@ -215,6 +246,10 @@ function checkFilled($page) {
 
     // Validate all fields
     filledAll = filledAll && $page.find('.invalid').length == 0;
+
+    if ($page.attr('id') == 'review')
+        filledAll =
+            filledAll && $('#agreement .radio > input:checked').length == 3;
 
     return filledAll;
 }
@@ -360,3 +395,5 @@ function displaySchools() {
         $(html).appendTo('#school-list > ul');
     });
 }
+
+function registerAttendee() {}
