@@ -57,7 +57,9 @@
         </div>
         <div class="progress">
           <a class="progress-step" data-page="#basic-info">
-            <span class="icon"><img src="../images/icons/basic-info.svg" /></span>
+            <span class="icon">
+              <img src="../images/icons/basic-info.svg" />
+            </span>
             <span class="title">Basic Info</span>
           </a>
           <a class="progress-step disabled" data-page="#profile">
@@ -103,8 +105,8 @@
                   type="number"
                   placeholder="Type your answer here..."
                   id="en-age"
-                  min=3
-                  step=1
+                  min="3"
+                  step="1"
                   required
                 />
               </div>
@@ -136,7 +138,8 @@
                 <small>
                   If you cannot find your school in our list, try entering your
                   school's zip code. If you still cannot find your school,
-                  please enter the name of your school and, if possible, your zip code.
+                  please enter the name of your school and, if possible, your
+                  zip code.
                 </small>
                 <input
                   type="text"
@@ -340,14 +343,16 @@
                 </label>
               </div>
               <div class="qGrp required" id="experience">
-                <h3 for="en-experience">How many hackathons have you previously attended?</h3>
+                <h3 for="en-experience">
+                  How many hackathons have you previously attended?
+                </h3>
                 <input
                   type="number"
                   placeholder="Type your answer here..."
                   id="en-experience"
-                  min=0
-                  step=1
-                  value=0
+                  min="0"
+                  step="1"
+                  value="0"
                   required
                 />
               </div>
@@ -465,15 +470,20 @@
               <h1>Review and Submit</h1>
               <div class="qGrp" id="confirm">
                 <h3>Confirmation</h3>
-                <small>Please review your information below and verify all fields are filled in correctly.</small>
+                <small>
+                  Please review your information below and verify all fields are
+                  filled in correctly.
+                </small>
               </div>
               <div id="review-fields">
-                <table>
-                </table>
+                <table></table>
               </div>
               <div class="qGrp" id="agreement">
                 <h3>Agreement</h3>
-                <small>Please agree to all the statements below in order to submit the application.</small>
+                <small>
+                  Please agree to all the statements below in order to submit
+                  the application.
+                </small>
                 <label class="radio">
                   <input type="checkbox" name="en-agreement" value="asian" />
                   <span>
@@ -483,20 +493,47 @@
                       target="_blank"
                     >
                       MLH Code of Conduct
-                    </a>.
-                  </span>
-                </label>
-                <label class="radio">
-                  <input type="checkbox" name="en-agreement" value="asian" />
-                  <span>
-                    I authorize Los Altos Hacks to share my application/registration for event administration, ranking, MLH administration, pre- and post-event informational e-mails, and occasional messages about hackathons in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the terms of both the <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions" target="_blank">MLH Contest Terms and Conditions</a> and the <a href="https://mlh.io/privacy" target="_blank">MLH Privacy Policy</a>.
                     </a>
+                    .
                   </span>
                 </label>
                 <label class="radio">
                   <input type="checkbox" name="en-agreement" value="asian" />
                   <span>
-                    By submitting my application, I acknowledge and agree that Los Altos Hacks V may share my name and email address with event partners in order to improve my experience at the Los Altos Hacks event. A list of organizations to whom my name and email address may be shared is available upon request; contact <a href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a> for any clarifications, questions, or requests regarding this agreement.
+                    I authorize Los Altos Hacks to share my
+                    application/registration for event administration, ranking,
+                    MLH administration, pre- and post-event informational
+                    e-mails, and occasional messages about hackathons in-line
+                    with the
+                    <a href="https://mlh.io/privacy">MLH Privacy Policy</a>
+                    . I further agree to the terms of both the
+                    <a
+                      href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions"
+                      target="_blank"
+                    >
+                      MLH Contest Terms and Conditions
+                    </a>
+                    and the
+                    <a href="https://mlh.io/privacy" target="_blank">
+                      MLH Privacy Policy
+                    </a>
+                    .
+                  </span>
+                </label>
+                <label class="radio">
+                  <input type="checkbox" name="en-agreement" value="asian" />
+                  <span>
+                    By submitting my application, I acknowledge and agree that
+                    Los Altos Hacks V may share my name and email address with
+                    event partners in order to improve my experience at the Los
+                    Altos Hacks event. A list of organizations to whom my name
+                    and email address may be shared is available upon request;
+                    contact
+                    <a href="mailto:info@losaltoshacks.com">
+                      info@losaltoshacks.com
+                    </a>
+                    for any clarifications, questions, or requests regarding
+                    this agreement.
                   </span>
                 </label>
               </div>
