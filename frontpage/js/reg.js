@@ -7,10 +7,10 @@ $('.qGrp input, .qGrp textarea, .qGrp select').focus(e => {
 });
 
 // Display schools from search result
-$('#find-schools').click(e => displaySchools(e));
+$('#find-schools').click(() => displaySchools());
 
 // Display fields based on education
-$('input[name="ed"]').change(e => {
+$('input[name="ed"]').change(() => {
     if (
         $('input[name="ed"]:checked').val() == 'high school' ||
         $('input[name="ed"]:checked').val() == 'middle school'
@@ -34,7 +34,7 @@ $('input[name="ed"]').change(e => {
 });
 
 // Display guardian info fields based on age
-$('#en-age').on('input change', e => {
+$('#en-age').on('input change', () => {
     var age = parseInt($('#en-age').val());
 
     if (age >= 18) {
@@ -106,7 +106,7 @@ $(document).on('click', '#school-list li', e => {
     `).appendTo('.selected-school');
 
     // Additional check for adding schools
-    $page = $('#basic-info');
+    var $page = $('#basic-info');
     if (checkFilled($page)) {
         $page.find('.page-footer > .next').removeClass('disabled');
     } else {
@@ -115,7 +115,7 @@ $(document).on('click', '#school-list li', e => {
 });
 
 // Change school
-$(document).on('click', '.selected-school > .change-school', e => {
+$(document).on('click', '.selected-school > .change-school', () => {
     // $('.selected-school ~ *').fadeIn(1000);
     $('.selected-school ~ *').show();
     $('.selected-school').remove();
@@ -332,7 +332,7 @@ function getSchools(params) {
 }
 
 // Display search results from NCES
-function displaySchools(e) {
+function displaySchools() {
     $('#school-list > .loader').css({ display: 'flex' });
     $('.no-school').hide();
 
