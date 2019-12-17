@@ -4,7 +4,7 @@ from .Person import DBPerson
 
 
 class DBAttendee(DBPerson):
-    __tablename__ = "attendee"
+    __tablename__ = "attendees"
 
     id = Column(Integer, ForeignKey('person.id'), nullable=False, primary_key=True)
     age = Column(SmallInteger, nullable=False)
@@ -22,5 +22,5 @@ class DBAttendee(DBPerson):
     goals = Column(String(1000))
 
     __mapper_args__ = {
-        "polymorphic_identity": "attendee",
+        "polymorphic_identity": "attendees",
     }

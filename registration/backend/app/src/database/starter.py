@@ -6,8 +6,7 @@ from sqlalchemy.orm import sessionmaker
 # Made using the database tutorial here
 # https://fastapi.tiangolo.com/tutorial/sql-databases/
 
-# SQLALCHEMY_DATABASE_URL = "postgresql://localhost:5432/testregistration
-SQLALCHEMY_DATABASE_URL = "SOON_TO_BE_OS_VENV™™"
+SQLALCHEMY_DATABASE_URL = ""
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL

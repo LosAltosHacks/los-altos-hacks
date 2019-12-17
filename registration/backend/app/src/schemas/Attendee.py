@@ -11,14 +11,14 @@ class AcceptanceStatusEnum(enum.Enum):
     queue = "queue"
     accepted = "accepted"
 
+class ShirtSize(enum.Enum):
+    small = "S"
+    medium = "M"
+    large = "L"
+    extraLarge = "XL"
+
 
 class Attendee(BaseModel):
-    class ShirtSize(enum.Enum):
-        small = "S"
-        medium = "M"
-        large = "L"
-        extraLarge = "XL"
-
     first_name: str
     last_name: str
     email: EmailStr
