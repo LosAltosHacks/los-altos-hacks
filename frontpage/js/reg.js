@@ -296,7 +296,7 @@ function getFields() {
 
 // Get schools from National Center for Education Statistics (NCES)
 function getSchools(params) {
-    var promise = new Promise((resolve, reject) => {
+    var promise = new Promise(resolve => {
         $.get(
             `./fetch_school.php?state=${
                 params.state ? params.state : ''
