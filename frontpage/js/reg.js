@@ -1,5 +1,3 @@
-var school;
-
 // Update focus state of question groups
 $('.qGrp input, .qGrp textarea, .qGrp select').focus(e => {
     $('.qGrp.active').removeClass('active');
