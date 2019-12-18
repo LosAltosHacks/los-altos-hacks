@@ -128,12 +128,11 @@
                 </div>
                 <div class="qGrp required" id="education">
                   <h3>I am currently...</h3>
-                  <label class="radio">
+                  <label class="radio" data-field="education">
                     <input
                       type="radio"
                       name="ed"
                       value="High School"
-                      data-field="education"
                       required
                     />
                     <span>In High School</span>
@@ -259,14 +258,8 @@
                 </div>
                 <div class="qGrp hidden" id="grade">
                   <h3>What grade are you?</h3>
-                  <label class="radio">
-                    <input
-                      type="radio"
-                      name="grade"
-                      value="9"
-                      data-field="grade"
-                      required
-                    />
+                  <label class="radio" data-field="grade">
+                    <input type="radio" name="grade" value="9" required />
                     <span>Freshman (9)</span>
                   </label>
                   <label class="radio">
@@ -290,7 +283,7 @@
                     special circumstances, so please specify why you want to
                     come to our event below.
                   </small>
-                  <textarea data-field="special_reason"></textarea>
+                  <textarea data-field="special"></textarea>
                 </div>
                 <div class="qGrp">
                   <h3>What do you hope to accomplish at Los Altos Hacks V?</h3>
@@ -306,26 +299,25 @@
                 <h1>Profile</h1>
                 <div class="qGrp" id="gender">
                   <h3>Which gender identity do you most identify with?</h3>
-                  <label class="radio">
+                  <label class="radio" data-field="gender">
                     <input
                       type="radio"
                       name="en-gender"
-                      value="male"
-                      data-field="gender"
+                      value="Male"
                       required
                     />
                     <span>Male</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="en-gender" value="female" />
+                    <input type="radio" name="en-gender" value="Female" />
                     <span>Female</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="en-gender" value="non_binary" />
+                    <input type="radio" name="en-gender" value="Non-Binary" />
                     <span>Non-binary</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="en-gender" value="none" />
+                    <input type="radio" name="en-gender" value="" />
                     <span>Decline to state</span>
                   </label>
                 </div>
@@ -377,7 +369,7 @@
                     <span>Pacific Islander</span>
                   </label>
                   <label class="radio">
-                    <input type="checkbox" name="en-race" value="none" />
+                    <input type="checkbox" name="en-race" value="" />
                     <span>Decline to State</span>
                   </label>
                   <label class="radio">
@@ -451,6 +443,20 @@
                     id="en-email"
                     class="email"
                     data-field="email"
+                    required
+                  />
+                </div>
+                <div class="qGrp" id="phone">
+                  <h3 for="en-phone">
+                    What is your phone number?
+                  </h3>
+                  <input
+                    type="text"
+                    placeholder="(123) 456-7890"
+                    id="en-phone"
+                    class="phone-number"
+                    data-field="phone_number"
+                    data-mask="phone-us"
                     required
                   />
                 </div>

@@ -10,7 +10,7 @@ class DBMentor(DBPerson):
     id = Column(Integer, ForeignKey('person.id'), nullable=False, primary_key=True)
     over_18 = Column(Boolean, nullable=False)
     skillset = Column(String(1000))
-    timeslots = relationship("DBTimeslots", backref="mentor", order_by="DBTimeslots.start_time", lazy='selectin')
+    # timeslots = relationship("DBTimeslots", backref="mentor", order_by="DBTimeslots.start_time", lazy='selectin')
 
     __mapper_args__ = {
         "polymorphic_identity": "mentors"

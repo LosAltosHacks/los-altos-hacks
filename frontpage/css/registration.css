@@ -483,15 +483,24 @@ body#registration {
         display: block !important;
     }
     .bdg > .container {
-        display: none;
+        height: 5em;
     }
-    .progress {
-        bottom: -90vh;
+    .bdg .info {
+        display: none;
     }
     .info-fields {
         max-width: none;
         overflow-y: auto;
-        height: 100%;
+        height: 87%;
+    }
+    .progress {
+        bottom: unset;
+    }
+    .progress::before {
+        background-color: var(--accent-bright);
+    }
+    .progress-step > .icon {
+        border-color: var(--accent-bright);
     }
 }
 

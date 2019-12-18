@@ -12,8 +12,8 @@ $('#find-schools').click(() => displaySchools());
 // Display fields based on education
 $('input[name="ed"]').change(() => {
     if (
-        $('input[name="ed"]:checked').val() == 'high school' ||
-        $('input[name="ed"]:checked').val() == 'middle school'
+        $('input[name="ed"]:checked').val() == 'High School' ||
+        $('input[name="ed"]:checked').val() == 'Middle School'
     ) {
         $('#school').addClass('required');
         $('#school').removeClass('hidden');
@@ -22,7 +22,7 @@ $('input[name="ed"]').change(() => {
         $('#school').addClass('hidden');
     }
 
-    if ($('input[name="ed"]:checked').val() == 'high school') {
+    if ($('input[name="ed"]:checked').val() == 'High School') {
         $('#grade').addClass('required');
         $('#grade').removeClass('hidden');
         $('#not-highschool').addClass('hidden');
@@ -203,6 +203,7 @@ $(document).on('click', '.progress-step:not(.disabled)', e => {
 });
 
 $('#submit').click(() => {
+    $('.bdg');
     $('.page.active')
         .fadeOut(500)
         .promise()
@@ -214,7 +215,8 @@ $('#submit').click(() => {
                 .done(() => {
                     // Mobile adaptation
                     $('.info-fields').hide();
-                    $('.bdg').css({ height: '100%' });
+                    $('.bdg, .bdg > .container').css({ height: '100%' });
+                    $('.bdg .info').fadeIn(1000);
                     $('.bdg > .container').show();
                     $('#attendee-reg').attr(
                         'style',
@@ -447,20 +449,18 @@ function registerAttendee() {
                 let inpName = $input.find('input').attr('name');
 
                 if (name == 'ethnicity') {
-                    value = [];
-                    $(`input[name=${inpName}]`).each((_, elem) => {
-                        if ($(elem).is(':checked')) {
-                            if ($(elem).is('[value=other]')) {
-                                value.push(
-                                    'Other: ' +
-                                        $(elem)
-                                            .next()
-                                            .find('input')
-                                            .val()
-                                );
-                            } else {
-                                value.push($(elem).val());
-                            }
+                    value = '';
+                    $(`input[name=${inpName}]:checked`).each((_, elem) => {
+                        if ($(elem).is('[value=other]')) {
+                            value +=
+                                ', Other: ' +
+                                $(elem)
+                                    .next()
+                                    .find('input')
+                                    .val();
+                        } else {
+                            value +=
+                                (value.length == 0 ? '' : ', ') + $(elem).val();
                         }
                     });
                 } else {
@@ -477,19 +477,24 @@ function registerAttendee() {
                 value = parseInt(value);
             }
 
+            if (
+                !value ||
+                (typeof value == 'string' && value.trim().length == 0)
+            )
+                return;
+
             data[name] = value;
         });
 
         console.log(data);
-        resolve(data);
 
-        // $.post('http://localhost:8000/attendees/', JSON.stringify(data))
-        //     .done(response => {
-        //         resolve(response);
-        //     })
-        //     .fail(error => {
-        //         reject(error);
-        //     });
+        $.post('http://localhost:8000/attendees/', JSON.stringify(data))
+            .done(response => {
+                resolve(response);
+            })
+            .fail(error => {
+                reject(error);
+            });
     });
     return promise;
 }

@@ -23,13 +23,14 @@ class Attendee(BaseModel):
     last_name: str
     email: EmailStr
     age: int
-    school: str
+    education: str
+    school: str = None
     grade: int
-    phone_number: str
-    gender: str
+    phone_number: str = None
+    gender: str = None
     ethnicity: str = None
     tshirt_size: ShirtSize
-    previous_hackathons: str
+    previous_hackathons: int
     guardian_name: str = None
     guardian_email: EmailStr = None
     guardian_phone_number: str = None
@@ -37,6 +38,7 @@ class Attendee(BaseModel):
     linkedin_profile: str = None
     dietary_restrictions: str = None
     goals: str = None
+    special: str = None
 
     class Config:
         orm_mode = True
