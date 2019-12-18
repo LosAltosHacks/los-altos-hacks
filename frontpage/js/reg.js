@@ -247,8 +247,7 @@ function checkFilled($page) {
         if ($(e).attr('id') == 'school') {
             filledAll =
                 filledAll &&
-                (($('#en-school-name').val() != '' &&
-                    $('#en-school-zip').val() != '') ||
+                ($('#en-school-name').val() != '' ||
                     $('.selected-school').length != 0);
             return;
         }
@@ -428,6 +427,19 @@ function registerAttendee() {
             // Special cases
             // School
             if (name == 'school') {
+                if ($('.selected-school').length == 0) {
+                    value = $('#en-school-name').val();
+                    if ($('#en-school-city').val().length != 0)
+                        value += `, ${$('#en-school-city').val()}`;
+                    if ($('#en-school-state').val().length != 0)
+                        value += `, ${$('#en-school-state').val()}`;
+                    if ($('#en-school-zip').val().length != 0)
+                        value += `, ${$('#en-school-zip').val()}`;
+                } else {
+                    value = `${$('.selected-school .school-name').text()}, ${$(
+                        '.selected-school .address'
+                    ).text()}`;
+                }
             }
 
             // Radio Buttons
