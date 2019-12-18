@@ -77,6 +77,15 @@ body#registration {
     max-width: 10em;
 }
 
+.finish-msg {
+    display: none;
+    font-size: var(--s-2);
+    margin: 0 auto;
+    margin-top: 1.5em;
+    max-width: 70%;
+    line-height: 1.3em;
+}
+
 .progress {
     display: flex;
     flex-direction: row;

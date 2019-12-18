@@ -54,6 +54,14 @@
               <h4>March 21-22, 2020</h4>
               <p>Juniper Aspiration Dome</p>
               <small>1081 Innovation Way, Sunnyvale CA</small>
+              <div class="finish-msg">
+                <p>
+                  Way to go! You've submitted your application to Los Altos
+                  Hacks V. Keep on a lookout for emails from us for updates and
+                  next steps!
+                </p>
+                <!-- <a class="button">View email</a> -->
+              </div>
             </div>
           </div>
           <div class="progress">
@@ -131,19 +139,19 @@
                     <span>In High School</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="ed" value="home school" />
+                    <input type="radio" name="ed" value="Home School" />
                     <span>Home-schooled</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="ed" value="middle school" />
+                    <input type="radio" name="ed" value="Middle School" />
                     <span>In Middle School or below</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="ed" value="college" />
+                    <input type="radio" name="ed" value="College" />
                     <span>In College</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="ed" value="no school" />
+                    <input type="radio" name="ed" value="Not In School" />
                     <span>Not In School</span>
                   </label>
                 </div>
@@ -282,7 +290,7 @@
                     special circumstances, so please specify why you want to
                     come to our event below.
                   </small>
-                  <textarea data-field="special-reason"></textarea>
+                  <textarea data-field="special_reason"></textarea>
                 </div>
                 <div class="qGrp">
                   <h3>What do you hope to accomplish at Los Altos Hacks V?</h3>
@@ -325,26 +333,38 @@
                   <h3>Which ethnicity do you identify as?</h3>
                   <small>(select all that apply)</small>
                   <label class="radio" data-field="ethnicity">
-                    <input type="checkbox" name="en-race" value="asian" />
+                    <input type="checkbox" name="en-race" value="Asian" />
                     <span>Asian</span>
                   </label>
                   <label class="radio">
-                    <input type="checkbox" name="en-race" value="black" />
+                    <input
+                      type="checkbox"
+                      name="en-race"
+                      value="Black/African"
+                    />
                     <span>Black/African</span>
                   </label>
                   <label class="radio">
-                    <input type="checkbox" name="en-race" value="white" />
+                    <input
+                      type="checkbox"
+                      name="en-race"
+                      value="White/Caucasian"
+                    />
                     <span>White/Caucasian</span>
                   </label>
                   <label class="radio">
-                    <input type="checkbox" name="en-race" value="hispanic" />
+                    <input
+                      type="checkbox"
+                      name="en-race"
+                      value="Hispanic/Latinx"
+                    />
                     <span>Hispanic/Latinx</span>
                   </label>
                   <label class="radio">
                     <input
                       type="checkbox"
                       name="en-race"
-                      value="native_american"
+                      value="Native American/Alaskan Native"
                     />
                     <span>Native American/Alaskan Native</span>
                   </label>
@@ -352,7 +372,7 @@
                     <input
                       type="checkbox"
                       name="en-race"
-                      value="pacific_islander"
+                      value="Pacific Islander"
                     />
                     <span>Pacific Islander</span>
                   </label>
@@ -369,7 +389,7 @@
                   </label>
                 </div>
                 <div class="qGrp required" id="experience">
-                  <h3 for="en-experience" data-field="previous_hackathons">
+                  <h3 for="en-experience">
                     How many hackathons have you previously attended?
                   </h3>
                   <input
@@ -379,26 +399,27 @@
                     min="0"
                     step="1"
                     value="0"
+                    data-field="previous_hackathons"
                     required
                   />
                 </div>
                 <div class="qGrp required" id="t-shirt-size">
                   <h3>What is your t-shirt size?</h3>
                   <small>All sizes come in unisex sizing.</small>
-                  <label class="radio" data-field="tshirt-size">
-                    <input type="radio" name="t-shirt" value="s" />
+                  <label class="radio" data-field="tshirt_size">
+                    <input type="radio" name="t-shirt" value="S" />
                     <span>Small</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="t-shirt" value="m" />
+                    <input type="radio" name="t-shirt" value="M" />
                     <span>Medium</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="t-shirt" value="l" />
+                    <input type="radio" name="t-shirt" value="L" />
                     <span>Large</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="t-shirt" value="xl" />
+                    <input type="radio" name="t-shirt" value="XL" />
                     <span>Extra Large</span>
                   </label>
                 </div>

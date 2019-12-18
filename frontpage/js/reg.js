@@ -208,7 +208,27 @@ $('#submit').click(() => {
         .promise()
         .done(() => {
             $('section.info-fields').css({ 'flex-basis': '0' });
-            $('.progress').fadeOut(1000);
+            $('.progress')
+                .fadeOut(1000)
+                .promise()
+                .done(() => {
+                    // Mobile adaptation
+                    $('.info-fields').hide();
+                    $('.bdg').css({ height: '100%' });
+                    $('.bdg > .container').show();
+                    $('#attendee-reg').attr(
+                        'style',
+                        'margin-bottom: unset !important; height: 85vh !important'
+                    );
+                });
+            $('.bdg .info > h1')
+                .fadeOut(1000)
+                .promise()
+                .done(() => {
+                    $('.bdg .info > h1').text('Congratulations!');
+                    $('.bdg .info > h1').fadeIn(1000);
+                    $('.bdg .info > .finish-msg').fadeIn(1000);
+                });
         });
     // $('#attendee-reg > section:not(#complete)')
     //     .fadeOut(1000)
@@ -396,4 +416,68 @@ function displaySchools() {
     });
 }
 
-function registerAttendee() {}
+function registerAttendee() {
+    var promise = new Promise((resolve, reject) => {
+        var data = {};
+
+        $('[data-field]').each((i, e) => {
+            var $input = $(e);
+            var name = $(e).attr('data-field');
+            var value = $input.val();
+
+            // Special cases
+            // School
+            if (name == 'school') {
+            }
+
+            // Radio Buttons
+            if ($input.hasClass('radio')) {
+                let inpName = $input.find('input').attr('name');
+
+                if (name == 'ethnicity') {
+                    value = [];
+                    $(`input[name=${inpName}]`).each((_, elem) => {
+                        if ($(elem).is(':checked')) {
+                            if ($(elem).is('[value=other]')) {
+                                value.push(
+                                    'Other: ' +
+                                        $(elem)
+                                            .next()
+                                            .find('input')
+                                            .val()
+                                );
+                            } else {
+                                value.push($(elem).val());
+                            }
+                        }
+                    });
+                } else {
+                    value = $(`input[name=${inpName}]:checked`).val();
+                }
+            }
+
+            // Integers
+            if (
+                name == 'age' ||
+                name == 'grade' ||
+                name == 'previous_hackathons'
+            ) {
+                value = parseInt(value);
+            }
+
+            data[name] = value;
+        });
+
+        console.log(data);
+        resolve(data);
+
+        // $.post('http://localhost:8000/attendees/', JSON.stringify(data))
+        //     .done(response => {
+        //         resolve(response);
+        //     })
+        //     .fail(error => {
+        //         reject(error);
+        //     });
+    });
+    return promise;
+}
