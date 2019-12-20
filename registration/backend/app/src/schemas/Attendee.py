@@ -30,7 +30,7 @@ class Attendee(BaseModel):
     gender: str = None
     ethnicity: str = None
     tshirt_size: ShirtSize
-    previous_hackathons: int
+    previous_hackathons: int = 0
     guardian_name: str = None
     guardian_email: EmailStr = None
     guardian_phone_number: str = None
