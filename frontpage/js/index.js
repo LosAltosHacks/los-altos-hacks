@@ -342,7 +342,7 @@ document.getElementById('update-form').addEventListener('submit', emailSubmit);
 var flakes = [],
     canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
-    flakeCount = 400,
+    flakeCount = 4000,
     mX = -100,
     mY = -100;
 
@@ -358,7 +358,7 @@ function snow() {
         var flake = flakes[i],
             x = mX,
             y = mY,
-            minDist = 150,
+            minDist = 400,
             x2 = flake.x,
             y2 = flake.y;
 
