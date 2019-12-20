@@ -486,8 +486,6 @@ function registerAttendee() {
             data[name] = value;
         });
 
-        console.log(data);
-
         $.post('http://localhost:8000/attendees/', JSON.stringify(data))
             .done(response => {
                 resolve(response);
