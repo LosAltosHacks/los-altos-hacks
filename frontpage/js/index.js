@@ -362,9 +362,7 @@ function snow() {
             x2 = flake.x,
             y2 = flake.y;
 
-        var dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)),
-            dx = x2 - x,
-            dy = y2 - y;
+        var dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y));
 
         if (dist < minDist) {
             var force = minDist / (dist * dist),
@@ -434,10 +432,6 @@ function init() {
 
     snow();
 }
-
-canvas.addEventListener('mousemove', function(e) {
-    (mX = e.clientX), (mY = e.clientY);
-});
 
 window.addEventListener('resize', function() {
     canvas.width = window.innerWidth;
