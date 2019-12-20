@@ -25,7 +25,7 @@ class Attendee(BaseModel):
     age: int
     education: str
     school: str = None
-    grade: int
+    grade: int = None
     phone_number: str = None
     gender: str = None
     ethnicity: str = None
