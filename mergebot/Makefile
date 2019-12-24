@@ -37,6 +37,7 @@ run: out/image-id
 SERVE_CONTAINER_NAME = mergebot_serve
 
 serve: out/image-id
+	# Get watchexec here: https://github.com/watchexec/watchexec/releases
 	watchexec --watch src --restart $(MAKE) serve_restart
 .PHONY: serve
 

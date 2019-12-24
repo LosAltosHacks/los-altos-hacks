@@ -5,6 +5,7 @@ import traceback
 import tempfile
 import subprocess
 import logging
+import hmac
 import asyncio
 import aiohttp
 from aiohttp import web
@@ -26,31 +27,63 @@ routes = web.RouteTableDef()
 
 APP_IDENTIFIER_NUMBER = 49662
 PRIVATE_KEY = None
+WEBHOOK_SECRET = None
 
 def get_pk():
     global PRIVATE_KEY
-    if not PRIVATE_KEY:
+    global WEBHOOK_SECRET
+    if not PRIVATE_KEY or not WEBHOOK_SECRET:
         if os.environ["ENVIRONMENT"] == "prod":
-            # S3 stuff
-            raise NotImplemented("TODO: Implement getting key from parameterstore or s3")
+            # https://aws.amazon.com/blogs/compute/managing-secrets-for-amazon-ecs-applications-using-parameter-store-and-iam-roles-for-tasks/
+            import boto3
+            import requests
+            # https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-iam-roles.html
+            # This env var is populated by the container agent, we get our assigned ECS task role from this endpoint
+            role = requests.get(f'http://169.254.170.2{os.environ["AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"]}').json()
+            client = boto3.Session(
+                aws_access_key_id=role["AccessKeyId"],
+                aws_secret_access_key=role["SecretAccessKey"],
+                aws_session_token=role["Token"],
+            ).client('ssm')
+            PRIVATE_KEY = client.get_parameter(Name="/ffmergebot/private-key", WithDecryption=True)["Parameter"]["Value"]
+            WEBHOOK_SECRET = client.get_parameter(Name="/ffmergebot/webhook-secret", WithDecryption=True)["Parameter"]["Value"].encode('utf-8')
         elif os.environ["ENVIRONMENT"] == "dev":
             DEV_PRIVATE_KEY_PATH = "ffmergebot.private-key.pem"
             PRIVATE_KEY = open(DEV_PRIVATE_KEY_PATH, 'rb').read()
             if len(PRIVATE_KEY) == 0:
-                raise RuntimeError("Found privat key file with length 0. Did you remember to use a real cert for development?")
+                raise RuntimeError("Found private key file with length 0. Did you remember to supply a real cert for development?")
+            DEV_WEBHOOK_SECRET_PATH = "webhook-secret.txt"
+            WEBHOOK_SECRET = open(DEV_WEBHOOK_SECRET_PATH, 'rb').read().strip()
+            if len(WEBHOOK_SECRET) == 0:
+                raise RuntimeError("Found webhook secret file with length 0. Did you remember to supply a real cert for development?")
         else:
             raise ValueError(f'Invalid value for ENVIRONMENT: {os.environ["ENVIRONMENT"]}')
     return PRIVATE_KEY
+
+def get_webhook_secret():
+    get_pk()
+    return WEBHOOK_SECRET
 
 def github_installation(installation_id):
     g = GitHub()
     g.login_as_app_installation(get_pk(), APP_IDENTIFIER_NUMBER, installation_id)
     return g
 
+@routes.get("/")
+async def aws_health_check(request):
+    return web.Response(status=200)
+
 @routes.post("/")
 async def recv_webhook(request):
     if "x-github-event" in request.headers and request.headers["x-github-event"] == "issue_comment":
         log().info("Received issue_comment webhook.")
+        # Verify webhook before proceeding
+        if not "x-hub-signature" in request.headers:
+            return web.Response(status=400)
+        header = request.headers["x-hub-signature"]
+        sig = hmac.new(get_webhook_secret(), msg=(await request.read()), digestmod="sha1")
+        if not hmac.compare_digest(sig.hexdigest(), header):
+            return web.Response(status=400)
         return await handle_comment(request)
     return web.Response(status=200)
 
@@ -169,6 +202,9 @@ if __name__ == "__main__":
     logging.basicConfig(format=FORMAT)
     logging.getLogger().setLevel(logging.DEBUG)
 
+    # Fail early on the PK, the app is useless without it
+    get_pk()
+
     app = web.Application()
     app.add_routes(routes)
-    web.run_app(app, port=8080)
+    web.run_app(app, port=8000)

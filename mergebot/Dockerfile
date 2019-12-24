@@ -22,14 +22,14 @@ ARG environment=dev
 # ensure environment has a "good" value
 RUN [[ "$environment" == "dev" || "$environment" == "prod" ]]
 
-# Include cert in dev env only
+# Include cert and secret in dev env only
 COPY ffmergebot.private-key.pem .
-RUN ls
-RUN if [[ "$environment" != "dev" ]]; then rm ffmergebot.private-key.pem; fi
+COPY webhook-secret.txt .
+RUN if [[ "$environment" != "dev" ]]; then rm ffmergebot.private-key.pem webhook-secret.txt; fi
 
 
 ENV ENVIRONMENT $environment
 
-EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT ["python", "./src/main.py"]
