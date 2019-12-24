@@ -14,8 +14,12 @@ clean:
 	rm -rf out
 .PHONY: clean
 
+# Used in development, since Dockerfile fails without it, provide a dummy version here
+ffmergebot.private-key.pem:
+	touch ffmergebot.private-key.pem
+
 # Docker image
-out/image-id: $(shell find src -type f) Dockerfile requirements.txt
+out/image-id: $(shell find src -type f) Dockerfile requirements.txt ffmergebot.private-key.pem
 	mkdir -p $(@D)
 	image_id="lah/mergebot:$(call rand_id)"
 	docker build --tag="$${image_id}" .

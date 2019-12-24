@@ -15,7 +15,20 @@ COPY requirements.txt .
 
 RUN python -m pip install -r requirements.txt
 
-COPY . .
+COPY ./src ./src
+
+ARG environment=dev
+
+# ensure environment has a "good" value
+RUN [[ "$environment" == "dev" || "$environment" == "prod" ]]
+
+# Include cert in dev env only
+COPY ffmergebot.private-key.pem .
+RUN ls
+RUN if [[ "$environment" != "dev" ]]; then rm ffmergebot.private-key.pem; fi
+
+
+ENV ENVIRONMENT $environment
 
 EXPOSE 8080
 

@@ -1,4 +1,5 @@
 import functools
+import os
 import time
 import traceback
 import tempfile
@@ -24,14 +25,21 @@ def log():
 routes = web.RouteTableDef()
 
 APP_IDENTIFIER_NUMBER = 49662
-PRIVATE_KEY_PATH = "noffmergebot.2019-12-21.private-key.pem"
-
 PRIVATE_KEY = None
 
 def get_pk():
     global PRIVATE_KEY
     if not PRIVATE_KEY:
-        PRIVATE_KEY = open(PRIVATE_KEY_PATH, 'rb').read()
+        if os.environ["ENVIRONMENT"] == "prod":
+            # S3 stuff
+            raise NotImplemented("TODO: Implement getting key from parameterstore or s3")
+        elif os.environ["ENVIRONMENT"] == "dev":
+            DEV_PRIVATE_KEY_PATH = "ffmergebot.private-key.pem"
+            PRIVATE_KEY = open(DEV_PRIVATE_KEY_PATH, 'rb').read()
+            if len(PRIVATE_KEY) == 0:
+                raise RuntimeError("Found privat key file with length 0. Did you remember to use a real cert for development?")
+        else:
+            raise ValueError(f'Invalid value for ENVIRONMENT: {os.environ["ENVIRONMENT"]}')
     return PRIVATE_KEY
 
 def github_installation(installation_id):
