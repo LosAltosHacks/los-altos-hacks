@@ -50,7 +50,7 @@ def github_installation(installation_id):
 @routes.post("/")
 async def recv_webhook(request):
     if "x-github-event" in request.headers and request.headers["x-github-event"] == "issue_comment":
-        log().info("Acting on a comment.")
+        log().info("Received issue_comment webhook.")
         return await handle_comment(request)
     return web.Response(status=200)
 
