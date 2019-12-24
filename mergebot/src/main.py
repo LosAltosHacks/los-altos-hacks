@@ -155,8 +155,6 @@ def get_authed_repo_url(token, clone_url):
     return "".join(comps)
 
 if __name__ == "__main__":
-    import os
-
     FORMAT = '%(asctime)s %(name)s %(levelname)s : %(message)s'
     # use UTC
     logging.Formatter.converter = time.gmtime
@@ -165,7 +163,4 @@ if __name__ == "__main__":
 
     app = web.Application()
     app.add_routes(routes)
-    port = os.environ.get("PORT")
-    if port is not None:
-        port = int(port)
-    web.run_app(app, port=port)
+    web.run_app(app, port=8080)
