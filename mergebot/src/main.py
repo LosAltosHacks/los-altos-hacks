@@ -143,7 +143,8 @@ def get_authed_repo_url(token, clone_url):
 if __name__ == "__main__":
     import os
 
-    logging.basicConfig()
+    FORMAT = '%(asctime)s\t%(message)s'
+    logging.basicConfig(format=FORMAT)
     logging.getLogger().setLevel(logging.DEBUG)
 
     app = web.Application()
