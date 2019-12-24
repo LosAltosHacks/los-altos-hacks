@@ -1,4 +1,5 @@
 import functools
+import time
 import traceback
 import tempfile
 import subprocess
@@ -87,8 +88,11 @@ def attempt_merge(request, json):
             log().debug(f"Successful merge of {pr.as_json()} based on event {json}")
         except Exception as e:
             issue.create_comment(
-                "Could not perform FF merge. This likely means you need to rebase your branch.\r\n" +
-                f"Exception info to follow:\r\n\r\n```\r\n{traceback.format_exc()}\r\n```"
+                "Could not perform FF merge. This likely means you need to rebase your branch. " +
+                "A different error may have also occured. " +
+                "If this is a protected branch, make sure I have been given explicit push access. " +
+                "To protect access tokens, a stacktrace is unavailable here. " +
+                f"Examine the logs around time `f{time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime())}`."
             )
             log().exception(f"Failed to merge {pr.as_json()} based on event {json}")
     except Exception as e:
@@ -125,14 +129,24 @@ def do_ff_merge(gh, pr):
     baserepourl = get_authed_repo_url(access_token, pr.base.repository.clone_url)
     if headrepourl == baserepourl:
         # we can do fast path shallow clone since we know the remotes are the same
-        subprocess.run(["git", "clone", "--bare", "--branch", headbranchref, "--shallow-exclude", basebranchref, headrepourl, pwd.name]).check_returncode()
-        subprocess.run(["git", "--git-dir", pwd.name, "fetch", "--deepen", "1"]).check_returncode()
+        run_with_log_checked(["git", "clone", "--bare", "--branch", headbranchref, "--shallow-exclude", basebranchref, headrepourl, pwd.name])
+        run_with_log_checked(["git", "--git-dir", pwd.name, "fetch", "--deepen", "1"])
     else:
         # full clone to ensure we have all the refs
-        subprocess.run(["git", "clone", "--bare", "--branch", headbranchref, headrepourl, pwd.name]).check_returncode()
+        run_with_log_checked(["git", "clone", "--bare", "--branch", headbranchref, headrepourl, pwd.name])
 
-    subprocess.run(["git", "--git-dir", pwd.name, "push", baserepourl, f"{headbranchref}:{basebranchref}"]).check_returncode()
+    run_with_log_checked(["git", "--git-dir", pwd.name, "push", baserepourl, f"{headbranchref}:{basebranchref}"])
     pwd.cleanup()
+
+def run_with_log_checked(args, **kwargs):
+    cprcs = subprocess.run(args, capture_output=True, **kwargs)
+    log().info(f'Process {cprcs.args} finished with code {cprcs.returncode}.')
+    level = logging.INFO
+    if cprcs.returncode == 0:
+        level = logging.DEBUG
+    log().log(level, f'Process {cprcs.args} had output to follow. STDOUT: """{cprcs.stdout}""" STDERR: """\n{cprcs.stderr}"""')
+    cprcs.check_returncode()
+    return cprcs
 
 def get_authed_repo_url(token, clone_url):
     # https://x-access-token:<token>@github.com/owner/repo.git
@@ -143,7 +157,9 @@ def get_authed_repo_url(token, clone_url):
 if __name__ == "__main__":
     import os
 
-    FORMAT = '%(asctime)s\t%(message)s'
+    FORMAT = '%(asctime)s %(name)s %(levelname)s : %(message)s'
+    # use UTC
+    logging.Formatter.converter = time.gmtime
     logging.basicConfig(format=FORMAT)
     logging.getLogger().setLevel(logging.DEBUG)
 
