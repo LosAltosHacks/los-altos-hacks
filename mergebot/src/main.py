@@ -45,7 +45,7 @@ def get_pk():
                 aws_secret_access_key=role["SecretAccessKey"],
                 aws_session_token=role["Token"],
             ).client('ssm')
-            PRIVATE_KEY = client.get_parameter(Name="/ffmergebot/private-key", WithDecryption=True)["Parameter"]["Value"]
+            PRIVATE_KEY = client.get_parameter(Name="/ffmergebot/private-key", WithDecryption=True)["Parameter"]["Value"].encode('utf-8')
             WEBHOOK_SECRET = client.get_parameter(Name="/ffmergebot/webhook-secret", WithDecryption=True)["Parameter"]["Value"].encode('utf-8')
         elif os.environ["ENVIRONMENT"] == "dev":
             DEV_PRIVATE_KEY_PATH = "ffmergebot.private-key.pem"
@@ -82,7 +82,8 @@ async def recv_webhook(request):
             return web.Response(status=400)
         header = request.headers["x-hub-signature"]
         sig = hmac.new(get_webhook_secret(), msg=(await request.read()), digestmod="sha1")
-        if not hmac.compare_digest(sig.hexdigest(), header):
+        if not hmac.compare_digest('sha1='+sig.hexdigest(), header):
+            log().info("Github signature did not verify against secret")
             return web.Response(status=400)
         return await handle_comment(request)
     return web.Response(status=200)
