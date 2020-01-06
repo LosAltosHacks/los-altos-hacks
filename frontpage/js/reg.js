@@ -203,7 +203,6 @@ $(document).on('click', '.progress-step:not(.disabled)', e => {
 });
 
 $('#submit').click(() => {
-    $('.bdg');
     $('.page.active')
         .fadeOut(500)
         .promise()
@@ -231,6 +230,7 @@ $('#submit').click(() => {
                     $('.bdg .info > h1').fadeIn(1000);
                     $('.bdg .info > .finish-msg').fadeIn(1000);
                 });
+            console.log('hi');
         });
     // $('#attendee-reg > section:not(#complete)')
     //     .fadeOut(1000)
