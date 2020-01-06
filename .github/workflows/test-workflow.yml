@@ -32,7 +32,7 @@ jobs:
       - name: Push to ECR
         run: docker push 380692441471.dkr.ecr.us-west-2.amazonaws.com/ffmergebot
       - name: Force ECR Redeploy
-        run: aws ecs update-service --cluster LosAltosHacksCluster --service FFMergeBotService --force-new-deployment
+        run: aws ecs update-service --cluster LosAltosHacksCluster --service FFMergeBotService --force-new-deployment > /dev/null
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
