@@ -196,6 +196,7 @@ $(document).on('click', '.progress-step:not(.disabled)', e => {
         .fadeOut(1000)
         .promise()
         .done(() => {
+            $('.page.active').hide();
             $(page)
                 .fadeIn(1000)
                 .addClass('active');
@@ -203,36 +204,54 @@ $(document).on('click', '.progress-step:not(.disabled)', e => {
 });
 
 $('#submit').click(() => {
-    registerAttendee().then(() => {
-        $('.page.active')
-            .fadeOut(500)
-            .promise()
-            .done(() => {
-                $('section.info-fields').css({ 'flex-basis': '0' });
-                $('.progress')
-                    .fadeOut(1000)
-                    .promise()
-                    .done(() => {
-                        // Mobile adaptation
-                        $('.info-fields').hide();
-                        $('.bdg, .bdg > .container').css({ height: '100%' });
-                        $('.bdg .info').fadeIn(1000);
-                        $('.bdg > .container').show();
-                        $('#attendee-reg').attr(
-                            'style',
-                            'margin-bottom: unset !important; height: 85vh !important'
-                        );
-                    });
-                $('.bdg .info > h1')
-                    .fadeOut(1000)
-                    .promise()
-                    .done(() => {
-                        $('.bdg .info > h1').text('Congratulations!');
-                        $('.bdg .info > h1').fadeIn(1000);
-                        $('.bdg .info > .finish-msg').fadeIn(1000);
-                    });
-            });
-    });
+    registerAttendee().then(
+        () => {
+            $('.page.active')
+                .fadeOut(500)
+                .promise()
+                .done(() => {
+                    $('section.info-fields').css({ 'flex-basis': '0' });
+                    $('.progress')
+                        .fadeOut(1000)
+                        .promise()
+                        .done(() => {
+                            // Mobile adaptation
+                            $('.info-fields').hide();
+                            $('.bdg, .bdg > .container').css({
+                                height: '100%',
+                            });
+                            $('.bdg .info').fadeIn(1000);
+                            $('.bdg > .container').show();
+                            $('#attendee-reg').attr(
+                                'style',
+                                'margin-bottom: unset !important; height: 85vh !important'
+                            );
+                        });
+                    $('.bdg .info > h1')
+                        .fadeOut(1000)
+                        .promise()
+                        .done(() => {
+                            $('.bdg .info > h1').text('Congratulations!');
+                            $('.bdg .info > h1').fadeIn(1000);
+                            $('.bdg .info > .finish-msg').fadeIn(1000);
+                        });
+                });
+        },
+        (status, error) => {
+            if (!error) {
+                $('.error-msg').text(
+                    'Connection refused: Please check your network connection.'
+                );
+            } else {
+                $('.error-msg').text(error);
+            }
+            $('.error-modal').animate({ height: 'toggle' });
+        }
+    );
+});
+
+$('.error-modal > .button').click(() => {
+    $('.error-modal').animate({ height: 'toggle' });
 });
 
 // Check if all required fields on the page has been filled
@@ -485,8 +504,8 @@ function registerAttendee() {
             .done(response => {
                 resolve(response);
             })
-            .fail(error => {
-                reject(error);
+            .fail((xhr, status, error) => {
+                reject(status, error);
             });
     });
     return promise;
