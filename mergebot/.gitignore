@@ -1,0 +1,4 @@
+out
+ffmergebot.private-key.pem
+ffmergebot.*.private-key.pem
+webhook-secret.*
