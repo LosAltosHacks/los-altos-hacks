@@ -10,6 +10,7 @@ uvicorn = "*"
 fastapi = "*"
 sqlalchemy = "*"
 psycopg2 = "*"
+botocore = "*"
 
 [requires]
 python_version = "3.8"

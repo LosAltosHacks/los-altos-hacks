@@ -26,6 +26,7 @@ def get_db():
 def signup(attendee: Attendee.Attendee, db: Session = Depends(get_db)):
     if attendee.validattendee():
         dbtools.create_user(db, attendee)
+        attendee.send_email("email_verify")
         raise HTTPException(status_code=200, detail="Ok")
     raise HTTPException(status_code=400, detail="Minors must provide guardian information.")
 
