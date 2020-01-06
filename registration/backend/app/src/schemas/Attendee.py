@@ -17,20 +17,19 @@ class ShirtSize(enum.Enum):
     large = "L"
     extraLarge = "XL"
 
-
 class Attendee(BaseModel):
     first_name: str
     last_name: str
     email: EmailStr
     age: int
     education: str
-    school: str = None
-    grade: int = None
+    school: str
+    grade: int
     phone_number: str = None
     gender: str = None
     ethnicity: str = None
     tshirt_size: ShirtSize
-    previous_hackathons: int = 0
+    previous_hackathons: int
     guardian_name: str = None
     guardian_email: EmailStr = None
     guardian_phone_number: str = None
@@ -38,7 +37,6 @@ class Attendee(BaseModel):
     linkedin_profile: str = None
     dietary_restrictions: str = None
     goals: str = None
-    special: str = None
 
     class Config:
         orm_mode = True

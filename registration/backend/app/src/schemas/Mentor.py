@@ -10,3 +10,4 @@ class Mentor(BaseModel):
     tshirt_size: ShirtSize
     over_18: bool
     skillset: str = None
+

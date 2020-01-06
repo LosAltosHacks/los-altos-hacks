@@ -2,7 +2,6 @@ from sqlalchemy import Column, String, Boolean, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 from .Person import DBPerson
-from .Timeslots import DBTimeslots
 
 
 class DBMentor(DBPerson):
