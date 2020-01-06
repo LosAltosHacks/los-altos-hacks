@@ -172,7 +172,13 @@ def do_ff_merge(gh, pr):
     if headrepourl == baserepourl:
         # we can do fast path shallow clone since we know the remotes are the same
         run_with_log_checked(["git", "clone", "--bare", "--branch", headbranchref, "--shallow-exclude", basebranchref, headrepourl, pwd.name])
-        run_with_log_checked(["git", "--git-dir", pwd.name, "fetch", "--deepen", "1"])
+        try:
+            run_with_log_checked(["git", "--git-dir", pwd.name, "fetch", "--deepen", "1"])
+        except Exception as e:
+            log().info("Deepen failed, falling back to full checkout...")
+            pwd.cleanup()
+            pwd = tempfile.TemporaryDirectory(prefix="ffmergebot", suffix=".git")
+            run_with_log_checked(["git", "clone", "--bare", "--branch", headbranchref, headrepourl, pwd.name])
     else:
         # full clone to ensure we have all the refs
         run_with_log_checked(["git", "clone", "--bare", "--branch", headbranchref, headrepourl, pwd.name])
