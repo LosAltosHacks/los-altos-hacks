@@ -1,4 +1,5 @@
 import boto3
+import requests
 from botocore.exceptions import ClientError
 from main import app
 
@@ -19,7 +20,6 @@ def read_templates(*templates):
     return temps
 
 HTML_TEMPLATE = read_file('email_templates/html')
-
 TEMPLATES = read_templates("confirmation", "mentor_confirmation")
 
 def format_email(template, data):
@@ -32,10 +32,19 @@ def format_email(template, data):
     message = {**data, 'header_1': header_1, 'header_2': header_2, 'body': body}
     return subject, text, HTML_TEMPLATE.format(**message)
 
-client = boto3.client('ses', region_name=app.config['SES_AWS_REGION'])
-
 def send_email_template(data, template):
-    data['api_endpoint'] = app.config['API_ENDPOINT']
+    role = requests.get(f'http://169.254.170.2{os.environ["AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"]}').json()
+    client = boto3.Session(
+        aws_access_key_id=role["AccessKeyId"],
+        aws_secret_access_key=role["SecretAccessKey"],
+        aws_session_token=role["Token"],
+    ).client('ssm')
+
+    SES_REGION = client.get_parameter(Name="/ses/aws-region")["Parameter"]["Value"].encode('utf-8')
+    SES_SENDER = client.get_parameter(Name="/ses/sender")["Parameter"]["Value"].encode('utf-8')
+
+    client = boto3.client('ses', region_name=SES_REGION)
+
     try:
         subject, text, html = format_email(template, data)
         response = client.send_email(
@@ -56,7 +65,7 @@ def send_email_template(data, template):
                     'Data': subject
                 }
             },
-            Source = app.config['SES_SENDER'])
+            Source = SES_SENDER)
     except ClientError as e:
         print(e.response['Error']['Message'])
     else:
