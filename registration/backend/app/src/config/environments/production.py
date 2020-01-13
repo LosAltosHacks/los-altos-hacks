@@ -1,8 +1,12 @@
 from ..common import *
+import os
+import requests
 
 _SSM_CLIENT = None
 _SSM_PREFIX = "lah_registration"
 def get_param(param_name, with_decryption=True):
+    global _SSM_CLIENT
+    global _SSM_PREFIX
     # https://aws.amazon.com/blogs/compute/managing-secrets-for-amazon-ecs-applications-using-parameter-store-and-iam-roles-for-tasks/
     import boto3
     import requests
@@ -15,7 +19,7 @@ def get_param(param_name, with_decryption=True):
             aws_secret_access_key=role["SecretAccessKey"],
             aws_session_token=role["Token"],
         ).client('ssm')
-    return _SSM_CLIENT.get_parameter(Name=f"/{_SSM_PREFIX}/{param_name}", WithDecryption=with_decryption)["Parameter"]["Value"].encode('utf-8')
+    return _SSM_CLIENT.get_parameter(Name=f"/{_SSM_PREFIX}/{param_name}", WithDecryption=with_decryption)["Parameter"]["Value"]
 
 SQLALCHEMY_DATABASE_URL = get_param("database_url")
 SES_AWS_REGION = get_param("ses_region")
