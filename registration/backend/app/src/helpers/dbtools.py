@@ -1,6 +1,6 @@
 import datetime
 import enum
-from typing import Union, Dict
+from typing import Union
 
 import schemas.Attendee as attendee
 import schemas.Mentor as mentor
@@ -56,8 +56,11 @@ def create_user(db: Session, user: Union[attendee.Attendee, mentor.Mentor],
     return db_user
 
 
-def search_for_users(db: Session, criteria: Dict[str, str]):
-    return db.query(DBPerson).filter_by(**criteria).all()
+def search_for_users(db: Session, criteria, model: Union[DBPerson, DBAttendee, DBMentor] = DBAttendee):
+    query = db.query(model)
+    for crit in criteria:
+        query = query.filter(getattr(model, crit[0]) == crit[1])
+    return query.all()
 
 
 def update_user(db: Session, user_id: str, columns_to_update: dict,
@@ -68,7 +71,3 @@ def update_user(db: Session, user_id: str, columns_to_update: dict,
         if hasattr(user, key):
             setattr(user, key, value)
     db.commit()
-
-# def add_timeslot(db: Session, user: DBPerson):
-#     DBTimeslots(start_time=datetime.datetime.utcnow(), end_time=datetime.datetime.utcnow(), mentor=user)
-#     db.commit()
