@@ -54,4 +54,4 @@ start_db:
 	# TODO better error handling here
 	docker network create lah_reg || true
 	docker container rm --force lah_reg_postgres || true
-	docker run --name lah_reg_postgres -d --network=lah_reg --publish 5432:5432 -e POSTGRES_DB=testregistration -e POSTGRES_USER=root postgres:12.1-alpine
+	docker run --name lah_reg_postgres -d --network=lah_reg --publish 5432:5432 -e POSTGRES_DB=testregistration -e POSTGRES_USER=root postgres:11.5-alpine
