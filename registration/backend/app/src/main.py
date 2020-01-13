@@ -1,12 +1,15 @@
+# Fail dynamic config early
+import config
 import os
 from datetime import datetime, timedelta
 
-import database.starter as starter
 import jwt
 import uvicorn
 from fastapi import Depends, HTTPException
 from fastapi import FastAPI
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+import models.database
+from models.database import get_db
 from models.Hosts import DBHost
 from passlib.context import CryptContext
 from pydantic import BaseModel
@@ -26,29 +29,15 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["POST"],
     allow_headers=["*"],
 )
 app.include_router(registrationRouter, prefix="/attendees")
-
-app.config = {}
-# app.config['SQLALCHEMY_DATABASE_URL'] = os.getenv('SQLALCHEMY_DATABASE_URL')
-app.config['SES_AWS_REGION'] = os.getenv('SES_AWS_REGION')
-app.config['SES_SENDER'] = os.getenv('SES_SENDER')
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-starter.dbBase.metadata.create_all(bind=starter.engine)
 password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
-JWT_SECRET_KEY = ""
-
-
-def get_db():
-    try:
-        db = starter.SessionLocal()
-        yield db
-    finally:
-        db.close()
+# TODO: remove this constant
+JWT_SECRET_KEY = config.JWT_SECRET_KEY
 
 
 class Token(BaseModel):
@@ -132,4 +121,5 @@ async def login_host(db: Session = Depends(get_db), form_data: OAuth2PasswordReq
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="localhost", port=8000)
+    models.database.do_create_all()
+    uvicorn.run(app, host="localhost", port=8000, log_level="info")

@@ -1,7 +1,7 @@
 import datetime
 import uuid
 
-from database.starter import dbBase
+from models.database import dbBase
 from schemas.Attendee import AcceptanceStatusEnum, ShirtSize
 from sqlalchemy import Column, String, Integer, Enum, Boolean, DateTime
 

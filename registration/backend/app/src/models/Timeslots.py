@@ -1,4 +1,4 @@
-from database.starter import dbBase
+from models.database import dbBase
 from sqlalchemy import Column, Integer, DateTime, ForeignKey
 
 

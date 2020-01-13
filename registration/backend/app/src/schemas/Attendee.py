@@ -1,7 +1,8 @@
 import enum
 
-from registration import get_db
-from db_tools import get_users
+from models.database import get_db
+# from helpers.dbtools import get_users
+import helpers.dbtools as dbtools
 from pydantic import BaseModel, EmailStr
 
 
@@ -51,7 +52,7 @@ class Attendee(BaseModel):
 
     def send_email(self, template):
         full_name = self.first_name + " " + self.last_name
-        email_data = get_users(get_db())
+        email_data = dbtools.get_users(get_db())
 
         full_data = {**email_data, 'full_name': full_name, 'email_verification_token': self.email_token}
         send_email_template(full_data, template)

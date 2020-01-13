@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, SmallInteger, Integer
-from starter.database import dbBase
+from models.database import dbBase
 
 class SignIn(dbBase):
     __tablename__ = "signin"
