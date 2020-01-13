@@ -1,3 +1,5 @@
+const API_ENDPOINT = 'http://localhost:8000';
+
 // Update focus state of question groups
 $('.qGrp input, .qGrp textarea, .qGrp select').focus(e => {
     $('.qGrp.active').removeClass('active');
@@ -368,11 +370,13 @@ function getFields() {
 function getSchools(params) {
     var promise = new Promise(resolve => {
         $.get(
-            `./fetch_school.php?state=${
-                params.state ? params.state : ''
-            }&city=${params.city ? params.city : ''}&zipcode=${
-                params.zipcode ? params.zipcode : ''
-            }&name=${params.name ? params.name : ''}`,
+            APi_ENDPOINT + '/schools',
+            {
+                state: params.state,
+                city: params.city,
+                zipcode: params.zipcode,
+                name: params.name,
+            },
             response => {
                 var schools = [];
                 var rows = $(response)
@@ -500,7 +504,7 @@ function registerAttendee() {
             data[name] = value;
         });
 
-        $.post('http://localhost:8000/attendees/', JSON.stringify(data))
+        $.post(APi_ENDPOINT + '/attendees', JSON.stringify(data))
             .done(response => {
                 resolve(response);
             })

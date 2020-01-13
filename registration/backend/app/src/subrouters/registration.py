@@ -21,7 +21,6 @@ def get_db():
     finally:
         db.close()
 
-
 @registrationRouter.post("/")
 def signup(attendee: Attendee.Attendee, db: Session = Depends(get_db)):
     if attendee.validattendee():
@@ -102,3 +101,9 @@ def search_for_specific(user_id: uuid.UUID = None, first_name: str = None, last_
                         db: Session = Depends(get_db)):
     if user_id or first_name or last_name or email or phonenumber or guardian_first_name or guardian_last_name or guardian_phone_number:
         pass  # TODO: Finish db search endpoint
+
+@registrationRouter.get("/schools")
+def query_schools(state: str = "", city: str = "", zipcode: str = "", name: str = ""):
+    import requests
+    r = requests.get("https://nces.ed.gov/globallocator/index.asp?State={}&city={}&zipcode={}&miles=&itemname={}&sortby=name&School=1&PrivSchool=1".format(state, city, zipcode, name))
+    return r.content
