@@ -1,4 +1,6 @@
-const API_ENDPOINT = 'http://localhost:8000';
+const API_ENDPOINT = window.location.href.startsWith('https')
+    ? 'https://api.losaltoshacks.com'
+    : 'http://localhost:8000';
 
 // Update focus state of question groups
 $('.qGrp input, .qGrp textarea, .qGrp select').focus(e => {
@@ -383,7 +385,7 @@ function getFields() {
 function getSchools(params) {
     var promise = new Promise(resolve => {
         $.get(
-            API_ENDPOINT + '/schools',
+            API_ENDPOINT + '/attendees/nces_school_search',
             {
                 state: params.state,
                 city: params.city,

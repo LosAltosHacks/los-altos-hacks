@@ -136,7 +136,7 @@ EMAIL_VERIFIED_PAGE_TEMPLATE = """
         <h1>{message}</h1>
         <p>
           Feel free to close the page or
-          <a href="/">return to the main website</a>.
+          <a href="https://losaltoshacks.com">return to the main website</a>.
           For any kind of help, please contact us at
           <a href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a>.
         </p>
@@ -146,7 +146,7 @@ EMAIL_VERIFIED_PAGE_TEMPLATE = """
 </html>
 """
 
-@registrationRouter.get("/schools")
+@registrationRouter.get("/nces_school_search/")
 def query_schools(state: str = "", city: str = "", zipcode: str = "", name: str = ""):
     import requests
     r = requests.get("https://nces.ed.gov/globallocator/index.asp?State={}&city={}&zipcode={}&miles=&itemname={}&sortby=name&School=1&PrivSchool=1".format(state, city, zipcode, name))
