@@ -47,9 +47,9 @@ def get_users(db: Session, skip: int = 0, limit: int = 100, model: Union[DBPerso
 def create_user(db: Session, user: Union[attendee.Attendee, mentor.Mentor],
                 model: Union[DBPerson, DBAttendee, DBMentor] = DBAttendee):
     db_user = model(**dict(user))
-    if olduser := get_user_by_email(db, user.email, model=model):
-        db_user.user_id = olduser.user_id
-        olduser.outdated = True
+    if get_user_by_email(db, user.email, model=model):
+        # Disallow duplicate email registration
+        return None
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

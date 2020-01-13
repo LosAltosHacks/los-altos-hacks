@@ -19,7 +19,8 @@ import main  # NO TOUCHING LEFT THIS FIXES A CIRCULAR IMPORT
 @registrationRouter.post("/")
 def signup(attendee: Attendee.Attendee, db: Session = Depends(get_db)):
     if attendee.validattendee():
-        dbtools.create_user(db, attendee)
+        if not dbtools.create_user(db, attendee):
+            raise HTTPException(status_code=400, detail="Email is in use. Contact info@losaltoshacks.com if this is an error or to update your information.")
         attendee.send_email("email_verify")
         raise HTTPException(status_code=200, detail="Ok")
     raise HTTPException(status_code=400, detail="Minors must provide guardian information.")
