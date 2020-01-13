@@ -45,12 +45,17 @@ def get_users(db: Session, skip: int = 0, limit: int = 100, model: Union[DBPerso
 
 
 def create_user(db: Session, user: Union[attendee.Attendee, mentor.Mentor],
-                model: Union[DBPerson, DBAttendee, DBMentor] = DBAttendee):
+                url_for, model: Union[DBPerson, DBAttendee, DBMentor] = DBAttendee):
+    # TODO: assert that model matches schema
     db_user = model(**dict(user))
     if get_user_by_email(db, user.email, model=model):
         # Disallow duplicate email registration
         return None
     db.add(db_user)
+    # Fail commit if can't send email
+    # But first, fill out auto fields with a flush:
+    db.flush()
+    db_user.send_verification_email("email_verify", url_for)
     db.commit()
     db.refresh(db_user)
     return db_user

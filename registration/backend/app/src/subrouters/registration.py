@@ -7,6 +7,8 @@ from models.Hosts import DBHost
 from models.database import get_db
 from pydantic import EmailStr
 from sqlalchemy.orm import Session
+from starlette.requests import Request
+from starlette.responses import Response
 
 registrationRouter = APIRouter()
 # Main imports the reg router, so we import main after it
@@ -14,11 +16,10 @@ registrationRouter = APIRouter()
 import main
 
 @registrationRouter.post("/")
-def signup(attendee: Attendee.Attendee, db: Session = Depends(get_db)):
+def signup(attendee: Attendee.Attendee, request: Request, db: Session = Depends(get_db)):
     if attendee.validattendee():
-        if not dbtools.create_user(db, attendee):
+        if not dbtools.create_user(db, attendee, request.url_for):
             raise HTTPException(status_code=400, detail="Email is in use. Contact info@losaltoshacks.com if this is an error or to update your information.")
-        attendee.send_email("email_verify")
         raise HTTPException(status_code=200, detail="Ok")
     raise HTTPException(status_code=400, detail="Minors must provide guardian information.")
 
@@ -69,17 +70,21 @@ def delete_specified_user(user_id: uuid.UUID, db: Session = Depends(get_db),
     raise HTTPException(status_code=401, detail="Unauthorized request.")
 
 
-@registrationRouter.get("/verify/{user_id}/{email_token}/")
-def verify_user(user_id: uuid.UUID, email_token: uuid.UUID, db: Session = Depends(get_db),
-                host: DBHost = Depends(main.get_current_host)):
-    if host:
-        if user := dbtools.get_user(db, user_id.hex):
-            if user.email_token == email_token and not user.email_verified:
-                dbtools.update_user(db, user_id.hex, {"email_verified": True, "email_token": None})
-                raise HTTPException(status_code=200, detail=f"USER <'{user_id.hex}'> has been verified!")
-            raise HTTPException(status_code=304, detail=f"USER <'{user_id.hex}'> not modified.")
-        raise HTTPException(status_code=404, detail=f"USER <'{user_id.hex}'> not found.")
-    raise HTTPException(status_code=401, detail="Unauthorized request.")
+@registrationRouter.get("/verify/{user_id}/{email_token}/", name="email_verify")
+def verify_user(user_id: uuid.UUID, email_token: uuid.UUID, db: Session = Depends(get_db)):
+
+    def mk_response(code, msg):
+        return Response(status_code=code, content=EMAIL_VERIFIED_PAGE_TEMPLATE.format(message=msg), media_type="text/html")
+
+    if not (user := dbtools.get_user(db, user_id.hex)):
+        return mk_response(400, "User not found. How did you get here?")
+    if user.email_verified:
+        return mk_response(400, "Your email is already verified. You're good to go!")
+    if not user.email_token == email_token.hex:
+        return mk_response(400, "Invalid token. Trying to cheat? :0")
+
+    dbtools.update_user(db, user_id.hex, {"email_verified": True})
+    return mk_response(200, "Email successfully verified. All done!")
 
 
 # Do not remove it is used to figure out what parameters of a function are real
@@ -99,3 +104,42 @@ def search_for_specific(user_id: uuid.UUID = None, first_name: str = None, last_
             return dbtools.search_for_users(db, meme)
         return list_users(db)
     raise HTTPException(status_code=401, detail="Unauthorized request.")
+
+
+# TODO clean this up, brittleness on main site and uncleanly location:
+EMAIL_VERIFIED_PAGE_TEMPLATE = """
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Verification</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="robots" content="noindex" />
+
+    <link rel="shortcut icon" href="https://www.losaltoshacks.com/favicon.ico" />
+    <link rel="icon" type="image/png" href="https://www.losaltoshacks.com/favicon.png" />
+    <link rel="apple-touch-icon" href="https://www.losaltoshacks.com/touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/error.css" />
+  </head>
+  <body>
+    <article>
+      <div class="container">
+        <img id="logo" src="https://www.losaltoshacks.com/images/lahv-logo-vector.svg" />
+        <h1>{message}</h1>
+        <p>
+          Feel free to close the page or
+          <a href="/">return to the main website</a>.
+          For any kind of help, please contact us at
+          <a href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a>.
+        </p>
+      </div>
+    </article>
+  </body>
+</html>
+"""

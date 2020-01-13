@@ -28,7 +28,7 @@ class Attendee(BaseModel):
     education: str
     school: str
     grade: int
-    phone_number: str = None
+    phone_number: str
     gender: str = None
     ethnicity: str = None
     tshirt_size: ShirtSize
@@ -49,10 +49,3 @@ class Attendee(BaseModel):
 
     def validattendee(self) -> bool:
         return self.age >= 18 or self.age < 18 and self.hasinformation()
-
-    def send_email(self, template):
-        full_name = self.first_name + " " + self.last_name
-        email_data = dbtools.get_users(get_db())
-
-        full_data = {**email_data, 'full_name': full_name, 'email_verification_token': self.email_token}
-        send_email_template(full_data, template)
