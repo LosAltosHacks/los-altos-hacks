@@ -17,6 +17,8 @@ import main
 
 @registrationRouter.post("/")
 def signup(attendee: Attendee.Attendee, request: Request, db: Session = Depends(get_db)):
+    # if things really hit the fan on deployment night, we can replay this from cloudwatch:
+    print(f"Signup Request received | {attendee.json()}")
     if attendee.validattendee():
         if not dbtools.create_user(db, attendee, request.url_for):
             raise HTTPException(status_code=400, detail="Email is in use. Contact info@losaltoshacks.com if this is an error or to update your information.")
