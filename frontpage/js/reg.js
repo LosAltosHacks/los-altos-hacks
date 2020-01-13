@@ -1,3 +1,5 @@
+const API_ENDPOINT = 'http://localhost:8000';
+
 // Update focus state of question groups
 $('.qGrp input, .qGrp textarea, .qGrp select').focus(e => {
     $('.qGrp.active').removeClass('active');
@@ -240,9 +242,19 @@ $('#submit').click(() => {
         (status, error) => {
             if (!error) {
                 $('.error-msg').text(
-                    'Connection refused: Please check your network connection.'
+                    'Failed to connect: Please check your network connection.'
                 );
             } else {
+                switch (status) {
+                    case 400:
+                        error = 'Failed to process request: ' + error;
+                        break;
+                    case 503:
+                        error = 'Service unavailable: ' + error;
+                        break;
+                    default:
+                        break;
+                }
                 $('.error-msg').text(error);
             }
             $('.error-modal').animate({ height: 'toggle' });
@@ -368,11 +380,13 @@ function getFields() {
 function getSchools(params) {
     var promise = new Promise(resolve => {
         $.get(
-            `./fetch_school.php?state=${
-                params.state ? params.state : ''
-            }&city=${params.city ? params.city : ''}&zipcode=${
-                params.zipcode ? params.zipcode : ''
-            }&name=${params.name ? params.name : ''}`,
+            API_ENDPOINT + '/schools',
+            {
+                state: params.state,
+                city: params.city,
+                zipcode: params.zipcode,
+                name: params.name,
+            },
             response => {
                 var schools = [];
                 var rows = $(response)
@@ -500,9 +514,9 @@ function registerAttendee() {
             data[name] = value;
         });
 
-        $.post('http://localhost:8000/attendees/', JSON.stringify(data))
-            .done(response => {
-                resolve(response);
+        $.post(API_ENDPOINT + '/attendees', JSON.stringify(data))
+            .done((response, statusText, xhr) => {
+                if (xhr.status == 200) resolve(response);
             })
             .fail((xhr, status, error) => {
                 reject(status, error);
