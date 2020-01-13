@@ -325,3 +325,73 @@ function emailSubmit(evt) {
         });
 }
 document.getElementById('update-form').addEventListener('submit', emailSubmit);
+
+var s0 = document.getElementById("question0");
+var s1 = document.getElementById("question1");
+var s2 = document.getElementById("question2");
+var s3 = document.getElementById("question3");
+var s4 = document.getElementById("question4");
+var s5 = document.getElementById("question5");
+var s6 = document.getElementById("question6");
+var s7 = document.getElementById("question7");
+var s8 = document.getElementById("question8");
+var s9 = document.getElementById("question9");
+
+s0.onclick = function(event){
+    animateDown(0, 105);
+}
+
+s1.onclick = function(event){
+    animateDown(1, 126);
+}
+
+s2.onclick = function(event){
+    animateDown(2, 105);
+}
+
+s3.onclick = function(event){
+    animateDown(3, 105);
+}
+
+s4.onclick = function(event){
+    animateDown(4, 63);
+}
+
+s5.onclick = function(event){
+    animateDown(5, 105);
+}
+
+s6.onclick = function(event){
+    animateDown(6, 105);
+}
+
+s7.onclick = function(event){
+    animateDown(7, 63);
+}
+
+s8.onclick = function(event){
+    animateDown(8, 63);
+}
+
+s9.onclick = function(event){
+    animateDown(9, 63);
+}
+
+
+function animateDown(number, maxHeight){
+    var doc = document.getElementById("answer" + number);
+    console.log(doc.classList);
+
+    if(!doc.classList.contains("open")){
+        // s1.style.height = "0px";
+        //setInterval(function (){height(0)}, 50);
+        //how do you close this????
+    } else {
+        doc.style.height = "0px";
+        setInterval(function (){height(maxHeight)}, 10);
+    }
+
+    function height(val){
+        doc.style.height = val + "px";
+    }
+}

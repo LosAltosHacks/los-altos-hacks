@@ -296,13 +296,13 @@ nav > .container a {
     position: absolute;
     background-position: center;
     background: url('../images/info-bg-image.jpg'),
-        linear-gradient(
+    linear-gradient(
             to bottom,
             rgba(255, 255, 255, 0),
             rgba(255, 255, 255, 0),
             rgba(255, 255, 255, 0),
             rgba(255, 255, 255, 1)
-        );
+    );
     background-blend-mode: lighten;
     background-repeat: no-repeat;
     background-size: cover;
@@ -571,9 +571,9 @@ nav > .container a {
 }
 #mission .overlay {
     background: linear-gradient(
-        to right,
-        rgba(36, 121, 124, 0.75),
-        rgba(29, 83, 91, 0.75)
+            to right,
+            rgba(36, 121, 124, 0.75),
+            rgba(29, 83, 91, 0.75)
     );
     color: white;
     align-items: center;
@@ -650,10 +650,14 @@ nav > .container a {
     font-size: var(--s-1);
     line-height: 1.2em;
 }
+
+
 .answer {
+    height: 0px;
     margin-top: 1em;
     font-size: var(--s-2);
 }
+
 .answer > p {
     line-height: 1.3em;
 }
