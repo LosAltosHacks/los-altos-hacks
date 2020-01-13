@@ -1,6 +1,6 @@
 import enum
 
-from registration import get_db
+from subrouters.registration import get_db
 from db_tools import get_users
 from pydantic import BaseModel, EmailStr
 

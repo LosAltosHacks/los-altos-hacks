@@ -504,7 +504,7 @@ function registerAttendee() {
             data[name] = value;
         });
 
-        $.post(APi_ENDPOINT + '/attendees', JSON.stringify(data))
+        $.post(API_ENDPOINT + '/attendees', JSON.stringify(data))
             .done(response => {
                 resolve(response);
             })
