@@ -370,7 +370,7 @@ function getFields() {
 function getSchools(params) {
     var promise = new Promise(resolve => {
         $.get(
-            APi_ENDPOINT + '/schools',
+            API_ENDPOINT + '/schools',
             {
                 state: params.state,
                 city: params.city,
