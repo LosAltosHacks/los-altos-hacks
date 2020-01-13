@@ -40,6 +40,7 @@ class Attendee(BaseModel):
     linkedin_profile: str = None
     dietary_restrictions: str = None
     goals: str = None
+    special: str = None
 
     class Config:
         orm_mode = True

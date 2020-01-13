@@ -22,6 +22,7 @@ class DBAttendee(DBPerson):
     github_username = Column(String(255))
     linkedin_profile = Column(String(255))
     goals = Column(String(1000))
+    special = Column(String(1000))
 
     __mapper_args__ = {
         "polymorphic_identity": "attendees",
