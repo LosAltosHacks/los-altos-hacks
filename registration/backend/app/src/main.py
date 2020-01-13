@@ -36,6 +36,10 @@ app.include_router(registrationRouter, prefix="/attendees")
 password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
+@app.get("/health/")
+def health_check():
+    return {"health": "good"}
+
 # TODO: remove this constant
 JWT_SECRET_KEY = config.JWT_SECRET_KEY
 
