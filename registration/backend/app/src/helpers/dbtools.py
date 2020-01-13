@@ -70,4 +70,6 @@ def update_user(db: Session, user_id: str, columns_to_update: dict,
     for key, value in columns_to_update.items():
         if hasattr(user, key):
             setattr(user, key, value)
+        else:
+            raise KeyError(f"Model {model} has no attribute {key}")
     db.commit()
