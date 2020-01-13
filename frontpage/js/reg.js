@@ -264,6 +264,9 @@ $('#submit').click(() => {
 
 $('.error-modal > .button').click(() => {
     $('.error-modal').animate({ height: 'toggle' });
+    $('#review.page')
+        .fadeIn(1000)
+        .addClass('active');
 });
 
 // Check if all required fields on the page has been filled
