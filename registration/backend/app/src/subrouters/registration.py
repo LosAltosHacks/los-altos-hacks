@@ -9,12 +9,9 @@ from pydantic import EmailStr
 from sqlalchemy.orm import Session
 
 registrationRouter = APIRouter()
-
-# DONT TOUCH BELOW THIS FIXES A CIRCULAR IMPORT
-import main  # NO TOUCHING LEFT THIS FIXES A CIRCULAR IMPORT
-
-
-# DONT TOUCH ABOVE THIS FIXES A CIRCULAR IMPORT
+# Main imports the reg router, so we import main after it
+# TODO: Refactor the DBHost helpers in main somewhere else
+import main
 
 @registrationRouter.post("/")
 def signup(attendee: Attendee.Attendee, db: Session = Depends(get_db)):
