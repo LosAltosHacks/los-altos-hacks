@@ -79,6 +79,7 @@ def send_email_template(data, template):
             },
             Source = config.SES_SENDER)
     except ClientError as e:
-        print(e.response['Error']['Message'])
+        print("Failed to send email:", e.response['Error']['Message'], "\nDeliberately failing...")
+        raise e
     else:
         print("Sent email to " + data['email'] + "; MessageId: '" + response['MessageId'] + "'")
