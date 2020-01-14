@@ -23,7 +23,7 @@ def signup(attendee: Attendee.Attendee, request: Request, db: Session = Depends(
         if not dbtools.create_user(db, attendee, request.url_for):
             raise HTTPException(status_code=400, detail="Email is in use. Contact info@losaltoshacks.com if this is an error or to update your information.")
         raise HTTPException(status_code=200, detail="Ok")
-    raise HTTPException(status_code=400, detail="Minors must provide guardian information. High schoolers must provide grade information.")
+    raise HTTPException(status_code=400, detail="Minors must provide guardian information. Middle and High school students must provide school and grade.")
 
 
 @registrationRouter.get("/")

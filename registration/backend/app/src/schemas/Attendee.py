@@ -49,7 +49,8 @@ class Attendee(BaseModel):
         return bool(self.guardian_name and self.guardian_email and self.guardian_phone_number)
 
     def validattendee(self) -> bool:
-        if not (self.age >= 18 or self.age < 18 and self.hasinformation()):
+        if self.age < 18 and not self.hasinformation():
             return False
-        if self.education == "High School":
+        if self.education == "High School" or self.education == "Middle School":
             return self.grade and self.school
+        return True
