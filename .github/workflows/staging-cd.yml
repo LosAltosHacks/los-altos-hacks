@@ -24,32 +24,3 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  deploy-reg-backend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-      - name: Set AWS Region
-        run: aws configure set default.region us-west-2
-      - name: Login to AWS ECR
-        run: eval $(aws ecr get-login --no-include-email)
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      - name: Pull Cache from ECR
-        run: docker pull 380692441471.dkr.ecr.us-west-2.amazonaws.com/registration-backend:latest
-      - name: Build Container
-        run: >-
-          docker build
-          --pull
-          --tag 380692441471.dkr.ecr.us-west-2.amazonaws.com/registration-backend
-          --cache-from 380692441471.dkr.ecr.us-west-2.amazonaws.com/registration-backend:latest
-          registration/backend
-      - name: Push to ECR
-        run: docker push 380692441471.dkr.ecr.us-west-2.amazonaws.com/registration-backend
-      - name: Force ECR Redeploy
-        run: aws ecs update-service --cluster LosAltosHacksCluster --service RegistrationBackendService --force-new-deployment > /dev/null
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

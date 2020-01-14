@@ -513,7 +513,7 @@ function registerAttendee() {
             data[name] = value;
         });
 
-        $.post(API_ENDPOINT + '/attendees', JSON.stringify(data))
+        $.post(API_ENDPOINT + '/attendees/', JSON.stringify(data))
             .done((response, _statusText, xhr) => {
                 if (xhr.status == 200) resolve(response);
             })
