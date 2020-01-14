@@ -4,3 +4,5 @@
 .terraform
 
 .DS_Store
+
+*.pyc

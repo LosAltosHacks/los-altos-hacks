@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Los Altos Hacks V - Registration</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <meta property="og:title" content="Los Altos Hacks V" />
+    <meta property="og:type" content="website" />
+    <!-- <meta property="og:url" content="https://www.losaltoshacks.com/" /> -->
+    <meta
+      property="og:description"
+      content="A 24-hour high school hackathon. Coming March 2020."
+    />
+    <meta
+      property="og:image"
+      content="https://www.losaltoshacks.com/images/social-media.png"
+    />
+
+    <meta name="twitter:title" content="Los Altos Hacks V" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@losaltoshacks" />
+    <meta
+      name="twitter:description"
+      content="A 24-hour high school hackathon. Coming March 2020."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.losaltoshacks.com/images/social-media.png"
+    />
+
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <link rel="apple-touch-icon" href="../touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/registration.css" />
+  </head>
+  <body id="registration">
+    <main>
+      <div id="attendee-reg">
+        <section class="bdg">
+          <div class="container">
+            <div class="info">
+              <h1>Sign up</h1>
+              <div id="logo">
+                <img src="../images/lahv-logo-vector.svg" />
+              </div>
+              <h4>March 21-22, 2020</h4>
+              <p>Juniper Aspiration Dome</p>
+              <small>1081 Innovation Way, Sunnyvale CA</small>
+              <div class="finish-msg">
+                <p>
+                  Way to go! You've submitted your application to Los Altos
+                  Hacks V. Keep on a lookout for emails from us for updates and
+                  next steps!
+                </p>
+                <!-- <a class="button">View email</a> -->
+              </div>
+            </div>
+          </div>
+          <div class="progress">
+            <a class="progress-step" data-page="#basic-info">
+              <span class="icon">
+                <img src="../images/icons/basic-info.svg" />
+              </span>
+              <span class="title">Basic Info</span>
+            </a>
+            <a class="progress-step disabled" data-page="#profile">
+              <span class="icon">
+                <img src="../images/icons/profile.svg" />
+              </span>
+              <span class="title">Profile</span>
+            </a>
+            <a class="progress-step disabled" data-page="#contact-info">
+              <span class="icon">
+                <img src="../images/icons/contact.svg" />
+              </span>
+              <span class="title">Contact Info</span>
+            </a>
+            <a class="progress-step disabled" data-page="#review">
+              <span class="icon"><img src="../images/icons/check.svg" /></span>
+              <span class="title">Review</span>
+            </a>
+          </div>
+        </section>
+        <section class="info-fields">
+          <div class="container">
+            <form id="reg-form">
+              <section class="page active" id="basic-info">
+                <h1>Basic Information</h1>
+                <div class="qGrp required" id="first-name">
+                  <h3 for="en-first">What is your first name?</h3>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-first"
+                    data-field="first_name"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="last-name">
+                  <h3 for="en-last">What is your last name?</h3>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-last"
+                    data-field="last_name"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="age">
+                  <h3 for="en-age">How old are you?</h3>
+                  <input
+                    type="number"
+                    placeholder="Type your answer here..."
+                    id="en-age"
+                    data-field="age"
+                    min="3"
+                    step="1"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="education">
+                  <h3>I am currently...</h3>
+                  <label class="radio" data-field="education">
+                    <input
+                      type="radio"
+                      name="ed"
+                      value="High School"
+                      required
+                    />
+                    <span>In High School</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="ed" value="Home School" />
+                    <span>Home-schooled</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="ed" value="Middle School" />
+                    <span>In Middle School or below</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="ed" value="College" />
+                    <span>In College</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="ed" value="Not In School" />
+                    <span>Not In School</span>
+                  </label>
+                </div>
+                <div class="qGrp hidden" id="school" data-field="school">
+                  <h3 for="en-school">What school do you currently attend?</h3>
+                  <small>
+                    If you cannot find your school in our list, try entering
+                    your school's zip code. If you still cannot find your
+                    school, please enter the name of your school and, if
+                    possible, your zip code.
+                  </small>
+                  <input
+                    type="text"
+                    placeholder="School Name"
+                    id="en-school-name"
+                  />
+                  <input type="text" placeholder="City" id="en-school-city" />
+                  <select id="en-school-state">
+                    <option value="">- Any State -</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District&nbsp;of&nbsp;Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New&nbsp;Hampshire</option>
+                    <option value="NJ">New&nbsp;Jersey</option>
+                    <option value="NM">New&nbsp;Mexico</option>
+                    <option value="NY">New&nbsp;York</option>
+                    <option value="NC">North&nbsp;Carolina</option>
+                    <option value="ND">North&nbsp;Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode&nbsp;Island</option>
+                    <option value="SC">South&nbsp;Carolina</option>
+                    <option value="SD">South&nbsp;Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West&nbsp;Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                    <option value=""></option>
+                    <option value="AS">American&nbsp;Samoa</option>
+                    <option value="GU">Guam</option>
+                    <option value="MH">Marshall&nbsp;Islands</option>
+                    <option value="FM">Micronesia</option>
+                    <option value="MP">Northern&nbsp;Marianas</option>
+                    <option value="PW">Palau</option>
+                    <option value="PR">Puerto&nbsp;Rico</option>
+                    <option value="VI">Virgin&nbsp;Islands</option>
+                    <option value=""></option>
+                    <option value="OTHER">
+                      Bureau&nbsp;of&nbsp;Indian Education
+                    </option>
+                    <option value="OTHER">DOD&nbsp;(Domestic)</option>
+                    <option value="OTHER">DOD&nbsp;(Overseas)</option>
+                  </select>
+                  <input
+                    type="number"
+                    placeholder="Zip Code"
+                    id="en-school-zip"
+                  />
+                  <a class="button" id="find-schools">Find Schools</a>
+
+                  <div id="school-list">
+                    <span class="loader">
+                      <p>Finding Schools</p>
+                      <div>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </span>
+                    <ul></ul>
+                  </div>
+                </div>
+                <div class="qGrp hidden" id="grade">
+                  <h3>What grade are you?</h3>
+                  <label class="radio" data-field="grade">
+                    <input type="radio" name="grade" value="9" required />
+                    <span>Freshman (9)</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="grade" value="10" />
+                    <span>Sophomore (10)</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="grade" value="11" />
+                    <span>Junior (11)</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="grade" value="12" />
+                    <span>Senior (12)</span>
+                  </label>
+                </div>
+                <div class="qGrp hidden" id="not-highschool">
+                  <h3>Tell us more about your situation.</h3>
+                  <small>
+                    Los Altos Hacks is a high school hackathon, and it seems
+                    that you are not in high school! However, we do accommodate
+                    special circumstances, so please specify why you want to
+                    come to our event below.
+                  </small>
+                  <textarea data-field="special"></textarea>
+                </div>
+                <div class="qGrp">
+                  <h3>What do you hope to accomplish at Los Altos Hacks V?</h3>
+                  <textarea data-field="goals"></textarea>
+                </div>
+                <div class="page-footer">
+                  <a class="button previous disabled">Previous</a>
+                  <a class="button next disabled">Next</a>
+                </div>
+              </section>
+
+              <section class="page" id="profile">
+                <h1>Profile</h1>
+                <div class="qGrp" id="gender">
+                  <h3>Which gender identity do you most identify with?</h3>
+                  <label class="radio" data-field="gender">
+                    <input
+                      type="radio"
+                      name="en-gender"
+                      value="Male"
+                      required
+                    />
+                    <span>Male</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="en-gender" value="Female" />
+                    <span>Female</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="en-gender" value="Non-Binary" />
+                    <span>Non-binary</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="en-gender" value="" />
+                    <span>Decline to state</span>
+                  </label>
+                </div>
+                <div class="qGrp" id="race">
+                  <h3>Which ethnicity do you identify as?</h3>
+                  <small>(select all that apply)</small>
+                  <label class="radio" data-field="ethnicity">
+                    <input type="checkbox" name="en-race" value="Asian" />
+                    <span>Asian</span>
+                  </label>
+                  <label class="radio">
+                    <input
+                      type="checkbox"
+                      name="en-race"
+                      value="Black/African"
+                    />
+                    <span>Black/African</span>
+                  </label>
+                  <label class="radio">
+                    <input
+                      type="checkbox"
+                      name="en-race"
+                      value="White/Caucasian"
+                    />
+                    <span>White/Caucasian</span>
+                  </label>
+                  <label class="radio">
+                    <input
+                      type="checkbox"
+                      name="en-race"
+                      value="Hispanic/Latinx"
+                    />
+                    <span>Hispanic/Latinx</span>
+                  </label>
+                  <label class="radio">
+                    <input
+                      type="checkbox"
+                      name="en-race"
+                      value="Native American/Alaskan Native"
+                    />
+                    <span>Native American/Alaskan Native</span>
+                  </label>
+                  <label class="radio">
+                    <input
+                      type="checkbox"
+                      name="en-race"
+                      value="Pacific Islander"
+                    />
+                    <span>Pacific Islander</span>
+                  </label>
+                  <label class="radio">
+                    <input type="checkbox" name="en-race" value="" />
+                    <span>Decline to State</span>
+                  </label>
+                  <label class="radio">
+                    <input type="checkbox" name="en-race" value="other" />
+                    <span>
+                      Other:
+                      <input type="text" placeholder="Specify here..." />
+                    </span>
+                  </label>
+                </div>
+                <div class="qGrp required" id="experience">
+                  <h3 for="en-experience">
+                    How many hackathons have you previously attended?
+                  </h3>
+                  <input
+                    type="number"
+                    placeholder="Type your answer here..."
+                    id="en-experience"
+                    min="0"
+                    step="1"
+                    value="0"
+                    data-field="previous_hackathons"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="t-shirt-size">
+                  <h3>What is your t-shirt size?</h3>
+                  <small>All sizes come in unisex sizing.</small>
+                  <label class="radio" data-field="tshirt_size">
+                    <input type="radio" name="t-shirt" value="S" />
+                    <span>Small</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="t-shirt" value="M" />
+                    <span>Medium</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="t-shirt" value="L" />
+                    <span>Large</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="t-shirt" value="XL" />
+                    <span>Extra Large</span>
+                  </label>
+                </div>
+                <div class="qGrp" id="dietary-restrictions">
+                  <h3>What are your dietary restrictions?</h3>
+                  <textarea
+                    placeholder="allergic to peanuts, lactose intolerant, etc."
+                    data-field="dietary_restrictions"
+                  ></textarea>
+                </div>
+                <div class="page-footer">
+                  <a class="button previous">Previous</a>
+                  <a class="button next disabled">Next</a>
+                </div>
+              </section>
+
+              <section class="page" id="contact-info">
+                <h1>Contact Information</h1>
+                <div class="qGrp required" id="email">
+                  <h3 for="en-email">What is your email address?</h3>
+                  <small>
+                    This email will be used for us to communicate with you. Your
+                    application status is verified via email, so put down the
+                    email you check the most frequently!
+                  </small>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-email"
+                    class="email"
+                    data-field="email"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="phone">
+                  <h3 for="en-phone">
+                    What is your phone number?
+                  </h3>
+                  <small>
+                    Your phone number will be used just in case you leave the
+                    venue. If you do not have a phone, please enter the phone of
+                    your emergency contact here.
+                  </small>
+                  <input
+                    type="text"
+                    placeholder="(123) 456-7890"
+                    id="en-phone"
+                    class="phone-number"
+                    data-field="phone_number"
+                    data-mask="phone-us"
+                    required
+                  />
+                </div>
+                <div id="guardian-info">
+                  <div class="qGrp hidden" id="guardian-name">
+                    <h3 for="en-guardian">
+                      What is your parent/guardian's full name?
+                    </h3>
+                    <input
+                      type="text"
+                      placeholder="Type your answer here..."
+                      id="en-guardian"
+                      data-field="guardian_name"
+                      required
+                    />
+                  </div>
+                  <div class="qGrp hidden" id="guardian-email">
+                    <h3 for="en-g-email">
+                      What is your parent/guardian's email address?
+                    </h3>
+                    <input
+                      type="text"
+                      placeholder="Type your answer here..."
+                      id="en-g-email"
+                      class="email"
+                      data-field="guardian_email"
+                      required
+                    />
+                  </div>
+                  <div class="qGrp hidden" id="guardian-phone">
+                    <h3 for="en-g-phone">
+                      What is your parent/guardian's phone number?
+                    </h3>
+                    <small>
+                      Your legal guardian will have to physically come to our
+                      venue to check you out during the event if this
+                      information is not provided.
+                    </small>
+                    <input
+                      type="text"
+                      placeholder="(123) 456-7890"
+                      id="en-g-phone"
+                      class="phone-number"
+                      data-field="guardian_phone_number"
+                      data-mask="phone-us"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="qGrp" id="linkedin">
+                  <h3 for="en-linkedin">
+                    What is your Linkedin Profile URL, if you have one?
+                  </h3>
+                  <input
+                    type="text"
+                    placeholder="https://linkedin.com/in/johnsmith"
+                    data-field="linkedin_profile"
+                    id="en-linkedin"
+                  />
+                </div>
+                <div class="qGrp" id="github">
+                  <h3 for="en-github">
+                    What is your Github username, if you have one?
+                  </h3>
+                  <input
+                    type="text"
+                    placeholder="losaltoshacks"
+                    data-field="github_username"
+                    id="en-github"
+                  />
+                </div>
+                <div class="page-footer">
+                  <a class="button previous">Previous</a>
+                  <a class="button disabled next">Next</a>
+                </div>
+              </section>
+
+              <section class="page" id="review">
+                <h1>Review and Submit</h1>
+                <div class="qGrp" id="confirm">
+                  <h3>Confirmation</h3>
+                  <small>
+                    Please review your information below and verify all fields
+                    are filled in correctly. Your application may be submitted
+                    after agreeing to the following statements.
+                  </small>
+                </div>
+                <div id="review-fields">
+                  <table></table>
+                </div>
+                <div class="qGrp" id="agreement">
+                  <h3>Agreement</h3>
+                  <small>
+                    Please agree to all the statements below in order to submit
+                    the application.
+                  </small>
+                  <label class="radio">
+                    <input type="checkbox" name="en-agreement" value="asian" />
+                    <span>
+                      I have read and agree to the
+                      <a
+                        href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                        target="_blank"
+                      >
+                        MLH Code of Conduct
+                      </a>
+                      .*
+                    </span>
+                  </label>
+                  <label class="radio">
+                    <input type="checkbox" name="en-agreement" value="asian" />
+                    <span>
+                      I authorize Los Altos Hacks to share my
+                      application/registration for event administration,
+                      ranking, MLH administration, pre- and post-event
+                      informational e-mails, and occasional messages about
+                      hackathons in-line with the
+                      <a href="https://mlh.io/privacy">MLH Privacy Policy</a>
+                      . I further agree to the terms of both the
+                      <a
+                        href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions"
+                        target="_blank"
+                      >
+                        MLH Contest Terms and Conditions
+                      </a>
+                      and the
+                      <a href="https://mlh.io/privacy" target="_blank">
+                        MLH Privacy Policy
+                      </a>
+                      .*
+                    </span>
+                  </label>
+                  <label class="radio">
+                    <input type="checkbox" name="en-agreement" value="asian" />
+                    <span>
+                      By submitting my application, I acknowledge and agree that
+                      Los Altos Hacks V may share my name and email address with
+                      event partners in order to improve my experience at the
+                      Los Altos Hacks event. A list of organizations to whom my
+                      name and email address may be shared is available upon
+                      request; contact
+                      <a href="mailto:info@losaltoshacks.com">
+                        info@losaltoshacks.com
+                      </a>
+                      for any clarifications, questions, or requests regarding
+                      this agreement.*
+                    </span>
+                  </label>
+                </div>
+                <div class="page-footer">
+                  <a class="button previous">Previous</a>
+                  <a id="submit" class="button next disabled">
+                    Submit
+                  </a>
+                </div>
+              </section>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <div class="error-modal">
+        <h1>Uh-oh!</h1>
+        <p>
+          There seems to be an issue with processing your application. We
+          apologize for the inconvenience. You have encountered the following
+          error:
+        </p>
+        <p class="error-msg"></p>
+        <a class="button">Close</a>
+      </div>
+    </main>
+
+    <script src="../js/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.meiomask/1.1.14/meiomask.min.js"
+      integrity="sha256-V34ghNHmNNuRtfj10XyFbb9fTO7kGowkngYJQZhOV5U="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/reg.js"></script>
+  </body>
+</html>
