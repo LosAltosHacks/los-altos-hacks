@@ -505,7 +505,7 @@ function registerAttendee() {
             }
 
             if (
-                !value ||
+                (!value && value !== 0) ||
                 (typeof value == 'string' && value.trim().length == 0)
             )
                 return;
