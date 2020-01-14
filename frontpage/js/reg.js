@@ -514,10 +514,10 @@ function registerAttendee() {
         });
 
         $.post(API_ENDPOINT + '/attendees', JSON.stringify(data))
-            .done((response, statusText, xhr) => {
+            .done((response, _statusText, xhr) => {
                 if (xhr.status == 200) resolve(response);
             })
-            .fail((xhr, statusText, error_thrown) => {
+            .fail((xhr, statusText, _error_thrown) => {
                 reject(xhr, statusText);
             });
     });
