@@ -246,7 +246,11 @@ $('#submit').click(() => {
             console.log(status);
             if (status.responseJSON && status.responseJSON.detail) {
                 errormsg +=
-                    '\ndetail: ' + JSON.stringify(status.responseJSON.detail);
+                    '| Message: ' + JSON.stringify(status.responseJSON.detail);
+            }
+            if (errormsg === 'error') {
+                errormsg =
+                    'Could not connect to server. Check your internet or contact info@losaltoshacks.com for assistance.';
             }
             $('.error-msg').text(errormsg);
             $('.error-modal').animate({ height: 'toggle' });
