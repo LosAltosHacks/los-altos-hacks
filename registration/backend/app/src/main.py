@@ -21,8 +21,8 @@ from subrouters.registration import registrationRouter
 app = FastAPI()
 
 origins = [
-    "losaltoshacks.com",
-    "www.losaltoshacks.com",
+    "https://losaltoshacks.com",
+    "https://www.losaltoshacks.com",
 ]
 if config.is_development_env():
     origins.append("*")
