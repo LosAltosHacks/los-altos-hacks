@@ -166,7 +166,7 @@ $('.page .qGrp *, #school-list li, .change-school, .progress, .page-footer').on(
 $(document).on('click', '.page-footer > .button:not(.disabled)', e => {
     $(e.target)
         .closest('.page')
-        .fadeOut(1000)
+        .fadeOut(200)
         .removeClass('active')
         .promise()
         .done(() => {
@@ -175,7 +175,7 @@ $(document).on('click', '.page-footer > .button:not(.disabled)', e => {
                 $(e.target)
                     .closest('.page')
                     .next()
-                    .fadeIn(1000)
+                    .fadeIn(200)
                     .addClass('active');
             } else {
                 $(e.target)
@@ -241,24 +241,14 @@ $('#submit').click(() => {
                         });
                 });
         },
-        (status, error) => {
-            if (!error) {
-                $('.error-msg').text(
-                    'Failed to connect: Please check your network connection.'
-                );
-            } else {
-                switch (status) {
-                    case 400:
-                        error = 'Failed to process request: ' + error;
-                        break;
-                    case 503:
-                        error = 'Service unavailable: ' + error;
-                        break;
-                    default:
-                        break;
-                }
-                $('.error-msg').text(error);
+        (status, _error) => {
+            let errormsg = status.statusText;
+            console.log(status);
+            if (status.responseJSON && status.responseJSON.detail) {
+                errormsg +=
+                    '\ndetail: ' + JSON.stringify(status.responseJSON.detail);
             }
+            $('.error-msg').text(errormsg);
             $('.error-modal').animate({ height: 'toggle' });
         }
     );
@@ -523,8 +513,8 @@ function registerAttendee() {
             .done((response, statusText, xhr) => {
                 if (xhr.status == 200) resolve(response);
             })
-            .fail((xhr, status, error) => {
-                reject(status, error);
+            .fail((xhr, statusText, error_thrown) => {
+                reject(xhr, statusText);
             });
     });
     return promise;

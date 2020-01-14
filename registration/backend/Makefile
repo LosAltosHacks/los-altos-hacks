@@ -55,3 +55,8 @@ start_db:
 	docker network create lah_reg || true
 	docker container rm --force lah_reg_postgres || true
 	docker run --name lah_reg_postgres -d --network=lah_reg --publish 5432:5432 -e POSTGRES_DB=testregistration -e POSTGRES_USER=root postgres:11.5-alpine
+.PHONY: start_db
+
+stop_db:
+	docker container rm --force lah_reg_postgres || true
+.PHONY: stop_db

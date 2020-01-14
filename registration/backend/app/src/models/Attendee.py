@@ -10,8 +10,8 @@ class DBAttendee(DBPerson):
     age = Column(SmallInteger, nullable=False)
 
     education = Column(String(255), nullable=False)
-    school = Column(String(255), nullable=False)
-    grade = Column(SmallInteger, nullable=False)
+    school = Column(String(255))
+    grade = Column(SmallInteger)
     phone_number = Column(String(255), nullable=False)
     guardian_name = Column(String(255))
     guardian_email = Column(String(255))
