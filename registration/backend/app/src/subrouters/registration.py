@@ -145,9 +145,3 @@ EMAIL_VERIFIED_PAGE_TEMPLATE = """
   </body>
 </html>
 """
-
-@registrationRouter.get("/nces_school_search/")
-def query_schools(state: str = "", city: str = "", zipcode: str = "", name: str = ""):
-    import requests
-    r = requests.get("https://nces.ed.gov/globallocator/index.asp?State={}&city={}&zipcode={}&miles=&itemname={}&sortby=name&School=1&PrivSchool=1".format(state, city, zipcode, name))
-    return r.content

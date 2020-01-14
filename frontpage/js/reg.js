@@ -379,7 +379,7 @@ function getFields() {
 function getSchools(params) {
     var promise = new Promise(resolve => {
         $.get(
-            API_ENDPOINT + '/attendees/nces_school_search',
+            API_ENDPOINT + '/nces_school_search/',
             {
                 state: params.state,
                 city: params.city,

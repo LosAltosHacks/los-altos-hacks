@@ -20,16 +20,18 @@ from subrouters.registration import registrationRouter
 
 app = FastAPI()
 
-# TODO: Restrict origins
 origins = [
-    "*"
+    "losaltoshacks.com",
+    "www.losaltoshacks.com",
 ]
+if config.is_development_env():
+    origins.append("*")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["POST"],
+    allow_methods=["POST", "GET"],
     allow_headers=["*"],
 )
 app.include_router(registrationRouter, prefix="/attendees")
@@ -39,6 +41,15 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 @app.get("/health/")
 def health_check():
     return {"health": "good"}
+
+# TODO: find out why this 401s when on the registrationRouter
+@app.get("/nces_school_search/")
+def query_schools(state: str = "", city: str = "", zipcode: str = "", name: str = ""):
+    import requests
+    r = requests.get("https://nces.ed.gov/globallocator/index.asp?State={}&city={}&zipcode={}&miles=&itemname={}&sortby=name&School=1&PrivSchool=1".format(state, city, zipcode, name))
+    print(r)
+    return r.content
+
 
 # TODO: remove this constant
 JWT_SECRET_KEY = config.JWT_SECRET_KEY
