@@ -1,4 +1,6 @@
 import boto3
+import requests
+import os
 from botocore.exceptions import ClientError
 import config
 
