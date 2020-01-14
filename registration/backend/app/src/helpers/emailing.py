@@ -38,6 +38,7 @@ def format_email(template, data):
 
 _SES_CLIENT = None
 def _ses_client():
+    global _SES_CLIENT
     if not config.is_production_env():
         raise ValueError("Tried to access SES from non-production environment.")
     if not _SES_CLIENT:
