@@ -241,8 +241,7 @@ function clockDisplayUpdate() {
         }
         if (clockTime == events[events.length - 1].time) {
             eventsList[events.length - 1].classList = 'active';
-            var parameters = document.querySelector('#clock > .content')
-                .children;
+            parameters = document.querySelector('#clock > .content').children;
             parameters[0].textContent = events[events.length - 1].day;
             parameters[2].textContent = events[events.length - 1].name;
             parameters[3].textContent = events[events.length - 1].location;
