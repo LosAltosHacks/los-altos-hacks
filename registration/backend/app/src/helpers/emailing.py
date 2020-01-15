@@ -38,19 +38,16 @@ def format_email(template, data):
     return subject, text, HTML_TEMPLATE.format(**message)
 
 
-_SES_CLIENT = None
 def _ses_client():
-    global _SES_CLIENT
     if not config.is_production_env():
         raise ValueError("Tried to access SES from non-production environment.")
-    if not _SES_CLIENT:
-        role = requests.get(f'http://169.254.170.2{os.environ["AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"]}').json()
-        _SES_CLIENT = boto3.Session(
-            aws_access_key_id=role["AccessKeyId"],
-            aws_secret_access_key=role["SecretAccessKey"],
-            aws_session_token=role["Token"],
-        ).client('ses')
-    return _SES_CLIENT
+    role = requests.get(f'http://169.254.170.2{os.environ["AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"]}').json()
+    sesclient = boto3.Session(
+        aws_access_key_id=role["AccessKeyId"],
+        aws_secret_access_key=role["SecretAccessKey"],
+        aws_session_token=role["Token"],
+    ).client('ses')
+    return sesclient
 
 
 def send_email_template(data, template):
