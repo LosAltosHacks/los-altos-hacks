@@ -51,6 +51,8 @@ class Attendee(BaseModel):
     def validattendee(self) -> bool:
         if self.age < 18 and not self.hasinformation():
             return False
-        if self.education == "High School" or self.education == "Middle School":
-            return self.grade and self.school
+        if self.education == "High School" and (not self.grade or not self.school):
+            return False
+        if self.education == "Middle School" and not self.school:
+            return False
         return True
