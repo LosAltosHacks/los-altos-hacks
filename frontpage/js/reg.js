@@ -77,7 +77,7 @@ $('input[data-mask="phone-us"]').on('input change', e => {
 // Verify Linkedin URL
 $('input#en-linkedin').on('input change', e => {
     var url = $(e.target).val();
-    var result = /linkedin.com\/in\/[a-zA-Z0-9_-]+\/?/.test(url);
+    var result = /linkedin.com\/in\/[a-zA-Z0-9_-]+\/?$/.test(url);
     if (url != '' && !result) {
         $(e.target).addClass('invalid');
     } else {
