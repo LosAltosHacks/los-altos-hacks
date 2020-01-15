@@ -230,10 +230,9 @@ function clockDisplayUpdate() {
     });
 
     for (var i = 0; i < events.length - 1; i++) {
+        var parameters = document.querySelector('#clock > .content').children;
         if (events[i].time <= clockTime && events[i + 1].time > clockTime) {
             eventsList[i].classList = 'active';
-            var parameters = document.querySelector('#clock > .content')
-                .children;
             parameters[0].textContent = events[i].day;
             parameters[2].textContent = events[i].name;
             parameters[3].textContent = events[i].location;
@@ -241,7 +240,6 @@ function clockDisplayUpdate() {
         }
         if (clockTime == events[events.length - 1].time) {
             eventsList[events.length - 1].classList = 'active';
-            parameters = document.querySelector('#clock > .content').children;
             parameters[0].textContent = events[events.length - 1].day;
             parameters[2].textContent = events[events.length - 1].name;
             parameters[3].textContent = events[events.length - 1].location;
