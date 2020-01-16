@@ -4,6 +4,7 @@
 
 body.mentor {
     --accent-bright: #ffb74d;
+    --accent-dark: #ff8f00;
 }
 
 body {
@@ -510,7 +511,7 @@ main > div > section {
 }
 
 @media only screen and (max-width: 900px) {
-    .attendee main > div:not(.error-modal) {
+    main > div:not(.error-modal) {
         margin-bottom: 2.67em !important;
         height: calc(85vh - 2em) !important;
     }
