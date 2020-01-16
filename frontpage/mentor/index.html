@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Los Altos Hacks V - Registration</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <meta property="og:title" content="Los Altos Hacks V" />
+    <meta property="og:type" content="website" />
+    <!-- <meta property="og:url" content="https://www.losaltoshacks.com/" /> -->
+    <meta
+      property="og:description"
+      content="A 24-hour high school hackathon. Coming March 2020."
+    />
+    <meta
+      property="og:image"
+      content="https://www.losaltoshacks.com/images/social-media.png"
+    />
+
+    <meta name="twitter:title" content="Los Altos Hacks V" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@losaltoshacks" />
+    <meta
+      name="twitter:description"
+      content="A 24-hour high school hackathon. Coming March 2020."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.losaltoshacks.com/images/social-media.png"
+    />
+
+    <link rel="shortcut icon" href="../favicon.ico" />
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <link rel="apple-touch-icon" href="../touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../css/registration.css" />
+  </head>
+  <body class="mentor">
+    <main>
+      <div>
+        <section class="bdg">
+          <div class="container">
+            <header>
+              <h1>LOS ALTOS HACKS V</h1>
+              <small>Mentor Registration</small>
+            </header>
+            <div class="info">
+              <h1>Sign up</h1>
+              <div id="logo">
+                <a href="/">
+                  <img src="../images/lahv-logo-vector.svg" />
+                </a>
+              </div>
+              <h4>March 21-22, 2020</h4>
+              <p>Juniper Aspiration Dome</p>
+              <small>1081 Innovation Way, Sunnyvale CA</small>
+              <div class="finish-msg">
+                <p>
+                  Way to go! You've submitted your application to Los Altos
+                  Hacks V. Keep on a lookout for emails from us for updates and
+                  next steps!
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="info-fields">
+          <div class="container">
+            <form id="reg-form">
+              <section class="page active" id="basic-info">
+                <h1>Basic Information</h1>
+                <div class="qGrp required" id="first-name">
+                  <h3 for="en-first">What is your first name?</h3>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-first"
+                    data-field="first_name"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="last-name">
+                  <h3 for="en-last">What is your last name?</h3>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-last"
+                    data-field="last_name"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="is18">
+                  <h3>Are you over 18 years old?</h3>
+                  <label class="radio" data-field="education">
+                    <input type="radio" name="ed" value="yes" required />
+                    <span>Yes</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="ed" value="no" />
+                    <span>No</span>
+                  </label>
+                </div>
+                <div class="qGrp required" id="company">
+                  <h3 for="en-company">What is your company name?</h3>
+                  <small>
+                    If you are not affiliated with an organization or a company, please enter "Self" for this field.
+                  </small>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-company"
+                    data-field="company"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="email">
+                  <h3 for="en-email">What is your email address?</h3>
+                  <small>
+                    This email will be used for us to communicate with you. Your
+                    application status is verified via email, so put down the
+                    email you check the most frequently!
+                  </small>
+                  <input
+                    type="text"
+                    placeholder="Type your answer here..."
+                    id="en-email"
+                    class="email"
+                    data-field="email"
+                    required
+                  />
+                </div>
+                <div class="qGrp required" id="phone">
+                  <h3 for="en-phone">
+                    What is your phone number?
+                  </h3>
+                  <small>
+                    Your phone number will be used just in case of emergency. If you do not have a phone, please enter the phone of your emergency contact here.
+                  </small>
+                  <input
+                    type="text"
+                    placeholder="(123) 456-7890"
+                    id="en-phone"
+                    class="phone-number"
+                    data-field="phone_number"
+                    data-mask="phone-us"
+                    required
+                  />
+                <div class="qGrp required" id="t-shirt-size">
+                  <h3>What is your t-shirt size?</h3>
+                  <small>All sizes come in unisex sizing.</small>
+                  <label class="radio" data-field="tshirt_size">
+                    <input type="radio" name="t-shirt" value="S" />
+                    <span>Small</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="t-shirt" value="M" />
+                    <span>Medium</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="t-shirt" value="L" />
+                    <span>Large</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="t-shirt" value="XL" />
+                    <span>Extra Large</span>
+                  </label>
+                </div>
+                <div class="qGrp" id="dietary-restrictions">
+                  <h3>What are your dietary restrictions?</h3>
+                  <textarea
+                    placeholder="allergic to peanuts, lactose intolerant, etc."
+                    data-field="dietary_restrictions"
+                  ></textarea>
+                </div>
+                <div class="page-footer">
+                  <a id="submit" class="button disabled">Submit</a>
+                </div>
+              </section>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <div class="error-modal">
+        <h1>Uh-oh!</h1>
+        <p>
+          There seems to be an issue with processing your application. We
+          apologize for the inconvenience. You have encountered the following
+          error:
+        </p>
+        <p class="error-msg"></p>
+        <a class="button">Close</a>
+      </div>
+    </main>
+
+    <script src="../js/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.meiomask/1.1.14/meiomask.min.js"
+      integrity="sha256-V34ghNHmNNuRtfj10XyFbb9fTO7kGowkngYJQZhOV5U="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/reg.js"></script>
+  </body>
+</html>

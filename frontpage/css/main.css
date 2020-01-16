@@ -76,7 +76,7 @@ img {
     margin: auto;
 }
 
-body:not(#registration) section:not(#landing):not(#mission) {
+body:not([class]) section:not(#landing):not(#mission) {
     padding-bottom: 1.5em;
     background-color: var(--white);
 }

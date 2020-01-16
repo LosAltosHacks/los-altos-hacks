@@ -2,21 +2,25 @@
     max-width: unset;
 }
 
-body#registration {
+body.mentor {
+    --accent-bright: #ffb74d;
+}
+
+body {
     background-color: var(--accent-bright);
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-#registration > main > div:not(.error-modal) {
+main > div:not(.error-modal) {
     display: flex;
     width: 85vw;
     height: 85vh;
     margin: 0 auto;
 }
 
-#registration > main > div > section {
+main > div > section {
     transition: all 1s ease;
 }
 
@@ -54,6 +58,12 @@ body#registration {
     height: 100%;
     opacity: 0.8;
     z-index: -1;
+}
+.mentor .bdg > .container:before {
+    background: linear-gradient(to right, #ff8f00, #f57c00);
+}
+.bdg > .container > header {
+    display: none;
 }
 .info > h1 {
     margin-bottom: 0.5em;
@@ -451,6 +461,7 @@ body#registration {
     font-size: medium;
     max-height: 14em;
     overflow-y: auto;
+    margin-bottom: 2em;
 }
 #review-fields td {
     width: 40%;
@@ -499,7 +510,7 @@ body#registration {
 }
 
 @media only screen and (max-width: 900px) {
-    main > div:not(.error-modal) {
+    .attendee main > div:not(.error-modal) {
         margin-bottom: 2.67em !important;
         height: calc(85vh - 2em) !important;
     }
@@ -524,6 +535,16 @@ body#registration {
     }
     .bdg > .container {
         height: 5em;
+    }
+    .mentor .bdg > .container > header {
+        display: block;
+        height: fit-content;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .mentor .bdg > .container > header > h1 {
+        font-size: var(--s1);
     }
     .bdg .info {
         display: none;
