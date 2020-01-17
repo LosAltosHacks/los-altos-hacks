@@ -37,6 +37,17 @@ $('input[name="ed"]').change(() => {
     }
 });
 
+$('input[type=datetime-local][name=start-time]').on('input change', () => {
+    if ($('input[name=start-time]').val() > $('input[name=end-time]').val()) {
+        $('input[name=end-time]').val($('input[name=start-time]').val());
+    }
+});
+$('input[type=datetime-local][name=end-time]').on('input change', () => {
+    if ($('input[name=start-time]').val() > $('input[name=end-time]').val()) {
+        $('input[name=start-time]').val($('input[name=end-time]').val());
+    }
+});
+
 // Display guardian info fields based on age
 $('#en-age').on('input change', () => {
     var age = parseInt($('#en-age').val());

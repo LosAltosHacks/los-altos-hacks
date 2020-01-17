@@ -458,6 +458,17 @@ main > div > section {
     background-color: var(--accent-bright);
 }
 
+#times {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1em auto;
+}
+#times > label {
+    margin: 0.5em 0;
+    width: 100%;
+}
+
 #review-fields {
     font-size: medium;
     max-height: 14em;
