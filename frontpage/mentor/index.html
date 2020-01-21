@@ -97,7 +97,7 @@
                 </div>
                 <div class="qGrp required" id="is18">
                   <h3>Are you over 18 years old?</h3>
-                  <label class="radio" data-field="education">
+                  <label class="radio" data-field="over-18">
                     <input type="radio" name="ed" value="yes" required />
                     <span>Yes</span>
                   </label>
@@ -173,22 +173,23 @@
                 </div>
                 <div class="qGrp required" id="timeslots">
                   <h3>What time are you available?</h3>
-                  <div id="times">
+                  <small>You may leave the venue whenever you like. This is so we know your general availability</small>
+                  <div id="times" data-field="timeslots">
                     <label for="start-time">
                       <small>Start Time:</small>
                       <input
-                        type="datetime-local"
+                        type="datetime"
                         name="start-time"
-                        value="2020-03-21T09:00"
-                        min="2020-03-21T09:00"
-                        max="2020-03-22T12:00"
+                        value="2020-03-21T09:00Z"
+                        min="2020-03-21T09:00Z"
+                        max="2020-03-22T12:00Z"
                         required
                         >
                     </label>
                     <label for="end-time">
                       <small>End Time:</small>
                       <input
-                        type="datetime-local"
+                        type="datetime"
                         name="end-time"
                         value="2020-03-22T12:00"
                         min="2020-03-21T09:00"
@@ -198,6 +199,14 @@
                     </label>
 
                   </div>
+                </div>
+                <div class="qGrp" id="skillset">
+                  <h3>Describe what you can help attendees with...</h3>
+                  <small>For example, you can specify the programming languages and/or tools you are proficient in</small>
+                  <textarea
+                    placeholder="C++, Java, Product Design, etc."
+                    data-field="skillset"
+                  ></textarea>
                 </div>
                 <div class="qGrp" id="dietary-restrictions">
                   <h3>What are your dietary restrictions?</h3>

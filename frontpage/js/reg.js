@@ -218,56 +218,63 @@ $(document).on('click', '.progress-step:not(.disabled)', e => {
         });
 });
 
-$('#submit').click(() => {
-    registerAttendee().then(
-        () => {
-            $('.page.active')
-                .fadeOut(500)
-                .promise()
-                .done(() => {
-                    $('section.info-fields').css({ 'flex-basis': '0' });
-                    $('.progress')
-                        .fadeOut(1000)
-                        .promise()
-                        .done(() => {
-                            // Mobile adaptation
-                            $('.info-fields').hide();
-                            $('.bdg, .bdg > .container').css({
-                                height: '100%',
+$('body.mentor #submit')
+    .not('.disabled')
+    .click(() => {});
+
+$('body.attendee #submit')
+    .not('disabled')
+    .click(() => {
+        registerAttendee().then(
+            () => {
+                $('.page.active')
+                    .fadeOut(500)
+                    .promise()
+                    .done(() => {
+                        $('section.info-fields').css({ 'flex-basis': '0' });
+                        $('.progress')
+                            .fadeOut(1000)
+                            .promise()
+                            .done(() => {
+                                // Mobile adaptation
+                                $('.info-fields').hide();
+                                $('.bdg, .bdg > .container').css({
+                                    height: '100%',
+                                });
+                                $('.bdg .info').fadeIn(1000);
+                                $('.bdg > .container').show();
+                                $('#attendee-reg').attr(
+                                    'style',
+                                    'margin-bottom: unset !important; height: 85vh !important'
+                                );
                             });
-                            $('.bdg .info').fadeIn(1000);
-                            $('.bdg > .container').show();
-                            $('#attendee-reg').attr(
-                                'style',
-                                'margin-bottom: unset !important; height: 85vh !important'
-                            );
-                        });
-                    $('.bdg .info > h1')
-                        .fadeOut(1000)
-                        .promise()
-                        .done(() => {
-                            $('.bdg .info > h1').text('Congratulations!');
-                            $('.bdg .info > h1').fadeIn(1000);
-                            $('.bdg .info > .finish-msg').fadeIn(1000);
-                        });
-                });
-        },
-        (status, _error) => {
-            let errormsg = status.statusText;
-            console.log(status);
-            if (status.responseJSON && status.responseJSON.detail) {
-                errormsg +=
-                    '| Message: ' + JSON.stringify(status.responseJSON.detail);
+                        $('.bdg .info > h1')
+                            .fadeOut(1000)
+                            .promise()
+                            .done(() => {
+                                $('.bdg .info > h1').text('Congratulations!');
+                                $('.bdg .info > h1').fadeIn(1000);
+                                $('.bdg .info > .finish-msg').fadeIn(1000);
+                            });
+                    });
+            },
+            (status, _error) => {
+                let errormsg = status.statusText;
+                console.log(status);
+                if (status.responseJSON && status.responseJSON.detail) {
+                    errormsg +=
+                        '| Message: ' +
+                        JSON.stringify(status.responseJSON.detail);
+                }
+                if (errormsg === 'error') {
+                    errormsg =
+                        'Could not connect to server. Check your internet or contact info@losaltoshacks.com for assistance.';
+                }
+                $('.error-msg').text(errormsg);
+                $('.error-modal').animate({ height: 'toggle' });
             }
-            if (errormsg === 'error') {
-                errormsg =
-                    'Could not connect to server. Check your internet or contact info@losaltoshacks.com for assistance.';
-            }
-            $('.error-msg').text(errormsg);
-            $('.error-modal').animate({ height: 'toggle' });
-        }
-    );
-});
+        );
+    });
 
 $('.error-modal > .button').click(() => {
     $('.error-modal').animate({ height: 'toggle' });
@@ -455,11 +462,41 @@ function displaySchools() {
     });
 }
 
+function registerMentor() {
+    var promise = new Promise((resolve, reject) => {
+        var data = {};
+
+        $('.mentor [data-field]').each((i, e) => {
+            var $input = $(e);
+            var name = $(e).attr('data-field');
+            var value = $input.val();
+
+            if (name == 'timeslots') {
+                value = [
+                    $input.find('input[name=start-time]').val(),
+                    $input.find('input[name=end-time]').val(),
+                ];
+            }
+
+            if ($input.hasClass('radio')) {
+                let inpName = $input.find('input').attr('name');
+                value = $(`input[name=${inpName}]:checked`).val();
+            }
+
+            data[name] = value;
+        });
+
+        console.log(data);
+        resolve(data);
+    });
+    return promise;
+}
+
 function registerAttendee() {
     var promise = new Promise((resolve, reject) => {
         var data = {};
 
-        $('[data-field]').each((i, e) => {
+        $('.attendee [data-field]').each((i, e) => {
             var $input = $(e);
             var name = $(e).attr('data-field');
             var value = $input.val();
