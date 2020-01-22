@@ -220,7 +220,47 @@ $(document).on('click', '.progress-step:not(.disabled)', e => {
 
 $('body.mentor #submit')
     .not('.disabled')
-    .click(() => {});
+    .click(() => {
+        registerMentor().then(
+            () => {
+                $('.page.active')
+                    .fadeOut(500)
+                    .promise()
+                    .done(() => {
+                        $('section.info-fields').css({ 'flex-basis': '0' });
+                        $('.info-fields').hide();
+                        $('.bdg, .bdg > .container').css({
+                            height: '100%',
+                        });
+                        $('.bdg .info').fadeIn(1000);
+                        $('.bdg > .container').show();
+                        $('.bdg .info > h1')
+                            .fadeOut(1000)
+                            .promise()
+                            .done(() => {
+                                $('.bdg .info > h1').text('Congratulations!');
+                                $('.bdg .info > h1').fadeIn(1000);
+                                $('.bdg .info > .finish-msg').fadeIn(1000);
+                            });
+                    });
+            },
+            (status, _error) => {
+                let errormsg = status.statusText;
+                console.log(status);
+                if (status.responseJSON && status.responseJSON.detail) {
+                    errormsg +=
+                        '| Message: ' +
+                        JSON.stringify(status.responseJSON.detail);
+                }
+                if (errormsg === 'error') {
+                    errormsg =
+                        'Could not connect to server. Check your internet or contact info@losaltoshacks.com for assistance.';
+                }
+                $('.error-msg').text(errormsg);
+                $('.error-modal').animate({ height: 'toggle' });
+            }
+        );
+    });
 
 $('body.attendee #submit')
     .not('disabled')
@@ -243,7 +283,7 @@ $('body.attendee #submit')
                                 });
                                 $('.bdg .info').fadeIn(1000);
                                 $('.bdg > .container').show();
-                                $('#attendee-reg').attr(
+                                $('.attendee main > div:first-child').attr(
                                     'style',
                                     'margin-bottom: unset !important; height: 85vh !important'
                                 );
@@ -486,8 +526,13 @@ function registerMentor() {
             data[name] = value;
         });
 
-        console.log(data);
-        resolve(data);
+        $.post(API_ENDPOINT + '/mentors/', JSON.stringify(data))
+            .done((response, _statusText, xhr) => {
+                if (xhr.status == 200) resolve(response);
+            })
+            .fail((xhr, statusText, _error_thrown) => {
+                reject(xhr, statusText);
+            });
     });
     return promise;
 }
