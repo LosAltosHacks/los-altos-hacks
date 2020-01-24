@@ -37,14 +37,19 @@ $('input[name="ed"]').change(() => {
     }
 });
 
-$('input[type=datetime-local][name=start-time]').on('input change', () => {
+$('input[type=datetime-local]').on('input change', () => {
+    $('input[type=datetime-local]').removeClass('invalid');
+
     if ($('input[name=start-time]').val() > $('input[name=end-time]').val()) {
-        $('input[name=end-time]').val($('input[name=start-time]').val());
+        $('input[type=datetime-local]').addClass('invalid');
     }
-});
-$('input[type=datetime-local][name=end-time]').on('input change', () => {
-    if ($('input[name=start-time]').val() > $('input[name=end-time]').val()) {
-        $('input[name=start-time]').val($('input[name=end-time]').val());
+
+    if ($('input[name=start-time]').val() < '2020-03-21T09:00') {
+        $('input[name=start-time]').addClass('invalid');
+    }
+
+    if ($('input[name=end-time]').val() > '2020-03-22T12:00') {
+        $('input[name=end-time]').addClass('invalid');
     }
 });
 

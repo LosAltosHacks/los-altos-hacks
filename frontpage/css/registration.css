@@ -267,7 +267,7 @@ main > div > section {
     display: none;
 }
 
-.qGrp.required h3::after {
+.qGrp.required > h3::after {
     content: '*';
 }
 
