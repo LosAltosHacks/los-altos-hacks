@@ -169,7 +169,7 @@ function registerEvents() {
         ).style.transition = 'none';
 
         if (e.deltaY == 0) return;
-        clockTime += e.deltaY < 0 ? -5 : 5;
+        clockTime += e.deltaY < 0 ? -15 : 15;
 
         if (clockTime <= events[0].time) {
             clockTime = events[0].time;
