@@ -170,31 +170,38 @@
                   </label>
                 </div>
                 <div class="qGrp required" id="timeslots">
-                  <h3>What time are you available?</h3>
+                  <h3>What time(s) are you available?</h3>
                   <small>You may leave the venue whenever you like. This is so we know your general availability</small>
                   <div id="times" data-field="timeslots">
-                    <label for="start-time">
-                      <small>Start Time:</small>
-                      <input
-                        type="datetime-local"
-                        name="start-time"
-                        value="2020-03-21T09:00"
-                        min="2020-03-21T09:00"
-                        max="2020-03-22T12:00"
-                        required
-                        >
-                    </label>
-                    <label for="end-time">
-                      <small>End Time:</small>
-                      <input
-                        type="datetime-local"
-                        name="end-time"
-                        value="2020-03-22T12:00"
-                        min="2020-03-21T09:00"
-                        max="2020-03-22T12:00"
-                        required
-                        >
-                    </label>
+                    <ul>
+                      <li class="timeslot">
+                        <label for="start-time">
+                          <small>From</small>
+                          <input
+                            type="datetime-local"
+                            name="start-time"
+                            value="2020-03-21T09:00"
+                            min="2020-03-21T09:00"
+                            max="2020-03-22T12:00"
+                            required
+                            >
+                        </label>
+                        <label for="end-time">
+                          <small>To</small>
+                          <input
+                            type="datetime-local"
+                            name="end-time"
+                            value="2020-03-22T12:00"
+                            min="2020-03-21T09:00"
+                            max="2020-03-22T12:00"
+                            required
+                            >
+                        </label>
+                      </li>
+                    </ul>
+                    <a class="button">
+                      Add Time
+                    </a>
                   </div>
                 </div>
                 <div class="qGrp" id="skillset">

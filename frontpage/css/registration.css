@@ -464,9 +464,26 @@ main > div > section {
     flex-wrap: wrap;
     margin: 1em auto;
 }
-#times > label {
+.timeslot {
+    background-color: var(--accent-bright);
+    color: white;
+    padding: 0.3em;
+}
+.timeslot input {
+    background-color: white;
+    border-bottom: white;
     margin: 0.5em 0;
+}
+#add-time {
+    background-color: var(--accent-bright);
+    border-radius: 50%;
+    width: var(--s2);
+    height: var(--s2);
+    padding: 0.35em;
+}
+#add-time > img {
     width: 100%;
+    height: 100%;
 }
 
 #review-fields {
