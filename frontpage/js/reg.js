@@ -581,7 +581,7 @@ function registerMentor() {
             }
 
             if (name == 'over_18') {
-                value = 'yes' ? true : false;
+                value = value == 'yes' ? true : false;
             }
 
             if ($input.hasClass('radio')) {
