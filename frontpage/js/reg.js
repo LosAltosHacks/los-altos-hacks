@@ -569,14 +569,14 @@ function registerMentor() {
             if (name == 'timeslots') {
                 value = [];
                 $input.find('.timeslot').each((i, e) => {
-                    value.push([
-                        $(e)
+                    value.push({
+                        start_time: $(e)
                             .find('input[name=start-time]')
                             .val(),
-                        $(e)
+                        end_time: $(e)
                             .find('input[name=end-time]')
                             .val(),
-                    ]);
+                    });
                 });
             }
 
@@ -591,8 +591,6 @@ function registerMentor() {
 
             data[name] = value;
         });
-
-        console.log(data);
 
         $.post(API_ENDPOINT + '/mentors/', JSON.stringify(data))
             .done((response, _statusText, xhr) => {
