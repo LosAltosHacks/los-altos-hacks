@@ -223,6 +223,31 @@ $(document).on('click', '.progress-step:not(.disabled)', e => {
         });
 });
 
+$('#add-time').click(() => {
+    var $prevTime = $('li.timeslot:last-child');
+    $prevTime
+        .clone()
+        .hide()
+        .appendTo('#times > ul')
+        .animate({ height: 'toggle' });
+    $('li.timeslot:last-child input[name=start-time]').val(
+        $prevTime.find('input[name=end-time]').val()
+    );
+    $('li.timeslot:last-child input[name=end-time]').val('2020-03-22T12:00');
+});
+
+$(document).on('click', '.timeslot .delete', e => {
+    $(e.target)
+        .closest('.timeslot')
+        .animate({ height: 'toggle' })
+        .promise()
+        .done(() => {
+            $(e.target)
+                .closest('.timeslot')
+                .remove();
+        });
+});
+
 $('body.mentor #submit')
     .not('.disabled')
     .click(() => {
