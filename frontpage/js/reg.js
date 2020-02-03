@@ -179,29 +179,33 @@ $('.page .qGrp *, #school-list li, .change-school, .progress, .page-footer').on(
 
 // Moves to the next page
 // TODO: Change page state to active.
-$(document).on('click', '.page-footer > .button:not(.disabled)', e => {
-    $(e.target)
-        .closest('.page')
-        .fadeOut(200)
-        .removeClass('active')
-        .promise()
-        .done(() => {
-            $('.info-fields > .container').scrollTop(0);
-            if (e.target.classList.contains('next')) {
-                $(e.target)
-                    .closest('.page')
-                    .next()
-                    .fadeIn(200)
-                    .addClass('active');
-            } else {
-                $(e.target)
-                    .closest('.page')
-                    .prev()
-                    .fadeIn(1000)
-                    .addClass('active');
-            }
-        });
-});
+$(document).on(
+    'click',
+    '.page-footer > .button:not(.disabled):not(#submit)',
+    e => {
+        $(e.target)
+            .closest('.page')
+            .fadeOut(200)
+            .removeClass('active')
+            .promise()
+            .done(() => {
+                $('.info-fields > .container').scrollTop(0);
+                if (e.target.classList.contains('next')) {
+                    $(e.target)
+                        .closest('.page')
+                        .next()
+                        .fadeIn(200)
+                        .addClass('active');
+                } else {
+                    $(e.target)
+                        .closest('.page')
+                        .prev()
+                        .fadeIn(1000)
+                        .addClass('active');
+                }
+            });
+    }
+);
 
 // Moves to the page on the progress step
 $(document).on('click', '.progress-step:not(.disabled)', e => {
@@ -248,49 +252,70 @@ $(document).on('click', '.timeslot .delete', e => {
         });
 });
 
-$('body.mentor #submit')
-    .not('.disabled')
-    .click(() => {
-        registerMentor().then(
-            () => {
-                $('.page.active')
-                    .fadeOut(500)
-                    .promise()
-                    .done(() => {
-                        $('section.info-fields').css({ 'flex-basis': '0' });
-                        $('.info-fields').hide();
-                        $('.bdg, .bdg > .container').css({
-                            height: '100%',
-                        });
-                        $('.bdg .info').fadeIn(1000);
-                        $('.bdg > .container').show();
-                        $('.bdg .info > h1')
-                            .fadeOut(1000)
-                            .promise()
-                            .done(() => {
-                                $('.bdg .info > h1').text('Congratulations!');
-                                $('.bdg .info > h1').fadeIn(1000);
-                                $('.bdg .info > .finish-msg').fadeIn(1000);
-                            });
+$(document).on('change input', '.timeslot input', e => {
+    if ($(e.target).attr('name') == 'end-time') {
+        var $startTime = $(e.target)
+            .closest('.timeslot')
+            .find('input[name=start-time]');
+        if (
+            $startTime.val() > $(e.target).val() ||
+            $(e.target).val() > '2020-03-22T12:00'
+        )
+            $(e.target).addClass('invalid');
+        else $(e.target).removeClass('invalid');
+    } else {
+        var $endTime = $(e.target)
+            .closest('.timeslot')
+            .find('input[name=end-time]');
+        if (
+            $endTime.val() < $(e.target).val() ||
+            $(e.target).val() < '2020-03-21T09:00'
+        )
+            $(e.target).addClass('invalid');
+        else $(e.target).removeClass('invalid');
+    }
+});
+
+$(document).on('click', 'body.mentor #submit:not(.disabled)', () => {
+    registerMentor().then(
+        () => {
+            $('.page.active')
+                .fadeOut(500)
+                .promise()
+                .done(() => {
+                    $('section.info-fields').css({ 'flex-basis': '0' });
+                    $('.info-fields').hide();
+                    $('.bdg, .bdg > .container').css({
+                        height: '100%',
                     });
-            },
-            (status, _error) => {
-                let errormsg = status.statusText;
-                console.log(status);
-                if (status.responseJSON && status.responseJSON.detail) {
-                    errormsg +=
-                        '| Message: ' +
-                        JSON.stringify(status.responseJSON.detail);
-                }
-                if (errormsg === 'error') {
-                    errormsg =
-                        'Could not connect to server. Check your internet or contact info@losaltoshacks.com for assistance.';
-                }
-                $('.error-msg').text(errormsg);
-                $('.error-modal').animate({ height: 'toggle' });
+                    $('.bdg .info').fadeIn(1000);
+                    $('.bdg > .container').show();
+                    $('.bdg .info > h1')
+                        .fadeOut(1000)
+                        .promise()
+                        .done(() => {
+                            $('.bdg .info > h1').text('Congratulations!');
+                            $('.bdg .info > h1').fadeIn(1000);
+                            $('.bdg .info > .finish-msg').fadeIn(1000);
+                        });
+                });
+        },
+        (status, _error) => {
+            let errormsg = status.statusText;
+            console.log(status);
+            if (status.responseJSON && status.responseJSON.detail) {
+                errormsg +=
+                    '| Message: ' + JSON.stringify(status.responseJSON.detail);
             }
-        );
-    });
+            if (errormsg === 'error') {
+                errormsg =
+                    'Could not connect to server. Check your internet or contact info@losaltoshacks.com for assistance.';
+            }
+            $('.error-msg').text(errormsg);
+            $('.error-modal').animate({ height: 'toggle' });
+        }
+    );
+});
 
 $('body.attendee #submit')
     .not('disabled')
@@ -542,10 +567,17 @@ function registerMentor() {
             var value = $input.val();
 
             if (name == 'timeslots') {
-                value = [
-                    $input.find('input[name=start-time]').val(),
-                    $input.find('input[name=end-time]').val(),
-                ];
+                value = [];
+                $input.find('.timeslot').each((i, e) => {
+                    value.push([
+                        $(e)
+                            .find('input[name=start-time]')
+                            .val(),
+                        $(e)
+                            .find('input[name=end-time]')
+                            .val(),
+                    ]);
+                });
             }
 
             if ($input.hasClass('radio')) {
@@ -555,6 +587,8 @@ function registerMentor() {
 
             data[name] = value;
         });
+
+        console.log(data);
 
         $.post(API_ENDPOINT + '/mentors/', JSON.stringify(data))
             .done((response, _statusText, xhr) => {

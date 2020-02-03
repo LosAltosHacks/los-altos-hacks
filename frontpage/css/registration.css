@@ -272,7 +272,7 @@ main > div > section {
 }
 
 .qGrp input.invalid {
-    border-bottom-color: red;
+    border-bottom-color: red !important;
 }
 
 /* Radio Buttons (Can also be applied to checkboxes) */
@@ -471,8 +471,7 @@ main > div > section {
     margin-bottom: 0.5em;
 }
 .timeslot input {
-    background-color: white;
-    border-bottom: white;
+    border-bottom-color: white;
     margin: 0.5em 0;
 }
 #add-time > img {
