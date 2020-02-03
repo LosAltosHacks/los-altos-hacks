@@ -580,6 +580,10 @@ function registerMentor() {
                 });
             }
 
+            if (name == 'over_18') {
+                value = 'yes' ? true : false;
+            }
+
             if ($input.hasClass('radio')) {
                 let inpName = $input.find('input').attr('name');
                 value = $(`input[name=${inpName}]:checked`).val();
