@@ -1,19 +1,50 @@
 import uuid
+from typing import List
 
 import helpers.dbtools as dbtools
 import schemas.Attendee as Attendee
+from database.starter import get_db
 from fastapi import APIRouter, HTTPException, Depends
 from models.Hosts import DBHost
-from models.database import get_db
-from pydantic import EmailStr
+from pydantic import EmailStr, BaseModel
 from sqlalchemy.orm import Session
 from starlette.requests import Request
 from starlette.responses import Response
 
 registrationRouter = APIRouter()
-# Main imports the reg router, so we import main after it
-# TODO: Refactor the DBHost helpers in main somewhere else
-import main
+
+
+class AttendeeData(BaseModel):
+    # Response data format so that random database information isn't leaked
+    user_id: str
+    first_name: str
+    age: int
+    acceptance_status: Attendee.AcceptanceStatusEnum
+    ethnicity: str = None
+    education: str
+    signed_waiver: bool
+    previous_hackathons: int
+    school: str
+    outdated: bool
+    github_username: str = None
+    last_name: str
+    grade: int
+    linkedin_profile: str = None
+    email: str
+    phone_number: str
+    gender: str
+    goals: str = None
+    guardian_name: str = None
+    special: str = None
+    email_verified: bool
+    guardian_email: str = None
+    tshirt_size: Attendee.ShirtSize
+    guardian_phone_number: str = None
+    dietary_restrictions: str = None
+
+    class Config:
+        orm_mode = True
+
 
 @registrationRouter.post("/")
 def signup(attendee: Attendee.Attendee, request: Request, db: Session = Depends(get_db)):
@@ -21,13 +52,15 @@ def signup(attendee: Attendee.Attendee, request: Request, db: Session = Depends(
     print(f"Signup Request received | {attendee.json()}")
     if attendee.validattendee():
         if not dbtools.create_user(db, attendee, request.url_for):
-            raise HTTPException(status_code=400, detail="Email is in use. Contact info@losaltoshacks.com if this is an error or to update your information.")
+            raise HTTPException(status_code=400,
+                                detail="Email is in use. Contact info@losaltoshacks.com if this is an error or to update your information.")
         raise HTTPException(status_code=200, detail="Ok")
-    raise HTTPException(status_code=400, detail="Minors must provide guardian information. High school students must provide school and grade. Middle school students must provide school.")
+    raise HTTPException(status_code=400,
+                        detail="Minors must provide guardian information. High school students must provide school and grade. Middle school students must provide school.")
 
 
-@registrationRouter.get("/")
-def list_users(db: Session = Depends(get_db), host: DBHost = Depends(main.get_current_host)):
+@registrationRouter.get("/", response_model=List[AttendeeData])
+def list_users(db: Session = Depends(get_db), host: DBHost = Depends(dbtools.get_current_host)):
     if host:
         if users := dbtools.get_users(db):
             return users
@@ -35,8 +68,8 @@ def list_users(db: Session = Depends(get_db), host: DBHost = Depends(main.get_cu
     raise HTTPException(status_code=401, detail="Unauthorized request.")
 
 
-@registrationRouter.get("/{user_id}/")
-def list_user(user_id: uuid.UUID, db: Session = Depends(get_db), host: DBHost = Depends(main.get_current_host)):
+@registrationRouter.get("/{user_id}/", response_model=AttendeeData)
+def list_user(user_id: uuid.UUID, db: Session = Depends(get_db), host: DBHost = Depends(dbtools.get_current_host)):
     if host:
         if user := dbtools.get_user(db, user_id.hex):
             return user
@@ -44,9 +77,9 @@ def list_user(user_id: uuid.UUID, db: Session = Depends(get_db), host: DBHost = 
     raise HTTPException(status_code=401, detail="Unauthorized request.")
 
 
-@registrationRouter.get("/{user_id}/history")
+@registrationRouter.get("/{user_id}/history", response_model=List[AttendeeData])
 def list_users_history(user_id: uuid.UUID, db: Session = Depends(get_db),
-                       host: DBHost = Depends(main.get_current_host)):
+                       host: DBHost = Depends(dbtools.get_current_host)):
     if host:
         if user := dbtools.get_user(db, user_id.hex, True):
             return user
@@ -56,7 +89,7 @@ def list_users_history(user_id: uuid.UUID, db: Session = Depends(get_db),
 
 @registrationRouter.patch("/{user_id}/")
 def update_user(user_id: uuid.UUID, data: dict, db: Session = Depends(get_db),
-                host: DBHost = Depends(main.get_current_host)):
+                host: DBHost = Depends(dbtools.get_current_host)):
     if host:
         dbtools.update_user(db, user_id.hex, data)
         raise HTTPException(status_code=200, detail=f"USER <'{user_id.hex}'> successfully updated.")
@@ -65,7 +98,7 @@ def update_user(user_id: uuid.UUID, data: dict, db: Session = Depends(get_db),
 
 @registrationRouter.delete("/{user_id}/")
 def delete_specified_user(user_id: uuid.UUID, db: Session = Depends(get_db),
-                          host: DBHost = Depends(main.get_current_host)):
+                          host: DBHost = Depends(dbtools.get_current_host)):
     if host:
         dbtools.update_user(db, user_id.hex, {"outdated": True})
         raise HTTPException(status_code=200, detail=f"USER <'{user_id.hex}'> successfully deleted.")
@@ -74,9 +107,9 @@ def delete_specified_user(user_id: uuid.UUID, db: Session = Depends(get_db),
 
 @registrationRouter.get("/verify/{user_id}/{email_token}/", name="email_verify")
 def verify_user(user_id: uuid.UUID, email_token: uuid.UUID, db: Session = Depends(get_db)):
-
     def mk_response(code, msg):
-        return Response(status_code=code, content=EMAIL_VERIFIED_PAGE_TEMPLATE.format(message=msg), media_type="text/html")
+        return Response(status_code=code, content=EMAIL_VERIFIED_PAGE_TEMPLATE.format(message=msg),
+                        media_type="text/html")
 
     if not (user := dbtools.get_user(db, user_id.hex)):
         return mk_response(400, "User not found. How did you get here?")
@@ -91,18 +124,18 @@ def verify_user(user_id: uuid.UUID, email_token: uuid.UUID, db: Session = Depend
 
 # Do not remove it is used to figure out what parameters of a function are real
 def is_valid(pair):
-    if pair[1]:
+    if type(pair[1]) is str:
         return pair
 
 
-@registrationRouter.get("/search")
+@registrationRouter.get("/search", response_model=List[AttendeeData])
 def search_for_specific(user_id: uuid.UUID = None, first_name: str = None, last_name: str = None,
                         email: EmailStr = None, phonenumber: str = None, guardian_first_name: str = None,
                         guardian_last_name: str = None, guardian_phone_number: str = None,
-                        db: Session = Depends(get_db), host: DBHost = Depends(main.get_current_host)):
+                        db: Session = Depends(get_db), host: DBHost = Depends(dbtools.get_current_host)):
     if host:
         if user_id or first_name or last_name or email or phonenumber or guardian_first_name or guardian_last_name or guardian_phone_number:
-            meme = list(pair for pair in map(is_valid, locals().items()) if pair)[:-1]
+            meme = list(pair for pair in map(is_valid, locals().items()) if pair)
             return dbtools.search_for_users(db, meme)
         return list_users(db)
     raise HTTPException(status_code=401, detail="Unauthorized request.")

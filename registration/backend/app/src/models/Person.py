@@ -1,12 +1,11 @@
 import datetime
 import uuid
 
-from models.database import dbBase
+from database.starter import dbBase
+from helpers.emailing import send_email_template
 from schemas.Attendee import AcceptanceStatusEnum, ShirtSize
 from sqlalchemy import Column, String, Integer, Enum, Boolean, DateTime
-from sqlalchemy.orm.session import object_session
-from helpers.emailing import send_email_template
-import helpers.dbtools as dbtools
+
 
 class DBPerson(dbBase):
     __tablename__ = "person"

@@ -1,16 +1,21 @@
-import boto3
-import requests
 import os
-from botocore.exceptions import ClientError
+
+import boto3
 import config
+import requests
+from botocore.exceptions import ClientError
+
 
 def read_file(filename):
     with open(filename, 'r') as f:
         return f.read()
 
+
 def read_email(name):
     prefix = f'{config.SRC_DIR_PATH}/email_templates/{name}/'
-    return read_file(prefix + "subject"), read_file(prefix + "header_1"), read_file(prefix + "header_2"), read_file(prefix + "body"), read_file(prefix + "text")
+    return read_file(prefix + "subject"), read_file(prefix + "header_1"), read_file(prefix + "header_2"), read_file(
+        prefix + "body"), read_file(prefix + "text")
+
 
 def read_templates(*templates):
     temps = {}
@@ -24,8 +29,10 @@ def read_templates(*templates):
         temps[t]['text'] = text
     return temps
 
+
 HTML_TEMPLATE = read_file(f'{config.SRC_DIR_PATH}/email_templates/html')
 TEMPLATES = read_templates("email_verify")
+
 
 def format_email(template, data):
     text = TEMPLATES[template]['text'].format(**data)
@@ -57,8 +64,8 @@ def send_email_template(data, template):
         return
     try:
         response = _ses_client().send_email(
-            Destination = {'ToAddresses': [data['email']]},
-            Message = {
+            Destination={'ToAddresses': [data['email']]},
+            Message={
                 'Body': {
                     'Html': {
                         'Charset': "UTF-8",
@@ -74,7 +81,7 @@ def send_email_template(data, template):
                     'Data': subject
                 }
             },
-            Source = config.SES_SENDER)
+            Source=config.SES_SENDER)
     except ClientError as e:
         print("Failed to send email:", e.response['Error']['Message'], "\nDeliberately failing...")
         raise e
