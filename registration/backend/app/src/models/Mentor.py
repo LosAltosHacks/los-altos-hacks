@@ -16,4 +16,3 @@ class DBMentor(DBAssociate):
     __mapper_args__ = {
         "polymorphic_identity": "mentors"
     }
-# test@test.test $2b$12$Ls2GTzcftBmfdn7AM9.UOuyMzXMMmDU1APq21p1B3NIEAAOljl.p2

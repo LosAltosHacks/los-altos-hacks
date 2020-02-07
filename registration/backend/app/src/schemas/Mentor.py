@@ -9,7 +9,6 @@ class Mentor(BaseModel):
     class Timeslot(BaseModel):
         start_time: str
         end_time: str
-
     first_name: str
     last_name: str
     over_18: bool
@@ -20,3 +19,4 @@ class Mentor(BaseModel):
     timeslots: List[Timeslot]
     skillset: str = None
     dietary_restrictions: str = None
+

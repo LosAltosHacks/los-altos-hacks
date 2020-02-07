@@ -13,7 +13,6 @@ from starlette.responses import Response
 
 registrationRouter = APIRouter()
 
-
 class AttendeeData(BaseModel):
     # Response data format so that random database information isn't leaked
     user_id: str
@@ -41,7 +40,6 @@ class AttendeeData(BaseModel):
     tshirt_size: Attendee.ShirtSize
     guardian_phone_number: str = None
     dietary_restrictions: str = None
-
     class Config:
         orm_mode = True
 

@@ -116,7 +116,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
 JWT_SECRET_KEY = ""
 
-
 class Token(BaseModel):
     access_token: str
     token_type: str
