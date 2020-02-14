@@ -17,6 +17,7 @@ from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
 from starlette.status import HTTP_401_UNAUTHORIZED
 from subrouters.registration import registrationRouter
+from subrouters.verification import verificationRouter
 
 app = FastAPI()
 
@@ -35,6 +36,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(registrationRouter, prefix="/attendees")
+app.include_router(verificationRouter, prefix="/discord")
 password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
