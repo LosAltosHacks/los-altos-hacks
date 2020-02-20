@@ -1075,6 +1075,13 @@ figcaption {
     transition: transform 0.5s;
 }
 
+#judges figcaption > p {
+  font-weight: 500;
+}
+#judges figcaption > small {
+  font-size: var(--s-2);
+}
+
 footer {
     color: #f4f5f6;
     width: 100%;
