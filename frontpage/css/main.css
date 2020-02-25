@@ -1076,10 +1076,10 @@ figcaption {
 }
 
 #judges figcaption > p {
-  font-weight: 500;
+    font-weight: 500;
 }
 #judges figcaption > small {
-  font-size: var(--s-2);
+    font-size: var(--s-2);
 }
 
 footer {
