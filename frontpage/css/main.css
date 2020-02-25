@@ -1408,6 +1408,31 @@ footer h4 {
     }
 }
 
+@media only screen and (max-width: 835px) {
+    #judges .figure-wrapper {
+        display: block;
+        width: 80vw;
+    }
+    #judges figure {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        width: 100%;
+        margin: 0.5em auto !important;
+    }
+    #judges .figure-image {
+        max-width: 130px;
+    }
+    #judges figcaption {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        margin-left: 0.5em;
+        font-size: var(--s2);
+    }
+}
+
 @media only screen and (max-width: 768px) {
     nav {
         font-size: var(--s-1);
