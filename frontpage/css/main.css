@@ -608,10 +608,10 @@ nav > .container a {
 }
 
 #pinnacle-badge {
-  max-width: 12em;
-  display: block;
-  margin: 0 auto;
-  margin-top: 5%;
+    max-width: 12em;
+    display: block;
+    margin: 0 auto;
+    margin-top: 5%;
 }
 
 /* FAQ */
