@@ -656,6 +656,9 @@ nav > .container a {
     font-size: var(--s-1);
     line-height: 1.2em;
 }
+.question > summary > div > h4 {
+    flex: 1;
+}
 .answer {
     margin-top: 1em;
     font-size: var(--s-2);
