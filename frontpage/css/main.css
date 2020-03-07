@@ -602,9 +602,16 @@ nav > .container a {
     font-size: var(--s0);
     font-weight: 500;
     line-height: 1.3em;
-    margin-top: 20%;
+    margin-top: 8%;
     max-width: 70%;
     display: inline-block;
+}
+
+#pinnacle-badge {
+    max-width: 12em;
+    display: block;
+    margin: 0 auto;
+    margin-top: 5%;
 }
 
 /* FAQ */
@@ -648,6 +655,9 @@ nav > .container a {
     outline: none;
     font-size: var(--s-1);
     line-height: 1.2em;
+}
+.question > summary > div > h4 {
+    flex: 1;
 }
 .answer {
     margin-top: 1em;
