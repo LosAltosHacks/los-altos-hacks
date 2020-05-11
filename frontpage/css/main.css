@@ -1340,6 +1340,21 @@ footer h4 {
     }
 } */
 
+@media only screen and (max-width: 930px) {
+    .call-to-action {
+        display: block;
+    }
+    .call-to-action .slogan {
+        display: flex;
+        justify-content: center;
+        padding: 1em 0;
+    }
+    .call-to-action .buttons {
+        width: 100%;
+        padding: 0 2em;
+    }
+}
+
 @media only screen and (max-width: 860px) {
     .faq-row {
         display: block;
@@ -1497,6 +1512,9 @@ footer h4 {
     }
     #mlh-trust-badge img {
         max-width: 80px;
+    }
+    .call-to-action .slogan {
+        display: block;
     }
     .call-to-action .largest {
         text-align: center;
