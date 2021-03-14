@@ -96,12 +96,9 @@ def is_valid(pair):
 
 
 @registrationRouter.get("/search")
-def search_for_specific(user_id: uuid.UUID = None, first_name: str = None, last_name: str = None,
-                        email: EmailStr = None, phonenumber: str = None, guardian_first_name: str = None,
-                        guardian_last_name: str = None, guardian_phone_number: str = None,
+def search_for_specific(user_id: uuid.UUID = None,
                         db: Session = Depends(get_db), host: DBHost = Depends(main.get_current_host)):
-    if host:
-        if user_id or first_name or last_name or email or phonenumber or guardian_first_name or guardian_last_name or guardian_phone_number:
+    if host and user_id:
             meme = list(pair for pair in map(is_valid, locals().items()) if pair)[:-1]
             return dbtools.search_for_users(db, meme)
         return list_users(db)
