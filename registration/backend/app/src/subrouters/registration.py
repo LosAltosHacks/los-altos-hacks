@@ -99,10 +99,10 @@ def is_valid(pair):
 def search_for_specific(user_id: uuid.UUID = None,
                         db: Session = Depends(get_db), host: DBHost = Depends(main.get_current_host)):
     if host and user_id:
-            meme = list(pair for pair in map(is_valid, locals().items()) if pair)[:-1]
-            return dbtools.search_for_users(db, meme)
-        return list_users(db)
-    raise HTTPException(status_code=401, detail="Unauthorized request.")
+        meme = list(pair for pair in map(is_valid, locals().items()) if pair)[:-1]
+        return dbtools.search_for_users(db, meme)
+    raise HTTPException(status_code=401, detail="Invalid request. Check that you're logged in or verify your search "
+                                                "query.")
 
 
 # TODO clean this up, brittleness on main site and uncleanly location:
