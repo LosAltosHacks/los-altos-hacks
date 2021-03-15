@@ -38,7 +38,7 @@ def list_users(db: Session = Depends(get_db), host: DBHost = Depends(main.get_cu
 @registrationRouter.get("/{user_id}/")
 def list_user(user_id: uuid.UUID, db: Session = Depends(get_db), host: DBHost = Depends(main.get_current_host)):
     if host:
-        if user := dbtools.get_user(db, user_id.hex):
+        if user := dbtools.get_user(db, user_id):
             return user
         raise HTTPException(status_code=404, detail=f"USER <'{user_id.hex}'> not found.")
     raise HTTPException(status_code=401, detail="Unauthorized request.")
@@ -48,7 +48,7 @@ def list_user(user_id: uuid.UUID, db: Session = Depends(get_db), host: DBHost = 
 def list_users_history(user_id: uuid.UUID, db: Session = Depends(get_db),
                        host: DBHost = Depends(main.get_current_host)):
     if host:
-        if user := dbtools.get_user(db, user_id.hex, True):
+        if user := dbtools.get_user(db, user_id, True):
             return user
         raise HTTPException(status_code=404, detail=f"USER <'{user_id.hex}'> not found.")
     raise HTTPException(status_code=401, detail="Unauthorized request.")
@@ -58,7 +58,7 @@ def list_users_history(user_id: uuid.UUID, db: Session = Depends(get_db),
 def update_user(user_id: uuid.UUID, data: dict, db: Session = Depends(get_db),
                 host: DBHost = Depends(main.get_current_host)):
     if host:
-        dbtools.update_user(db, user_id.hex, data)
+        dbtools.update_user(db, user_id, data)
         raise HTTPException(status_code=200, detail=f"USER <'{user_id.hex}'> successfully updated.")
     raise HTTPException(status_code=401, detail="Unauthorized request.")
 
@@ -67,7 +67,7 @@ def update_user(user_id: uuid.UUID, data: dict, db: Session = Depends(get_db),
 def delete_specified_user(user_id: uuid.UUID, db: Session = Depends(get_db),
                           host: DBHost = Depends(main.get_current_host)):
     if host:
-        dbtools.update_user(db, user_id.hex, {"outdated": True})
+        dbtools.update_user(db, user_id, {"outdated": True})
         raise HTTPException(status_code=200, detail=f"USER <'{user_id.hex}'> successfully deleted.")
     raise HTTPException(status_code=401, detail="Unauthorized request.")
 
@@ -78,14 +78,14 @@ def verify_user(user_id: uuid.UUID, email_token: uuid.UUID, db: Session = Depend
     def mk_response(code, msg):
         return Response(status_code=code, content=EMAIL_VERIFIED_PAGE_TEMPLATE.format(message=msg), media_type="text/html")
 
-    if not (user := dbtools.get_user(db, user_id.hex)):
+    if not (user := dbtools.get_user(db, user_id)):
         return mk_response(400, "User not found. How did you get here?")
     if user.email_verified:
         return mk_response(400, "Your email is already verified. You're good to go!")
-    if not user.email_token == email_token.hex:
+    if not user.email_token == email_token:
         return mk_response(400, "Invalid token. Trying to cheat? :0")
 
-    dbtools.update_user(db, user_id.hex, {"email_verified": True})
+    dbtools.update_user(db, user_id, {"email_verified": True})
     return mk_response(200, "Email successfully verified. All done!")
 
 
@@ -96,15 +96,13 @@ def is_valid(pair):
 
 
 @registrationRouter.get("/search")
-def search_for_specific(user_id: uuid.UUID = None, first_name: str = None, last_name: str = None,
-                        email: EmailStr = None, phonenumber: str = None, guardian_first_name: str = None,
-                        guardian_last_name: str = None, guardian_phone_number: str = None,
+def search_for_specific(email: EmailStr = None,
                         db: Session = Depends(get_db), host: DBHost = Depends(main.get_current_host)):
     if host:
-        if user_id or first_name or last_name or email or phonenumber or guardian_first_name or guardian_last_name or guardian_phone_number:
-            meme = list(pair for pair in map(is_valid, locals().items()) if pair)[:-1]
-            return dbtools.search_for_users(db, meme)
-        return list_users(db)
+        if email:
+            # meme = list(pair for pair in map(is_valid, locals().items()) if pair)[:-1]
+            return dbtools.search_for_users(db, ("email", email))
+        return HTTPException(status_code=404, detail="Invalid search request.")
     raise HTTPException(status_code=401, detail="Unauthorized request.")
 
 
@@ -145,3 +143,4 @@ EMAIL_VERIFIED_PAGE_TEMPLATE = """
   </body>
 </html>
 """
+

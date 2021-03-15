@@ -1,6 +1,6 @@
-from models.Associate import DBAssociate
+from outdated.Associate import DBAssociate
 from models.Person import DBPerson
-from models.Positioned import DBPositioned
+from outdated.Positioned import DBPositioned
 
 from sqlalchemy.orm import relationship
 

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey
 
 from .Associate import DBAssociate
-from .Person import DBPerson
+from Person import DBPerson
 from .Positioned import DBPositioned
 
 

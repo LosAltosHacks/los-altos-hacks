@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, ForeignKey
 
-from .Person import DBPerson
+from Person import DBPerson
 
 
 class DBPositioned(DBPerson):

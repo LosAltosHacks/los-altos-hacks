@@ -1,17 +1,25 @@
-from sqlalchemy import Column, String, Boolean, Integer, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, Boolean, Integer, ForeignKey, Enum, Text
+# from sqlalchemy.orm import relationship
 
-from .Person import DBPerson
-from .Timeslots import DBTimeslots
+from models.Person import DBPerson
+
+import enum
+
+
+class TechnologyProficiency(enum.Enum):
+    beginner = "Beginner"
+    intermediate = "Intermediate"
+    advanced = "Advanced"
 
 
 class DBMentor(DBPerson):
     __tablename__ = "mentors"
 
     id = Column(Integer, ForeignKey('person.id'), nullable=False, primary_key=True)
-    over_18 = Column(Boolean, nullable=False)
-    skillset = Column(String(1000))
-    timeslots = relationship("DBTimeslots", backref="mentor", order_by="DBTimeslots.start_time", lazy='selectin')
+    occupation = Column(String(1024), nullable=False)
+    technology_proficiency = Column(Enum(TechnologyProficiency), nullable=False)
+    proficient_in_languages = Column(String(1024))
+    specific_skills = Column(String(1024))
 
     __mapper_args__ = {
         "polymorphic_identity": "mentors"
