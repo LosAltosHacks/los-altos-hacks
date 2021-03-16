@@ -1,11 +1,12 @@
 import datetime
 import uuid
 
-from models.database import dbBase
+from database.starter import dbBase
 from schemas.Attendee import AcceptanceStatusEnum, ShirtSize, ProgrammingExperience
 from sqlalchemy import Column, String, Integer, Enum, Boolean, Date, DateTime, Text
 from sqlalchemy.dialects.postgresql import UUID
 from helpers.emailing import send_email_template
+
 
 class DBPerson(dbBase):
     __tablename__ = "person"

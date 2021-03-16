@@ -1,22 +1,31 @@
 # Fail dynamic config early
-import config
-import os
-from datetime import datetime, timedelta
+import uuid
 
-import jwt
-import uvicorn
-from fastapi import Depends, HTTPException
-from fastapi import FastAPI
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-import models.database
-from models.database import get_db
-from models.Hosts import DBHost
-from passlib.context import CryptContext
-from pydantic import BaseModel
 from sqlalchemy.orm import Session
+
+import config
+
+# import jwt
+import uvicorn
+# from fastapi import Depends, HTTPException
+from fastapi import FastAPI, Depends
+# from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+import dbtools
+import database.starter
+# from models.database import get_db
+# from models.Hosts import DBHost
+# from passlib.context import CryptContext
+# from pydantic import BaseModel
+# from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
-from starlette.status import HTTP_401_UNAUTHORIZED
+# from starlette.status import HTTP_401_UNAUTHORIZED
+from starlette.responses import Response
+
+from models.Person import DBPerson
+from hosttools import authRouter
+from starter import get_db
 from subrouters.registration import registrationRouter
+from subrouters.mentors import mentorRouter
 
 app = FastAPI()
 
@@ -35,8 +44,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(registrationRouter, prefix="/attendees")
-password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
+app.include_router(mentorRouter, prefix="/mentors")
+app.include_router(authRouter, prefix="/auth")
 
 @app.get("/health/")
 def health_check():
@@ -51,90 +60,62 @@ def query_schools(state: str = "", city: str = "", zipcode: str = "", name: str 
     return r.content
 
 
-# TODO: remove this constant
-JWT_SECRET_KEY = config.JWT_SECRET_KEY
+@app.get("/verify/{user_id}/{email_token}/", name="email_verify")
+def verify_user(user_id: uuid.UUID, email_token: uuid.UUID, db: Session = Depends(get_db)):
+
+    def mk_response(code, msg):
+        return Response(status_code=code, content=EMAIL_VERIFIED_PAGE_TEMPLATE.format(message=msg), media_type="text/html")
+
+    if not (user := dbtools.get_user(db, user_id, model=DBPerson)):
+        return mk_response(400, "User not found. How did you get here?")
+    if user.email_verified:
+        return mk_response(400, "Your email is already verified. You're good to go!")
+    if not user.email_token == email_token:
+        return mk_response(400, "Invalid token. Trying to cheat? :0")
+
+    dbtools.update_user(db, user_id, {"email_verified": True}, model=DBPerson)
+    return mk_response(200, "Email successfully verified. All done!")
 
 
-class Token(BaseModel):
-    access_token: str
-    token_type: str
+# TODO clean this up, brittleness on main site and uncleanly location:
+EMAIL_VERIFIED_PAGE_TEMPLATE = """
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Verification</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="robots" content="noindex" />
 
+    <link rel="shortcut icon" href="https://www.losaltoshacks.com/favicon.ico" />
+    <link rel="icon" type="image/png" href="https://www.losaltoshacks.com/favicon.png" />
+    <link rel="apple-touch-icon" href="https://www.losaltoshacks.com/touch-icon.png" />
 
-class TokenData(BaseModel):
-    email: str = None
-
-
-class Host(BaseModel):
-    email: str
-    password: str
-    disabled: bool
-
-
-def is_host_password(password, hashed):
-    return password_context.verify(password, hashed)
-
-
-def create_password_hash(password):
-    return password_context.hash(password)
-
-
-def get_host_password(db: Session, email: str) -> DBHost:
-    if user := db.query(DBHost).filter(DBHost.email == email).scalar():
-        return user
-
-
-def authenticate_host(db: Session, email: str, password: str):
-    if hostpw := get_host_password(db, email):
-        if not is_host_password(password, hostpw.password):
-            return False
-        return hostpw
-    return False
-
-
-def create_access_token(*, data: dict, expires_delta: timedelta = None):
-    to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.utcnow() + expires_delta
-    else:
-        expire = datetime.utcnow() + timedelta(minutes=15)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, JWT_SECRET_KEY, algorithm="HS256")
-    return encoded_jwt
-
-
-async def get_current_host(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
-    credentials_exception = HTTPException(
-        status_code=HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-    try:
-        payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=["HS256"])
-        email: str = payload.get("sub")
-        if email is None:
-            raise credentials_exception
-        token_data = TokenData(email=email)
-    except jwt.PyJWTError:
-        raise credentials_exception
-    user = db.query(DBHost).filter(DBHost.email == token_data.email).scalar()
-    if user is None:
-        raise credentials_exception
-    return user
-
-
-@app.post("/token", response_model=Token)
-async def login_host(db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()):
-    if user := authenticate_host(db, form_data.username, form_data.password):
-        access_token_expires = timedelta(minutes=30)
-        access_token = create_access_token(data={"sub": user.email}, expires_delta=access_token_expires)
-        return {"access_token": access_token, "token_type": "bearer"}
-    raise HTTPException(
-        status_code=HTTP_401_UNAUTHORIZED,
-        detail="Incorrect username or password",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
+    <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/error.css" />
+  </head>
+  <body>
+    <article>
+      <div class="container">
+        <img id="logo" src="https://www.losaltoshacks.com/images/lahv-logo-vector.svg" />
+        <h1>{message}</h1>
+        <p>
+          Feel free to close the page or
+          <a href="https://losaltoshacks.com">return to the main website</a>.
+          For any kind of help, please contact us at
+          <a href="mailto:info@losaltoshacks.com">info@losaltoshacks.com</a>.
+        </p>
+      </div>
+    </article>
+  </body>
+</html>
+"""
 
 
 if __name__ == '__main__':
-    models.database.do_create_all()
+    database.starter.do_create_all()
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info", proxy_headers=True)
