@@ -26,21 +26,35 @@ class Attendee(BaseModel):
     email: EmailStr
     age: int
     education: str
-    school: str = None
-    grade: int = None
+    school: str
+    grade: int 
     phone_number: str
-    gender: str = None
-    ethnicity: str = None
-    tshirt_size: ShirtSize
-    previous_hackathons: int
-    guardian_name: str = None
-    guardian_email: EmailStr = None
-    guardian_phone_number: str = None
-    github_username: str = None
-    linkedin_profile: str = None
-    dietary_restrictions: str = None
-    goals: str = None
-    special: str = None
+    country : str
+    address_line_one : str
+    address_line_two : str
+    city : str
+    state_or_province : str = None
+    postal_code : str
+    timezone : str
+    birthdate : str
+    gender : str
+    ethnicity : str
+    shirt_size : ShirtSize
+    twitter_handle : str = None
+    github_username : str = None
+    linkedin_page_url : str = None
+    parent_first_name : str = None
+    parent_last_name : str = None
+    parent_email : str = None
+    parent_phone_number : str = None
+    programming_experience : str = None
+    previous_hackathons_attended : str = None
+    hear_about_us : str = None
+    access_to_laptop_or_tablet : str = None
+    form_of_internet : str = None
+    mlh_code_of_conduct : bool
+    share_info_mlh : bool
+    send_info_emails : bool = False
 
     class Config:
         orm_mode = True
