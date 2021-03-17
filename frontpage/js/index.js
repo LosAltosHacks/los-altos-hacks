@@ -1,6 +1,6 @@
-var eventsList = document.querySelectorAll('#schedule-table tbody > tr');
-var clockTime = 0;
-var events = [];
+// var eventsList = document.querySelectorAll('#schedule-table tbody > tr');
+// var clockTime = 0;
+// var events = [];
 
 window.onscroll = _ => navBarDisplay();
 document
@@ -186,92 +186,92 @@ function navMenuToggle() {
 // }
 
 // Update clock according to clockTime
-function clockDisplayUpdate() {
-    var angle = clockTime / 2;
-    document.querySelector(
-        '#hour-pointer > span'
-    ).style.transform = `rotate(${angle}deg)`;
-    document.querySelector(
-        '#minute-pointer > span'
-    ).style.transform = `rotate(${clockTime * 6}deg)`;
-    document.querySelector(
-        '#clock > .content'
-    ).children[1].textContent = parseTime(clockTime);
-
-    if (clockTime >= 1440) {
-        document.querySelector('#clock > .content').children[0].textContent =
-            'Sunday';
-        document.querySelector('#clock > .sunday').style.transform =
-            'translate(-50%, -50%) scale(1)';
-        document.querySelector('#clock > .saturday').style.transform =
-            'translate(-50%, -50%) scale(0.9)';
-
-        document.querySelector('#schedule-table .sunday').style.display =
-            'unset';
-        document.querySelector('#schedule-table .saturday').style.display =
-            'none';
-    } else {
-        document.querySelector('#clock > .content').children[0].textContent =
-            'Saturday';
-        document.querySelector('#clock > .sunday').style.transform =
-            'translate(-50%, -50%) scale(0.9)';
-        document.querySelector('#clock > .saturday').style.transform =
-            'translate(-50%, -50%) scale(1)';
-
-        document.querySelector('#schedule-table .sunday').style.display =
-            'none';
-        document.querySelector('#schedule-table .saturday').style.display =
-            'unset';
-    }
-
-    // Update table according to time
-    eventsList.forEach(node => {
-        node.classList.remove('active'); // Reset active item
-    });
-
-    for (var i = 0; i < events.length - 1; i++) {
-        var parameters = document.querySelector('#clock > .content').children;
-        if (events[i].time <= clockTime && events[i + 1].time > clockTime) {
-            eventsList[i].classList = 'active';
-            parameters[0].textContent = events[i].day;
-            parameters[2].textContent = events[i].name;
-            parameters[3].textContent = events[i].location;
-            break;
-        }
-        if (clockTime == events[events.length - 1].time) {
-            eventsList[events.length - 1].classList = 'active';
-            parameters[0].textContent = events[events.length - 1].day;
-            parameters[2].textContent = events[events.length - 1].name;
-            parameters[3].textContent = events[events.length - 1].location;
-            break;
-        }
-    }
-}
+// function clockDisplayUpdate() {
+//     var angle = clockTime / 2;
+//     document.querySelector(
+//         '#hour-pointer > span'
+//     ).style.transform = `rotate(${angle}deg)`;
+//     document.querySelector(
+//         '#minute-pointer > span'
+//     ).style.transform = `rotate(${clockTime * 6}deg)`;
+//     document.querySelector(
+//         '#clock > .content'
+//     ).children[1].textContent = parseTime(clockTime);
+//
+//     if (clockTime >= 1440) {
+//         document.querySelector('#clock > .content').children[0].textContent =
+//             'Sunday';
+//         document.querySelector('#clock > .sunday').style.transform =
+//             'translate(-50%, -50%) scale(1)';
+//         document.querySelector('#clock > .saturday').style.transform =
+//             'translate(-50%, -50%) scale(0.9)';
+//
+//         document.querySelector('#schedule-table .sunday').style.display =
+//             'unset';
+//         document.querySelector('#schedule-table .saturday').style.display =
+//             'none';
+//     } else {
+//         document.querySelector('#clock > .content').children[0].textContent =
+//             'Saturday';
+//         document.querySelector('#clock > .sunday').style.transform =
+//             'translate(-50%, -50%) scale(0.9)';
+//         document.querySelector('#clock > .saturday').style.transform =
+//             'translate(-50%, -50%) scale(1)';
+//
+//         document.querySelector('#schedule-table .sunday').style.display =
+//             'none';
+//         document.querySelector('#schedule-table .saturday').style.display =
+//             'unset';
+//     }
+//
+//     // Update table according to time
+//     eventsList.forEach(node => {
+//         node.classList.remove('active'); // Reset active item
+//     });
+//
+//     for (var i = 0; i < events.length - 1; i++) {
+//         var parameters = document.querySelector('#clock > .content').children;
+//         if (events[i].time <= clockTime && events[i + 1].time > clockTime) {
+//             eventsList[i].classList = 'active';
+//             parameters[0].textContent = events[i].day;
+//             parameters[2].textContent = events[i].name;
+//             parameters[3].textContent = events[i].location;
+//             break;
+//         }
+//         if (clockTime == events[events.length - 1].time) {
+//             eventsList[events.length - 1].classList = 'active';
+//             parameters[0].textContent = events[events.length - 1].day;
+//             parameters[2].textContent = events[events.length - 1].name;
+//             parameters[3].textContent = events[events.length - 1].location;
+//             break;
+//         }
+//     }
+// }
 
 // Helper Function: Returns proper string format given minutes
-function parseTime(time) {
-    var suffix = time < 720 || (time >= 1440 && time < 2160) ? 'AM' : 'PM';
-    var hours = Math.floor(time / 60) % 12;
-    if (suffix === 'PM' && hours == 0) hours = 12;
-    if (hours < 10) hours = `0${hours}`;
-    var minutes = Math.floor(time % 60);
-    if (minutes < 10) minutes = `0${minutes}`;
-
-    return `${hours}:${minutes} ${suffix}`;
-}
+// function parseTime(time) {
+//     var suffix = time < 720 || (time >= 1440 && time < 2160) ? 'AM' : 'PM';
+//     var hours = Math.floor(time / 60) % 12;
+//     if (suffix === 'PM' && hours == 0) hours = 12;
+//     if (hours < 10) hours = `0${hours}`;
+//     var minutes = Math.floor(time % 60);
+//     if (minutes < 10) minutes = `0${minutes}`;
+//
+//     return `${hours}:${minutes} ${suffix}`;
+// }
 
 // Helper Function: Returns minutes given string format of time
-function convertToMinutes(time, day) {
-    var parsedTime = time.match(/\d{2}/g).map(e => {
-        return parseInt(e);
-    });
-    return (
-        (parsedTime[0] % 12) * 60 +
-        parsedTime[1] +
-        (time.includes('PM') ? 720 : 0) +
-        (day == 'Sunday' ? 1440 : 0)
-    );
-}
+// function convertToMinutes(time, day) {
+//     var parsedTime = time.match(/\d{2}/g).map(e => {
+//         return parseInt(e);
+//     });
+//     return (
+//         (parsedTime[0] % 12) * 60 +
+//         parsedTime[1] +
+//         (time.includes('PM') ? 720 : 0) +
+//         (day == 'Sunday' ? 1440 : 0)
+//     );
+// }
 
 // Adapt to Microsoft Edge, which doesn't have details tag support
 function adaptEdge() {
