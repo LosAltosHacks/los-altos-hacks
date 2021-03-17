@@ -8,7 +8,7 @@ document
     .addEventListener('click', _ => navMenuToggle());
 navBarDisplay();
 
-registerEvents();
+// registerEvents();
 
 // Adapt to Microsoft Edge
 if (!/*@cc_on!@*/ (false || !!document.documentMode)) {
@@ -64,126 +64,126 @@ function navMenuToggle() {
 }
 
 // Register all events
-function registerEvents() {
-    // Compile events into a list
-    for (var i = 0; i < eventsList.length; i++) {
-        var node = eventsList[i];
-
-        var day = node.parentNode.parentNode.parentNode.parentNode.parentNode.classList.contains(
-            'sunday'
-        )
-            ? 'Sunday'
-            : 'Saturday';
-        var time = node.querySelector('td:first-child').textContent;
-        time = convertToMinutes(time, day);
-        var name = node.querySelector('.event-name').textContent;
-        let location = node.querySelector('.location').textContent;
-        events.push({
-            id: i,
-            name: name,
-            day: day,
-            time: time,
-            location: location,
-        });
-
-        if (i == 0) {
-            clockTime = time;
-            clockDisplayUpdate();
-        }
-    }
-
-    // Register onclick listener for all events
-    eventsList.forEach(node => {
-        node.addEventListener('click', _ => {
-            // To prevent discrepancy between rotation animation and scrolling
-            document.querySelector(
-                '#hour-pointer > span, #minute-pointer'
-            ).style.transition = 'transform 0.5s';
-
-            // Update clock time
-            var index = Array.prototype.slice
-                .call(
-                    document.querySelector('#schedule-table > .saturday tbody')
-                        .children
-                )
-                .concat(
-                    Array.prototype.slice.call(
-                        document.querySelector(
-                            '#schedule-table > .sunday tbody'
-                        ).children
-                    )
-                )
-                .indexOf(node);
-            var ev = events[index];
-            var day = ev.day;
-            var name = ev.name;
-            var time = parseTime(ev.time);
-            var location = ev.location;
-            clockTime = ev.time;
-
-            // Update clock display
-            var parameters = document.querySelector('#clock > .content')
-                .children;
-            parameters[0].textContent = day;
-            parameters[1].textContent = time;
-            parameters[2].textContent = name;
-            parameters[3].textContent = location;
-
-            clockDisplayUpdate();
-        });
-    });
-
-    let scheduleSwitchClosure = (() => {
-        let showSunday = false;
-        return _event => {
-            showSunday = !showSunday;
-            if (!showSunday) {
-                document.querySelector(
-                    '#schedule-table .sunday'
-                ).style.display = 'none';
-                document.querySelector(
-                    '#schedule-table .saturday'
-                ).style.display = 'unset';
-            } else {
-                document.querySelector(
-                    '#schedule-table .saturday'
-                ).style.display = 'none';
-                document.querySelector(
-                    '#schedule-table .sunday'
-                ).style.display = 'unset';
-            }
-        };
-    })();
-    document
-        .querySelector('#schedule-table .saturday > header')
-        .addEventListener('click', scheduleSwitchClosure);
-    document
-        .querySelector('#schedule-table .sunday > header')
-        .addEventListener('click', scheduleSwitchClosure);
-
-    // Register scrolling listener for clock
-    document.getElementById('clock').addEventListener('wheel', e => {
-        // To prevent discrepancy between rotation animation and scrolling
-        document.querySelector(
-            '#hour-pointer > span, #minute-pointer > span'
-        ).style.transition = 'none';
-
-        if (e.deltaY == 0) return;
-        clockTime += e.deltaY < 0 ? -15 : 15;
-
-        if (clockTime <= events[0].time) {
-            clockTime = events[0].time;
-        }
-
-        if (clockTime >= events[events.length - 1].time) {
-            clockTime = events[events.length - 1].time;
-        }
-
-        clockDisplayUpdate();
-
-        e.preventDefault();
-    });
-}
+// function registerEvents() {
+//     // Compile events into a list
+//     for (var i = 0; i < eventsList.length; i++) {
+//         var node = eventsList[i];
+//
+//         var day = node.parentNode.parentNode.parentNode.parentNode.parentNode.classList.contains(
+//             'sunday'
+//         )
+//             ? 'Sunday'
+//             : 'Saturday';
+//         var time = node.querySelector('td:first-child').textContent;
+//         time = convertToMinutes(time, day);
+//         var name = node.querySelector('.event-name').textContent;
+//         let location = node.querySelector('.location').textContent;
+//         events.push({
+//             id: i,
+//             name: name,
+//             day: day,
+//             time: time,
+//             location: location,
+//         });
+//
+//         if (i == 0) {
+//             clockTime = time;
+//             clockDisplayUpdate();
+//         }
+//     }
+//
+//     // Register onclick listener for all events
+//     eventsList.forEach(node => {
+//         node.addEventListener('click', _ => {
+//             // To prevent discrepancy between rotation animation and scrolling
+//             document.querySelector(
+//                 '#hour-pointer > span, #minute-pointer'
+//             ).style.transition = 'transform 0.5s';
+//
+//             // Update clock time
+//             var index = Array.prototype.slice
+//                 .call(
+//                     document.querySelector('#schedule-table > .saturday tbody')
+//                         .children
+//                 )
+//                 .concat(
+//                     Array.prototype.slice.call(
+//                         document.querySelector(
+//                             '#schedule-table > .sunday tbody'
+//                         ).children
+//                     )
+//                 )
+//                 .indexOf(node);
+//             var ev = events[index];
+//             var day = ev.day;
+//             var name = ev.name;
+//             var time = parseTime(ev.time);
+//             var location = ev.location;
+//             clockTime = ev.time;
+//
+//             // Update clock display
+//             var parameters = document.querySelector('#clock > .content')
+//                 .children;
+//             parameters[0].textContent = day;
+//             parameters[1].textContent = time;
+//             parameters[2].textContent = name;
+//             parameters[3].textContent = location;
+//
+//             clockDisplayUpdate();
+//         });
+//     });
+//
+//     let scheduleSwitchClosure = (() => {
+//         let showSunday = false;
+//         return _event => {
+//             showSunday = !showSunday;
+//             if (!showSunday) {
+//                 document.querySelector(
+//                     '#schedule-table .sunday'
+//                 ).style.display = 'none';
+//                 document.querySelector(
+//                     '#schedule-table .saturday'
+//                 ).style.display = 'unset';
+//             } else {
+//                 document.querySelector(
+//                     '#schedule-table .saturday'
+//                 ).style.display = 'none';
+//                 document.querySelector(
+//                     '#schedule-table .sunday'
+//                 ).style.display = 'unset';
+//             }
+//         };
+//     })();
+//     document
+//         .querySelector('#schedule-table .saturday > header')
+//         .addEventListener('click', scheduleSwitchClosure);
+//     document
+//         .querySelector('#schedule-table .sunday > header')
+//         .addEventListener('click', scheduleSwitchClosure);
+//
+//     // Register scrolling listener for clock
+//     document.getElementById('clock').addEventListener('wheel', e => {
+//         // To prevent discrepancy between rotation animation and scrolling
+//         document.querySelector(
+//             '#hour-pointer > span, #minute-pointer > span'
+//         ).style.transition = 'none';
+//
+//         if (e.deltaY == 0) return;
+//         clockTime += e.deltaY < 0 ? -15 : 15;
+//
+//         if (clockTime <= events[0].time) {
+//             clockTime = events[0].time;
+//         }
+//
+//         if (clockTime >= events[events.length - 1].time) {
+//             clockTime = events[events.length - 1].time;
+//         }
+//
+//         clockDisplayUpdate();
+//
+//         e.preventDefault();
+//     });
+// }
 
 // Update clock according to clockTime
 function clockDisplayUpdate() {

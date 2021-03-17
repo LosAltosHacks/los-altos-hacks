@@ -334,7 +334,7 @@ nav > .container a {
 }
 
 .info-container h2 {
-    font-size: var(--s4);
+    font-size: var(--s5);
 }
 
 .info-container > div > * {
@@ -957,6 +957,7 @@ details[open] .expand-icon:after {
 }
 
 #schedule-table .saturday span.left,
+#schedule-table .saturday span.right,
 #schedule-table .sunday span.right {
     transform: none;
     cursor: default;
