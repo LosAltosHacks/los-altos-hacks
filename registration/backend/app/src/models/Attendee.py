@@ -1,13 +1,12 @@
-from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Text, Enum
-
-from schemas.Attendee import ProgrammingExperience, PreviousHackathons, GradeLevel
 from models.Person import DBPerson
+from schemas.Attendee import PreviousHackathons, GradeLevel
+from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Text, Enum
 
 
 class DBAttendee(DBPerson):
     __tablename__ = "attendees2021"
 
-    id = Column(Integer, ForeignKey('person.id'), nullable=False, primary_key=True)
+    id = Column(Integer, ForeignKey('person2021.id'), nullable=False, primary_key=True)
 
     # education = Column(String(256), nullable=False)
     school = Column(String(256))
@@ -22,7 +21,8 @@ class DBAttendee(DBPerson):
     form_of_internet = Column(Text, nullable=False)
     mlh_code_of_conduct = Column(Boolean, nullable=False)
     share_info_mlh = Column(Boolean, nullable=False)
-    send_info_emails = Column(Boolean, nullable=False)
+    share_info_lah = Column(Boolean, nullable=False)
+    send_info_emails = Column(Boolean)
 
     __mapper_args__ = {
         "polymorphic_identity": "attendees",

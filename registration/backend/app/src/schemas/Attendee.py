@@ -1,10 +1,9 @@
+import datetime
 import enum
 import math
 
-from pydantic import BaseModel, EmailStr
-import datetime
-
 import config
+from pydantic import BaseModel, EmailStr
 
 
 class AcceptanceStatusEnum(enum.Enum):
@@ -78,7 +77,8 @@ class Attendee(BaseModel):
     form_of_internet: str = None
     mlh_code_of_conduct: bool
     share_info_mlh: bool
-    send_info_emails: bool
+    send_info_emails: bool = None
+    share_info_lah: bool
 
     class Config:
         orm_mode = True

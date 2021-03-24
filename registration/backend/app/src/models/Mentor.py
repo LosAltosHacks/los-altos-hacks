@@ -1,9 +1,10 @@
-from sqlalchemy import Column, String, Boolean, Integer, ForeignKey, Enum, Text
-# from sqlalchemy.orm import relationship
+import enum
 
 from models.Person import DBPerson
+from sqlalchemy import Column, String, Integer, ForeignKey, Enum
 
-import enum
+
+# from sqlalchemy.orm import relationship
 
 
 class TechnologyProficiency(enum.Enum):
@@ -15,7 +16,7 @@ class TechnologyProficiency(enum.Enum):
 class DBMentor(DBPerson):
     __tablename__ = "mentors2021"
 
-    id = Column(Integer, ForeignKey('person.id'), nullable=False, primary_key=True)
+    id = Column(Integer, ForeignKey('person2021.id'), nullable=False, primary_key=True)
     occupation = Column(String(1024), nullable=False)
     technology_proficiency = Column(Enum(TechnologyProficiency), nullable=False)
     proficient_in_languages = Column(String(1024))

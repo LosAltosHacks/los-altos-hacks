@@ -1,7 +1,7 @@
 import datetime
 import enum
-from typing import Union
 import uuid
+from typing import Union
 
 import schemas.Attendee as attendee
 import schemas.Mentor as mentor
@@ -80,7 +80,8 @@ def create_user(db: Session, user: Union[mentor.Mentor, attendee.Attendee],
             form_of_internet=user.form_of_internet,
             mlh_code_of_conduct=user.mlh_code_of_conduct,
             share_info_mlh=user.share_info_mlh,
-            send_info_emails=user.send_info_emails
+            send_info_emails=user.send_info_emails,
+            share_info_lah=user.share_info_lah
         )
     elif model is DBMentor:
         db_user = DBMentor(
