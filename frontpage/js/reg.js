@@ -348,9 +348,17 @@ function checkFilled($page) {
     // Validate all fields
     filledAll = filledAll && $page.find('.invalid').length == 0;
 
-    if ($page.attr('id') == 'review')
+    if ($page.attr('id') == 'review') {
+        var checkboxes = $('#agreement .radio > input');
+        var num_of_required_agreed = 0;
+        checkboxes.each((i, e) => {
+           if ($(e).is("[required]") && $(e).is(':checked')) {
+               num_of_required_agreed++;
+           }
+        });
         filledAll =
-            filledAll && $('#agreement .radio > input:checked').length == 3;
+            filledAll && num_of_required_agreed === 3;
+        }
 
     return filledAll;
 }
