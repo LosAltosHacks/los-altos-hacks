@@ -1,8 +1,9 @@
 import datetime
+
 from pydantic import BaseModel
 
-from models.Mentor import TechnologyProficiency
-from schemas.Attendee import ShirtSize, ProgrammingExperience
+from ..models.Mentor import TechnologyProficiency
+from ..schemas.Attendee import ShirtSize, ProgrammingExperience
 
 
 class Mentor(BaseModel):

@@ -1,7 +1,8 @@
 import enum
 
-from models.Person import DBPerson
 from sqlalchemy import Column, String, Integer, ForeignKey, Enum
+
+from ..models.Person import DBPerson
 
 
 # from sqlalchemy.orm import relationship

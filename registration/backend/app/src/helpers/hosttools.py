@@ -1,17 +1,16 @@
 from datetime import datetime, timedelta
 
+import config
 import jwt
 from fastapi import HTTPException, Depends, APIRouter
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
+from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from starlette.status import HTTP_401_UNAUTHORIZED
 
-import config
-from pydantic import BaseModel
-
-from models.Hosts import DBHost
-from starter import get_db
+from ..database.starter import get_db
+from ..models.Hosts import DBHost
 
 JWT_SECRET_KEY = config.JWT_SECRET_KEY
 
