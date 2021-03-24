@@ -1,6 +1,7 @@
-from models.Person import DBPerson
-from schemas.Attendee import PreviousHackathons, GradeLevel
 from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Text, Enum
+
+from Person import DBPerson
+from ..schemas.Attendee import PreviousHackathons, GradeLevel
 
 
 class DBAttendee(DBPerson):
