@@ -352,13 +352,12 @@ function checkFilled($page) {
         var checkboxes = $('#agreement .radio > input');
         var num_of_required_agreed = 0;
         checkboxes.each((i, e) => {
-           if ($(e).is("[required]") && $(e).is(':checked')) {
-               num_of_required_agreed++;
-           }
+            if ($(e).is('[required]') && $(e).is(':checked')) {
+                num_of_required_agreed++;
+            }
         });
-        filledAll =
-            filledAll && num_of_required_agreed === 3;
-        }
+        filledAll = filledAll && num_of_required_agreed === 3;
+    }
 
     return filledAll;
 }
