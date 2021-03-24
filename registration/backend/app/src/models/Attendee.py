@@ -1,28 +1,28 @@
-from sqlalchemy import Column, String, SmallInteger, Integer, ForeignKey
+from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Text, Enum
 
-from .Person import DBPerson
+from schemas.Attendee import ProgrammingExperience, PreviousHackathons, GradeLevel
+from models.Person import DBPerson
 
 
 class DBAttendee(DBPerson):
-    __tablename__ = "attendees"
+    __tablename__ = "attendees2021"
 
     id = Column(Integer, ForeignKey('person.id'), nullable=False, primary_key=True)
-    age = Column(SmallInteger, nullable=False)
 
-    education = Column(String(255), nullable=False)
-    school = Column(String(255))
-    grade = Column(SmallInteger)
-    phone_number = Column(String(255), nullable=False)
-    guardian_name = Column(String(255))
-    guardian_email = Column(String(255))
-    guardian_phone_number = Column(String(255))
-    gender = Column(String(255))
-    ethnicity = Column(String(255))
-    previous_hackathons = Column(SmallInteger, nullable=False)
-    github_username = Column(String(255))
-    linkedin_profile = Column(String(255))
-    goals = Column(String(1000))
-    special = Column(String(1000))
+    # education = Column(String(256), nullable=False)
+    school = Column(String(256))
+    grade = Column(Enum(GradeLevel), nullable=False)
+    parent_first_name = Column(String(256))
+    parent_last_name = Column(String(256))
+    parent_email = Column(String(256))
+    parent_phone_number = Column(String(256))
+    previous_hackathons_attended = Column(Enum(PreviousHackathons), nullable=False)
+    hear_about_us = Column(Text, nullable=False)
+    access_to_laptop_or_tablet = Column(Boolean, nullable=False)
+    form_of_internet = Column(Text, nullable=False)
+    mlh_code_of_conduct = Column(Boolean, nullable=False)
+    share_info_mlh = Column(Boolean, nullable=False)
+    send_info_emails = Column(Boolean, nullable=False)
 
     __mapper_args__ = {
         "polymorphic_identity": "attendees",
