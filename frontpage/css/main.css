@@ -957,6 +957,7 @@ details[open] .expand-icon:after {
 }
 
 #schedule-table .saturday span.left,
+#schedule-table .saturday span.right,
 #schedule-table .sunday span.right {
     transform: none;
     cursor: default;
