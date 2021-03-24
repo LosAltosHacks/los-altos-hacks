@@ -5,11 +5,11 @@ from pydantic import EmailStr
 from sqlalchemy.orm import Session
 from starlette.requests import Request
 
-from ..database.starter import get_db
-from ..helpers import dbtools
-from ..helpers.hosttools import get_current_host
-from ..models.Hosts import DBHost
-from ..schemas import Attendee
+from database.starter import get_db
+from helpers import dbtools
+from helpers.hosttools import get_current_host
+from models.Hosts import DBHost
+from schemas import Attendee
 
 registrationRouter = APIRouter()
 
