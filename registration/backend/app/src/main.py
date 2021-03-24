@@ -1,31 +1,19 @@
 # Fail dynamic config early
 import uuid
 
-from sqlalchemy.orm import Session
-
-import config
-
-# import jwt
 import uvicorn
-# from fastapi import Depends, HTTPException
 from fastapi import FastAPI, Depends
-# from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-import dbtools
-import database.starter
-# from models.database import get_db
-# from models.Hosts import DBHost
-# from passlib.context import CryptContext
-# from pydantic import BaseModel
-# from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session
 from starlette.middleware.cors import CORSMiddleware
-# from starlette.status import HTTP_401_UNAUTHORIZED
 from starlette.responses import Response
 
+import config
+import database.starter
+import helpers.dbtools as dbtools
+from database.starter import get_db
+from helpers.hosttools import authRouter
 from models.Person import DBPerson
-from hosttools import authRouter
-from starter import get_db
 from subrouters.registration import registrationRouter
-from subrouters.mentors import mentorRouter
 
 app = FastAPI()
 
