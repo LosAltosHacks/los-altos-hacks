@@ -217,6 +217,11 @@ body#registration {
     display: block;
     margin: 0.3em auto;
 }
+
+.qGrp .inputtext {
+    font-size: var(--s-2);
+}
+
 .qGrp input,
 .qGrp select {
     font-family: 'San Francisco Text', sans-serif;
