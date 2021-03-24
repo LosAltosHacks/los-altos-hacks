@@ -1,4 +1,4 @@
-from models.database import dbBase
+from database.starter import dbBase
 from sqlalchemy import Column, String, Boolean
 
 

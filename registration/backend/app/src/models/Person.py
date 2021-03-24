@@ -1,27 +1,39 @@
 import datetime
 import uuid
 
-from models.database import dbBase
-from schemas.Attendee import AcceptanceStatusEnum, ShirtSize
-from sqlalchemy import Column, String, Integer, Enum, Boolean, DateTime
-from sqlalchemy.orm.session import object_session
+from database.starter import dbBase
+from schemas.Attendee import AcceptanceStatusEnum, ShirtSize, ProgrammingExperience
+from sqlalchemy import Column, String, Integer, Enum, Boolean, Date, DateTime, Text
+from sqlalchemy.dialects.postgresql import UUID
 from helpers.emailing import send_email_template
-import helpers.dbtools as dbtools
+
 
 class DBPerson(dbBase):
-    __tablename__ = "person"
+    __tablename__ = "person2021"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(String(36), nullable=False, default=uuid.uuid4().hex)
-    first_name = Column(String(255), nullable=False)
-    last_name = Column(String(255), nullable=False)
-    email = Column(String(255), nullable=False)
-    email_token = Column(String(36), nullable=False, default=uuid.uuid4().hex)
+    user_id = Column(UUID(as_uuid=True), nullable=False, default=uuid.uuid4)
+    first_name = Column(String(256), nullable=False)
+    last_name = Column(String(256), nullable=False)
+    birthdate = Column(Date, nullable=False)
+    gender = Column(String(256))
+    ethnicity = Column(String(256))
+    email = Column(String(256), nullable=False)
+    email_token = Column(UUID(as_uuid=True), nullable=False, default=uuid.uuid4)
     email_verified = Column(Boolean, nullable=False, default=False)
+    phone_number = Column(String(256))
+    country = Column(Text, nullable=False)
+    address_line_one = Column(Text, nullable=False)
+    address_line_two = Column(Text)
+    city = Column(Text, nullable=False)
+    state_or_province = Column(Text)
+    postal_code = Column(Text, nullable=False)
+    twitter_handle = Column(String(256))
+    github_username = Column(String(256))
+    linkedin_profile = Column(String(256))
+    programming_experience = Column(Enum(ProgrammingExperience), nullable=False)
     tshirt_size = Column(Enum(ShirtSize), nullable=False)
-    dietary_restrictions = Column(String(255))
     acceptance_status = Column(Enum(AcceptanceStatusEnum), nullable=False, default=AcceptanceStatusEnum.none)
-    signed_waiver = Column(Boolean, nullable=False, default=False)
     outdated = Column(Boolean, nullable=False, default=False)
     timestamp = Column(DateTime, nullable=False, default=datetime.datetime.utcnow)
 

@@ -1,6 +1,6 @@
 const API_ENDPOINT = window.location.href.startsWith('https')
     ? 'https://api.losaltoshacks.com'
-    : 'http://localhost:8000';
+    : 'http://192.168.1.72:8000';
 
 // Update focus state of question groups
 $('.qGrp input, .qGrp textarea, .qGrp select').focus(e => {
@@ -15,8 +15,9 @@ $('#find-schools').click(() => displaySchools());
 
 // Display fields based on education
 $('input[name="ed"]').change(() => {
+    var hsgrades = ['12th', '11th', '10th', '9th'];
     if (
-        $('input[name="ed"]:checked').val() == 'High School' ||
+        hsgrades.includes($('input[name="ed"]:checked').val()) ||
         $('input[name="ed"]:checked').val() == 'Middle School'
     ) {
         $('#school').addClass('required');
@@ -25,21 +26,12 @@ $('input[name="ed"]').change(() => {
         $('#school').removeClass('required');
         $('#school').addClass('hidden');
     }
-
-    if ($('input[name="ed"]:checked').val() == 'High School') {
-        $('#grade').addClass('required');
-        $('#grade').removeClass('hidden');
-        $('#not-highschool').addClass('hidden');
-    } else {
-        $('#grade').removeClass('required');
-        $('#grade').addClass('hidden');
-        $('#not-highschool').removeClass('hidden');
-    }
 });
 
 // Display guardian info fields based on age
 $('#en-age').on('input change', () => {
-    var age = parseInt($('#en-age').val());
+    var bday = new Date($('#en-age').val());
+    var age = ~~((new Date() - bday) / 31557600000);
 
     if (age >= 18) {
         $('#guardian-info .qGrp').removeClass('required');
@@ -50,7 +42,50 @@ $('#en-age').on('input change', () => {
     }
 });
 
-// Verfiy Email
+// // Verify shipping information
+// // Very basic, basically just checking to make sure info isn't empty.
+// $('input#en-shipping-country').on('input change', e => {
+//     var input = $(e.target).val();
+//     if (input == "") {
+//         $(e.target).addClass('invalid')
+//     } else {
+//         $(e.target).removeClass('invalid');
+//     }
+// })
+// $('input#en-shipping-addy1').on('input change', e => {
+//     var input = $(e.target).val();
+//     if (input == "") {
+//         $(e.target).addClass('invalid')
+//     } else {
+//         $(e.target).removeClass('invalid');
+//     }
+// })
+// $('input#en-shipping-city').on('input change', e => {
+//     var input = $(e.target).val();
+//     if (input == "") {
+//         $(e.target).addClass('invalid')
+//     } else {
+//         $(e.target).removeClass('invalid');
+//     }
+// })
+// $('input#en-shipping-postal').on('input change', e => {
+//     var input = $(e.target).val();
+//     if (input == "") {
+//         $(e.target).addClass('invalid')
+//     } else {
+//         $(e.target).removeClass('invalid');
+//     }
+// })
+// $('input#en-shipping-stateprovince').on('input change', e => {
+//     var input = $(e.target).val();
+//     if (input == "") {
+//         $(e.target).addClass('invalid')
+//     } else {
+//         $(e.target).removeClass('invalid');
+//     }
+// })
+
+// Verify Email
 $('input.email').on('input change', e => {
     var email = $(e.target).val();
     var result = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -63,7 +98,7 @@ $('input.email').on('input change', e => {
     }
 });
 
-// Very Phone Number
+// Verify Phone Number
 $('input[data-mask="phone-us"]').on('input change', e => {
     var number = $(e.target).val();
     if (number) $(e.target).setMask('phone-us');
@@ -79,6 +114,16 @@ $('input#en-linkedin').on('input change', e => {
     var url = $(e.target).val();
     var result = /linkedin.com\/in\/[a-zA-Z0-9_-]+\/?$/.test(url);
     if (url != '' && !result) {
+        $(e.target).addClass('invalid');
+    } else {
+        $(e.target).removeClass('invalid');
+    }
+});
+
+$('input#en-twitter').on('input change', e => {
+    var username = $(e.target).val();
+    var result = /(^|[^@\w])@(\w{1,15})\b/.test(username);
+    if (username != '' && !result) {
         $(e.target).addClass('invalid');
     } else {
         $(e.target).removeClass('invalid');
@@ -279,6 +324,16 @@ function checkFilled($page) {
             return;
         }
 
+        if ($(e).attr('id') == 'shipping') {
+            filledAll =
+                filledAll &&
+                ($('#en-shipping-country').val() != '' &&
+                    $('#en-shipping-addy1').val() != '' &&
+                    $('#en-shipping-city').val() != '' &&
+                    $('#en-shipping-stateprovince').val() != '' &&
+                    $('#en-shipping-postal').val() != '');
+        }
+
         var $input = $(e).find('input');
         if (
             $input.attr('type') == 'radio' ||
@@ -293,9 +348,16 @@ function checkFilled($page) {
     // Validate all fields
     filledAll = filledAll && $page.find('.invalid').length == 0;
 
-    if ($page.attr('id') == 'review')
-        filledAll =
-            filledAll && $('#agreement .radio > input:checked').length == 3;
+    if ($page.attr('id') == 'review') {
+        var checkboxes = $('#agreement .radio > input');
+        var num_of_required_agreed = 0;
+        checkboxes.each((i, e) => {
+            if ($(e).is('[required]') && $(e).is(':checked')) {
+                num_of_required_agreed++;
+            }
+        });
+        filledAll = filledAll && num_of_required_agreed === 3;
+    }
 
     return filledAll;
 }
@@ -493,15 +555,6 @@ function registerAttendee() {
                 } else {
                     value = $(`input[name=${inpName}]:checked`).val();
                 }
-            }
-
-            // Integers
-            if (
-                name == 'age' ||
-                name == 'grade' ||
-                name == 'previous_hackathons'
-            ) {
-                value = parseInt(value);
             }
 
             if (
