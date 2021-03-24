@@ -1,18 +1,19 @@
 import uuid
 
-import helpers.dbtools as dbtools
-import schemas.Attendee as Attendee
 from fastapi import APIRouter, HTTPException, Depends
-from models.Hosts import DBHost
-from database.starter import get_db
 from pydantic import EmailStr
 from sqlalchemy.orm import Session
 from starlette.requests import Request
 
-from helpers.hosttools import get_current_host
-
+from ..database.starter import get_db
+from ..helpers import dbtools
+from ..helpers.hosttools import get_current_host
+from ..models.Hosts import DBHost
+from ..schemas import Attendee
 
 registrationRouter = APIRouter()
+
+
 # Main imports the reg router, so we import main after it
 # TODO: Refactor the DBHost helpers in main somewhere else
 # import main
