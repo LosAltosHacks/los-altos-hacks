@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Boolean
 
-from ..database.starter import dbBase
+from database.starter import dbBase
 
 
 class DBHost(dbBase):

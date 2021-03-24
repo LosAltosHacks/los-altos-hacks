@@ -5,11 +5,12 @@ from typing import Union
 
 from sqlalchemy.orm import Session
 
-from ..models.Attendee import DBAttendee
-from ..models.Mentor import DBMentor
-from ..models.Person import DBPerson
-from ..schemas.Attendee import Attendee as attendee
-from ..schemas.Mentor import Mentor as mentor
+from models.Attendee import DBAttendee
+from models.Mentor import DBMentor
+from models.Person import DBPerson
+
+import schemas.Mentor as mentor
+import schemas.Attendee as attendee
 
 
 def help_jsonify(x):
