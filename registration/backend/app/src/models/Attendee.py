@@ -5,7 +5,7 @@ from models.Person import DBPerson
 
 
 class DBAttendee(DBPerson):
-    __tablename__ = "attendees"
+    __tablename__ = "attendees2021"
 
     id = Column(Integer, ForeignKey('person.id'), nullable=False, primary_key=True)
 

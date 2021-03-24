@@ -9,7 +9,7 @@ from helpers.emailing import send_email_template
 
 
 class DBPerson(dbBase):
-    __tablename__ = "person"
+    __tablename__ = "person2021"
 
     id = Column(Integer, primary_key=True)
     user_id = Column(UUID(as_uuid=True), nullable=False, default=uuid.uuid4)

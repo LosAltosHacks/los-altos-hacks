@@ -13,7 +13,7 @@ class TechnologyProficiency(enum.Enum):
 
 
 class DBMentor(DBPerson):
-    __tablename__ = "mentors"
+    __tablename__ = "mentors2021"
 
     id = Column(Integer, ForeignKey('person.id'), nullable=False, primary_key=True)
     occupation = Column(String(1024), nullable=False)

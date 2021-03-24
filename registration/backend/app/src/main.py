@@ -44,7 +44,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(registrationRouter, prefix="/attendees")
-app.include_router(mentorRouter, prefix="/mentors")
+# app.include_router(mentorRouter, prefix="/mentors")
 app.include_router(authRouter, prefix="/auth")
 
 @app.get("/health/")
