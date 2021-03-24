@@ -21,7 +21,7 @@ class DBPerson(dbBase):
     email = Column(String(256), nullable=False)
     email_token = Column(UUID(as_uuid=True), nullable=False, default=uuid.uuid4)
     email_verified = Column(Boolean, nullable=False, default=False)
-    phone_number = Column(String(256), nullable=False)
+    phone_number = Column(String(256))
     country = Column(Text, nullable=False)
     address_line_one = Column(Text, nullable=False)
     address_line_two = Column(Text)

@@ -22,7 +22,7 @@ class DBAttendee(DBPerson):
     form_of_internet = Column(Text, nullable=False)
     mlh_code_of_conduct = Column(Boolean, nullable=False)
     share_info_mlh = Column(Boolean, nullable=False)
-    send_info_emails = Column(Boolean)
+    send_info_emails = Column(Boolean, nullable=False)
 
     __mapper_args__ = {
         "polymorphic_identity": "attendees",

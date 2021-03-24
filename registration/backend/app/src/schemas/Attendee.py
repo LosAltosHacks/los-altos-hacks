@@ -54,12 +54,12 @@ class Attendee(BaseModel):
     email: EmailStr
     school: str
     grade: GradeLevel
-    phone_number: str
+    phone_number: str = None
     country: str
     address_line_one: str
-    address_line_two: str
+    address_line_two: str = None
     city: str
-    state_or_province: str = None
+    state_or_province: str
     postal_code: str
     gender: str
     ethnicity: str
@@ -78,13 +78,13 @@ class Attendee(BaseModel):
     form_of_internet: str = None
     mlh_code_of_conduct: bool
     share_info_mlh: bool
-    send_info_emails: bool = False
+    send_info_emails: bool
 
     class Config:
         orm_mode = True
 
     def hasinformation(self) -> bool:
-        return bool(self.parent_first_name and self.parent_last_name and self.parent_email and self.parent_phone_number)
+        return bool(self.parent_first_name and self.parent_last_name and self.parent_email)
 
     def validattendee(self) -> bool:
         age = math.floor((datetime.date.fromisoformat(config.HACKATHON_DATE) - self.birthdate).days / 365)
