@@ -9,8 +9,8 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from starlette.status import HTTP_401_UNAUTHORIZED
 
-from ..database.starter import get_db
-from ..models.Hosts import DBHost
+from database.starter import get_db
+from models.Hosts import DBHost
 
 JWT_SECRET_KEY = config.JWT_SECRET_KEY
 
