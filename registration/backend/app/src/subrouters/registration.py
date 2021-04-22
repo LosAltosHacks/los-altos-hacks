@@ -31,9 +31,9 @@ def signup(attendee: Attendee.Attendee, request: Request, db: Session = Depends(
 
 
 @registrationRouter.get("/")
-def list_users(db: Session = Depends(get_db), host: DBHost = Depends(get_current_host)):
+def list_users(skip: int = 0, db: Session = Depends(get_db), host: DBHost = Depends(get_current_host)):
     if host:
-        if users := dbtools.get_users(db):
+        if users := dbtools.get_users(db, skip=skip):
             return users
         return []
     raise HTTPException(status_code=401, detail="Unauthorized request.")
