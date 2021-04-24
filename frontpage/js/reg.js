@@ -15,7 +15,7 @@ $('#find-schools').click(() => displaySchools());
 
 // Display fields based on education
 $('input[name="ed"]').change(() => {
-    var hsgrades = ['12th', '11th', '10th', '9th'];
+    var hsgrades = ['College', '12th', '11th', '10th', '9th'];
     if (
         hsgrades.includes($('input[name="ed"]:checked').val()) ||
         $('input[name="ed"]:checked').val() == 'Middle School'
