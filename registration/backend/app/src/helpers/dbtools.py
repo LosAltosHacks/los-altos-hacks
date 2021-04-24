@@ -4,6 +4,7 @@ import uuid
 from typing import Union
 
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 
 from models.Attendee import DBAttendee
 from models.Mentor import DBMentor
@@ -127,7 +128,7 @@ def create_user(db: Session, user: Union[mentor.Mentor, attendee.Attendee],
 
 def search_for_users(db: Session, criteria, model: Union[DBPerson, DBAttendee, DBMentor] = DBAttendee):
     query = db.query(model)
-    query = query.filter(getattr(model, criteria[0]) == criteria[1])
+    query = query.filter(func.lower(getattr(model, criteria[0])) == func.lower(criteria[1]))
     return query.all()
 
 
