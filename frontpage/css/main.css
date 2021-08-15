@@ -441,7 +441,7 @@ nav > .container a {
 #landing .buttons > span input:hover {
     cursor: pointer;
     background-image: url('../images/gradient-small.jpg');
-    border: none;
+    border: solid 1px transparent;
     background-size: cover;
     color: var(--white);
 }
@@ -449,7 +449,7 @@ nav > .container a {
 #landing .buttons > span input:focus {
     cursor: pointer;
     background-image: url('../images/gradient-small.jpg');
-    border: none;
+    border: solid 1px transparent;
     background-size: cover;
     color: var(--white);
 }
