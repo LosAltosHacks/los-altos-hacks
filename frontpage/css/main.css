@@ -395,7 +395,6 @@ nav > .container a {
 
 .call-to-action .buttons {
     /* implements a sidebar from every-layout */
-    background-color: var(--accent-light);
     flex-basis: 14rem;
     flex-grow: 1;
     min-width: 13rem;
@@ -441,14 +440,18 @@ nav > .container a {
 #landing .buttons > a:hover,
 #landing .buttons > span input:hover {
     cursor: pointer;
+    background-image: url('../images/gradient-small.jpg');
+    border: none;
+    background-size: cover;
     color: var(--white);
-    background: var(--accent-dark);
 }
 
 #landing .buttons > span input:focus {
     cursor: pointer;
-    color: var(--accent-dark);
-    background: none;
+    background-image: url('../images/gradient-small.jpg');
+    border: none;
+    background-size: cover;
+    color: var(--white);
 }
 
 #landing .buttons > span input:not(:focus)::placeholder,
