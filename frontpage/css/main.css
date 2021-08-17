@@ -395,9 +395,9 @@ nav > .container a {
 
 .call-to-action .buttons {
     /* implements a sidebar from every-layout */
-    flex-basis: 16rem;
-    flex-grow: 2;
-    min-width: 15rem;
+    flex-basis: 14rem;
+    flex-grow: 1;
+    min-width: 13rem;
 
     display: flex;
     flex-direction: row;
