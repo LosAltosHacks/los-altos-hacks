@@ -564,9 +564,11 @@ nav > .container a {
 /* Mission */
 #mission {
     background: url('../images/mission_background.jpg'); /*This images is the background*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-position: center;
-    min-height: 20rem;
+    min-height: 100vh;
     width: 100vw;
     text-align: center;
     position: relative;
@@ -583,7 +585,7 @@ nav > .container a {
     display: flex;
     flex-flow: column;
     width: 100vw;
-    min-height: 20rem;
+    min-height: inherit;
     padding: 5%;
 }
 #mission > div {
