@@ -578,6 +578,7 @@ function registerAttendee() {
         
         $.ajax(settings).done(function (response) {
             console.log(response);
+            resolve(response);
         });
         
     });
