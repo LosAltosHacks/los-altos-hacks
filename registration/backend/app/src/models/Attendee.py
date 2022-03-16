@@ -5,7 +5,7 @@ from schemas.Attendee import PreviousHackathons, GradeLevel
 
 
 class DBAttendee(DBPerson):
-    __tablename__ = "attendees2021"
+    __tablename__ = "attendees2022"
 
     id = Column(Integer, ForeignKey('person2021.id'), nullable=False, primary_key=True)
 
