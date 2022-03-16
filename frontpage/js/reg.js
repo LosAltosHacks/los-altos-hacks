@@ -565,14 +565,21 @@ function registerAttendee() {
 
             data[name] = value;
         });
-
-        $.post(API_ENDPOINT + '/attendees/', JSON.stringify(data))
-            .done((response, _statusText, xhr) => {
-                if (xhr.status == 200) resolve(response);
-            })
-            .fail((xhr, statusText, _error_thrown) => {
-                reject(xhr, statusText);
-            });
+        
+        var settings = {
+            "url": "https://api.losaltoshacks.com/attendees/",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(data)
+        };
+        
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+        
     });
     return promise;
 }
