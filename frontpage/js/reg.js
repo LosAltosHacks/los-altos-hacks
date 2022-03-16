@@ -578,7 +578,7 @@ function registerAttendee() {
         
         $.ajax(settings)
             .done(function(response) {
-                alert("Your registration form has been successfully submitted. You can safely close the window.");
+                alert("Your application has been successfully submitted. You can safely close the window.");
                 console.log(response);
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
