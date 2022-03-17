@@ -277,8 +277,8 @@ $(document).ready(function() {
         value = $(this).val();
         result =
             value.length > 0 &&
-            (value.indexOf('linkedin.com/in/') == -1 &&
-                value.indexOf('github.com/') == -1);
+            value.indexOf('linkedin.com/in/') == -1 &&
+            value.indexOf('github.com/') == -1;
         if (result) $(this).addClass('invalidInp');
         else $(this).removeClass('invalidInp');
     }
@@ -623,8 +623,8 @@ $('.slInp, .radioBox', '#HDPage').on('input change', function() {
         var value = $(this).val();
         var result =
             value.length > 0 &&
-            (value.indexOf('linkedin.com/in/') == -1 &&
-                value.indexOf('github.com/') == -1);
+            value.indexOf('linkedin.com/in/') == -1 &&
+            value.indexOf('github.com/') == -1;
         if (result) $(this).addClass('invalidInp');
         else $(this).removeClass('invalidInp');
     }

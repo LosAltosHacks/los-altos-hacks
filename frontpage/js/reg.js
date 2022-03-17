@@ -327,11 +327,11 @@ function checkFilled($page) {
         if ($(e).attr('id') == 'shipping') {
             filledAll =
                 filledAll &&
-                ($('#en-shipping-country').val() != '' &&
-                    $('#en-shipping-addy1').val() != '' &&
-                    $('#en-shipping-city').val() != '' &&
-                    $('#en-shipping-stateprovince').val() != '' &&
-                    $('#en-shipping-postal').val() != '');
+                $('#en-shipping-country').val() != '' &&
+                $('#en-shipping-addy1').val() != '' &&
+                $('#en-shipping-city').val() != '' &&
+                $('#en-shipping-stateprovince').val() != '' &&
+                $('#en-shipping-postal').val() != '';
         }
 
         var $input = $(e).find('input');
@@ -565,22 +565,21 @@ function registerAttendee() {
 
             data[name] = value;
         });
-        
+
         var settings = {
-            "url": "https://api.losaltoshacks.com/attendees/",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Content-Type": "application/json"
+            url: 'https://api.losaltoshacks.com/attendees/',
+            method: 'POST',
+            timeout: 0,
+            headers: {
+                'Content-Type': 'application/json',
             },
-            "data": JSON.stringify(data)
+            data: JSON.stringify(data),
         };
-        
-        $.ajax(settings).done(function (response) {
+
+        $.ajax(settings).done(function(response) {
             console.log(response);
             resolve(response);
         });
-        
     });
     return promise;
 }

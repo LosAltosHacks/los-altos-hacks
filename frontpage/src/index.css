@@ -1,23 +1,23 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #000 !important;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #000 !important;
 
-  width: 100%;
-  font-family: "Blinker", sans-serif;
-  overflow-x: hidden;
+    width: 100%;
+    font-family: 'Blinker', sans-serif;
+    overflow-x: hidden;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
 }
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 h1,
 h2,
@@ -26,27 +26,27 @@ h4,
 h5,
 h6,
 p {
-  margin: 0 !important;
+    margin: 0 !important;
 }
 .title {
-  font-family: Blinker;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 80px;
-  line-height: 96px;
-  /* identical to box height */
+    font-family: Blinker;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 80px;
+    line-height: 96px;
+    /* identical to box height */
 
-  color: #ffffff;
+    color: #ffffff;
 }
 @font-face {
-  font-family: "Avenir";
-  src: url(/font/AvenirLTStd-Black.otf);
+    font-family: 'Avenir';
+    src: url(/font/AvenirLTStd-Black.otf);
 }
 @font-face {
-  font-family: "Avenir";
-  src: url(/font/AvenirLTStd-Book.otf);
+    font-family: 'Avenir';
+    src: url(/font/AvenirLTStd-Book.otf);
 }
 @font-face {
-  font-family: "Avenir";
-  src: url(/font/AvenirLTStd-Roman.otf);
+    font-family: 'Avenir';
+    src: url(/font/AvenirLTStd-Roman.otf);
 }

@@ -11,7 +11,7 @@ navBarDisplay();
 registerEvents();
 
 // Adapt to Microsoft Edge
-if (!/*@cc_on!@*/ (false || !!document.documentMode)) {
+if (!(/*@cc_on!@*/ (false || !!document.documentMode))) {
     adaptEdge();
 }
 
@@ -28,8 +28,8 @@ function navBarDisplay() {
     } else if (
         (document.body.scrollTop > 50 ||
             document.documentElement.scrollTop > 50) &&
-        (document.body.scrollTop < offset &&
-            document.documentElement.scrollTop < offset)
+        document.body.scrollTop < offset &&
+        document.documentElement.scrollTop < offset
     ) {
         document.querySelector('nav > .container').style.boxShadow = 'none';
         nav.style.transition = 'none';
