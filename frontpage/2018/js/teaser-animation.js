@@ -55,12 +55,26 @@ function animate(time) {
 }
 
 function drawLVert(t) {
-    polygon([[0, 0], [1, 0], [1, 3], [1 - 0.005, 3], [0, 2 + 0.005]]);
+    polygon([
+        [0, 0],
+        [1, 0],
+        [1, 3],
+        [1 - 0.005, 3],
+        [0, 2 + 0.005],
+    ]);
 
     // Half pixel offsets prevent "cracks" from showing between shapes
     transitionedPolygon(
-        [[0, 2 - 0.005], [1 + 0.005, 3], [0.5, 4 - 1.5]],
-        [[0, 2 - 0.005], [1 + 0.005, 3], [0, 4 - 1]],
+        [
+            [0, 2 - 0.005],
+            [1 + 0.005, 3],
+            [0.5, 4 - 1.5],
+        ],
+        [
+            [0, 2 - 0.005],
+            [1 + 0.005, 3],
+            [0, 4 - 1],
+        ],
         t
     );
 }
@@ -71,15 +85,30 @@ function drawLHoriz(t) {
     // this piece to stick out when it is supposed to be fully retracted. So,
     // we need to ease the half pixel too.
     transitionedPolygon(
-        [[1, 2], [2 + 1 / 6 + 0.005, 2], [2 - 1 / 6 + 0.005, 3], [1, 3]],
-        [[1, 2], [1, 2], [1, 3], [1, 3]],
+        [
+            [1, 2],
+            [2 + 1 / 6 + 0.005, 2],
+            [2 - 1 / 6 + 0.005, 3],
+            [1, 3],
+        ],
+        [
+            [1, 2],
+            [1, 2],
+            [1, 3],
+            [1, 3],
+        ],
         t
     );
 }
 
 function drawALeft(t) {
     transitionedPolygon(
-        [[2 - 1 / 6, 3], [3 - 1 / 6, 3], [4 - 1 / 6, 0], [3 - 1 / 6, 0]],
+        [
+            [2 - 1 / 6, 3],
+            [3 - 1 / 6, 3],
+            [4 - 1 / 6, 0],
+            [3 - 1 / 6, 0],
+        ],
         [
             // Skew (+/- 0.5); slide to the right (+ 2/3)
             [2 - 1 / 6 + 0.5 + 2 / 3, 3],
@@ -93,7 +122,12 @@ function drawALeft(t) {
 
 function drawARight(t) {
     transitionedPolygon(
-        [[4 - 1 / 6, 0], [3 - 1 / 6, 0], [4 - 1 / 6, 3], [5 - 1 / 6, 3]],
+        [
+            [4 - 1 / 6, 0],
+            [3 - 1 / 6, 0],
+            [4 - 1 / 6, 3],
+            [5 - 1 / 6, 3],
+        ],
         [
             // Skew (+/- 0.5); slide to the left (- 11/6)
             [4 - 1 / 6 + 0.5 - 11 / 6, 0],
