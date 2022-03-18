@@ -29,7 +29,7 @@ function navBarDisplay() {
         (document.body.scrollTop > 50 ||
             document.documentElement.scrollTop > 50) &&
         document.body.scrollTop < offset &&
-            document.documentElement.scrollTop < offset
+        document.documentElement.scrollTop < offset
     ) {
         document.querySelector('nav > .container').style.boxShadow = 'none';
         nav.style.transition = 'none';
