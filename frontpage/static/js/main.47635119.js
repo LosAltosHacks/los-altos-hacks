@@ -623,8 +623,8 @@
                         ? 0 === o.type
                         : !r &&
                           2 < t.length &&
-                              ('o' === t[0] || 'O' === t[0]) &&
-                              ('n' === t[1] || 'N' === t[1])) ||
+                          ('o' === t[0] || 'O' === t[0]) &&
+                          ('n' === t[1] || 'N' === t[1])) ||
                         ((function(e, t, n, r) {
                             if (
                                 null === t ||
@@ -1521,7 +1521,7 @@
                         if (
                             (null === t &&
                                 null !== (e = e.alternate) &&
-                                    (t = e.memoizedState),
+                                (t = e.memoizedState),
                             null !== t)
                         )
                             return t.dehydrated;
@@ -1975,7 +1975,8 @@
                         case 8:
                             return (
                                 0 === (e = Vt(3584 & ~t)) &&
-                                    0 === (e = Vt(4186112 & ~t)) && (e = 512),
+                                    0 === (e = Vt(4186112 & ~t)) &&
+                                    (e = 512),
                                 e
                             );
                         case 2:
@@ -3057,7 +3058,7 @@
                                             ((p = m),
                                             null !== d &&
                                                 null != (m = Fe(h, d)) &&
-                                                    c.push(Ir(h, m, p))),
+                                                c.push(Ir(h, m, p))),
                                         f)
                                     )
                                         break;
@@ -3312,15 +3313,15 @@
                                           }
                                       })(e, n)) &&
                                     0 < (r = Lr(r, 'onBeforeInput')).length &&
-                                        ((o = new Sn(
-                                            'onBeforeInput',
-                                            'beforeinput',
-                                            null,
-                                            n,
-                                            o
-                                        )),
-                                        i.push({ event: o, listeners: r }),
-                                        (o.data = v));
+                                    ((o = new Sn(
+                                        'onBeforeInput',
+                                        'beforeinput',
+                                        null,
+                                        n,
+                                        o
+                                    )),
+                                    i.push({ event: o, listeners: r }),
+                                    (o.data = v));
                         }
                         Tr(i, t);
                     });
@@ -3405,7 +3406,8 @@
                     1 === e.nodeType
                         ? (e.textContent = '')
                         : 9 === e.nodeType &&
-                          null != (e = e.body) && (e.textContent = '');
+                          null != (e = e.body) &&
+                          (e.textContent = '');
                 }
                 function Kr(e) {
                     for (; null != e; e = e.nextSibling) {
@@ -3960,7 +3962,8 @@
                         ? e.shouldComponentUpdate(r, a, i)
                         : !t.prototype ||
                               !t.prototype.isPureReactComponent ||
-                              !dr(n, r) || !dr(o, a);
+                              !dr(n, r) ||
+                              !dr(o, a);
                 }
                 function wa(e, t, n) {
                     var r = !1,
@@ -7110,7 +7113,8 @@
                         null !== e &&
                         (null === (e = e.memoizedState) ||
                             null !== e.dehydrated) &&
-                        null !== (t = t.memoizedState) && null === t.dehydrated
+                        null !== (t = t.memoizedState) &&
+                        null === t.dehydrated
                     );
                 }
                 var Tl = Math.ceil,
@@ -7169,7 +7173,7 @@
                         return (
                             0 === (t &= -t) &&
                                 0 === (t = (e = 4186112 & ~e) & -e) &&
-                                    (t = 8192),
+                                (t = 8192),
                             t
                         );
                     }
@@ -14540,7 +14544,7 @@
                                 0 < z &&
                                     void 0 !==
                                         (w = l(2, B, L, e, P, O, H, s, d, s)) &&
-                                        0 === (B = w).length)
+                                    0 === (B = w).length)
                             )
                                 return W + B + $;
                             if (
@@ -14938,7 +14942,7 @@
                                         0,
                                         0
                                     )) &&
-                                    (a = o),
+                                (a = o),
                             '',
                             (T = 0),
                             (O = P = 1),
@@ -15186,14 +15190,14 @@
                                   WDS_SOCKET_PORT: void 0,
                                   FAST_REFRESH: !0,
                               }.SC_DISABLE_SPEEDY &&
-                              {
-                                  NODE_ENV: 'production',
-                                  PUBLIC_URL: '',
-                                  WDS_SOCKET_HOST: void 0,
-                                  WDS_SOCKET_PATH: void 0,
-                                  WDS_SOCKET_PORT: void 0,
-                                  FAST_REFRESH: !0,
-                              }.SC_DISABLE_SPEEDY
+                          {
+                              NODE_ENV: 'production',
+                              PUBLIC_URL: '',
+                              WDS_SOCKET_HOST: void 0,
+                              WDS_SOCKET_PATH: void 0,
+                              WDS_SOCKET_PORT: void 0,
+                              FAST_REFRESH: !0,
+                          }.SC_DISABLE_SPEEDY
                 );
             function q(e) {
                 for (
