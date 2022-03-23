@@ -11,5 +11,8 @@
     "eslint": "^8.0.0",
     "eslint-config-react-app": "^7.0.0",
     "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
   }
 }
