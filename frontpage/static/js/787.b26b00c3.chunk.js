@@ -1,4 +1,3 @@
-'use strict';
 (self.webpackChunkarzy = self.webpackChunkarzy || []).push([
     [787],
     {

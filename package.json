@@ -5,7 +5,9 @@
   "main_": "",
   "author": "",
   "scripts": {
-    "pretty": "prettier --write \"./**/*.{js,jsx,json,css,html}\""
+    "pretty": "prettier --write \"./**/*.{js,jsx,json,css,html}\"",
+    "lint": "eslint \"frontpage/**/*.{js,jsx}\"",
+    "lint:fix": "eslint \"frontpage/**/*.{js,jsx}\" --fix"
   },
   "devDependencies": {
     "eslint": "^8.0.0",
