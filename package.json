@@ -8,7 +8,7 @@
     "pretty": "prettier --write \"./**/*.{js,jsx,json,css,html}\""
   },
   "devDependencies": {
-    "eslint": "^6.4.0",
+    "eslint": "^8.11.0",
     "prettier": "^1.19.1"
   }
 }
