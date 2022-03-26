@@ -576,10 +576,14 @@ function registerAttendee() {
             data: JSON.stringify(data),
         };
 
-        $.ajax(settings).done(function(response) {
-            console.log(response);
-            resolve(response);
-        });
+        $.ajax(settings)
+            .done(function(response, _statusText, xhr) {
+                if (xhr.status == 200) resolve(response);
+                console.log(response);
+            })
+            .fail(function(xhr, statusText, _errorThrown) {
+                reject(xhr, statusText);
+            });
     });
     return promise;
 }
