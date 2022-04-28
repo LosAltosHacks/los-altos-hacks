@@ -281,7 +281,7 @@ div#overlay {
     opacity: 0.1;
     min-height: 100%;
     min-width: 100%;
-    height: auto%;
+    height: auto;
     width: auto;
     position: absolute;
     top: 50%;
