@@ -43,7 +43,7 @@ jobs:
       - name: Docker Version
         run: docker version
       - name: Login to AWS ECR
-        run: eval $(aws ecr get-login-password)
+        run: aws ecr get-login-password | docker login --username AWS --password-stdin 380692441471.dkr.ecr.us-west-2.amazonaws.com/ffmergebot:latest
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
