@@ -40,6 +40,8 @@ jobs:
           fetch-depth: 1
       - name: Set AWS Region
         run: aws configure set default.region us-west-2
+      - name: AWS Version
+        run: aws --version
       - name: Login to AWS ECR
         run: eval $(aws ecr get-login-password)
         env:
