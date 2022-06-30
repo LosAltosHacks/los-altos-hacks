@@ -5,8 +5,10 @@
 body#registration {
     background-image: url("../images/backgrounds/page1.png");
     display: flex;
+    background-repeat: no-repeat;
     flex-direction: column;
     justify-content: center;
+    background-size: cover;
 }
 
 #registration > main > div:not(.error-modal) {
