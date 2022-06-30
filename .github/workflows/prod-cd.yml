@@ -20,13 +20,17 @@ jobs:
       - name: S3 Sync
         run: aws s3 sync frontpage/ s3://www.losaltoshacks.com/
         env:
+          AWS_EC2_METADATA_DISABLED: true
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
       - name: Cloudfront Invalidation
         run: aws cloudfront create-invalidation --distribution-id EBQXN8COJP8X4 --paths '/*'
         env:
+          AWS_EC2_METADATA_DISABLED: true
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
   deploy-ffmergebot:
     runs-on: ubuntu-18.04
     steps:
@@ -38,8 +42,10 @@ jobs:
       - name: Login to AWS ECR
         run: eval $(aws ecr get-login --no-include-email)
         env:
+          AWS_EC2_METADATA_DISABLED: true
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
       - name: Pull Cache from ECR
         run: docker pull 380692441471.dkr.ecr.us-west-2.amazonaws.com/ffmergebot:latest
       - name: Build Container
@@ -55,8 +61,10 @@ jobs:
       - name: Force ECR Redeploy
         run: aws ecs update-service --cluster LosAltosHacksCluster --service FFMergeBotService --force-new-deployment > /dev/null
         env:
+          AWS_EC2_METADATA_DISABLED: true
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
   deploy-reg-backend:
     runs-on: ubuntu-18.04
     steps:
@@ -68,8 +76,10 @@ jobs:
       - name: Login to AWS ECR
         run: eval $(aws ecr get-login --no-include-email)
         env:
+          AWS_EC2_METADATA_DISABLED: true
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
       - name: Pull Cache from ECR
         run: docker pull 380692441471.dkr.ecr.us-west-2.amazonaws.com/registration-backend:latest
       - name: Build Container
@@ -84,5 +94,10 @@ jobs:
       - name: Force ECR Redeploy
         run: aws ecs update-service --cluster LosAltosHacksCluster --service RegistrationBackendService --force-new-deployment > /dev/null
         env:
+          AWS_EC2_METADATA_DISABLED: true
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-west-2
+
+          
+
