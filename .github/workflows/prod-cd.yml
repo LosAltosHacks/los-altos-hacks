@@ -74,8 +74,9 @@ jobs:
           fetch-depth: 1
       - name: Set AWS Region
         run: aws configure set default.region us-west-2
-      - name: Login to AWS ECR
+      - name: Check Docker Version
         run: eval $(docker --version)
+      - name: Login to AWS ECR
         run: eval $(aws ecr get-login-password | docker login --username AWS --password-stdin 380692441471.dkr.ecr.us-west-2.amazonaws.com)
         env:
           AWS_EC2_METADATA_DISABLED: true
