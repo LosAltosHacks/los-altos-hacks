@@ -24,6 +24,7 @@ html,
 body {
     height: 100%;
     margin: 0;
+    width: 100%;
 }
 
 div,
@@ -35,7 +36,7 @@ footer {
 }
 
 div {
-    /* align-content: center; */
+    align-content: center;
 }
 footer > div > p {
     margin: 0 auto;
@@ -809,15 +810,14 @@ nav {
     right: 0rem;
     z-index: 999;
     padding: 0rem 2rem;
-    align-items: start;
-}
-
-#nav-row {
+    align-items: center;
     height: 2rem;
-    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
-#nav-row > :first-child, #nav-row > :last-child {
+nav > :first-child, nav > :last-child {
     flex: 1;
 }
 
