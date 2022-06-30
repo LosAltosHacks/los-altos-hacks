@@ -1,0 +1,57 @@
+:root {
+    /* Colors */
+    --white: #f5f5f5;
+    --black: #222222;
+    --accent-bright: #74bcc5; /* medium aquamarine */
+    --accent-dark: #54696d; /* slate gray */
+
+    font-family: 'San Francisco Text', 'Open Sans', sans-serif;
+    color: var(--white);
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--accent-bright);
+    overflow-x: hidden;
+}
+
+body > article {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.container {
+    width: 80vw;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#logo {
+    max-width: 50vw;
+    transition: transform 0.5s;
+}
+#logo:hover {
+    transform: scale(1.05);
+}
+
+.container > h1 {
+    margin-top: 1em;
+}
+
+.container > p {
+    margin-top: 1em;
+    line-height: 20px;
+}
+
+a {
+    color: var(--accent-dark);
+}
