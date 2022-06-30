@@ -272,7 +272,7 @@ div#overlay {
 }
 
 .background {
-    position: absolute;
+    position: fixed;
     margin: 0;
     padding: 0;
     overflow: none;
@@ -281,9 +281,9 @@ div#overlay {
 }
 
 .background img {
-    display: block;
-    margin: 0;
-    padding: 0;
+    width:2077px;
+    height:1349px;
+    width: 100%;
 }
 
 #logo-main {
@@ -808,12 +808,12 @@ nav {
     left: 0rem;
     right: 0rem;
     z-index: 999;
-    padding: 0rem 2rem;
+    padding: 0.5rem 0.8rem;
     align-items: start;
 }
 
 #nav-row {
-    height: 2rem;
+    height: 1rem;
     justify-content: space-between;
 }
 
@@ -823,8 +823,8 @@ nav {
 
 .nav-icon {
     align-items: start;
-    width: 1.5rem;
-    margin-right: 15px;
+    width: 2rem;
+    margin-right: 0rem;
 }
 
 .nav-icon #nav-brand {
@@ -1192,7 +1192,7 @@ footer a.link-group-item:hover {
 
 .hero {
     display: flex;
-    margin-top: 2rem;
+    margin-top: 0rem;
 }
 
 .hero-inner > * {
