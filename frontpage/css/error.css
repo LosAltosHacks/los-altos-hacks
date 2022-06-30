@@ -16,8 +16,12 @@ html {
 }
 
 body {
-    background-color: var(--accent-bright);
-    overflow-x: hidden;
+    background-image: url('../images/backgrounds/page1.png');
+    display: flex;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    justify-content: center;
+    background-size: cover;
 }
 
 body > article {
