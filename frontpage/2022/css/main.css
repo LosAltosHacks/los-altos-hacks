@@ -805,8 +805,8 @@ nav {
     position: absolute;
     top: 0;
     background: none;
-    left: 0;
-    right: 0;
+    left: -1rem;
+    right: 15rem;
     z-index: 999;
     padding: 0rem 2rem;
     align-items: start;
