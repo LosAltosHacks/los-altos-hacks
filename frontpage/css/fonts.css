@@ -1,181 +1,29 @@
 @font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Regular'), local('SanFranciscoText-Regular'),
-        url('../fonts/SanFranciscoText-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Italic'),
-        local('SanFranciscoText-RegularItalic'),
-        url('../fonts/SanFranciscoText-RegularItalic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Light'), local('SanFranciscoText-Light'),
-        url('../fonts/SanFranciscoText-Light.ttf') format('truetype');
+    src: url('../fonts/AvenirLTStd-Roman.ttf');
+    font-family: 'Avenir';
     font-weight: 300;
-    font-style: normal;
 }
 
 @font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Medium'),
-        local('SanFranciscoDisplay-Medium'),
-        url('../fonts/SanFranciscoDisplay-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Heavy'), local('SanFranciscoText-Heavy'),
-        url('../fonts/SanFranciscoText-Heavy.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Ultralight'),
-        local('SanFranciscoDisplay-Ultralight'),
-        url('../fonts/SanFranciscoDisplay-Ultralight.ttf') format('truetype');
+    src: url('../fonts/Blinker-Thin.ttf');
+    font-family: 'Blinker';
     font-weight: 100;
-    font-style: normal;
 }
 
 @font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Black'),
-        local('SanFranciscoDisplay-Black'),
-        url('../fonts/SanFranciscoDisplay-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
+    src: url('../fonts/Blinker-ExtraLight.ttf');
+    font-family: 'Blinker';
+    font-weight: 200;
 }
 
 @font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Semibold'),
-        local('SanFranciscoDisplay-Semibold'),
-        url('../fonts/SanFranciscoDisplay-Semibold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Light'),
-        local('SanFranciscoDisplay-Light'),
-        url('../fonts/SanFranciscoDisplay-Light.ttf') format('truetype');
+    src: url('../fonts/Blinker-Light.ttf');
+    font-family: 'Blinker';
     font-weight: 300;
-    font-style: normal;
 }
 
 @font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Medium'), local('SanFranciscoText-Medium'),
-        url('../fonts/SanFranciscoText-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Heavy'),
-        local('SanFranciscoDisplay-Heavy'),
-        url('../fonts/SanFranciscoDisplay-Heavy.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Regular'),
-        local('SanFranciscoDisplay-Regular'),
-        url('../fonts/SanFranciscoDisplay-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Bold Italic'),
-        local('SanFranciscoText-BoldItalic'),
-        url('../fonts/SanFranciscoText-BoldItalic.ttf') format('truetype');
-    font-weight: bold;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Bold'), local('SanFranciscoText-Bold'),
-        url('../fonts/SanFranciscoText-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Thin'), local('SanFranciscoDisplay-Thin'),
-        url('../fonts/SanFranciscoDisplay-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Semibold Italic'),
-        local('SanFranciscoText-SemiboldItalic'),
-        url('../fonts/SanFranciscoText-SemiboldItalic.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Light Italic'),
-        local('SanFranciscoText-LightItalic'),
-        url('../fonts/SanFranciscoText-LightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'San Francisco Display';
-    src: local('San Francisco Display Bold'), local('SanFranciscoDisplay-Bold'),
-        url('../fonts/SanFranciscoDisplay-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Medium Italic'),
-        local('SanFranciscoText-MediumItalic'),
-        url('../fonts/SanFranciscoText-MediumItalic.ttf') format('truetype');
-    font-weight: 500;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Semibold'),
-        local('SanFranciscoText-Semibold'),
-        url('../fonts/SanFranciscoText-Semibold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'San Francisco Text';
-    src: local('San Francisco Text Heavy Italic'),
-        local('SanFranciscoText-HeavyItalic'),
-        url('../fonts/SanFranciscoText-HeavyItalic.ttf') format('truetype');
-    font-weight: 900;
-    font-style: italic;
+    src: url('../fonts/Blinker-Regular.ttf');
+    font-family: 'Blinker';
+    font-weight: 400;
 }
