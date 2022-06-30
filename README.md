@@ -12,6 +12,7 @@ If you want to stay on the happy path, do the following:
 6. Follow the instructions for the project you work on next.
 
 Before pushing commits, ensure they pass style and lint checks by running `./scripts/stylecheck.sh` from the root directory. 
+
 Using `npx run prettier`, you will be able to run a prettier script that will fix all prettier errors.
 
 ## Development and Deployment Process
