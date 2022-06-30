@@ -3,7 +3,7 @@
 }
 
 body#registration {
-    background-color: var(--accent-bright);
+    background-image: url("../images/backgrounds/page1.png");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,7 +44,7 @@ body#registration {
 }
 .bdg > .container:before {
     content: '';
-    background: linear-gradient(to right, #24797c, #1d535b);
+    background: linear-gradient(to right, #01204A, #013170);
     background-position: center;
     background-size: cover;
     position: absolute;
