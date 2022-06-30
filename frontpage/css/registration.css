@@ -3,7 +3,7 @@
 }
 
 body#registration {
-    background-image: url("../images/backgrounds/page1.png");
+    background-image: url('../images/backgrounds/page1.png');
     display: flex;
     background-repeat: no-repeat;
     flex-direction: column;
@@ -46,7 +46,7 @@ body#registration {
 }
 .bdg > .container:before {
     content: '';
-    background: linear-gradient(to right, #01204A, #013170);
+    background: linear-gradient(to right, #01204a, #013170);
     background-position: center;
     background-size: cover;
     position: absolute;

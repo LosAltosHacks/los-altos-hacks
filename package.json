@@ -4,6 +4,9 @@
   "description": "Dummy package for global linters and formatters",
   "main_": "",
   "author": "",
+  "scripts": {
+    "pretty": "prettier --write \"./**/*.{js,jsx,json,css,html}\""
+  },
   "devDependencies": {
     "eslint": "^6.4.0",
     "prettier": "^1.19.1"
