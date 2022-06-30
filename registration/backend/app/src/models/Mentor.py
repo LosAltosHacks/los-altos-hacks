@@ -15,9 +15,9 @@ class TechnologyProficiency(enum.Enum):
 
 
 class DBMentor(DBPerson):
-    __tablename__ = "mentors2021"
+    __tablename__ = "mentors2022"
 
-    id = Column(Integer, ForeignKey('person2021.id'), nullable=False, primary_key=True)
+    id = Column(Integer, ForeignKey('person2022.id'), nullable=False, primary_key=True)
     occupation = Column(String(1024), nullable=False)
     technology_proficiency = Column(Enum(TechnologyProficiency), nullable=False)
     proficient_in_languages = Column(String(1024))

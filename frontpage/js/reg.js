@@ -327,11 +327,11 @@ function checkFilled($page) {
         if ($(e).attr('id') == 'shipping') {
             filledAll =
                 filledAll &&
-                ($('#en-shipping-country').val() != '' &&
-                    $('#en-shipping-addy1').val() != '' &&
-                    $('#en-shipping-city').val() != '' &&
-                    $('#en-shipping-stateprovince').val() != '' &&
-                    $('#en-shipping-postal').val() != '');
+                $('#en-shipping-country').val() != '' &&
+                $('#en-shipping-addy1').val() != '' &&
+                $('#en-shipping-city').val() != '' &&
+                $('#en-shipping-stateprovince').val() != '' &&
+                $('#en-shipping-postal').val() != '';
         }
 
         var $input = $(e).find('input');
