@@ -4,7 +4,7 @@ import uuid
 import uvicorn
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import Response
 
 import config
@@ -16,17 +16,24 @@ from models.Person import DBPerson
 from subrouters.registration import registrationRouter
 
 app = FastAPI()
+
 origins = [
-        "https://losaltoshacks.com",
-        "https://www.losaltoshacks.com",
-    ]
+    "https://losaltoshacks.com",
+    "https://www.losaltoshacks.com",
+]
+if config.is_development_env():
+    origins.append("*")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["POST", "GET"],
     allow_headers=["*"],
 )
+app.include_router(registrationRouter, prefix="/attendees")
+# app.include_router(mentorRouter, prefix="/mentors")
+app.include_router(authRouter, prefix="/auth")
 
 @app.get("/health/")
 def health_check():
@@ -70,11 +77,9 @@ EMAIL_VERIFIED_PAGE_TEMPLATE = """
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta name="robots" content="noindex" />
-
     <link rel="shortcut icon" href="https://www.losaltoshacks.com/favicon.ico" />
     <link rel="icon" type="image/png" href="https://www.losaltoshacks.com/favicon.png" />
     <link rel="apple-touch-icon" href="https://www.losaltoshacks.com/touch-icon.png" />
-
     <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="https://www.losaltoshacks.com/css/error.css" />
