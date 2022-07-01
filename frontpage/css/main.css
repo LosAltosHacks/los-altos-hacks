@@ -950,6 +950,8 @@ footer {
     color: white;
     height: 100vh;
     min-height: 30em;
+    display: flex;
+    flex-direction: row;
 }
 
 #event-name {
@@ -996,6 +998,9 @@ footer {
     cursor: pointer;
     opacity: 1;
     box-shadow: 0 0 1em rgba(255, 255, 255, 0.2);
+}
+.scheduleLink > svg {
+    width: 1em;
 }
 #details {
     font-size: 0.8rem;
@@ -1079,6 +1084,9 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+}
+.detail.location > svg {
+    height: 1.2em;
 }
 .schedVisHeader {
     margin-top: 20px;

@@ -2,65 +2,11 @@ var eventsList = document.querySelectorAll('#schedule-table tbody > tr');
 var clockTime = 0;
 var events = [];
 
-window.onscroll = _ => navBarDisplay();
-document
-    .querySelector('nav .nav-icon')
-    .addEventListener('click', _ => navMenuToggle());
-navBarDisplay();
-
 registerEvents();
 
 // Adapt to Microsoft Edge
 if (!(/*@cc_on!@*/ (false || !!document.documentMode))) {
     adaptEdge();
-}
-
-function navBarDisplay() {
-    var nav = document.getElementsByTagName('nav')[0];
-    var offset = document.getElementById('mission').offsetTop;
-
-    if (
-        document.body.scrollTop <= 50 &&
-        document.documentElement.scrollTop <= 50
-    ) {
-        nav.style.top = '0';
-        nav.style.position = 'absolute';
-    } else if (
-        (document.body.scrollTop > 50 ||
-            document.documentElement.scrollTop > 50) &&
-        document.body.scrollTop < offset &&
-        document.documentElement.scrollTop < offset
-    ) {
-        document.querySelector('nav > .container').style.boxShadow = 'none';
-        nav.style.transition = 'none';
-        nav.style.top = '-100%';
-        nav.style.position = 'fixed';
-        if (
-            document
-                .getElementsByClassName('nav-icon')[0]
-                .classList.contains('close')
-        )
-            navMenuToggle();
-    } else {
-        nav.style.position = 'fixed';
-        nav.style.transition = 'top 0.5s';
-        document.querySelector('nav > .container').style.boxShadow =
-            '0 2px 3px rgba(0, 0, 0, 0.2)';
-        nav.style.top = '0';
-    }
-}
-
-function navMenuToggle() {
-    var icon = document.getElementsByClassName('nav-icon')[0];
-    var links = document.getElementsByClassName('nav-sections')[0];
-    if (icon.classList.contains('close')) {
-        // When the menu is open
-        icon.classList.remove('close');
-        links.classList.remove('open');
-    } else {
-        icon.classList.add('close');
-        links.classList.add('open');
-    }
 }
 
 // Register all events
