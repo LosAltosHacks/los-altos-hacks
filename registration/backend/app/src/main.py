@@ -32,7 +32,7 @@ def create_app() -> CORSMiddleware:
     app.include_router(authRouter, prefix="/auth")
     return CORSMiddleware(
         fastapi_app,
-        allow_origins=origins,
+        allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["POST", "GET"],
         allow_headers=["*"],
