@@ -74,7 +74,6 @@ class Attendee(BaseModel):
     previous_hackathons_attended: PreviousHackathons
     hear_about_us: str = None
     access_to_laptop_or_tablet: bool = None
-    form_of_internet: str = None
     mlh_code_of_conduct: bool
     share_info_mlh: bool
     send_info_emails: bool = None
