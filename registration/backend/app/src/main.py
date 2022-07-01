@@ -27,10 +27,17 @@ def create_app() -> CORSMiddleware:
         origins.append("*")
 
     fastapi_app = FastAPI()
-    fastapi_app.include_router(registrationRouter, prefix="/attendees")
+    app.include_router(registrationRouter, prefix="/attendees")
     # app.include_router(mentorRouter, prefix="/mentors")
-    fastapi_app.include_router(authRouter, prefix="/auth")
-    return fastapi_app
+    app.include_router(authRouter, prefix="/auth")
+    return CORSMiddleware(
+        fastapi_app,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
 
 app = create_app()
 
