@@ -18,7 +18,7 @@ from subrouters.registration import registrationRouter
 app = FastAPI()
 
 origins = [
-    "https://api.losaltoshacks.com",
+    "https://api.losaltoshacks.com/attendees",
     "https://losaltoshacks.com",
     "https://www.losaltoshacks.com",
 ]
