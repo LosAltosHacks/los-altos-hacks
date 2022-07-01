@@ -204,6 +204,7 @@ p.text-tiny {
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
+    justify-items: center;
     max-width: var(--site-width);
     width: 100%;
 }
@@ -455,6 +456,7 @@ h1.head-text {
     display: flex;
     flex-direction: column !important;
     justify-content: center;
+    margin: auto;
 }
 
 .faq-row {
