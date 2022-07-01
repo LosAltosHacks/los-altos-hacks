@@ -92,6 +92,11 @@ main a {
     font-weight: 600;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 /* a.sponsorship-email {
 	color: #ffb347;
 } */
@@ -218,10 +223,6 @@ p.text-tiny {
 .row.columns-tiny > * {
     flex: 1 calc(90px + 8 * var(--vw));
     max-width: calc((90px + 8 * var(--vw)) * 1.25);
-}
-
-.row > * > * + * {
-    margin-top: 0.6rem;
 }
 
 .mt-0 {
@@ -672,10 +673,6 @@ figure:hover img {
     max-width: calc((80px + 5 * var(--vw)) * 1.5);
 }
 
-.row > * > * + * {
-    margin-top: 1rem;
-}
-
 .social-media a {
     background: radial-gradient(
         rgba(255, 255, 255, 0.9),
@@ -871,35 +868,48 @@ nav {
     color: #02a2dd;
 }
 
-footer .footer-wrapper {
-    font-size: 0.9em;
-    align-items: start;
+footer {
+    background: none;
+    left: 0rem;
+    right: 0rem;
+    padding: 0.5rem 0.8rem;
+    align-items: center;
+}
+
+#footer-row {
+    height: 1rem;
+    flex-direction: row;
     justify-content: center;
 }
 
-footer .footer-sect {
-    margin: 0;
-    padding: 0.75rem !important;
-    width: 225px;
-    color: white;
-}
-
-footer .link-group-head {
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 0.8rem;
-}
-
-footer a.link-group-item {
-    color: #ddd;
-    text-transform: uppercase;
+.footer-links {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 540px;
+    min-width: 250px;
     font-size: 0.6rem;
-    margin-top: 0.2rem;
+    color: white;
+    font-family: 'Avenir';
+    /* responsive solution needed */
 }
 
-footer a.link-group-item:hover {
-    color: #02a2dd;
-    box-shadow: 0 0 5 #02a2dd;
+.nav-link > span {
+    font-weight: 100;
+}
+
+.nav-link > a {
+    color: white;
+    font-weight: 300;
+}
+
+.nav-link > a:hover {
+    color: lightgray;
+}
+
+.footer-links > * {
+    margin: 0 1rem;
 }
 
 .past-years {
