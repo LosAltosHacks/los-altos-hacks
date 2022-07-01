@@ -15,26 +15,31 @@ from helpers.hosttools import authRouter
 from models.Person import DBPerson
 from subrouters.registration import registrationRouter
 
-app = FastAPI()
+def create_app() -> CORSMiddleware:
+    """Create app wrapper to overcome middleware issues."""
 
-origins = [
-    "https://losaltoshacks.com",
-    "https://www.losaltoshacks.com",
-]
+    origins = [
+        "https://losaltoshacks.com",
+        "https://www.losaltoshacks.com",
+    ]
 
-if config.is_development_env():
-    origins.append("*")
+    if config.is_development_env():
+        origins.append("*")
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["POST", "GET"],
-    allow_headers=["*"],
-)
-app.include_router(registrationRouter, prefix="/attendees")
-# app.include_router(mentorRouter, prefix="/mentors")
-app.include_router(authRouter, prefix="/auth")
+    fastapi_app = FastAPI()
+    app.include_router(registrationRouter, prefix="/attendees")
+    # app.include_router(mentorRouter, prefix="/mentors")
+    app.include_router(authRouter, prefix="/auth")
+    return CORSMiddleware(
+        fastapi_app,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["POST", "GET"],
+        allow_headers=["*"],
+    )
+
+
+app = create_app()
 
 @app.get("/health/")
 def health_check():
