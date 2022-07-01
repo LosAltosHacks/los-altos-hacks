@@ -3,7 +3,7 @@
 
 //initial state data.  update/delete as you please.
 var dayKey = 0;
-var days = ['March 23', 'March 24'];
+var days = ['September 24', 'September 25'];
 var eventDay = days[dayKey];
 var scheduleData = Schedules[eventDay].sched;
 
@@ -28,7 +28,7 @@ function initSideList() {
                 '</td></tr>'
         );
     });
-    var formattedDay = moment(eventDay + ' 2019', 'MMMM DD YYYY').format(
+    var formattedDay = moment(eventDay + ' 2022', 'MMMM DD YYYY').format(
         'dddd'
     );
     $('#schedDayLarge').text(eventDay + ' - ' + formattedDay);
@@ -45,7 +45,7 @@ function initTracker() {
     for (var eventKey in scheduleData) {
         var event = scheduleData[eventKey];
         var eventTime = moment(
-            eventDay + ' 2019' + ' ' + event.time,
+            eventDay + ' 2022' + ' ' + event.time,
             'MMMM DD YYYY hh:mm A'
         );
         var now = moment();
@@ -114,7 +114,7 @@ function displayDynamicSchedule() {
     $('#schedDecrease').attr('data-linkTo', prevKey);
 
     //change the day displayed
-    var formattedDay = moment(eventDay + ' 2019', 'MMMM DD YYYY').format(
+    var formattedDay = moment(eventDay + ' 2022', 'MMMM DD YYYY').format(
         'dddd'
     );
     $('#schedDay').text(formattedDay);

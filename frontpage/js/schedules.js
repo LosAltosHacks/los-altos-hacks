@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 var Schedules = {
-    'March 23': {
-        day: 'March 23',
+    'September 24': {
+        day: 'September 24',
         sched: [
             {
                 time: '9:00 AM',
@@ -29,22 +29,6 @@ var Schedules = {
                 location: 'Food Area',
             },
             {
-                time: '1:00 PM',
-                name: 'Build Your First Website Workshop with Hack Club',
-                location: 'Workshop Area',
-            },
-            {
-                time: '3:30 PM',
-                name:
-                    'The State of Cyber Security with Gigamon CTO Shehzad Merchant',
-                location: 'Main Stage',
-            },
-            {
-                time: '6:00 PM',
-                name: 'Landing Your First Tech Internship with Make School',
-                location: 'Workshop Area',
-            },
-            {
                 time: '7:00 PM',
                 name: 'Dinner',
                 location: 'Food Area',
@@ -61,19 +45,9 @@ var Schedules = {
             },
         ],
     },
-    'March 24': {
-        day: 'March 24',
+    'September 25': {
+        day: 'September 25',
         sched: [
-            {
-                time: '12:00 AM',
-                name: 'Midnight Surprise',
-                location: 'Food Area',
-            },
-            {
-                time: '1:00 AM',
-                name: 'Super Smash Bros. Ultimate Tournament',
-                location: 'Workshop Area',
-            },
             {
                 time: '7:30 AM',
                 name: 'Submissions to Devpost Due',
