@@ -457,6 +457,7 @@ h1.head-text {
     flex-direction: column !important;
     justify-content: center;
     margin: auto;
+    margin-top: 0.5rem;
 }
 
 .faq-row {
