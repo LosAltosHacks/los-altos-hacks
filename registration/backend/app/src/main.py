@@ -4,8 +4,7 @@ import uuid
 import uvicorn
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from starlette.middleware.cors import CORSMiddleware
-from starlette.middleware import Middleware
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import Response
 
 import config
@@ -16,25 +15,23 @@ from helpers.hosttools import authRouter
 from models.Person import DBPerson
 from subrouters.registration import registrationRouter
 
+app = FastAPI()
+
 origins = [
     "https://losaltoshacks.com",
     "https://www.losaltoshacks.com",
 ]
+
 if config.is_development_env():
     origins.append("*")
 
-middleware = [
-    Middleware(
-        CORSMiddleware,
-        allow_origins=origins,
-        allow_credentials=True,
-        allow_methods=["POST", "GET"],
-        allow_headers=['*']
-    )
-]
-
-app = FastAPI(middleware=middleware)
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST", "GET"],
+    allow_headers=["*"],
+)
 app.include_router(registrationRouter, prefix="/attendees")
 # app.include_router(mentorRouter, prefix="/mentors")
 app.include_router(authRouter, prefix="/auth")
