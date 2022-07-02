@@ -23,8 +23,7 @@
 html,
 body {
     height: 100%;
-    background-image: 
-        url(../images/backgrounds/fullbackground.png);
+    background-image: url(../images/backgrounds/fullbackground.png);
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: 50% 0%;
@@ -33,7 +32,7 @@ body {
 @media (max-width: 1000px) {
     html,
     body {
-        background-size: 100% calc(4000px); 
+        background-size: 100% calc(4000px);
     }
 }
 
@@ -283,8 +282,6 @@ div#overlay {
     position: fixed;
     top: 0;
 }
-
-
 
 #logo-main {
     z-index: 1;
