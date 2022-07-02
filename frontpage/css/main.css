@@ -23,7 +23,17 @@
 html,
 body {
     height: 100%;
-    margin: 0;
+    background-image: url(../images/backgrounds/fullbackground.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: 50% 0%;
+}
+
+@media (max-width: 1000px) {
+    html,
+    body {
+        background-size: 100% calc(4000px);
+    }
 }
 
 div,
@@ -271,21 +281,6 @@ div#overlay {
     height: 100%;
     position: fixed;
     top: 0;
-}
-
-.background {
-    position: fixed;
-    margin: 0;
-    padding: 0;
-    overflow: none;
-    width: 100%;
-    z-index: -1;
-}
-
-.background img {
-    width: 2077px;
-    height: 1349px;
-    width: 100%;
 }
 
 #logo-main {
@@ -1222,7 +1217,7 @@ footer {
 }
 
 .hero img {
-    max-width: 40vw;
+    max-width: 28vw;
 }
 
 .hero-inner {
@@ -1301,12 +1296,15 @@ footer {
     margin: 0;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 780px) {
     .info {
         flex-direction: column;
     }
     .hero-inner {
         flex-direction: column;
+    }
+    .hero img {
+        max-width: 32vw;
     }
 }
 
