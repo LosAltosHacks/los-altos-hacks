@@ -1217,7 +1217,7 @@ footer {
 }
 
 .hero img {
-    max-width: 40vw;
+    max-width: 28vw;
 }
 
 .hero-inner {
@@ -1302,6 +1302,9 @@ footer {
     }
     .hero-inner {
         flex-direction: column;
+    }
+    .hero img {
+        max-width: 32vw;
     }
 }
 
