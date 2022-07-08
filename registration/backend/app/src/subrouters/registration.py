@@ -38,6 +38,14 @@ def list_users(skip: int = 0, db: Session = Depends(get_db), host: DBHost = Depe
         return []
     raise HTTPException(status_code=401, detail="Unauthorized request.")
 
+@registrationRouter.get("/num")
+def user_count(skip: int = 0, db: Session = Depends(get_db), host: DBHost = Depends(get_current_host)):
+    if host:
+        if users := dbtools.get_users(db, skip=skip):
+            return len(users)
+        return []
+    raise HTTPException(status_code=401, detail="Unauthorized request.")
+
 
 @registrationRouter.get("/{user_id}/")
 def list_user(user_id: uuid.UUID, db: Session = Depends(get_db), host: DBHost = Depends(get_current_host)):
