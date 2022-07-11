@@ -605,13 +605,22 @@ figure:hover img {
     font-weight: 300;
     font-size: 0.7em;
 }
-
+html, body {
+    margin: 0;
+    padding: 0;
+}
 #sponsors img {
     max-height: calc(20px + 6 * var(--vw));
+    max-width: 100%;
+    
 }
 
 #sponsors {
+    display:flex;
+    align-items: center;
     background: white;
+    max-height: 52.5vw;
+    padding:1em;
 }
 
 #sponsors h2 {
@@ -622,11 +631,11 @@ figure:hover img {
 
 #partners-title {
     margin-top: 0 !important;
+    text-align:center;
 }
 
 #sponsors a {
-    margin-left: 1em;
-    margin-right: 1em;
+    padding: 1em;
 }
 
 #sponsors a:hover img {
