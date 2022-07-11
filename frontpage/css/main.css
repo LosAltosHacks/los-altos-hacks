@@ -1182,12 +1182,17 @@ footer {
     font-size: 18px;
 }
 .navButtons .navButton {
-    width: 35px;
+    border-radius:15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 35px;
     border-radius: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.navButton:hover{
+    transform: scale(1.25);
+
 }
 .scheduleLink {
     opacity: 0.8;
