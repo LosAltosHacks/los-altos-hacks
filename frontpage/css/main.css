@@ -601,35 +601,34 @@ figure:hover img {
     font-weight: 300;
     font-size: 0.7em;
 }
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
 }
 #sponsors img {
-    flex-direction:row;
-    justify-content:space-around;
+    flex-direction: row;
+    justify-content: space-around;
     max-height: calc(5vw);
     max-width: 100%;
-    
 }
 
 #sponsors {
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     background: white;
-    padding:1em;
-    padding-bottom:1.5em;
+    padding: 1em;
+    padding-bottom: 1.5em;
 }
 #partners {
     display: flex;
-    flex-direction:row;
-    
+    flex-direction: row;
 }
 #partners img {
-    padding-inline:2.5em;
-    position:relative;
-    right:2.55vw;
-    max-height: calc(4.5vw)
+    padding-inline: 2.5em;
+    position: relative;
+    right: 2.55vw;
+    max-height: calc(4.5vw);
 }
 
 #sponsors h2 {
@@ -640,11 +639,11 @@ html, body {
 
 #partners-title {
     margin-top: 0 !important;
-    text-align:center;
+    text-align: center;
 }
 
 #sponsors a {
-    flex-direction:row;
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
@@ -668,7 +667,7 @@ html, body {
 .row-sponser {
     display: flex;
     flex-direction: row;
-    align-items: flex-start
+    align-items: flex-start;
 }
 
 .row > * {
@@ -1206,7 +1205,7 @@ footer {
     font-size: 18px;
 }
 .navButtons .navButton {
-    border-radius:15px;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1214,9 +1213,8 @@ footer {
     transition: all 0.2s ease-in-out;
 }
 
-.navButton:hover{
+.navButton:hover {
     transform: scale(1.25);
-
 }
 .scheduleLink {
     opacity: 0.8;
