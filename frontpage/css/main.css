@@ -1413,18 +1413,16 @@ footer {
     }
     .partners {
         position: inline-block;
-        flex-direction:column;
-        align-items:center;
-        
-        
+        flex-direction: column;
+        align-items: center;
     }
     .partners img {
-        left:0em;
-        min-height:3rem;
-        margin:0.4rem;
+        left: 0em;
+        min-height: 3rem;
+        margin: 0.4rem;
         max-height: calc(4.5vw);
-        font-size:0px;
-        line-height:0px;
+        font-size: 0px;
+        line-height: 0px;
     }
 }
 
