@@ -22,9 +22,9 @@ function initSideList() {
                 '" data-linkTo="' +
                 i +
                 '" class="scheduleLink"><td>' +
-                event.time +
-                '</td><td>' +
                 event.name +
+                '</td><td>' +
+                event.time +
                 '</td></tr>'
         );
     });

@@ -107,10 +107,6 @@ body {
     flex-direction: column;
 }
 
-/* a.sponsorship-email {
-	color: #ffb347;
-} */
-
 h1 {
     font-size: 3rem;
     line-height: 1.1;
@@ -155,7 +151,7 @@ tr:nth-of-type(odd) td {
 }
 
 tr > :first-child {
-    text-align: right;
+    text-align: left;
     white-space: nowrap;
 }
 
@@ -605,28 +601,50 @@ figure:hover img {
     font-weight: 300;
     font-size: 0.7em;
 }
-
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
 #sponsors img {
-    max-height: calc(20px + 6 * var(--vw));
+    flex-direction: row;
+    justify-content: space-around;
+    max-height: calc(5vw);
+    max-width: 100%;
 }
 
 #sponsors {
+    display: flex;
+    flex-direction: column;
     background: white;
+    padding: 1em;
+    padding-bottom: 1.5em;
+}
+.partners {
+    display: flex;
+    flex-direction: row;
+}
+.partners img {
+    padding-inline: 2.5em;
+    position: relative;
+    right: 2.55vw;
+    max-height: calc(4.5vw);
 }
 
 #sponsors h2 {
     color: black;
-    margin-bottom: 0;
-    margin-top: 75px;
+    margin-bottom: 10px;
+    margin-top: 50px;
 }
 
 #partners-title {
     margin-top: 0 !important;
+    text-align: center;
 }
 
 #sponsors a {
-    margin-left: 1em;
-    margin-right: 1em;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #sponsors a:hover img {
@@ -645,6 +663,11 @@ figure:hover img {
     align-items: center;
     max-width: var(--site-width);
     width: 100%;
+}
+.row-sponser {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 .row > * {
@@ -1182,12 +1205,16 @@ footer {
     font-size: 18px;
 }
 .navButtons .navButton {
-    width: 35px;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 35px;
     border-radius: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.navButton:hover {
+    transform: scale(1.25);
 }
 .scheduleLink {
     opacity: 0.8;
@@ -1383,6 +1410,19 @@ footer {
     }
     .hero img {
         max-width: 32vw;
+    }
+    .partners {
+        position: inline-block;
+        flex-direction: column;
+        align-items: center;
+    }
+    .partners img {
+        left: 0em;
+        min-height: 3rem;
+        margin: 0.4rem;
+        max-height: calc(4.5vw);
+        font-size: 0px;
+        line-height: 0px;
     }
 }
 
@@ -1596,21 +1636,6 @@ footer {
     #about .row > div {
         max-width: 100%;
     }
-
-    #sponsors {
-        flex-direction: column;
-    }
-
-    /*	For the sponsors tab, this design flow needs to be reimplemented by the design team. Leaving this as a placeholder for now. */
-    #sponsors-title,
-    #sponsors-panel {
-        flex-basis: 100%;
-        width: 100%;
-    }
-
-    /* #sponsors img {
-        max-height: 2rem;
-    } */
 
     .row.columns-half > * {
         flex: 1 100%;
