@@ -43,7 +43,7 @@ def get_user_by_email(db: Session, email: str, get_outdated: bool = False,
                         model.outdated != True).first()
 
 
-def get_users(db: Session, skip: int = 0, limit: int = 1000, model: Union[DBPerson, DBAttendee, DBMentor] = DBAttendee):
+def get_users(db: Session, skip: int = 0, limit: int = 1000000, model: Union[DBPerson, DBAttendee, DBMentor] = DBAttendee):
     return db.query(model).filter(model.outdated != True).offset(skip).limit(
         limit).all()
 
