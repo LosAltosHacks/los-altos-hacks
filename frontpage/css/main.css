@@ -615,20 +615,19 @@ body {
 
 #sponsors {
     display: absolute;
-    justify-content:center;
+    justify-content: center;
     flex-direction: column;
     background: white;
-    border-radius:100px;
+    border-radius: 100px;
     width: 80%;
     position: center;
     margin: auto;
     padding: 0.8em;
     padding-bottom: 1.5em;
     border: 1px solid #4173fd;
-    box-shadow:  -1px 1px #4173fd,
-         -2px 2px #4173fd,
-         -3px 3px #4173fd,
-         -4px 4px #4173fd}
+    box-shadow: -1px 1px #4173fd, -2px 2px #4173fd, -3px 3px #4173fd,
+        -4px 4px #4173fd;
+}
 .partners-sponsors {
     display: flex;
     flex-direction: row;
