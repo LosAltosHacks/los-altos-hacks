@@ -614,21 +614,40 @@ body {
 }
 
 #sponsors {
-    display: flex;
+    display: absolute;
+    justify-content: center;
     flex-direction: column;
     background: white;
-    padding: 1em;
+    border-radius: 100px;
+    width: 80%;
+    position: center;
+    margin: auto;
+    padding: 0.8em;
     padding-bottom: 1.5em;
+    border: 1px solid #4173fd;
+    box-shadow: -1px 1px #4173fd, -2px 2px #4173fd, -3px 3px #4173fd,
+        -4px 4px #4173fd;
 }
-.partners {
+.partners-sponsors {
     display: flex;
     flex-direction: row;
 }
-.partners img {
+.partners-sponsors img {
     padding-inline: 2.5em;
     position: relative;
     right: 2.55vw;
-    max-height: calc(4.5vw);
+    height: calc(5vw);
+}
+
+.sponsor-image {
+    display: flex;
+    flex-direction: row;
+}
+.sponsor-image img {
+    padding-inline: 2.5em;
+    position: relative;
+    right: 2.55vw;
+    height: calc(3.3vw);
 }
 
 #sponsors h2 {
@@ -639,6 +658,13 @@ body {
 
 #partners-title {
     margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    text-align: center;
+}
+
+#sponsor-title {
+    margin-top: 1em !important;
+    margin-bottom: 20px !important;
     text-align: center;
 }
 
@@ -1411,16 +1437,33 @@ footer {
     .hero img {
         max-width: 32vw;
     }
-    .partners {
+    .partners-sponsors {
         position: inline-block;
         flex-direction: column;
         align-items: center;
     }
-    .partners img {
+    .partners-sponsors img {
         left: 0em;
         min-height: 3rem;
-        margin: 0.4rem;
-        max-height: calc(4.5vw);
+        margin-block: 0.8rem;
+        padding-top: 0 !important;
+        height: calc(5vw);
+        font-size: 0px;
+        line-height: 0px;
+    }
+    .sponsor-title {
+        margin-top: 0em !important;
+    }
+    .sponsor-image {
+        position: inline-block;
+        flex-direction: column;
+        align-items: center;
+    }
+    .sponsor-image img {
+        left: 0em;
+        min-height: 1.33rem;
+        margin-block: 0.8rem;
+        height: calc(1vw);
         font-size: 0px;
         line-height: 0px;
     }
