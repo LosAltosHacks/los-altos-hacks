@@ -1428,7 +1428,8 @@ footer {
 }
 
 img.ea {
-    height: calc(10vw);
+    min-width: 3rem;
+    min-height: 3rem;
     bottom: 20px;
 }
 
@@ -1442,6 +1443,7 @@ img.ea {
     .hero img {
         max-width: 32vw;
     }
+    
     .partners-sponsors {
         position: inline-block;
         flex-direction: column;
@@ -1468,9 +1470,18 @@ img.ea {
         left: 0em;
         min-height: 1.33rem;
         margin-block: 0.8rem;
-        height: calc(1vw);
+        height: calc(10vw);
         font-size: 0px;
         line-height: 0px;
+    }
+    .sponsor-image img.ea {
+        left: 0em;
+        margin-block: 0.8rem;
+        min-height: 4.5rem;
+        width: calc(4rem);
+        font-size: 0px;
+        line-height: 0px;
+        padding-top: 0.5rem;
     }
 }
 
