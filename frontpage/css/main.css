@@ -1427,6 +1427,11 @@ footer {
     margin: 0;
 }
 
+img.ea {
+    height: calc(10vw);
+    bottom: 20px;
+}
+
 @media screen and (max-width: 780px) {
     .info {
         flex-direction: column;
