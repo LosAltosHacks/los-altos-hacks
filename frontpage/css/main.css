@@ -1433,6 +1433,13 @@ img.ea {
     bottom: 20px;
 }
 
+img.sticker {
+    min-width: 5rem;
+    min-height: 4rem;
+    right: 20px;
+    top: 20px;
+}
+
 @media screen and (max-width: 780px) {
     .info {
         flex-direction: column;
@@ -1452,7 +1459,7 @@ img.ea {
     .partners-sponsors img {
         left: 0em;
         min-height: 3rem;
-        margin-block: 0.8rem;
+        margin-top: 2rem;
         padding-top: 0 !important;
         height: calc(5vw);
         font-size: 0px;
@@ -1469,19 +1476,27 @@ img.ea {
     .sponsor-image img {
         left: 0em;
         min-height: 1.33rem;
-        margin-block: 0.8rem;
+        margin-top: 2rem;
         height: calc(10vw);
         font-size: 0px;
         line-height: 0px;
     }
     .sponsor-image img.ea {
         left: 0em;
-        margin-block: 0.8rem;
+        margin-top: 2.5rem;
         min-height: 4.5rem;
         width: calc(4rem);
         font-size: 0px;
         line-height: 0px;
         padding-top: 0.5rem;
+    }
+
+    .sponsor-image img.sticker {
+        min-width: 10rem;
+        min-height: 4rem;
+        right: 20px;
+        margin-top: 0rem;
+        bottom: 1000px !important;
     }
 }
 
