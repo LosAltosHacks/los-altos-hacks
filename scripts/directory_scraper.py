@@ -22,8 +22,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 options = webdriver.ChromeOptions()
-options.add_argument("user-data-dir=<INSERT PATH TO AN EMPTY DIRECTORY HERE>")
-driver = webdriver.Chrome(executable_path=r"<INSERT PATH TO CHROMEDRIVER HERE>", options=options)
+options.add_argument("user-data-dir=C:/Users/ritam/Desktop/user_data")
+driver = webdriver.Chrome(executable_path=r"C:/Users/ritam/Desktop/chromedriver_win32/chromedriver.exe", options=options)
 driver.get("https://contacts.google.com/u/0/directory")
 
 print("Sleeping to load page...")
